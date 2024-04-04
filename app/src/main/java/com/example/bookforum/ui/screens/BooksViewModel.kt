@@ -1,10 +1,13 @@
 package com.example.bookforum.ui.screens
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.bookforum.model.BookApiObject
+import com.example.bookforum.model.ResultApiObject
 import com.example.bookforum.network.BooksApi
 import com.example.bookforum.utils.SecretKeys
 import kotlinx.coroutines.launch
@@ -18,28 +21,23 @@ private const val API_HOST = "getbooksinfo.p.rapidapi.com";
 class BooksViewModel : ViewModel() {
     var uiState: String by mutableStateOf("")
         private set
-
+    var books: List<ResultApiObject> by mutableStateOf(emptyList())
     init {
         getBooks("Theory of Everything")
     }
 
     private fun getBooks(query: String) {
         viewModelScope.launch {
-            BooksApi.retrofitService.getBooks(query, SecretKeys.XRapidAPIKey, API_HOST)
-                .enqueue(object : Callback<ResponseBody> {
-                    override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                        if (response.isSuccessful) {
-                            val body = response.body()?.string()
-                            uiState = body ?: "No response body"
-                        } else {
-                            uiState = "Error: ${response.code()}"
-                        }
-                    }
-
-                    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                        uiState = "Network request failed: ${t.message}"
-                    }
-                })
+            try {
+                val response = BooksApi.retrofitService.getBooks(query, SecretKeys.XRapidAPIKey, API_HOST)
+                if (response.isNotEmpty()) {
+                    books = response
+                } else {
+                    uiState = "No books found"
+                }
+            } catch (e: Exception) {
+                uiState = "Error: ${e.message}"
+            }
         }
     }
 }

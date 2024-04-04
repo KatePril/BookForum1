@@ -9,8 +9,10 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
 
+private const val BASE_URL = "https://getbooksinfo.p.rapidapi.com/";
+
 val retrofit = Retrofit.Builder()
-    .baseUrl("https://getbooksinfo.p.rapidapi.com/")
+    .baseUrl(BASE_URL)
     .addConverterFactory(ScalarsConverterFactory.create())
     .client(OkHttpClient.Builder().build())
     .build()

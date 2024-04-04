@@ -25,7 +25,7 @@ class BooksViewModel : ViewModel() {
 
     private fun getBooks(query: String) {
         viewModelScope.launch {
-            BooksApi.retrofitService.getBooks(query, SecretKeys.XRapidAPIKey2, API_HOST)
+            BooksApi.retrofitService.getBooks(query, SecretKeys.XRapidAPIKey, API_HOST)
                 .enqueue(object : Callback<ResponseBody> {
                     override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                         if (response.isSuccessful) {

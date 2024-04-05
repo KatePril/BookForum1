@@ -28,16 +28,15 @@ class BooksViewModel : ViewModel() {
 
     private fun getBooks(query: String) {
         viewModelScope.launch {
-            try {
                 val response = BooksApi.retrofitService.getBooks(query, SecretKeys.XRapidAPIKey, API_HOST)
-                if (response.isNotEmpty()) {
-                    books = response
+
+                if (response.isSuccessful) {
+                    val body = response.body()?.results?.size
+                    uiState = (body ?: "No response body").toString()
                 } else {
-                    uiState = "No books found"
+                    uiState = "Error: ${response.code()}"
                 }
-            } catch (e: Exception) {
-                uiState = "Error: ${e.message}"
-            }
+
         }
     }
 }

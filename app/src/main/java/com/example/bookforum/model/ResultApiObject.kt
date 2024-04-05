@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ResultApiObject(
-    val result: List<BookApiObject>
+    val results: List<BookApiObject>
 )

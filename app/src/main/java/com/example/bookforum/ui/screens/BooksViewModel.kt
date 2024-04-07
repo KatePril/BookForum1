@@ -9,17 +9,19 @@ import androidx.lifecycle.viewModelScope
 import com.example.bookforum.model.BookApiObject
 import com.example.bookforum.model.ResultApiObject
 import com.example.bookforum.network.BooksApi
+import com.example.bookforum.ui.ApiUiState
 import com.example.bookforum.utils.SecretKeys
 import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.IOException
 
 private const val API_HOST = "getbooksinfo.p.rapidapi.com";
 
 class BooksViewModel : ViewModel() {
-    var uiState: String by mutableStateOf("")
+    var uiState: ApiUiState by mutableStateOf(ApiUiState.Loading)
         private set
     var books: List<ResultApiObject> by mutableStateOf(emptyList())
     init {
@@ -28,14 +30,13 @@ class BooksViewModel : ViewModel() {
 
     private fun getBooks(query: String) {
         viewModelScope.launch {
+            try {
                 val response = BooksApi.retrofitService.getBooks(query, SecretKeys.XRapidAPIKey, API_HOST)
-
-                if (response.isSuccessful) {
-                    val body = response.body()?.results?.size
-                    uiState = (body ?: "No response body").toString()
-                } else {
-                    uiState = "Error: ${response.code()}"
-                }
+                val body = response.body()?.results
+                uiState = ApiUiState.Success(body);
+            } catch (e: IOException) {
+                uiState = ApiUiState.Error
+            }
 
         }
     }

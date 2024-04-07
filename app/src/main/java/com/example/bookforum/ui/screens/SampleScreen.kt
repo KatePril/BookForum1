@@ -3,11 +3,23 @@ package com.example.bookforum.ui.screens
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.example.bookforum.ui.ApiUiState
 
 @Composable
 fun SampleScreen(
-    uiState: String,
+    uiState: ApiUiState,
     modifier: Modifier = Modifier
 ) {
-    Text(text = uiState)
+    when(uiState) {
+        is ApiUiState.Success -> {
+            if (uiState.books != null) {
+                uiState.books.forEach {
+                    Text(text = it.title)
+                }
+            } else {
+                Text(text = "No results found")
+            }
+        }
+        else -> Text(text = uiState.toString())
+    }
 }

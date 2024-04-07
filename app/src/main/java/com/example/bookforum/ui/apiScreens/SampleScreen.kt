@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.screens
+package com.example.bookforum.ui.apiScreens
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

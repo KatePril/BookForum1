@@ -5,7 +5,6 @@ import android.os.Build
 import android.view.View
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -86,25 +85,25 @@ private val DarkColors = darkColorScheme(
     scrim = md_theme_dark_scrim,
 )
 
-@Composable
-fun AppTheme(
-  useDarkTheme: Boolean = isSystemInDarkTheme(),
-  content: @Composable() () -> Unit
-) {
-  val colors = if (!useDarkTheme) {
-    LightColors
-  } else {
-    DarkColors
-  }
+//@Composable
+//fun BookForumTheme(
+//  useDarkTheme: Boolean = isSystemInDarkTheme(),
+//  content: @Composable() () -> Unit
+//) {
+//  val colors = if (!useDarkTheme) {
+//    LightColors
+//  } else {
+//    DarkColors
+//  }
+//
+//  MaterialTheme(
+//    colorScheme = colors,
+//    content = content
+//  )
+//}
 
-  MaterialTheme(
-    colorScheme = colors,
-    content = content
-  )
-}
-
 @Composable
-fun WoofTheme(
+fun BookForumTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = false,

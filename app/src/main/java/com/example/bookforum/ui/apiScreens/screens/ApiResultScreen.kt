@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.apiScreens
+package com.example.bookforum.ui.apiScreens.screens
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -6,7 +6,7 @@ import androidx.compose.ui.Modifier
 import com.example.bookforum.ui.ApiUiState
 
 @Composable
-fun SampleScreen(
+fun ApiResultScreen(
     uiState: ApiUiState,
     modifier: Modifier = Modifier
 ) {
@@ -20,6 +20,11 @@ fun SampleScreen(
                 Text(text = "No results found")
             }
         }
-        else -> Text(text = uiState.toString())
+        is ApiUiState.Loading -> {
+            LoadingResultScreen(modifier)
+        }
+        is ApiUiState.Error -> {
+            ErrorApiScreen(modifier)
+        }
     }
 }

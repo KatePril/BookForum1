@@ -1,5 +1,9 @@
 package com.example.bookforum.ui.apiScreens.screens
 
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -7,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -44,13 +49,30 @@ fun BookApiObjectCard(
             .padding(16.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
     ) {
-        Row (
-            modifier = modifier.padding(16.dp)
+        Column(
+            modifier = Modifier
+                .animateContentSize(
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioNoBouncy,
+                        stiffness = Spring.StiffnessMedium
+                    )
+                )
         ) {
-            BookApiItemInfo(book = book, modifier = modifier)
-            Spacer(modifier = modifier.weight(1f))
-            BookApiItemButton(expanded = expanded, onClick = { })
+            Row (
+                modifier = modifier.padding(16.dp)
+            ) {
+                BookApiItemInfo(book = book, modifier = modifier)
+                Spacer(modifier = modifier.weight(1f))
+                BookApiItemButton(
+                    expanded = expanded,
+                    onClick = { expanded = !expanded }
+                )
+            }
+            if (expanded) {
+                BookApiDescription(description = book.description)
+            }
         }
+        
 
     }
 }
@@ -90,11 +112,31 @@ private fun BookApiItemButton(
         modifier = modifier
     ) {
         Icon(
-            imageVector = Icons.Filled.ExpandMore,
+            imageVector = if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
             contentDescription = null,
             tint = MaterialTheme.colorScheme.secondary
         )
     }
+}
+
+@Composable
+private fun BookApiDescription(
+    description: String,
+    modifier: Modifier = Modifier
+) {
+    Box (
+        modifier = modifier.padding(
+            start = 16.dp,
+            end = 16.dp,
+            bottom = 16.dp
+        )
+    ) {
+        Text(
+            text = description,
+            style = MaterialTheme.typography.bodyLarge
+        )
+    }
+
 }
 
 @Preview(showBackground = true, showSystemUi = true)

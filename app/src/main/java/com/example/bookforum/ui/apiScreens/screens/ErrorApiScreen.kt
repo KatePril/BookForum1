@@ -18,6 +18,7 @@ import com.example.bookforum.R
 
 @Composable
 fun ErrorApiScreen(
+    message: String,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -31,7 +32,8 @@ fun ErrorApiScreen(
             modifier = modifier.size(250.dp)
         )
         Text(
-            text = stringResource(R.string.error_msg),
+//            text = stringResource(R.string.error_msg),
+            text = message,
             style = MaterialTheme.typography.bodyLarge
         )
     }
@@ -41,5 +43,5 @@ fun ErrorApiScreen(
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun ErrorApiScreenPreview() {
-    ErrorApiScreen()
+//    ErrorApiScreen()
 }

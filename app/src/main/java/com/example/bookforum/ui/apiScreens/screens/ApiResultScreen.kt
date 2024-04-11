@@ -13,9 +13,10 @@ fun ApiResultScreen(
     when(uiState) {
         is ApiUiState.Success -> {
             if (uiState.books != null) {
-                uiState.books.forEach {
-                    Text(text = it.title)
-                }
+                SearchResultScreen(
+                    books = uiState.books,
+                    modifier = modifier
+                )
             } else {
                 Text(text = "No results found")
             }
@@ -24,7 +25,7 @@ fun ApiResultScreen(
             LoadingResultScreen(modifier)
         }
         is ApiUiState.Error -> {
-            ErrorApiScreen(modifier)
+            ErrorApiScreen(uiState.error.orEmpty(), modifier)
         }
     }
 }

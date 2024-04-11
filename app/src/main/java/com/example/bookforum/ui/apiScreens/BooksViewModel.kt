@@ -22,15 +22,15 @@ class BooksViewModel : ViewModel() {
     }
 
     private fun getBooks(query: String) {
-//        viewModelScope.launch {
-//            try {
-//                val response = BooksApi.retrofitService.getBooks(query, SecretKeys.XRapidAPIKey, API_HOST)
-//                val body = response.body()?.results
-//                uiState = ApiUiState.Success(body);
-//            } catch (e: IOException) {
-//                uiState = ApiUiState.Error(e.message)
-//            }
-//
-//        }
+        viewModelScope.launch {
+            try {
+                val response = BooksApi.retrofitService.getBooks(query, SecretKeys.XRapidAPIKey, API_HOST)
+                val body = response.body()?.results
+                uiState = ApiUiState.Success(body);
+            } catch (e: IOException) {
+                uiState = ApiUiState.Error(e.message)
+            }
+
+        }
     }
 }

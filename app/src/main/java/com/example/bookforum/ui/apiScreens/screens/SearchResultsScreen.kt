@@ -68,7 +68,7 @@ fun BookApiObjectCard(
                 bottom = 16.dp
             ),
         colors = CardDefaults.cardColors(
-            containerColor = if (expanded) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.tertiaryContainer
+            containerColor = if (expanded) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.tertiaryContainer
         )
     ) {
         Column(

@@ -21,5 +21,5 @@ interface LikedBookDao {
     suspend fun delete(likedBook: LikedBook)
 
     @Query("SELECT book_id from liked_books WHERE user_id = :id")
-    suspend fun getLikedBooks(): Flow<List<Int>>
+    fun getLikedBooks(id: Int): Flow<List<Int>>
 }

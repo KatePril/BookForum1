@@ -1,6 +1,5 @@
 package com.example.bookforum.ui.apiScreens.screens
 
-import android.widget.Space
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,8 +21,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.bookforum.R
 import com.example.bookforum.ui.ApiUiState
 import com.example.bookforum.ui.apiScreens.BooksViewModel
 import com.example.compose.BookForumTheme
@@ -47,7 +48,7 @@ fun ApiResultScreen(
                         modifier = modifier
                     )
                 } else {
-                    Text(text = "No results found")
+                    NoResultsFoundMsg(modifier)
                 }
             }
             is ApiUiState.Loading -> {
@@ -76,7 +77,7 @@ fun ApiSearchTextField(
         horizontalArrangement = Arrangement.Center,
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = 16.dp)
+            .padding(16.dp)
     ) {
         TextField(
             value = queryInput,

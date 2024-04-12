@@ -40,6 +40,9 @@
       <entry key="LoadingResultScreenPreview">
         <State />
       </entry>
+      <entry key="NoResultsFoundMsg">
+        <State />
+      </entry>
       <entry key="app">
         <State>
           <targetSelectedWithDropDown>

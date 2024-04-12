@@ -32,6 +32,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -45,11 +47,29 @@ fun SearchResultScreen(
     books: List<BookApiObject>,
     modifier: Modifier = Modifier
 ) {
-    LazyColumn {
-        items(books) { book ->
-            BookApiObjectCard(book = book, modifier = modifier)
+    if (books.isEmpty()) {
+        NoResultsFoundMsg(modifier)
+    } else {
+        LazyColumn {
+            items(books) { book ->
+                BookApiObjectCard(book = book, modifier = modifier)
+            }
         }
     }
+}
+
+@Composable
+fun NoResultsFoundMsg(
+    modifier: Modifier = Modifier
+) {
+    Text(
+        text = stringResource(R.string.no_results_found),
+        textAlign = TextAlign.Center,
+        style = MaterialTheme.typography.bodyLarge,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(top = 16.dp)
+    )
 }
 
 @Composable
@@ -86,7 +106,6 @@ fun BookApiObjectCard(
             ) {
                 BookApiPhoto(imgLink = book.imgLink, modifier = modifier.weight(1f))
                 BookApiItemInfo(book = book, modifier = modifier.weight(2f))
-//                Spacer(modifier = modifier.weight(1f))
                 BookApiItemButton(
                     expanded = expanded,
                     onClick = { expanded = !expanded }

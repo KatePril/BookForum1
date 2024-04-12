@@ -1,4 +1,4 @@
-package com.example.bookforum.data
+package com.example.bookforum.data.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

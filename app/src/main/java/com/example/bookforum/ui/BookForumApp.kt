@@ -8,5 +8,5 @@ import com.example.bookforum.ui.apiScreens.screens.ApiResultScreen
 @Composable
 fun BookForumApp() {
     val booksViewModel: BooksViewModel = viewModel()
-    ApiResultScreen(uiState = booksViewModel.uiState)
+    ApiResultScreen(uiState = booksViewModel.uiState, booksViewModel = booksViewModel)
 }

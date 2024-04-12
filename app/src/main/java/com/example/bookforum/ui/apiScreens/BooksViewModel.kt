@@ -5,7 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.bookforum.model.ResultApiObject
 import com.example.bookforum.network.BooksApi
 import com.example.bookforum.ui.ApiUiState
 import com.example.bookforum.utils.SecretKeys
@@ -15,20 +14,21 @@ import java.io.IOException
 private const val API_HOST = "getbooksinfo.p.rapidapi.com";
 
 class BooksViewModel : ViewModel() {
-    var uiState: ApiUiState by mutableStateOf(ApiUiState.Loading)
+    var uiState: ApiUiState by mutableStateOf(ApiUiState.NotEntered)
         private set
     init {
-        getBooks("Theory of Everything")
+//        getBooks("Theory of Everything")
     }
 
-    private fun getBooks(query: String) {
+    fun getBooks(query: String) {
+        uiState = ApiUiState.Loading
         viewModelScope.launch {
-            try {
+            uiState = try {
                 val response = BooksApi.retrofitService.getBooks(query, SecretKeys.XRapidAPIKey, API_HOST)
                 val body = response.body()?.results
-                uiState = ApiUiState.Success(body);
+                ApiUiState.Success(body);
             } catch (e: IOException) {
-                uiState = ApiUiState.Error(e.message)
+                ApiUiState.Error(e.message)
             }
 
         }

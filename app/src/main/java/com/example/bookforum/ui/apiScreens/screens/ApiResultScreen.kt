@@ -1,7 +1,10 @@
 package com.example.bookforum.ui.apiScreens.screens
 
+import android.widget.Space
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -13,7 +16,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -23,37 +25,52 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.bookforum.ui.ApiUiState
+import com.example.bookforum.ui.apiScreens.BooksViewModel
 import com.example.compose.BookForumTheme
 
 @Composable
 fun ApiResultScreen(
     uiState: ApiUiState,
+    booksViewModel: BooksViewModel,
     modifier: Modifier = Modifier
 ) {
-    ApiSearchTextField(modifier)
-    when(uiState) {
-        is ApiUiState.Success -> {
-            if (uiState.books != null) {
-                SearchResultScreen(
-                    books = uiState.books,
-                    modifier = modifier
-                )
-            } else {
-                Text(text = "No results found")
+    Column (
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        ApiSearchTextField(booksViewModel)
+        when(uiState) {
+            is ApiUiState.Success -> {
+                if (uiState.books != null) {
+                    SearchResultScreen(
+                        books = uiState.books,
+                        modifier = modifier
+                    )
+                } else {
+                    Text(text = "No results found")
+                }
+            }
+            is ApiUiState.Loading -> {
+                LoadingResultScreen(modifier)
+            }
+            is ApiUiState.Error -> {
+                ErrorApiScreen(uiState.error.orEmpty(), modifier)
+            }
+            else -> {
+                Spacer(modifier = modifier.height(600.dp))
             }
         }
-        is ApiUiState.Loading -> {
-            LoadingResultScreen(modifier)
-        }
-        is ApiUiState.Error -> {
-            ErrorApiScreen(uiState.error.orEmpty(), modifier)
-        }
     }
+
 }
 
 @Composable
-fun ApiSearchTextField(modifier: Modifier = Modifier) {
+fun ApiSearchTextField(
+    booksViewModel: BooksViewModel,
+    modifier: Modifier = Modifier
+) {
     var queryInput by remember { mutableStateOf("") }
+
     Row (
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
@@ -67,7 +84,7 @@ fun ApiSearchTextField(modifier: Modifier = Modifier) {
             modifier = modifier.height(55.dp)
         )
         Button(
-            onClick = {},
+            onClick = { booksViewModel.getBooks(queryInput) },
             shape = RoundedCornerShape(
                 topEnd = 16.dp,
                 bottomEnd = 16.dp
@@ -86,6 +103,6 @@ fun ApiSearchTextField(modifier: Modifier = Modifier) {
 @Composable
 fun ApiResultScreenPreview() {
     BookForumTheme {
-        ApiResultScreen(ApiUiState.Loading)
+//        ApiResultScreen(ApiUiState.Loading)
     }
 }

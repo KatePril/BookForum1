@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Book Forum</string>
+    <string name="loading">Loading</string>
+    <string name="error_msg">Oooops, something went wrong</string>
 </resources>

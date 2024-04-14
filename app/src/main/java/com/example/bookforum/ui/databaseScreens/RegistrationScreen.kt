@@ -37,7 +37,7 @@ fun RegistrationScreen(
             }
         },
         modifier = Modifier
-            .verticalScroll(rememberScrollState())
+//            .verticalScroll(rememberScrollState())
             .fillMaxWidth()
     )
 }

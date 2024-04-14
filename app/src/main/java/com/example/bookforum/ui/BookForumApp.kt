@@ -11,6 +11,7 @@ import com.example.bookforum.ui.databaseScreens.UserRegistrationViewModel
 @Composable
 fun BookForumApp() {
     RegistrationScreen()
+    /*TODO delete duplicate user from db*/
 }
 
 @Composable

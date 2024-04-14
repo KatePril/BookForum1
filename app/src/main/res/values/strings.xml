@@ -4,4 +4,9 @@
     <string name="error_msg">Oooops, something went wrong</string>
     <string name="no_results_found">No results found</string>
     <string name="logo">BOOKforum</string>
+    <string name="username_input_label">Enter username</string>
+    <string name="password_input_label">Enter password</string>
+    <string name="email_input_label">Enter email</string>
+    <string name="required_field">* The field is required</string>
+    <string name="sign_up_action">Sign up</string>
 </resources>

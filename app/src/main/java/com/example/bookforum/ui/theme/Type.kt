@@ -35,10 +35,8 @@ val Typography = Typography(
         fontSize = 16.sp
     ),
     labelLarge = TextStyle(
-        fontFamily = AbrilFatface,
-        fontWeight = FontWeight.Bold,
-        fontStyle = FontStyle.Italic,
-        fontSize = 20.sp
+        fontFamily = Montserrat,
+        fontSize = 18.sp
     ),
     labelSmall = TextStyle(
         fontFamily = Montserrat,

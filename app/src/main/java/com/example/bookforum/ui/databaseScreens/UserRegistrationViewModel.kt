@@ -19,6 +19,11 @@ class UserRegistrationViewModel(private val usersRepository: UsersRepository) : 
             usersRepository.insertUser(userUIState.userDetails.toUser())
         }
     }
+
+    suspend fun deleteUserById(id: Int) {
+        usersRepository.deleteUserById(id)
+    }
+
     private fun validateInputs(userDetails: UserDetails = userUIState.userDetails): Boolean {
         val emailRegex = Regex("""^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$""")
         return with(userDetails) {

@@ -9,4 +9,6 @@ class UsersRepository(private val userDao: UserDao) {
     suspend fun insertUser(user: User) = userDao.insert(user)
     suspend fun updateUser(user: User) = userDao.update(user)
     suspend fun deleteUser(user: User) = userDao.delete(user)
+
+    suspend fun deleteUserById(id: Int) = userDao.deleteUserById(id)
 }

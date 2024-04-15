@@ -23,6 +23,9 @@ interface UserDao {
     @Query("SELECT * from users WHERE username = :username")
     fun getUser(username: String): Flow<User>
 
+    @Query("SELECT username from users")
+    fun getUsernames(): Flow<List<String>>
+
     @Query("DELETE FROM users WHERE id = :id")
     suspend fun deleteUserById(id: Int)
 }

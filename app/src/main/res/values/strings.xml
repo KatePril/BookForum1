@@ -8,5 +8,8 @@
     <string name="password_input_label">Enter password</string>
     <string name="email_input_label">Enter email</string>
     <string name="required_field">* The field is required</string>
+    <string name="invalid_username">Username must be unique</string>
+    <string name="invalid_password">Password field cannot be empty</string>
+    <string name="invalid_email">The email is not valid</string>
     <string name="sign_up_action">Sign up</string>
 </resources>

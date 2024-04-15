@@ -4,7 +4,8 @@ import com.example.bookforum.data.entities.User
 
 data class UserUIState(
     val userDetails: UserDetails = UserDetails(),
-    val isInputValid: Boolean = false
+    val userValidationDetails: UserValidationDetails = UserValidationDetails()
+//    val areInputsValid: Boolean = false
 )
 
 data class UserDetails(
@@ -12,6 +13,13 @@ data class UserDetails(
     val username: String = "",
     val password: String = "",
     val email: String = ""
+)
+
+data class UserValidationDetails(
+    val isUsernameValid: Boolean = false,
+    val isPasswordValid: Boolean = false,
+    val isEmailValid: Boolean = false,
+    val areInputsValid: Boolean = isPasswordValid && isPasswordValid && isEmailValid
 )
 
 fun UserDetails.toUser(): User = User(

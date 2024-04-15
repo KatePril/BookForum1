@@ -5,8 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -15,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -36,9 +35,7 @@ fun RegistrationScreen(
                 viewModel.saveUser()
             }
         },
-        modifier = Modifier
-//            .verticalScroll(rememberScrollState())
-            .fillMaxWidth()
+        modifier = Modifier.fillMaxWidth()
     )
 }
 
@@ -55,12 +52,13 @@ fun RegistrationBody(
     ) {
         UserInputForm(
             userDetails = userUIState.userDetails,
+            userValidationDetails = userUIState.userValidationDetails,
             onValueChange = onUserValueChange,
             modifier = modifier.fillMaxWidth()
         )
         Button(
             onClick = onSaveClick,
-            enabled = userUIState.isInputValid,
+            enabled = userUIState.userValidationDetails.areInputsValid,
             shape = MaterialTheme.shapes.small,
             modifier = modifier.fillMaxWidth()
         ) {
@@ -72,9 +70,9 @@ fun RegistrationBody(
 @Composable
 fun UserInputForm(
     userDetails: UserDetails,
+    userValidationDetails: UserValidationDetails,
     modifier: Modifier = Modifier,
-    onValueChange: (UserDetails) -> Unit = {},
-    enabled: Boolean = true
+    onValueChange: (UserDetails) -> Unit = {}
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -84,19 +82,22 @@ fun UserInputForm(
             value = userDetails.username,
             onValueChange = {username: String ->  onValueChange(userDetails.copy(username = username)) },
             labelText = R.string.username_input_label,
-            enabled = enabled
+            msgText = R.string.invalid_username,
+            isValid = userValidationDetails.isUsernameValid
         )
         UserInput(
             value = userDetails.password,
             onValueChange = {password: String ->  onValueChange(userDetails.copy(password = password)) },
             labelText = R.string.password_input_label,
-            enabled = enabled
+            msgText = R.string.password_input_label,
+            isValid = userValidationDetails.isPasswordValid
         )
         UserInput(
             value = userDetails.email,
             onValueChange = {email: String ->  onValueChange(userDetails.copy(email = email)) },
             labelText = R.string.email_input_label,
-            enabled = enabled
+            msgText = R.string.email_input_label,
+            isValid = userValidationDetails.isEmailValid
         )
     }
 }
@@ -107,7 +108,8 @@ fun UserInput(
     value: String,
     onValueChange: (String) -> Unit,
     @StringRes labelText: Int,
-    enabled: Boolean = true,
+    @StringRes msgText: Int,
+    isValid: Boolean = true,
     modifier: Modifier = Modifier
 ) {
     OutlinedTextField(
@@ -120,15 +122,13 @@ fun UserInput(
             disabledContainerColor = MaterialTheme.colorScheme.tertiaryContainer,
         ),
         modifier = modifier.fillMaxWidth(),
-        enabled = enabled,
         singleLine = true
     )
-    if (enabled) {
-        Text(
-            text = stringResource(R.string.required_field),
-            modifier = Modifier.padding(start = 8.dp)
-        )
-    }
+    Text(
+        text = if (isValid) stringResource(R.string.required_field) else stringResource(msgText),
+        modifier = Modifier.padding(start = 8.dp),
+        color = if (isValid) Color.Black else MaterialTheme.colorScheme.error
+    )
 }
 
 @Preview(showSystemUi = true, showBackground = true)

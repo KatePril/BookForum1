@@ -6,7 +6,6 @@ data class UserUIState(
     val userDetails: UserDetails = UserDetails(),
     val userValidationDetails: UserValidationDetails = UserValidationDetails(),
     val usersList: List<User> = listOf()
-//    val areInputsValid: Boolean = false
 )
 
 data class UserDetails(

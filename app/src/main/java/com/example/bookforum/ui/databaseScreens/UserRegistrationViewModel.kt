@@ -3,23 +3,32 @@ package com.example.bookforum.ui.databaseScreens
 import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.bookforum.data.entities.User
 import com.example.bookforum.data.repositories.UsersRepository
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class UserRegistrationViewModel(private val usersRepository: UsersRepository) : ViewModel() {
     var userUIState by mutableStateOf(UserUIState())
+    var usersUIState: StateFlow<AllUsersUIState> =
+        usersRepository.getAllUsernames()
+            .map { AllUsersUIState(it) }
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000L),
+                initialValue = AllUsersUIState()
+            )
 
-    fun updateUiState(userDetails: UserDetails) {
+    fun updateUiState(userDetails: UserDetails, usersList: List<User>) {
         userUIState =
             UserUIState(
                 userDetails = userDetails,
@@ -27,7 +36,8 @@ class UserRegistrationViewModel(private val usersRepository: UsersRepository) : 
                     isUsernameValid = isUsernameUnique(userDetails),
                     isPasswordValid = isPasswordValid(userDetails),
                     isEmailValid = isEmailValid(userDetails)
-                )
+                ),
+                usersList = usersList
             )
     }
 
@@ -43,26 +53,19 @@ class UserRegistrationViewModel(private val usersRepository: UsersRepository) : 
 
 
 
-    @OptIn(DelicateCoroutinesApi::class)
+
     private fun isUsernameUnique(userDetails: UserDetails = userUIState.userDetails): Boolean {
         return with(userDetails) {
             var isUnique = username.isNotBlank()
-            Log.i("USERNAME", "came")
-            runBlocking {
-                GlobalScope.launch {
-                    Log.i("USERNAME", "came 2")
-                    val users = usersRepository.getAllUsernames()
-                    Log.i("USERNAME", "came 3:${users.toList()}")
-                    /*TODO error is caused by .toList(). FIX IT*/
-                    for (userUsername in users.toList()) {
-                        Log.i("USERNAME", userUsername.toString())
-                        if (userUsername.toString() == username) {
-                            isUnique = false
-                            break
-                        }
-                    }
+
+            for (user in userUIState.usersList) {
+                Log.i("USERNAME", user.username)
+                if (user.username == username) {
+                    isUnique = false
+                    break
                 }
             }
+
             isUnique
         }
     }

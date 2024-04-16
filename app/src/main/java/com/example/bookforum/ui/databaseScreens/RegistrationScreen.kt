@@ -11,6 +11,8 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,16 +21,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
+import com.example.bookforum.data.entities.User
 import com.example.compose.BookForumTheme
 import kotlinx.coroutines.launch
+import kotlin.reflect.KFunction2
 
 @Composable
 fun RegistrationScreen(
     viewModel: UserRegistrationViewModel = viewModel(factory = ForumViewModelProvider.Factory),
 ) {
     val coroutineScope = rememberCoroutineScope()
+    val usernamesUIState by viewModel.usersUIState.collectAsState()
+    viewModel.userUIState = viewModel.userUIState.copy(usersList = usernamesUIState.usernameList)
     RegistrationBody(
         userUIState = viewModel.userUIState,
+        usersList = usernamesUIState.usernameList,
         onUserValueChange = viewModel::updateUiState,
         onSaveClick = {
             coroutineScope.launch {
@@ -42,7 +49,8 @@ fun RegistrationScreen(
 @Composable
 fun RegistrationBody(
     userUIState: UserUIState,
-    onUserValueChange: (UserDetails) -> Unit,
+    usersList: List<User>,
+    onUserValueChange: KFunction2<UserDetails, List<User>, Unit>,
     onSaveClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -53,6 +61,7 @@ fun RegistrationBody(
         UserInputForm(
             userDetails = userUIState.userDetails,
             userValidationDetails = userUIState.userValidationDetails,
+            usersList = usersList,
             onValueChange = onUserValueChange,
             modifier = modifier.fillMaxWidth()
         )
@@ -71,8 +80,9 @@ fun RegistrationBody(
 fun UserInputForm(
     userDetails: UserDetails,
     userValidationDetails: UserValidationDetails,
+    usersList: List<User>,
     modifier: Modifier = Modifier,
-    onValueChange: (UserDetails) -> Unit = {}
+    onValueChange: KFunction2<UserDetails, List<User>, Unit>
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -80,21 +90,24 @@ fun UserInputForm(
     ) {
         UserInput(
             value = userDetails.username,
-            onValueChange = {username: String ->  onValueChange(userDetails.copy(username = username)) },
+            usersList = usersList,
+            onValueChange = { username: String, users: List<User> ->  onValueChange(userDetails.copy(username = username), users) },
             labelText = R.string.username_input_label,
             msgText = R.string.invalid_username,
             isValid = userValidationDetails.isUsernameValid
         )
         UserInput(
             value = userDetails.password,
-            onValueChange = {password: String ->  onValueChange(userDetails.copy(password = password)) },
+            usersList = usersList,
+            onValueChange = { password: String, users: List<User> ->  onValueChange(userDetails.copy(password = password), users) },
             labelText = R.string.password_input_label,
             msgText = R.string.password_input_label,
             isValid = userValidationDetails.isPasswordValid
         )
         UserInput(
             value = userDetails.email,
-            onValueChange = {email: String ->  onValueChange(userDetails.copy(email = email)) },
+            usersList = usersList,
+            onValueChange = { email: String, users: List<User> ->  onValueChange(userDetails.copy(email = email), users) },
             labelText = R.string.email_input_label,
             msgText = R.string.email_input_label,
             isValid = userValidationDetails.isEmailValid
@@ -106,7 +119,8 @@ fun UserInputForm(
 @Composable
 fun UserInput(
     value: String,
-    onValueChange: (String) -> Unit,
+    usersList: List<User>,
+    onValueChange: (String, List<User>) -> Unit,
     @StringRes labelText: Int,
     @StringRes msgText: Int,
     isValid: Boolean = true,
@@ -114,7 +128,7 @@ fun UserInput(
 ) {
     OutlinedTextField(
         value = value,
-        onValueChange = { onValueChange(it) },
+        onValueChange = { onValueChange(it, usersList) },
         label = { Text(text = stringResource(labelText)) },
         colors = OutlinedTextFieldDefaults.colors(
             focusedContainerColor = MaterialTheme.colorScheme.tertiaryContainer,
@@ -135,6 +149,6 @@ fun UserInput(
 @Composable
 fun UserInputFormPreview() {
     BookForumTheme {
-        RegistrationBody(userUIState = UserUIState(), onUserValueChange = {}, onSaveClick = {})
+//        RegistrationBody(userUIState = UserUIState(), onUserValueChange = {}, onSaveClick = {})
     }
 }

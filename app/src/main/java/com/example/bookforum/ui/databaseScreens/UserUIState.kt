@@ -4,7 +4,8 @@ import com.example.bookforum.data.entities.User
 
 data class UserUIState(
     val userDetails: UserDetails = UserDetails(),
-    val userValidationDetails: UserValidationDetails = UserValidationDetails()
+    val userValidationDetails: UserValidationDetails = UserValidationDetails(),
+    val usersList: List<User> = listOf()
 //    val areInputsValid: Boolean = false
 )
 

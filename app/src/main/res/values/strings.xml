@@ -12,4 +12,6 @@
     <string name="invalid_password">Password field cannot be empty</string>
     <string name="invalid_email">The email is not valid</string>
     <string name="sign_up_action">Sign up</string>
+    <string name="log_in_action">Log in</string>
+    <string name="create_account_action">Create account</string>
 </resources>

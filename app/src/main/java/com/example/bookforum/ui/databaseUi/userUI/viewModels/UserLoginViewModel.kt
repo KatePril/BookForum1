@@ -19,14 +19,24 @@ class UserLoginViewModel(private val usersRepository: UsersRepository) : ViewMod
 
     var userLogInUiState by mutableStateOf(UserLogInUiState())
 
-    var userUiState: StateFlow<UserUiState?> =
-        usersRepository.getUser(userLogInUiState.userDetails.username)
+//    var userUiState: StateFlow<UserUiState?> =
+//        usersRepository.getUser(userLogInUiState.userDetails.username)
+//            .map { it?.toDetails()?.let { details -> UserUiState(details) } }
+//            .stateIn(
+//                scope = viewModelScope,
+//                started = SharingStarted.WhileSubscribed(),
+//                initialValue = UserUiState()
+//            )
+
+    fun getUserUiState(): StateFlow<UserUiState?> {
+        return usersRepository.getUser(userLogInUiState.userDetails.username)
             .map { it?.toDetails()?.let { details -> UserUiState(details) } }
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(),
                 initialValue = UserUiState()
             )
+    }
 
     fun updateUiState(userLogInDetails: UserLogInDetails) {
         userLogInUiState = UserLogInUiState(

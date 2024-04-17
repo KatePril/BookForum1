@@ -36,11 +36,11 @@ fun RegistrationScreen(
     viewModel: UserRegistrationViewModel = viewModel(factory = ForumViewModelProvider.Factory),
 ) {
     val coroutineScope = rememberCoroutineScope()
-    val usernamesUIState by viewModel.usersUIState.collectAsState()
-    viewModel.userRegistrationUIState = viewModel.userRegistrationUIState.copy(usersList = usernamesUIState.usernameList)
+    val usersUIState by viewModel.usersUIState.collectAsState()
+    viewModel.userRegistrationUIState = viewModel.userRegistrationUIState.copy(usersList = usersUIState.usernameList)
     RegistrationBody(
         userRegistrationUIState = viewModel.userRegistrationUIState,
-        usersList = usernamesUIState.usernameList,
+        usersList = usersUIState.usernameList,
         onUserValueChange = viewModel::updateUiState,
         onSaveClick = {
             coroutineScope.launch {
@@ -63,7 +63,7 @@ fun RegistrationBody(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier.padding(16.dp)
     ) {
-        UserInputForm(
+        UserRegistrationForm(
             userDetails = userRegistrationUIState.userDetails,
             userValidationDetails = userRegistrationUIState.userValidationDetails,
             usersList = usersList,
@@ -82,18 +82,18 @@ fun RegistrationBody(
 }
 
 @Composable
-fun UserInputForm(
+fun UserRegistrationForm(
     userDetails: UserDetails,
     userValidationDetails: UserValidationDetails,
     usersList: List<User>,
-    modifier: Modifier = Modifier,
-    onValueChange: KFunction2<UserDetails, List<User>, Unit>
+    onValueChange: KFunction2<UserDetails, List<User>, Unit>,
+    modifier: Modifier = Modifier
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier.padding(16.dp)
     ) {
-        UserInput(
+        UserRegistrationInput(
             value = userDetails.username,
             usersList = usersList,
             onValueChange = { username: String, users: List<User> ->  onValueChange(userDetails.copy(username = username), users) },
@@ -101,7 +101,7 @@ fun UserInputForm(
             msgText = R.string.invalid_username,
             isValid = userValidationDetails.isUsernameValid
         )
-        UserInput(
+        UserRegistrationInput(
             value = userDetails.password,
             usersList = usersList,
             onValueChange = { password: String, users: List<User> ->  onValueChange(userDetails.copy(password = password), users) },
@@ -109,7 +109,7 @@ fun UserInputForm(
             msgText = R.string.password_input_label,
             isValid = userValidationDetails.isPasswordValid
         )
-        UserInput(
+        UserRegistrationInput(
             value = userDetails.email,
             usersList = usersList,
             onValueChange = { email: String, users: List<User> ->  onValueChange(userDetails.copy(email = email), users) },
@@ -122,7 +122,7 @@ fun UserInputForm(
 
 
 @Composable
-fun UserInput(
+fun UserRegistrationInput(
     value: String,
     usersList: List<User>,
     onValueChange: (String, List<User>) -> Unit,
@@ -145,7 +145,7 @@ fun UserInput(
     )
     Text(
         text = if (isValid) stringResource(R.string.required_field) else stringResource(msgText),
-        modifier = Modifier.padding(start = 8.dp),
+        modifier = modifier.padding(start = 8.dp),
         color = if (isValid) Color.Black else MaterialTheme.colorScheme.error
     )
 }

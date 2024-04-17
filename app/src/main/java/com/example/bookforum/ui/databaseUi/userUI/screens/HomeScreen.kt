@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.screens
+package com.example.bookforum.ui.databaseUi.userUI.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.material.icons.Icons

@@ -1,4 +1,4 @@
-package com.example.bookforum.ui
+package com.example.bookforum.ui.apiUi
 
 import com.example.bookforum.model.BookApiObject
 

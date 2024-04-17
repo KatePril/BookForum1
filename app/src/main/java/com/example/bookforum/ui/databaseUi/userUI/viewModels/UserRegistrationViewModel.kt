@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.viewModels
+package com.example.bookforum.ui.databaseUi.userUI.viewModels
 
 import android.util.Log
 import androidx.compose.runtime.getValue
@@ -9,11 +9,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.bookforum.TIMEOUT_MILLS
 import com.example.bookforum.data.entities.User
 import com.example.bookforum.data.repositories.UsersRepository
-import com.example.bookforum.ui.databaseUi.states.AllUsersUIState
-import com.example.bookforum.ui.databaseUi.states.UserDetails
-import com.example.bookforum.ui.databaseUi.states.UserRegistrationUIState
-import com.example.bookforum.ui.databaseUi.states.UserValidationDetails
-import com.example.bookforum.ui.databaseUi.states.toUser
+import com.example.bookforum.ui.databaseUi.userUI.states.AllUsersUIState
+import com.example.bookforum.ui.databaseUi.userUI.states.UserDetails
+import com.example.bookforum.ui.databaseUi.userUI.states.UserRegistrationUIState
+import com.example.bookforum.ui.databaseUi.userUI.states.UserValidationDetails
+import com.example.bookforum.ui.databaseUi.userUI.states.toUser
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map

@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.screens
+package com.example.bookforum.ui.databaseUi.userUI.screens
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
@@ -23,10 +23,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.User
 import com.example.bookforum.ui.ForumViewModelProvider
-import com.example.bookforum.ui.databaseUi.viewModels.UserRegistrationViewModel
-import com.example.bookforum.ui.databaseUi.states.UserDetails
-import com.example.bookforum.ui.databaseUi.states.UserRegistrationUIState
-import com.example.bookforum.ui.databaseUi.states.UserValidationDetails
+import com.example.bookforum.ui.databaseUi.userUI.viewModels.UserRegistrationViewModel
+import com.example.bookforum.ui.databaseUi.userUI.states.UserDetails
+import com.example.bookforum.ui.databaseUi.userUI.states.UserRegistrationUIState
+import com.example.bookforum.ui.databaseUi.userUI.states.UserValidationDetails
 import com.example.compose.BookForumTheme
 import kotlinx.coroutines.launch
 import kotlin.reflect.KFunction2

@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseScreens
+package com.example.bookforum.ui.databaseUi.screens
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
@@ -22,6 +22,11 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.User
+import com.example.bookforum.ui.ForumViewModelProvider
+import com.example.bookforum.ui.databaseUi.viewModels.UserRegistrationViewModel
+import com.example.bookforum.ui.databaseUi.states.UserDetails
+import com.example.bookforum.ui.databaseUi.states.UserRegistrationUIState
+import com.example.bookforum.ui.databaseUi.states.UserValidationDetails
 import com.example.compose.BookForumTheme
 import kotlinx.coroutines.launch
 import kotlin.reflect.KFunction2
@@ -32,9 +37,9 @@ fun RegistrationScreen(
 ) {
     val coroutineScope = rememberCoroutineScope()
     val usernamesUIState by viewModel.usersUIState.collectAsState()
-    viewModel.userUIState = viewModel.userUIState.copy(usersList = usernamesUIState.usernameList)
+    viewModel.userRegistrationUIState = viewModel.userRegistrationUIState.copy(usersList = usernamesUIState.usernameList)
     RegistrationBody(
-        userUIState = viewModel.userUIState,
+        userRegistrationUIState = viewModel.userRegistrationUIState,
         usersList = usernamesUIState.usernameList,
         onUserValueChange = viewModel::updateUiState,
         onSaveClick = {
@@ -48,7 +53,7 @@ fun RegistrationScreen(
 
 @Composable
 fun RegistrationBody(
-    userUIState: UserUIState,
+    userRegistrationUIState: UserRegistrationUIState,
     usersList: List<User>,
     onUserValueChange: KFunction2<UserDetails, List<User>, Unit>,
     onSaveClick: () -> Unit,
@@ -59,15 +64,15 @@ fun RegistrationBody(
         modifier = modifier.padding(16.dp)
     ) {
         UserInputForm(
-            userDetails = userUIState.userDetails,
-            userValidationDetails = userUIState.userValidationDetails,
+            userDetails = userRegistrationUIState.userDetails,
+            userValidationDetails = userRegistrationUIState.userValidationDetails,
             usersList = usersList,
             onValueChange = onUserValueChange,
             modifier = modifier.fillMaxWidth()
         )
         Button(
             onClick = onSaveClick,
-            enabled = userUIState.userValidationDetails.areInputsValid,
+            enabled = userRegistrationUIState.userValidationDetails.areInputsValid,
             shape = MaterialTheme.shapes.small,
             modifier = modifier.fillMaxWidth()
         ) {

@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseScreens
+package com.example.bookforum.ui.databaseUi.screens
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.apiScreens
+package com.example.bookforum.ui.apiUi
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.apiScreens.screens
+package com.example.bookforum.ui.apiUi.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize

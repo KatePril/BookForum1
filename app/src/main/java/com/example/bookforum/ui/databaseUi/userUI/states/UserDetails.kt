@@ -16,9 +16,3 @@ fun UserDetails.toUser(): User = User(
     email = email
 )
 
-fun User.toDetails(): UserDetails = UserDetails(
-    id = id,
-    username = username,
-    password = password,
-    email = email
-)

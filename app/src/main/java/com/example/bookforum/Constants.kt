@@ -1,3 +1,3 @@
 package com.example.bookforum
 
-val TIMEOUT_MILLS = 5_000L
+const val TIMEOUT_MILLS = 5_000L

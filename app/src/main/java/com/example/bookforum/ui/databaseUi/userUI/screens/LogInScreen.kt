@@ -1,5 +1,6 @@
 package com.example.bookforum.ui.databaseUi.userUI.screens
 
+import android.util.Log
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -32,18 +33,18 @@ fun LoginScreen(
     viewModel: UserLoginViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     var isLogInSuccessful by remember { mutableStateOf(false) }
-
     LogInBody(
         userLogInUiState = viewModel.userLogInUiState,
         onValueChange = viewModel::updateUiState,
         onLogInClick = {
-            val correctPassword = viewModel.getUserUiState().value?.userDetails?.password
+            val correctPassword = viewModel.getUserUiState(viewModel.userLogInUiState.userDetails.username).value?.userDetails?.password
+            Log.i("LOG_IN_RES", correctPassword.toString())
             isLogInSuccessful =
                 if (correctPassword != null) viewModel.checkPassword(correctPassword) else false
         },
-        onCreateAccountClick = {}
+        onCreateAccountClick = {},
+        isLogInSuccessful = isLogInSuccessful
     )
-    Text(text = if (isLogInSuccessful) "Success" else "Incorrect username or password")
 }
 
 @Composable
@@ -52,6 +53,7 @@ fun LogInBody(
     onValueChange: (UserLogInDetails) -> Unit,
     onLogInClick: () -> Unit,
     onCreateAccountClick: () -> Unit,
+    isLogInSuccessful: Boolean,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -62,22 +64,24 @@ fun LogInBody(
             userLogInDetails = userLogInUiState.userDetails,
             onValueChange = onValueChange
         )
+        Text(text = if (isLogInSuccessful) "Success" else "Incorrect username or password")
+        Button(
+            onClick = onLogInClick,
+            enabled = userLogInUiState.areInputsValid,
+            shape = MaterialTheme.shapes.small,
+            modifier = modifier.fillMaxWidth()
+        ) {
+            Text(stringResource(R.string.log_in_action))
+        }
+        Button(
+            onClick = onCreateAccountClick,
+            shape = MaterialTheme.shapes.small,
+            modifier = modifier.fillMaxWidth()
+        ) {
+            Text(stringResource(R.string.create_account_action))
+        }
     }
-    Button(
-        onClick = onLogInClick,
-        enabled = userLogInUiState.areInputsValid,
-        shape = MaterialTheme.shapes.small,
-        modifier = modifier.fillMaxWidth()
-    ) {
-        Text(stringResource(R.string.log_in_action))
-    }
-    Button(
-        onClick = onLogInClick,
-        shape = MaterialTheme.shapes.small,
-        modifier = modifier.fillMaxWidth()
-    ) {
-        Text(stringResource(R.string.create_account_action))
-    }
+
 }
 
 @Composable
@@ -130,6 +134,6 @@ fun UserLogInInput(
 @Composable
 fun UserLogInInputPreview() {
     BookForumTheme {
-        UserLogInInput(value = "", onValueChange = {}, labelText = R.string.username_input_label)
+        LoginScreen()
     }
 }

@@ -1,10 +1,12 @@
 package com.example.bookforum.ui.databaseUi.userUI.viewModels
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.bookforum.TIMEOUT_MILLS
 import com.example.bookforum.data.repositories.UsersRepository
 import com.example.bookforum.ui.databaseUi.userUI.states.UserLogInDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.UserLogInUiState
@@ -28,12 +30,13 @@ class UserLoginViewModel(private val usersRepository: UsersRepository) : ViewMod
 //                initialValue = UserUiState()
 //            )
 
-    fun getUserUiState(): StateFlow<UserUiState?> {
-        return usersRepository.getUser(userLogInUiState.userDetails.username)
+    fun getUserUiState(username: String): StateFlow<UserUiState?> {
+        Log.i("LOG_IN", "username = ${userLogInUiState.userDetails.username}; password = ${userLogInUiState.userDetails.password}")
+        return usersRepository.getUser(username)
             .map { it?.toDetails()?.let { details -> UserUiState(details) } }
             .stateIn(
                 scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(),
+                started = SharingStarted.WhileSubscribed(TIMEOUT_MILLS),
                 initialValue = UserUiState()
             )
     }
@@ -45,8 +48,10 @@ class UserLoginViewModel(private val usersRepository: UsersRepository) : ViewMod
         )
     }
 
-    fun checkPassword(correctPassword: String): Boolean =
-        correctPassword == userLogInUiState.userDetails.password
+    fun checkPassword(correctPassword: String): Boolean {
+        Log.i("LOG_IN", correctPassword)
+        return correctPassword == userLogInUiState.userDetails.password
+    }
 
     private fun validateInput(userLogInDetails: UserLogInDetails = userLogInUiState.userDetails): Boolean {
         return with(userLogInDetails) {

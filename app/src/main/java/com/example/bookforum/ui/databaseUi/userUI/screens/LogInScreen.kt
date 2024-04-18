@@ -33,14 +33,11 @@ fun LoginScreen(
     viewModel: UserLoginViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     var isLogInSuccessful by remember { mutableStateOf(false) }
-    val userUiState = viewModel.userUiState.collectAsState()
+    val userUiState = viewModel.getUserUiState("Kate").collectAsState()
     LogInBody(
         userLogInUiState = viewModel.userLogInUiState,
         onValueChange = viewModel::updateUiState,
         onLogInClick = {
-            viewModel.updateUserUiState(viewModel.userLogInUiState.userDetails.username)
-//            val correctPassword = viewModel.getUserUiState(viewModel.userLogInUiState.userDetails.username).value?.userDetails?.password
-//            Log.i("LOG_IN_RES", correctPassword.toString())
             if (userUiState.value != null) {
                 isLogInSuccessful = viewModel.checkPassword(userUiState.value!!.userDetails.password)
             }

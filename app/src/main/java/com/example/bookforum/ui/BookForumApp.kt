@@ -2,12 +2,15 @@ package com.example.bookforum.ui
 
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.bookforum.ui.apiScreens.BooksViewModel
-import com.example.bookforum.ui.apiScreens.screens.ApiResultScreen
+import com.example.bookforum.ui.apiUi.BooksViewModel
+import com.example.bookforum.ui.apiUi.screens.ApiResultScreen
+import com.example.bookforum.ui.databaseUi.userUI.screens.LoginScreen
+import com.example.bookforum.ui.databaseUi.userUI.screens.RegistrationScreen
 
 @Composable
 fun BookForumApp() {
-   BookApiApp()
+//    RegistrationScreen()
+    LoginScreen()
 }
 
 @Composable

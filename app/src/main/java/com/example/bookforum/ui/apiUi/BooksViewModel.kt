@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.apiScreens
+package com.example.bookforum.ui.apiUi
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -6,7 +6,6 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.bookforum.network.BooksApi
-import com.example.bookforum.ui.ApiUiState
 import com.example.bookforum.utils.SecretKeys
 import kotlinx.coroutines.launch
 import java.io.IOException

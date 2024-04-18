@@ -3,4 +3,16 @@
     <string name="loading">Loading</string>
     <string name="error_msg">Oooops, something went wrong</string>
     <string name="no_results_found">No results found</string>
+    <string name="logo">BOOKforum</string>
+    <string name="username_input_label">Enter username</string>
+    <string name="password_input_label">Enter password</string>
+    <string name="email_input_label">Enter email</string>
+    <string name="required_field">* The field is required</string>
+    <string name="invalid_username">Username must be unique</string>
+    <string name="invalid_password">Password field cannot be empty</string>
+    <string name="invalid_email">The email is not valid</string>
+    <string name="sign_up_action">Sign up</string>
+    <string name="log_in_action">Log in</string>
+    <string name="create_account_action">Create account</string>
+    <string name="incorrect_log_in_message">Incorrect username or password</string>
 </resources>

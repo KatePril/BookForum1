@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.apiScreens.screens
+package com.example.bookforum.ui.apiUi.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,7 +12,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -21,12 +20,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.bookforum.R
-import com.example.bookforum.ui.ApiUiState
-import com.example.bookforum.ui.apiScreens.BooksViewModel
+import com.example.bookforum.ui.apiUi.ApiUiState
+import com.example.bookforum.ui.apiUi.BooksViewModel
 import com.example.compose.BookForumTheme
 
 @Composable

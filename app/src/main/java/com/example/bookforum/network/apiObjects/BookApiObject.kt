@@ -1,4 +1,4 @@
-package com.example.bookforum.model
+package com.example.bookforum.network.apiObjects
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

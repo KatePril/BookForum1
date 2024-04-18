@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.bookforum.R
-import com.example.bookforum.model.BookApiObject
+import com.example.bookforum.network.apiObjects.BookApiObject
 import com.example.compose.BookForumTheme
 
 @Composable

@@ -18,13 +18,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.userUI.states.UserLogInDetails
-import com.example.bookforum.ui.databaseUi.userUI.states.UserLogInUiState
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.UserLoginViewModel
 import com.example.compose.BookForumTheme
 
@@ -32,28 +32,18 @@ import com.example.compose.BookForumTheme
 fun LoginScreen(
     viewModel: UserLoginViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
-    var isLogInSuccessful by remember { mutableStateOf(false) }
-    val userUiState = viewModel.getUserUiState("Kate").collectAsState()
     LogInBody(
-        userLogInUiState = viewModel.userLogInUiState,
+        viewModel = viewModel,
         onValueChange = viewModel::updateUiState,
-        onLogInClick = {
-            if (userUiState.value != null) {
-                isLogInSuccessful = viewModel.checkPassword(userUiState.value!!.userDetails.password)
-            }
-        },
-        onCreateAccountClick = {},
-        isLogInSuccessful = isLogInSuccessful
+        onCreateAccountClick = {}
     )
 }
 
 @Composable
 fun LogInBody(
-    userLogInUiState: UserLogInUiState,
+    viewModel: UserLoginViewModel,
     onValueChange: (UserLogInDetails) -> Unit,
-    onLogInClick: () -> Unit,
     onCreateAccountClick: () -> Unit,
-    isLogInSuccessful: Boolean,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -61,18 +51,10 @@ fun LogInBody(
         modifier = modifier.padding(16.dp)
     ) {
         UserLogInForm(
-            userLogInDetails = userLogInUiState.userDetails,
+            userLogInDetails = viewModel.userLogInUiState.userDetails,
             onValueChange = onValueChange
         )
-        Text(text = if (isLogInSuccessful) "Success" else "Incorrect username or password")
-        Button(
-            onClick = onLogInClick,
-            enabled = userLogInUiState.areInputsValid,
-            shape = MaterialTheme.shapes.small,
-            modifier = modifier.fillMaxWidth()
-        ) {
-            Text(stringResource(R.string.log_in_action))
-        }
+        LogInButton(viewModel = viewModel)
         Button(
             onClick = onCreateAccountClick,
             shape = MaterialTheme.shapes.small,
@@ -82,6 +64,35 @@ fun LogInBody(
         }
     }
 
+}
+
+@Composable
+fun LogInButton(
+    viewModel: UserLoginViewModel,
+    modifier: Modifier = Modifier
+) {
+    val userUiState = viewModel.getUserUiState(viewModel.userLogInUiState.userDetails.username).collectAsState()
+    var isLogInSuccessful by remember { mutableStateOf(true) }
+    if (!isLogInSuccessful) {
+        Text(
+            text = stringResource(R.string.incorrect_log_in_message),
+            color = MaterialTheme.colorScheme.error,
+            textAlign = TextAlign.Center,
+            modifier = modifier.fillMaxWidth()
+        )
+    }
+    Button(
+        onClick = {
+            if (userUiState.value != null) {
+                isLogInSuccessful = viewModel.checkPassword(userUiState.value!!.userDetails.password)
+            }
+        },
+        enabled = viewModel.userLogInUiState.areInputsValid,
+        shape = MaterialTheme.shapes.small,
+        modifier = modifier.fillMaxWidth()
+    ) {
+        Text(stringResource(R.string.log_in_action))
+    }
 }
 
 @Composable

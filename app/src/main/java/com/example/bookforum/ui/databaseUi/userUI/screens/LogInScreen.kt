@@ -1,6 +1,5 @@
 package com.example.bookforum.ui.databaseUi.userUI.screens
 
-import android.util.Log
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -27,7 +26,6 @@ import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.userUI.states.UserLogInDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.UserLogInUiState
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.UserLoginViewModel
-import com.example.bookforum.ui.databaseUi.userUI.viewModels.UsersViewModel
 import com.example.compose.BookForumTheme
 
 @Composable

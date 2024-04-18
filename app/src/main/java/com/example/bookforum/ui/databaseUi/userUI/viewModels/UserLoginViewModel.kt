@@ -22,7 +22,7 @@ class UserLoginViewModel(private val usersRepository: UsersRepository) : ViewMod
     var userLogInUiState by mutableStateOf(UserLogInUiState())
 
     var userUiState: StateFlow<UserUiState?> =
-        usersRepository.getUser(userLogInUiState.userDetails.username)
+        usersRepository.getUser("Kate")
             .map { it?.toDetails()?.let { details -> UserUiState(details) } }
             .stateIn(
                 scope = viewModelScope,
@@ -31,10 +31,10 @@ class UserLoginViewModel(private val usersRepository: UsersRepository) : ViewMod
             )
 
     fun updateUserUiState(username: String) {
-        userUiState = getUserUiState(username)
+        userUiState = getUserUiState("Kate")
     }
 
-    fun getUserUiState(username: String): StateFlow<UserUiState?> {
+    private fun getUserUiState(username: String): StateFlow<UserUiState?> {
         Log.i("LOG_IN", "username = ${userLogInUiState.userDetails.username}; password = ${userLogInUiState.userDetails.password}")
         return usersRepository.getUser(username)
             .map { it?.toDetails()?.let { details -> UserUiState(details) } }

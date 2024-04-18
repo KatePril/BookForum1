@@ -32,9 +32,8 @@ import com.example.compose.BookForumTheme
 
 @Composable
 fun LoginScreen(
-    usersViewModel: UsersViewModel = viewModel(factory = ForumViewModelProvider.Factory)
+    viewModel: UserLoginViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
-    val viewModel = usersViewModel.userLoginViewModel
     var isLogInSuccessful by remember { mutableStateOf(false) }
     val userUiState = viewModel.userUiState.collectAsState()
     LogInBody(

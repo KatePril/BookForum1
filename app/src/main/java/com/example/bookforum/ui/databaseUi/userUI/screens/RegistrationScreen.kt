@@ -34,9 +34,8 @@ import kotlin.reflect.KFunction2
 
 @Composable
 fun RegistrationScreen(
-    usersViewModel: UsersViewModel = viewModel(factory = ForumViewModelProvider.Factory)
+    viewModel: UserRegistrationViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
-    val viewModel = usersViewModel.userRegistrationViewModel
     val coroutineScope = rememberCoroutineScope()
     val usersUIState by viewModel.usersUIState.collectAsState()
     viewModel.userRegistrationUIState = viewModel.userRegistrationUIState.copy(usersList = usersUIState.usernameList)

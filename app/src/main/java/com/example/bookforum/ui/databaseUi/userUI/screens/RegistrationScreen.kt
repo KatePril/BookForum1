@@ -27,14 +27,16 @@ import com.example.bookforum.ui.databaseUi.userUI.viewModels.UserRegistrationVie
 import com.example.bookforum.ui.databaseUi.userUI.states.UserDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.UserRegistrationUIState
 import com.example.bookforum.ui.databaseUi.userUI.states.UserValidationDetails
+import com.example.bookforum.ui.databaseUi.userUI.viewModels.UsersViewModel
 import com.example.compose.BookForumTheme
 import kotlinx.coroutines.launch
 import kotlin.reflect.KFunction2
 
 @Composable
 fun RegistrationScreen(
-    viewModel: UserRegistrationViewModel = viewModel(factory = ForumViewModelProvider.Factory),
+    usersViewModel: UsersViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
+    val viewModel = usersViewModel.userRegistrationViewModel
     val coroutineScope = rememberCoroutineScope()
     val usersUIState by viewModel.usersUIState.collectAsState()
     viewModel.userRegistrationUIState = viewModel.userRegistrationUIState.copy(usersList = usersUIState.usernameList)

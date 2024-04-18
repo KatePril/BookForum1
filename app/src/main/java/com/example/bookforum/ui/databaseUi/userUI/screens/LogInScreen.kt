@@ -12,6 +12,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -26,21 +27,26 @@ import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.userUI.states.UserLogInDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.UserLogInUiState
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.UserLoginViewModel
+import com.example.bookforum.ui.databaseUi.userUI.viewModels.UsersViewModel
 import com.example.compose.BookForumTheme
 
 @Composable
 fun LoginScreen(
-    viewModel: UserLoginViewModel = viewModel(factory = ForumViewModelProvider.Factory)
+    usersViewModel: UsersViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
+    val viewModel = usersViewModel.userLoginViewModel
     var isLogInSuccessful by remember { mutableStateOf(false) }
+    val userUiState = viewModel.userUiState.collectAsState()
     LogInBody(
         userLogInUiState = viewModel.userLogInUiState,
         onValueChange = viewModel::updateUiState,
         onLogInClick = {
-            val correctPassword = viewModel.getUserUiState(viewModel.userLogInUiState.userDetails.username).value?.userDetails?.password
-            Log.i("LOG_IN_RES", correctPassword.toString())
-            isLogInSuccessful =
-                if (correctPassword != null) viewModel.checkPassword(correctPassword) else false
+            viewModel.updateUserUiState(viewModel.userLogInUiState.userDetails.username)
+//            val correctPassword = viewModel.getUserUiState(viewModel.userLogInUiState.userDetails.username).value?.userDetails?.password
+//            Log.i("LOG_IN_RES", correctPassword.toString())
+            if (userUiState.value != null) {
+                isLogInSuccessful = viewModel.checkPassword(userUiState.value!!.userDetails.password)
+            }
         },
         onCreateAccountClick = {},
         isLogInSuccessful = isLogInSuccessful

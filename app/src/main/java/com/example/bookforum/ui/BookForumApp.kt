@@ -9,7 +9,7 @@ import com.example.bookforum.ui.databaseUi.userUI.screens.RegistrationScreen
 
 @Composable
 fun BookForumApp() {
-    RegistrationScreen()
+//    RegistrationScreen()
     LoginScreen()
 }
 

@@ -21,7 +21,7 @@ interface BookDao {
     suspend fun delete(book: Book)
 
     @Query("SELECT * from books WHERE id = :id")
-    fun getBook(id: Int): Flow<Book>
+    fun getBookById(id: Int): Flow<Book>
 
     @Query("SELECT * from books ORDER BY id ASC")
     fun getAllBooks(): Flow<List<Book>>

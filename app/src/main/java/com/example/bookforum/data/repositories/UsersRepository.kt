@@ -5,7 +5,7 @@ import com.example.bookforum.data.entities.User
 import kotlinx.coroutines.flow.Flow
 
 class UsersRepository(private val userDao: UserDao) {
-    fun getUser(username: String): Flow<User?> = userDao.getUser(username)
+    fun getUserByUsername(username: String): Flow<User?> = userDao.getUserByUsername(username)
     fun getAllUsernames(): Flow<List<User>> = userDao.getAllUsers()
     suspend fun insertUser(user: User) = userDao.insert(user)
     suspend fun updateUser(user: User) = userDao.update(user)

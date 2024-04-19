@@ -81,7 +81,7 @@ class BookDaoTest {
 
     @Test
     @Throws(Exception::class)
-    fun doaGetBookById_returnsBookByIdFromDb() = runBlocking {
+    fun doaGetBookById_returnsBookByIdFromDB() = runBlocking {
         addOneBookToDB()
         val book = bookDao.getBookById(1).first()
         assertEquals(book, book1)

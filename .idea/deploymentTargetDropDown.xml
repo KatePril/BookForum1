@@ -2,6 +2,9 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="BookDaoTest">
+        <State />
+      </entry>
       <entry key="NoResultsFoundMsg">
         <State />
       </entry>
@@ -24,7 +27,10 @@
           <timeTargetWasSelectedWithDropDown value="2024-04-18T12:25:43.876773700Z" />
         </State>
       </entry>
-      <entry key="daoInsert_insertsUserIntoDB()">
+      <entry key="daoInsert_insertsCommentIntoDB()">
+        <State />
+      </entry>
+      <entry key="daoUpdate_updatesUserInDB()">
         <State />
       </entry>
     </value>

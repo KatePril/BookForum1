@@ -67,5 +67,48 @@ class UserDaoTest {
         assertEquals(allUsers[1], user2)
     }
 
+    @Test
+    @Throws(Exception::class)
+    fun daoGetUserById_returnsUserByIdFromDB() = runBlocking {
+        addOneUserToDb()
+        val user = userDao.getUserById(1).first()
+        assertEquals(user, user1)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun daoGetUserByUsername_returnsUserByUsernameFromDB() = runBlocking {
+        addOneUserToDb()
+        val user = userDao.getUserByUsername("ron").first()
+        assertEquals(user, user1)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun daoDelete_deletesUserFromDB() = runBlocking {
+        addTwoUsersToDb()
+        userDao.delete(user1)
+        val allUsers = userDao.getAllUsers().first()
+        assertEquals(allUsers[0], user2)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun daoDeleteUserById_deletesUserByIdFromDB() = runBlocking {
+        addTwoUsersToDb()
+        userDao.deleteUserById(1)
+        val allUsers = userDao.getAllUsers().first()
+        assertEquals(allUsers[0], user2)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun daoUpdate_updatesUserInDB() = runBlocking {
+        addOneUserToDb()
+        val userUpdated = user1.copy(username = "harry")
+        userDao.update(userUpdated)
+        val allUsers = userDao.getAllUsers().first()
+        assertEquals(allUsers[0], userUpdated)
+    }
 
 }

@@ -46,13 +46,13 @@ class CommentDaoTest {
     private var user1 = User(1, "ron", "1111", "ronaldwisley@gmail.com")
     private var user2 = User(2, "luna", "0000", "luuuuna@gmail.com")
 
-    suspend fun addOneCommentToDB() {
+    private suspend fun addOneCommentToDB() {
         forumDatabase.userDao().insert(user1)
         forumDatabase.bookDao().insert(book2)
         commentDao.insert(comment1)
     }
 
-    suspend fun addThreeCommentsToDb() {
+    private suspend fun addThreeCommentsToDb() {
         forumDatabase.userDao().insert(user1)
         forumDatabase.bookDao().insert(book2)
         commentDao.insert(comment1)

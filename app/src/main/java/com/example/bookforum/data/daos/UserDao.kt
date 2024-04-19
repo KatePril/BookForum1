@@ -21,14 +21,14 @@ interface UserDao {
     suspend fun delete(user: User) // tested
 
     @Query("SELECT * from users WHERE username = :username")
-    fun getUserByUsername(username: String): Flow<User> // tested
+    fun getUserByUsername(username: String): Flow<User>
 
     @Query("SELECT * from users WHERE id = :id")
-    fun getUserById(id: Int): Flow<User> // tested
+    fun getUserById(id: Int): Flow<User>
 
     @Query("SELECT * from users")
-    fun getAllUsers(): Flow<List<User>> // tested
+    fun getAllUsers(): Flow<List<User>>
 
     @Query("DELETE FROM users WHERE id = :id")
-    suspend fun deleteUserById(id: Int) // tested
+    suspend fun deleteUserById(id: Int)
 }

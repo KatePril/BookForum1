@@ -12,15 +12,15 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CommentDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(comment: Comment) // tested
+    suspend fun insert(comment: Comment)
 
     @Update
-    suspend fun update(comment: Comment) // tested
+    suspend fun update(comment: Comment)
 
     @Delete
-    suspend fun delete(comment: Comment) // tested
+    suspend fun delete(comment: Comment)
 
     @Query("SELECT * from comments WHERE book_id = :id ORDER BY id ASC")
-    fun getBookComments(id: Int): Flow<List<Comment>> // tested
+    fun getBookComments(id: Int): Flow<List<Comment>>
 
 }

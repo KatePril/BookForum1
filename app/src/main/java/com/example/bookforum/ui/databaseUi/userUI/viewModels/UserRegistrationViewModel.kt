@@ -84,11 +84,4 @@ class UserRegistrationViewModel(private val usersRepository: UsersRepository) : 
             emailRegex.matches(email)
         }
     }
-
-    private fun validateInputs(userDetails: UserDetails = userRegistrationUIState.userDetails): Boolean {
-        val emailRegex = Regex("""^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$""")
-        return with(userDetails) {
-            username.isNotBlank() && password.isNotBlank() && emailRegex.matches(email)
-        }
-    }
 }

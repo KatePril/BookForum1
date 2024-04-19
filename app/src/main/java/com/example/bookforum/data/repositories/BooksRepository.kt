@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 class BooksRepository(private val bookDao: BookDao) {
     fun getAllBooks(): Flow<List<Book>> = bookDao.getAllBooks()
-    fun getBook(id: Int): Flow<Book?> = bookDao.getBook(id)
+    fun getBook(id: Int): Flow<Book?> = bookDao.getBookById(id)
     suspend fun insertBook(book: Book) = bookDao.insert(book)
     suspend fun updateBook(book: Book) = bookDao.update(book)
     suspend fun deleteBook(book: Book) = bookDao.delete(book)

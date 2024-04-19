@@ -5,7 +5,7 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.bookforum.ForumApplication
-import com.example.bookforum.ui.databaseUi.userUI.viewModels.BookCreateViewModel
+import com.example.bookforum.ui.databaseUi.booksUI.viewModels.BookCreationViewModel
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.UserLoginViewModel
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.UserRegistrationViewModel
 
@@ -24,7 +24,7 @@ object ForumViewModelProvider {
             )
         }
         initializer {
-            BookCreateViewModel(
+            BookCreationViewModel(
                 forumApplication().container.booksRepository
             )
         }

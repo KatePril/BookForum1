@@ -36,12 +36,12 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.bookforum.R
-import com.example.bookforum.network.apiObjects.BookApiObject
+import com.example.bookforum.network.apiObjects.Book
 import com.example.compose.BookForumTheme
 
 @Composable
 fun SearchResultScreen(
-    books: List<BookApiObject>,
+    books: List<Book>,
     modifier: Modifier = Modifier
 ) {
     if (books.isEmpty()) {
@@ -71,7 +71,7 @@ fun NoResultsFoundMsg(
 
 @Composable
 fun BookApiObjectCard(
-    book: BookApiObject,
+    book: Book,
     modifier: Modifier = Modifier
 ) {
     var expanded by remember { mutableStateOf(false) }
@@ -134,7 +134,7 @@ fun BookApiPhoto(imgLink: String, modifier: Modifier = Modifier) {
 
 @Composable
 private fun BookApiItemInfo(
-    book: BookApiObject,
+    book: Book,
     modifier: Modifier = Modifier
 ) {
     Column (
@@ -199,7 +199,7 @@ private fun BookApiDescription(
 fun BookApiObjectCardPreview() {
     BookForumTheme {
         BookApiObjectCard(
-            book = BookApiObject(
+            book = Book(
                 ISBN = "1597775088,9781597775083",
                 author = "Stephen W Hawking",
                 description = "\"The Theory of Everything\" is a unique opportunity to explore the cosmos " +

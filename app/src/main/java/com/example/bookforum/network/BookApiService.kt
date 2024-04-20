@@ -1,6 +1,6 @@
 package com.example.bookforum.network
 
-import com.example.bookforum.network.apiObjects.ResultApiObject
+import com.example.bookforum.network.apiObjects.ResultObject
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -25,7 +25,7 @@ interface BooksApiService {
         @Query("s") query: String,
         @Header("X-RapidAPI-Key") apiKey: String,
         @Header("X-RapidAPI-Host") apiHost: String
-    ): Response<ResultApiObject>
+    ): Response<ResultObject>
 }
 
 object BooksApi {

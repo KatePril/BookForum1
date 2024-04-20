@@ -18,4 +18,7 @@
     <string name="title_input">Enter title of the book</string>
     <string name="authors_input">Enter authors of the book</string>
     <string name="review_input">Write your review</string>
+    <string name="submit_post_action">Submit post</string>
+    <string name="inputs_empty_msg">Inputs must not be empty</string>
+    <string name="published_input">When was the book published?</string>
 </resources>

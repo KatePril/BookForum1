@@ -106,7 +106,7 @@ fun UserRegistrationForm(
             usersList = usersList,
             onValueChange = { password: String, users: List<User> ->  onValueChange(userDetails.copy(password = password), users) },
             labelText = R.string.password_input_label,
-            msgText = R.string.password_input_label,
+            msgText = R.string.invalid_password,
             isValid = userValidationDetails.isPasswordValid
         )
         UserRegistrationInput(
@@ -114,7 +114,7 @@ fun UserRegistrationForm(
             usersList = usersList,
             onValueChange = { email: String, users: List<User> ->  onValueChange(userDetails.copy(email = email), users) },
             labelText = R.string.email_input_label,
-            msgText = R.string.email_input_label,
+            msgText = R.string.invalid_email,
             isValid = userValidationDetails.isEmailValid
         )
     }

@@ -1,6 +1,6 @@
 package com.example.bookforum.ui.databaseUi.booksUI.states
 
-data class BookCreationUiState (
-    val bookDetails: BookDetails = BookDetails(),
+data class PostCreationUiState (
+    val postDetails: PostDetails = PostDetails(),
     val areInputsValid: Boolean = false
 )

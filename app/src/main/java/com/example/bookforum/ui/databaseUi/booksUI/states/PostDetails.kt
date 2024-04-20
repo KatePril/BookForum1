@@ -1,8 +1,8 @@
 package com.example.bookforum.ui.databaseUi.booksUI.states
 
-import com.example.bookforum.data.entities.Book
+import com.example.bookforum.data.entities.Post
 
-data class BookDetails(
+data class PostDetails(
     val id: Int = 0,
     val title: String = "",
     val author: String = "",
@@ -10,7 +10,7 @@ data class BookDetails(
     val review: String = ""
 )
 
-fun BookDetails.toBook(): Book = Book(
+fun PostDetails.toPost(): Post = Post(
     id = id,
     title = title,
     author = author,

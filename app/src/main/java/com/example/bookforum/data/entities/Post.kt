@@ -2,10 +2,10 @@ package com.example.bookforum.data.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.bookforum.ui.databaseUi.booksUI.states.BookDetails
+import com.example.bookforum.ui.databaseUi.booksUI.states.PostDetails
 
-@Entity(tableName = "books")
-data class Book(
+@Entity(tableName = "posts")
+data class Post(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val title: String,
@@ -14,7 +14,7 @@ data class Book(
     val review: String
 )
 
-fun Book.toDetails(): BookDetails = BookDetails(
+fun Post.toDetails(): PostDetails = PostDetails(
     id = id,
     title = title,
     author = author,

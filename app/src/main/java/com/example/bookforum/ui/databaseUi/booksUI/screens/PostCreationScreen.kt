@@ -16,41 +16,41 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.ui.ForumViewModelProvider
-import com.example.bookforum.ui.databaseUi.booksUI.states.BookDetails
-import com.example.bookforum.ui.databaseUi.booksUI.viewModels.BookCreationViewModel
+import com.example.bookforum.ui.databaseUi.booksUI.states.PostDetails
+import com.example.bookforum.ui.databaseUi.booksUI.viewModels.PostCreationViewModel
 
 @Composable
-fun BookCreationScreen(
-    viewModel: BookCreationViewModel = viewModel(factory = ForumViewModelProvider.Factory)
+fun PostCreationScreen(
+    viewModel: PostCreationViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
 
 }
 
 @Composable
-fun BookCreationForum(
-    bookDetails: BookDetails,
-    onValueChange: (BookDetails) -> Unit,
+fun PostCreationForum(
+    postDetails: PostDetails,
+    onValueChange: (PostDetails) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier.padding(16.dp)
     ) {
-        BookCreationInput(
-            value = bookDetails.title,
-            onValueChange = {title: String -> onValueChange(bookDetails.copy(title = title))},
+        PostCreationInput(
+            value = postDetails.title,
+            onValueChange = {title: String -> onValueChange(postDetails.copy(title = title))},
             labelText = R.string.title_input,
             modifier = modifier
         )
-        BookCreationInput(
-            value = bookDetails.author,
-            onValueChange = {author: String -> onValueChange(bookDetails.copy(author = author))},
+        PostCreationInput(
+            value = postDetails.author,
+            onValueChange = {author: String -> onValueChange(postDetails.copy(author = author))},
             labelText = R.string.authors_input,
             modifier = modifier
         )
-        BookCreationInput(
-            value = bookDetails.review,
-            onValueChange = {review: String -> onValueChange(bookDetails.copy(review = review))},
+        PostCreationInput(
+            value = postDetails.review,
+            onValueChange = {review: String -> onValueChange(postDetails.copy(review = review))},
             labelText = R.string.review_input,
             singleLine = false,
             modifier = modifier
@@ -59,7 +59,7 @@ fun BookCreationForum(
 }
 
 @Composable
-fun BookCreationInput(
+fun PostCreationInput(
     value: String,
     onValueChange: (String) -> Unit,
     @StringRes labelText: Int,

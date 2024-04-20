@@ -6,7 +6,7 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "liked_books",
+    tableName = "liked_posts",
     foreignKeys = [
         ForeignKey(
             entity = User::class,
@@ -15,18 +15,18 @@ import androidx.room.PrimaryKey
             onDelete = ForeignKey.CASCADE
         ),
         ForeignKey(
-            entity = Book::class,
+            entity = Post::class,
             parentColumns = ["id"],
-            childColumns = ["book_id"],
+            childColumns = ["post_id"],
             onDelete = ForeignKey.CASCADE
         )
     ]
 )
-data class LikedBook(
+data class LikedPost(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     @ColumnInfo(name = "user_id")
     val userId: Int,
-    @ColumnInfo(name = "book_id")
+    @ColumnInfo(name = "post_id")
     val bookId: Int
 )

@@ -9,8 +9,6 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -53,24 +51,18 @@ private fun TitleBody(
             )
         }
         Spacer(modifier = modifier.weight(0.5f))
-        IconButton(
-            onClick = { /*TODO*/ }
-        ) {
-            Icon(
-                imageVector = Icons.Filled.Favorite,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.secondaryContainer
-            )
-        }
-        IconButton(
-            onClick = { /*TODO*/ }
-        ) {
-            Icon(
-                imageVector = Icons.Filled.Face,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.secondaryContainer
-            )
-        }
+        ButtonWithIcon(
+            imageVector = Icons.Filled.Favorite,
+            onClick = { /*TODO*/ },
+            tint = MaterialTheme.colorScheme.secondaryContainer,
+            modifier = modifier
+        )
+        ButtonWithIcon(
+            imageVector = Icons.Filled.Face,
+            onClick = { /*TODO*/ },
+            tint = MaterialTheme.colorScheme.secondaryContainer,
+            modifier = modifier
+        )
     }
 }
 

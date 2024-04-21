@@ -40,6 +40,7 @@ import com.example.bookforum.R
 import com.example.bookforum.data.entities.Post
 import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.booksUI.viewModels.PostsDisplayViewModel
+import com.example.bookforum.ui.forumScreens.ButtonWithIcon
 import com.example.bookforum.ui.forumScreens.ExpandButton
 import com.example.bookforum.ui.forumScreens.ForumTopAppBar
 import com.example.compose.BookForumTheme
@@ -175,26 +176,16 @@ private fun PostButtons(
         modifier = modifier,
         horizontalArrangement = Arrangement.End
     ) {
-        IconButton(
+        ButtonWithIcon(
+            imageVector = if (liked) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
             onClick = onLikeButtonClick,
             modifier = modifier
-        ) {
-            Icon(
-                imageVector = if (liked) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.secondary
-            )
-        }
-        IconButton(
+        )
+        ButtonWithIcon(
+            imageVector = Icons.Filled.Comment,
             onClick = onCommentsButtonClick,
             modifier = modifier
-        ) {
-            Icon(
-                imageVector = Icons.Filled.Comment,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.secondary
-            )
-        }
+        )
         ExpandButton(
             expanded = expanded,
             onClick = onExpandButtonClick,

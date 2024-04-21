@@ -44,8 +44,9 @@ fun ApiResultScreen(
     ) { innerPadding ->
         ApiResultScreenBody(
             viewModel = viewModel,
-            modifier = Modifier.fillMaxSize()
-//                .padding(innerPadding)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
         )
     }
 }
@@ -77,9 +78,7 @@ fun ApiResultScreenBody(
             is ApiUiState.Error -> {
                 ErrorApiScreen(uiState.error.orEmpty(), modifier)
             }
-            else -> {
-//                Spacer(modifier = modifier.height(600.dp))
-            }
+            else -> {}
         }
     }
 

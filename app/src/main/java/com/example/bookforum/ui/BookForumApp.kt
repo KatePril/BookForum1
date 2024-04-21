@@ -14,9 +14,3 @@ fun BookForumApp() {
 //    PostsDisplayScreen()
     ApiResultScreen()
 }
-
-//@Composable
-//fun BookApiApp() {
-//    val booksViewModel: BooksViewModel = viewModel()
-//    ApiResultScreen(uiState = booksViewModel.uiState, viewModel = booksViewModel)
-//}

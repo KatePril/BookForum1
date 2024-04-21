@@ -57,7 +57,7 @@ fun PostsDisplayScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = {}
+                onClick = { /*TODO*/ }
             ) {
                 Icon(
                     imageVector = Icons.Filled.DriveFileRenameOutline,
@@ -147,7 +147,7 @@ private fun PostItem(
                     expanded = expanded,
                     liked = liked,
                     onLikeButtonClick = { liked = !liked },
-                    onCommentsButtonClick = {},
+                    onCommentsButtonClick = { /*TODO*/ },
                     onExpandButtonClick = { expanded = !expanded },
                     modifier = modifier.weight(1f)
                 )

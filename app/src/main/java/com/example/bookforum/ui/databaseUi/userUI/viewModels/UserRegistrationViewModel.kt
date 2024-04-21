@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.bookforum.TIMEOUT_MILLS
+import com.example.bookforum.utils.TIMEOUT_MILLS
 import com.example.bookforum.data.entities.User
 import com.example.bookforum.data.repositories.UsersRepository
 import com.example.bookforum.ui.databaseUi.userUI.states.AllUsersUIState

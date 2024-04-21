@@ -40,7 +40,7 @@ fun LoginScreen(
 }
 
 @Composable
-fun LogInBody(
+private fun LogInBody(
     viewModel: UserLoginViewModel,
     onValueChange: (UserLogInDetails) -> Unit,
     onCreateAccountClick: () -> Unit,
@@ -67,7 +67,7 @@ fun LogInBody(
 }
 
 @Composable
-fun LogInButton(
+private fun LogInButton(
     viewModel: UserLoginViewModel,
     modifier: Modifier = Modifier
 ) {
@@ -96,7 +96,7 @@ fun LogInButton(
 }
 
 @Composable
-fun UserLogInForm(
+private fun UserLogInForm(
     userLogInDetails: UserLogInDetails,
     onValueChange: (UserLogInDetails) -> Unit,
     modifier: Modifier = Modifier
@@ -121,7 +121,7 @@ fun UserLogInForm(
 }
 
 @Composable
-fun UserLogInInput(
+private fun UserLogInInput(
     value: String,
     onValueChange: (String) -> Unit,
     @StringRes labelText: Int,

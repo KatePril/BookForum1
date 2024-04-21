@@ -37,6 +37,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.bookforum.R
 import com.example.bookforum.network.apiObjects.Book
+import com.example.bookforum.ui.forumScreens.ExpandButton
 import com.example.compose.BookForumTheme
 
 @Composable
@@ -70,7 +71,7 @@ fun NoResultsFoundMsg(
 }
 
 @Composable
-fun BookApiObjectCard(
+private fun BookApiObjectCard(
     book: Book,
     modifier: Modifier = Modifier
 ) {
@@ -103,7 +104,7 @@ fun BookApiObjectCard(
             ) {
                 BookApiPhoto(imgLink = book.imgLink, modifier = modifier.weight(1f))
                 BookApiItemInfo(book = book, modifier = modifier.weight(2f))
-                BookApiItemButton(
+                ExpandButton(
                     expanded = expanded,
                     onClick = { expanded = !expanded }
                 )
@@ -119,7 +120,7 @@ fun BookApiObjectCard(
 }
 
 @Composable
-fun BookApiPhoto(imgLink: String, modifier: Modifier = Modifier) {
+private fun BookApiPhoto(imgLink: String, modifier: Modifier = Modifier) {
     AsyncImage(
         model = ImageRequest.Builder(context = LocalContext.current)
             .data(imgLink)
@@ -155,24 +156,6 @@ private fun BookApiItemInfo(
     }
 }
 
-
-@Composable
-private fun BookApiItemButton(
-    expanded: Boolean,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    IconButton(
-        onClick = onClick,
-        modifier = modifier
-    ) {
-        Icon(
-            imageVector = if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.secondary
-        )
-    }
-}
 
 @Composable
 private fun BookApiDescription(

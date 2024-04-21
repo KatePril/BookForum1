@@ -33,7 +33,7 @@ fun ApiResultScreen(
     modifier: Modifier = Modifier
 ) {
     Column (
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         ApiSearchTextField(booksViewModel)

@@ -52,7 +52,7 @@ fun RegistrationScreen(
 }
 
 @Composable
-fun RegistrationBody(
+private fun RegistrationBody(
     userRegistrationUIState: UserRegistrationUIState,
     usersList: List<User>,
     onUserValueChange: KFunction2<UserDetails, List<User>, Unit>,
@@ -82,7 +82,7 @@ fun RegistrationBody(
 }
 
 @Composable
-fun UserRegistrationForm(
+private fun UserRegistrationForm(
     userDetails: UserDetails,
     userValidationDetails: UserValidationDetails,
     usersList: List<User>,
@@ -122,7 +122,7 @@ fun UserRegistrationForm(
 
 
 @Composable
-fun UserRegistrationInput(
+private fun UserRegistrationInput(
     value: String,
     usersList: List<User>,
     onValueChange: (String, List<User>) -> Unit,

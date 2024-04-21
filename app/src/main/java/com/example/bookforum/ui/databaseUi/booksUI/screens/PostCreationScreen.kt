@@ -43,7 +43,7 @@ fun PostCreationScreen(
 }
 
 @Composable
-fun PostCreationBody(
+private fun PostCreationBody(
     postCreationUiState: PostCreationUiState,
     onValueChange: (PostDetails) -> Unit,
     onSaveClick: () -> Unit,
@@ -78,7 +78,7 @@ fun PostCreationBody(
 }
 
 @Composable
-fun PostCreationForm(
+private fun PostCreationForm(
     postDetails: PostDetails,
     onValueChange: (PostDetails) -> Unit,
     modifier: Modifier = Modifier
@@ -116,7 +116,7 @@ fun PostCreationForm(
 }
 
 @Composable
-fun PostCreationInput(
+private fun PostCreationInput(
     value: String,
     onValueChange: (String) -> Unit,
     @StringRes labelText: Int,

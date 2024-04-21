@@ -5,6 +5,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.ui.apiUi.BooksViewModel
 import com.example.bookforum.ui.apiUi.screens.ApiResultScreen
 import com.example.bookforum.ui.databaseUi.booksUI.screens.PostCreationScreen
+import com.example.bookforum.ui.databaseUi.booksUI.screens.PostsDisplayScreen
 import com.example.bookforum.ui.databaseUi.userUI.screens.LoginScreen
 import com.example.bookforum.ui.databaseUi.userUI.screens.RegistrationScreen
 
@@ -12,7 +13,8 @@ import com.example.bookforum.ui.databaseUi.userUI.screens.RegistrationScreen
 fun BookForumApp() {
 //    RegistrationScreen()
 //    LoginScreen()
-    PostCreationScreen()
+//    PostCreationScreen()
+    PostsDisplayScreen()
 }
 
 @Composable

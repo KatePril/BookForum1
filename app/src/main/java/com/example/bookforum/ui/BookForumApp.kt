@@ -1,13 +1,16 @@
 package com.example.bookforum.ui
 
 import androidx.compose.runtime.Composable
-import com.example.bookforum.ui.databaseUi.booksUI.screens.displayPosts.PostsDisplayScreen
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.bookforum.ui.navigation.ForumNavHost
 
 @Composable
-fun BookForumApp() {
+fun BookForumApp(navController: NavHostController = rememberNavController()) {
+    ForumNavHost(navController = navController)
 //    RegistrationScreen()
 //    LoginScreen()
 //    PostCreationScreen()
-    PostsDisplayScreen()
+//    PostsDisplayScreen()
 //    ApiResultScreen()
 }

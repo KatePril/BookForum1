@@ -56,7 +56,7 @@ fun ApiResultScreen(
 }
 
 @Composable
-fun ApiResultScreenBody(
+private fun ApiResultScreenBody(
     viewModel: BooksViewModel,
     modifier: Modifier = Modifier
 ) {
@@ -89,7 +89,7 @@ fun ApiResultScreenBody(
 }
 
 @Composable
-fun ApiSearchTextField(
+private fun ApiSearchTextField(
     booksViewModel: BooksViewModel,
     modifier: Modifier = Modifier
 ) {

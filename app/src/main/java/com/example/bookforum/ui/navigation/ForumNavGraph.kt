@@ -3,8 +3,10 @@ package com.example.bookforum.ui.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.example.bookforum.ui.apiUi.screens.ApiResultScreen
 import com.example.bookforum.ui.apiUi.screens.ApiSearchDestination
 import com.example.bookforum.ui.databaseUi.booksUI.screens.createPost.PostCreationDestination
@@ -32,13 +34,28 @@ fun ForumNavHost(
         composable(route = RegistrationDestination.route) {
             RegistrationScreen()
         }
-        composable(route = PostsDisplayDestination.route) {
+        composable(
+            route = PostsDisplayDestination.route,
+            arguments = listOf(navArgument(PostsDisplayDestination.userIdArg) {
+                type = NavType.IntType
+            })
+        ) {
             PostsDisplayScreen()
         }
-        composable(route = PostCreationDestination.route) {
+        composable(
+            route = PostCreationDestination.route,
+            arguments = listOf(navArgument(PostCreationDestination.userIdArg) {
+                type = NavType.IntType
+            })
+        ) {
             PostCreationScreen()
         }
-        composable(route = ApiSearchDestination.route) {
+        composable(
+            route = ApiSearchDestination.route,
+            arguments = listOf(navArgument(ApiSearchDestination.userIdArg) {
+                type = NavType.IntType
+            })
+        ) {
             ApiResultScreen()
         }
     }

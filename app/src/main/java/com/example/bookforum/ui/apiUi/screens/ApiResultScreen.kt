@@ -39,11 +39,18 @@ import com.example.compose.BookForumTheme
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun ApiResultScreen(
+    navigateToGlobalPage: () -> Unit,
+    navigateToFavouritePosts: () -> Unit,
+    navigateToProfile: () -> Unit,
     viewModel: BooksViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     Scaffold(
         topBar = {
-            ForumTopAppBar()
+            ForumTopAppBar(
+                navigateToGlobalPage = navigateToGlobalPage,
+                navigateToFavouritePosts = navigateToFavouritePosts,
+                navigateToProfile = navigateToProfile
+            )
         }
     ) { innerPadding ->
         ApiResultScreenBody(
@@ -127,6 +134,6 @@ private fun ApiSearchTextField(
 @Composable
 fun ApiResultScreenPreview() {
     BookForumTheme {
-        ApiResultScreen()
+//        ApiResultScreen()
     }
 }

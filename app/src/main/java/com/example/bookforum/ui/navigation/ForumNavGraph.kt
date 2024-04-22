@@ -29,10 +29,19 @@ fun ForumNavHost(
         modifier = modifier
     ) {
         composable(route = LogInDestination.route) {
-            LoginScreen()
+            LoginScreen(
+                navigateToRegistration = { navController.navigate(RegistrationDestination.route) },
+                navigateToPostsDisplayPage = {
+                    navController.navigate("${PostsDisplayDestination.route}/$it")
+                }
+            )
         }
         composable(route = RegistrationDestination.route) {
-            RegistrationScreen()
+            RegistrationScreen(
+                navigateToPostsDisplayPage = {
+                    navController.navigate("${PostsDisplayDestination.route}/$it")
+                }
+            )
         }
         composable(
             route = PostsDisplayDestination.route,
@@ -40,7 +49,18 @@ fun ForumNavHost(
                 type = NavType.IntType
             })
         ) {
-            PostsDisplayScreen()
+            PostsDisplayScreen(
+                navigateToGlobalPage = {
+                    navController.navigate("${ApiSearchDestination.route}/$it")
+                    /*TODO add user id parsing*/
+                },
+                navigateToPostCreation = {
+                    navController.navigate("${PostCreationDestination.route}/$it")
+                    /*TODO add user id parsing*/
+                },
+                navigateToFavouritePosts = { /*TODO*/ },
+                navigateToProfile = { /*TODO*/ }
+            )
         }
         composable(
             route = PostCreationDestination.route,
@@ -48,7 +68,12 @@ fun ForumNavHost(
                 type = NavType.IntType
             })
         ) {
-            PostCreationScreen()
+            PostCreationScreen(
+                navigateToPostsDisplay = {
+                    navController.navigate("${PostsDisplayDestination.route}/$it")
+                    /*TODO add user id parsing*/
+                }
+            )
         }
         composable(
             route = ApiSearchDestination.route,
@@ -56,7 +81,14 @@ fun ForumNavHost(
                 type = NavType.IntType
             })
         ) {
-            ApiResultScreen()
+            ApiResultScreen(
+                navigateToGlobalPage = {
+                    navController.navigate("${PostsDisplayDestination.route}/$it")
+                    /*TODO add user id parsing*/
+                },
+                navigateToFavouritePosts = { /*TODO*/ },
+                navigateToProfile = { /*TODO*/ }
+            )
         }
     }
 }

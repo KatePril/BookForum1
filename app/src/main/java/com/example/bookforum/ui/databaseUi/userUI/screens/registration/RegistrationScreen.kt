@@ -33,6 +33,7 @@ import kotlin.reflect.KFunction2
 
 @Composable
 fun RegistrationScreen(
+    navigateToPostsDisplayPage: (Int) -> Unit,
     viewModel: UserRegistrationViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -46,6 +47,8 @@ fun RegistrationScreen(
             coroutineScope.launch {
                 viewModel.saveUser()
             }
+            navigateToPostsDisplayPage(viewModel.userRegistrationUIState.userDetails.id)
+            /*TODO check if the id passed is correct*/
         },
         modifier = Modifier.fillMaxWidth()
     )

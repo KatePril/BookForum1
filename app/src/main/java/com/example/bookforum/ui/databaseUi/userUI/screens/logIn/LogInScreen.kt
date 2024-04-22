@@ -30,12 +30,15 @@ import com.example.compose.BookForumTheme
 
 @Composable
 fun LoginScreen(
+    navigateToRegistration: () -> Unit,
+    navigateToPostsDisplayPage: (Int) -> Unit,
     viewModel: UserLoginViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     LogInBody(
         viewModel = viewModel,
         onValueChange = viewModel::updateUiState,
-        onCreateAccountClick = {}
+        onCreateAccountClick = navigateToRegistration,
+        navigateToPostsDisplayPage = navigateToPostsDisplayPage
     )
 }
 
@@ -44,6 +47,7 @@ private fun LogInBody(
     viewModel: UserLoginViewModel,
     onValueChange: (UserLogInDetails) -> Unit,
     onCreateAccountClick: () -> Unit,
+    navigateToPostsDisplayPage: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -54,7 +58,10 @@ private fun LogInBody(
             userLogInDetails = viewModel.userLogInUiState.userDetails,
             onValueChange = onValueChange
         )
-        LogInButton(viewModel = viewModel)
+        LogInButton(
+            navigateToPostsDisplayPage = navigateToPostsDisplayPage,
+            viewModel = viewModel
+        )
         Button(
             onClick = onCreateAccountClick,
             shape = MaterialTheme.shapes.small,
@@ -69,10 +76,11 @@ private fun LogInBody(
 @Composable
 private fun LogInButton(
     viewModel: UserLoginViewModel,
+    navigateToPostsDisplayPage: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val userUiState = viewModel.getUserUiState(viewModel.userLogInUiState.userDetails.username).collectAsState()
-    var isLogInSuccessful by remember { mutableStateOf(true) }
+    var isLogInSuccessful by remember { mutableStateOf(false) }
     if (!isLogInSuccessful) {
         Text(
             text = stringResource(R.string.incorrect_log_in_message),
@@ -85,6 +93,9 @@ private fun LogInButton(
         onClick = {
             if (userUiState.value != null) {
                 isLogInSuccessful = viewModel.checkPassword(userUiState.value!!.userDetails.password)
+                if (isLogInSuccessful) {
+                    navigateToPostsDisplayPage(userUiState.value!!.userDetails.id)
+                }
             }
         },
         enabled = viewModel.userLogInUiState.areInputsValid,
@@ -145,6 +156,6 @@ private fun UserLogInInput(
 @Composable
 fun UserLogInInputPreview() {
     BookForumTheme {
-        LoginScreen()
+//        LoginScreen()
     }
 }

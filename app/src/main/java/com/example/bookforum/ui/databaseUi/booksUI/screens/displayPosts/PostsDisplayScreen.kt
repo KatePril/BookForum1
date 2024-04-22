@@ -47,17 +47,25 @@ import com.example.compose.BookForumTheme
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun PostsDisplayScreen(
+    navigateToGlobalPage: () -> Unit,
+    navigateToPostCreation: () -> Unit,
+    navigateToFavouritePosts: () -> Unit,
+    navigateToProfile: () -> Unit,
     viewModel: PostsDisplayViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val postsUiState by viewModel.postsUiState.collectAsState()
 
     Scaffold(
         topBar = {
-            ForumTopAppBar()
+            ForumTopAppBar(
+                navigateToGlobalPage = navigateToGlobalPage,
+                navigateToFavouritePosts = navigateToFavouritePosts,
+                navigateToProfile = navigateToProfile
+            )
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { /*TODO*/ }
+                onClick = navigateToPostCreation
             ) {
                 Icon(
                     imageVector = Icons.Filled.DriveFileRenameOutline,
@@ -146,7 +154,7 @@ private fun PostItem(
                 PostButtons(
                     expanded = expanded,
                     liked = liked,
-                    onLikeButtonClick = { liked = !liked },
+                    onLikeButtonClick = { /*TODO*/ },
                     onCommentsButtonClick = { /*TODO*/ },
                     onExpandButtonClick = { expanded = !expanded },
                     modifier = modifier.weight(1f)

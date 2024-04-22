@@ -25,16 +25,29 @@ import com.example.compose.BookForumTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ForumTopAppBar (
+    navigateToGlobalPage: () -> Unit,
+    navigateToFavouritePosts: () -> Unit,
+    navigateToProfile: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     TopAppBar(
-        title = { TitleBody(modifier) },
+        title = {
+            TitleBody(
+                navigateToGlobalPage = navigateToGlobalPage,
+                navigateToFavouritePosts = navigateToFavouritePosts,
+                navigateToProfile = navigateToProfile,
+                modifier = modifier
+            )
+        },
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = MaterialTheme.colorScheme.secondary)
     )
 }
 
 @Composable
 private fun TitleBody(
+    navigateToGlobalPage: () -> Unit,
+    navigateToFavouritePosts: () -> Unit,
+    navigateToProfile: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row (
@@ -42,7 +55,7 @@ private fun TitleBody(
         modifier = modifier.padding(end = 16.dp)
     ) {
         Button(
-            onClick = { /*TODO*/ },
+            onClick = navigateToGlobalPage,
             colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)
         ) {
             Text(
@@ -53,13 +66,13 @@ private fun TitleBody(
         Spacer(modifier = modifier.weight(0.5f))
         ButtonWithIcon(
             imageVector = Icons.Filled.Favorite,
-            onClick = { /*TODO*/ },
+            onClick = navigateToFavouritePosts,
             tint = MaterialTheme.colorScheme.secondaryContainer,
             modifier = modifier
         )
         ButtonWithIcon(
             imageVector = Icons.Filled.Face,
-            onClick = { /*TODO*/ },
+            onClick = navigateToProfile,
             tint = MaterialTheme.colorScheme.secondaryContainer,
             modifier = modifier
         )
@@ -70,6 +83,6 @@ private fun TitleBody(
 @Composable
 fun ForumTopAppBarPreview() {
     BookForumTheme {
-        ForumTopAppBar()
+//        ForumTopAppBar()
     }
 }

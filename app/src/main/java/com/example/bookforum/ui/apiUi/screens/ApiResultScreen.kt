@@ -29,6 +29,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.apiUi.ApiUiState
 import com.example.bookforum.ui.apiUi.BooksViewModel
+import com.example.bookforum.ui.apiUi.screens.bodyScreens.ErrorApiScreen
+import com.example.bookforum.ui.apiUi.screens.bodyScreens.LoadingResultScreen
+import com.example.bookforum.ui.apiUi.screens.bodyScreens.NoResultsFoundMsg
+import com.example.bookforum.ui.apiUi.screens.bodyScreens.SearchResultScreen
 import com.example.bookforum.ui.forumScreens.ForumTopAppBar
 import com.example.compose.BookForumTheme
 

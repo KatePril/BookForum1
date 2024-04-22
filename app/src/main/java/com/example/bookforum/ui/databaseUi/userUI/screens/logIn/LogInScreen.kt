@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.userUI.screens
+package com.example.bookforum.ui.databaseUi.userUI.screens.logIn
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement

@@ -5,8 +5,8 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.bookforum.data.ForumDatabase
-import com.example.bookforum.data.daos.BookDao
-import com.example.bookforum.data.entities.Book
+import com.example.bookforum.data.daos.PostDao
+import com.example.bookforum.data.entities.Post
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -18,11 +18,11 @@ import java.io.IOException
 import kotlin.jvm.Throws
 
 @RunWith(AndroidJUnit4::class)
-class BookDaoTest {
-    private lateinit var bookDao: BookDao
+class PostDaoTest {
+    private lateinit var postDao: PostDao
     private lateinit var forumDatabase: ForumDatabase
 
-    private var book1 = Book(
+    private var book1 = Post(
         id = 1,
         title = "Game of thrones",
         author = "Jorge R R Martin",
@@ -30,7 +30,7 @@ class BookDaoTest {
         review = "An amazing book"
     )
 
-    private var book2 = Book(
+    private var book2 = Post(
         id = 2,
         title = "Harry Potter and the Philosopher stone",
         author = "J K Rowling",
@@ -39,12 +39,12 @@ class BookDaoTest {
     )
 
     private suspend fun addOneBookToDB() {
-        bookDao.insert(book1)
+        postDao.insert(book1)
     }
 
     private suspend fun addTwoBooksToDB() {
-        bookDao.insert(book1)
-        bookDao.insert(book2)
+        postDao.insert(book1)
+        postDao.insert(book2)
     }
 
     @Before
@@ -53,7 +53,7 @@ class BookDaoTest {
         forumDatabase = Room.inMemoryDatabaseBuilder(context, ForumDatabase::class.java)
             .allowMainThreadQueries()
             .build()
-        bookDao = forumDatabase.bookDao()
+        postDao = forumDatabase.bookDao()
     }
 
     @After
@@ -66,7 +66,7 @@ class BookDaoTest {
     @Throws(Exception::class)
     fun daoInsert_insertsBookIntoDB() = runBlocking {
         addOneBookToDB()
-        val allBooks = bookDao.getAllBooks().first()
+        val allBooks = postDao.getAllPosts().first()
         assertEquals(allBooks[0], book1)
     }
 
@@ -74,7 +74,7 @@ class BookDaoTest {
     @Throws(Exception::class)
     fun daoGetAllBooks_returnsAllBooksFromDB() = runBlocking {
         addTwoBooksToDB()
-        val allBooks = bookDao.getAllBooks().first()
+        val allBooks = postDao.getAllPosts().first()
         assertEquals(allBooks[0], book1)
         assertEquals(allBooks[1], book2)
     }
@@ -83,7 +83,7 @@ class BookDaoTest {
     @Throws(Exception::class)
     fun doaGetBookById_returnsBookByIdFromDB() = runBlocking {
         addOneBookToDB()
-        val book = bookDao.getBookById(1).first()
+        val book = postDao.getPostById(1).first()
         assertEquals(book, book1)
     }
 
@@ -92,8 +92,8 @@ class BookDaoTest {
     fun daoUpdate_updatesBookInDB() = runBlocking {
         addOneBookToDB()
         val updatedBook = book1.copy(published = "1996")
-        bookDao.update(updatedBook)
-        val allBooks = bookDao.getAllBooks().first()
+        postDao.update(updatedBook)
+        val allBooks = postDao.getAllPosts().first()
         assertEquals(allBooks[0], updatedBook)
     }
 
@@ -101,8 +101,8 @@ class BookDaoTest {
     @Throws(Exception::class)
     fun daoDelete_deletesBookFromDB() = runBlocking {
         addTwoBooksToDB()
-        bookDao.delete(book1)
-        val allBooks = bookDao.getAllBooks().first()
+        postDao.delete(book1)
+        val allBooks = postDao.getAllPosts().first()
         assertEquals(allBooks[0], book2)
     }
 }

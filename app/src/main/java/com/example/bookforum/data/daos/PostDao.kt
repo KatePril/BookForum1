@@ -21,7 +21,7 @@ interface PostDao {
     suspend fun delete(post: Post)
 
     @Query("SELECT * from posts WHERE id = :id")
-    fun getPost(id: Int): Flow<Post>
+    fun getPostById(id: Int): Flow<Post>
 
     @Query("SELECT * from posts ORDER BY id ASC")
     fun getAllPosts(): Flow<List<Post>>

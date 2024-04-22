@@ -5,9 +5,9 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.bookforum.data.ForumDatabase
-import com.example.bookforum.data.daos.LikedBookDao
-import com.example.bookforum.data.entities.Book
-import com.example.bookforum.data.entities.LikedBook
+import com.example.bookforum.data.daos.LikedPostDao
+import com.example.bookforum.data.entities.Post
+import com.example.bookforum.data.entities.LikedPost
 import com.example.bookforum.data.entities.User
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -20,22 +20,22 @@ import java.io.IOException
 import kotlin.jvm.Throws
 
 @RunWith(AndroidJUnit4::class)
-class LikedBookDaoTest {
-    private lateinit var likedBookDao: LikedBookDao
+class LikedPostDaoTest {
+    private lateinit var likedPostDao: LikedPostDao
     private lateinit var forumDatabase: ForumDatabase
 
-    private var likedBook1 = LikedBook(1, 1, 1)
-    private var likedBook2 = LikedBook(2, 2, 1)
-    private var likedBook3 = LikedBook(3, 2, 2)
+    private var likedBook1 = LikedPost(1, 1, 1)
+    private var likedBook2 = LikedPost(2, 2, 1)
+    private var likedBook3 = LikedPost(3, 2, 2)
 
-    private var book1 = Book(
+    private var book1 = Post(
         id = 1,
         title = "Game of thrones",
         author = "Jorge R R Martin",
         published = "1997",
         review = "An amazing book"
     )
-    private var book2 = Book(
+    private var book2 = Post(
         id = 2,
         title = "Harry Potter and the Philosopher stone",
         author = "J K Rowling",
@@ -49,7 +49,7 @@ class LikedBookDaoTest {
     suspend fun addOneLikedBookToDb() {
         forumDatabase.userDao().insert(user1)
         forumDatabase.bookDao().insert(book1)
-        likedBookDao.insert(likedBook1)
+        likedPostDao.insert(likedBook1)
     }
 
     suspend fun addThreeLikedBooksToDb() {
@@ -58,9 +58,9 @@ class LikedBookDaoTest {
         forumDatabase.bookDao().insert(book1)
         forumDatabase.bookDao().insert(book2)
 
-        likedBookDao.insert(likedBook1)
-        likedBookDao.insert(likedBook2)
-        likedBookDao.insert(likedBook3)
+        likedPostDao.insert(likedBook1)
+        likedPostDao.insert(likedBook2)
+        likedPostDao.insert(likedBook3)
     }
 
     @Before
@@ -69,7 +69,7 @@ class LikedBookDaoTest {
         forumDatabase = Room.inMemoryDatabaseBuilder(context, ForumDatabase::class.java)
             .allowMainThreadQueries()
             .build()
-        likedBookDao = forumDatabase.likedBookDao()
+        likedPostDao = forumDatabase.likedPostDao()
     }
 
     @After
@@ -82,7 +82,7 @@ class LikedBookDaoTest {
     @Throws(Exception::class)
     fun daoInsert_insertLikedBookIntoDB() = runBlocking {
         addOneLikedBookToDb()
-        val likedBooks = likedBookDao.getLikedBooks(1).first()
+        val likedBooks = likedPostDao.getLikedPosts(1).first()
         assertEquals(likedBooks[0], likedBook1.bookId)
     }
 
@@ -90,7 +90,7 @@ class LikedBookDaoTest {
     @Throws(Exception::class)
     fun daoGetLikedBooks_returnsBooksIdsByUserIdFromDB() = runBlocking {
         addThreeLikedBooksToDb()
-        val likedBooks = likedBookDao.getLikedBooks(2).first()
+        val likedBooks = likedPostDao.getLikedPosts(2).first()
         assertEquals(likedBooks[0], likedBook2.bookId)
         assertEquals(likedBooks[1], likedBook3.bookId)
     }
@@ -100,8 +100,8 @@ class LikedBookDaoTest {
     fun daoUpdate_updatesLikedBookInDB() = runBlocking {
         addThreeLikedBooksToDb()
         val updatedLikedBook = likedBook1.copy(bookId = 2)
-        likedBookDao.update(updatedLikedBook)
-        val likedBooks = likedBookDao.getLikedBooks(1).first()
+        likedPostDao.update(updatedLikedBook)
+        val likedBooks = likedPostDao.getLikedPosts(1).first()
         assertEquals(likedBooks[0], updatedLikedBook.bookId)
     }
 
@@ -109,8 +109,8 @@ class LikedBookDaoTest {
     @Throws(Exception::class)
     fun daoDelete_deletesLikedBookFromDB() = runBlocking {
         addThreeLikedBooksToDb()
-        likedBookDao.delete(likedBook2)
-        val likedBooks = likedBookDao.getLikedBooks(2).first()
+        likedPostDao.delete(likedBook2)
+        val likedBooks = likedPostDao.getLikedPosts(2).first()
         assertEquals(likedBooks[0], likedBook3.bookId)
     }
 

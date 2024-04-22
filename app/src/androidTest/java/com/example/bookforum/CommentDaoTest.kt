@@ -6,7 +6,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.bookforum.data.ForumDatabase
 import com.example.bookforum.data.daos.CommentDao
-import com.example.bookforum.data.entities.Book
+import com.example.bookforum.data.entities.Post
 import com.example.bookforum.data.entities.Comment
 import com.example.bookforum.data.entities.User
 import kotlinx.coroutines.flow.first
@@ -28,14 +28,14 @@ class CommentDaoTest {
     private var comment2 = Comment(2, "19.04.2024", "something", 2, 1)
     private var comment3 = Comment(3, "20.04.2024", "something", 1, 1)
 
-    private var book1 = Book(
+    private var book1 = Post(
         id = 1,
         title = "Game of thrones",
         author = "Jorge R R Martin",
         published = "1997",
         review = "An amazing book"
     )
-    private var book2 = Book(
+    private var book2 = Post(
         id = 2,
         title = "Harry Potter and the Philosopher stone",
         author = "J K Rowling",

@@ -19,7 +19,7 @@ class UserLoginViewModel(private val usersRepository: UsersRepository) : ViewMod
 
     var userLogInUiState by mutableStateOf(UserLogInUiState())
 
-    fun getUserUiState(username: String) = usersRepository.getUser(username)
+    fun getUserUiState(username: String) = usersRepository.getUserByUsername(username)
         .map { it?.toDetails()?.let { details -> UserUiState(details) } }
         .stateIn(
             scope = viewModelScope,

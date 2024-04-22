@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class BookApiObject(
+data class Book(
     val ISBN: String,
     val author: String,
     val description: String,

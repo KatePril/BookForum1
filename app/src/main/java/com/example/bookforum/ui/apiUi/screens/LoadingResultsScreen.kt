@@ -14,7 +14,7 @@ fun LoadingResultScreen(modifier: Modifier = Modifier) {
     Image(
         painter = painterResource(R.drawable.loading_img),
         contentDescription = stringResource(R.string.loading),
-        modifier = Modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize()
     )
 }
 

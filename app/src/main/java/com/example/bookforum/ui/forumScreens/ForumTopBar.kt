@@ -9,7 +9,6 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -35,7 +34,7 @@ fun ForumTopAppBar (
 }
 
 @Composable
-fun TitleBody(
+private fun TitleBody(
     modifier: Modifier = Modifier
 ) {
     Row (
@@ -52,25 +51,18 @@ fun TitleBody(
             )
         }
         Spacer(modifier = modifier.weight(0.5f))
-        Button(
+        ButtonWithIcon(
+            imageVector = Icons.Filled.Favorite,
             onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.secondaryContainer,
-                contentColor = MaterialTheme.colorScheme.secondary
-            )
-        ) {
-            Icon(imageVector = Icons.Filled.Favorite, contentDescription = null)
-        }
-        Spacer(modifier = modifier.weight(0.1f))
-        Button(
+            tint = MaterialTheme.colorScheme.secondaryContainer,
+            modifier = modifier
+        )
+        ButtonWithIcon(
+            imageVector = Icons.Filled.Face,
             onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.secondaryContainer,
-                contentColor = MaterialTheme.colorScheme.secondary
-            )
-        ) {
-            Icon(imageVector = Icons.Filled.Face, contentDescription = null)
-        }
+            tint = MaterialTheme.colorScheme.secondaryContainer,
+            modifier = modifier
+        )
     }
 }
 

@@ -52,7 +52,7 @@ fun RegistrationScreen(
 }
 
 @Composable
-fun RegistrationBody(
+private fun RegistrationBody(
     userRegistrationUIState: UserRegistrationUIState,
     usersList: List<User>,
     onUserValueChange: KFunction2<UserDetails, List<User>, Unit>,
@@ -82,7 +82,7 @@ fun RegistrationBody(
 }
 
 @Composable
-fun UserRegistrationForm(
+private fun UserRegistrationForm(
     userDetails: UserDetails,
     userValidationDetails: UserValidationDetails,
     usersList: List<User>,
@@ -106,7 +106,7 @@ fun UserRegistrationForm(
             usersList = usersList,
             onValueChange = { password: String, users: List<User> ->  onValueChange(userDetails.copy(password = password), users) },
             labelText = R.string.password_input_label,
-            msgText = R.string.password_input_label,
+            msgText = R.string.invalid_password,
             isValid = userValidationDetails.isPasswordValid
         )
         UserRegistrationInput(
@@ -114,7 +114,7 @@ fun UserRegistrationForm(
             usersList = usersList,
             onValueChange = { email: String, users: List<User> ->  onValueChange(userDetails.copy(email = email), users) },
             labelText = R.string.email_input_label,
-            msgText = R.string.email_input_label,
+            msgText = R.string.invalid_email,
             isValid = userValidationDetails.isEmailValid
         )
     }
@@ -122,7 +122,7 @@ fun UserRegistrationForm(
 
 
 @Composable
-fun UserRegistrationInput(
+private fun UserRegistrationInput(
     value: String,
     usersList: List<User>,
     onValueChange: (String, List<User>) -> Unit,

@@ -31,7 +31,6 @@ fun ErrorApiScreen(
             modifier = modifier.size(250.dp)
         )
         Text(
-//            text = stringResource(R.string.error_msg),
             text = message,
             style = MaterialTheme.typography.bodyLarge
         )

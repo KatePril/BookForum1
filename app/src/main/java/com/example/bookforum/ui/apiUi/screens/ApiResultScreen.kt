@@ -1,9 +1,11 @@
 package com.example.bookforum.ui.apiUi.screens
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -12,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -22,22 +25,43 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.apiUi.ApiUiState
 import com.example.bookforum.ui.apiUi.BooksViewModel
+import com.example.bookforum.ui.forumScreens.ForumTopAppBar
 import com.example.compose.BookForumTheme
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun ApiResultScreen(
-    uiState: ApiUiState,
-    booksViewModel: BooksViewModel,
+    viewModel: BooksViewModel = viewModel(factory = ForumViewModelProvider.Factory)
+) {
+    Scaffold(
+        topBar = {
+            ForumTopAppBar()
+        }
+    ) { innerPadding ->
+        ApiResultScreenBody(
+            viewModel = viewModel,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        )
+    }
+}
+
+@Composable
+fun ApiResultScreenBody(
+    viewModel: BooksViewModel,
     modifier: Modifier = Modifier
 ) {
     Column (
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        ApiSearchTextField(booksViewModel)
-        when(uiState) {
+        ApiSearchTextField(viewModel)
+        when(val uiState: ApiUiState = viewModel.uiState) {
             is ApiUiState.Success -> {
                 if (uiState.books != null) {
                     SearchResultScreen(
@@ -54,9 +78,7 @@ fun ApiResultScreen(
             is ApiUiState.Error -> {
                 ErrorApiScreen(uiState.error.orEmpty(), modifier)
             }
-            else -> {
-                Spacer(modifier = modifier.height(600.dp))
-            }
+            else -> {}
         }
     }
 
@@ -68,7 +90,7 @@ fun ApiSearchTextField(
     modifier: Modifier = Modifier
 ) {
     var queryInput by remember { mutableStateOf("") }
-
+    Spacer(modifier = modifier.height(100.dp))
     Row (
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
@@ -101,6 +123,6 @@ fun ApiSearchTextField(
 @Composable
 fun ApiResultScreenPreview() {
     BookForumTheme {
-//        ApiResultScreen(ApiUiState.Loading)
+        ApiResultScreen()
     }
 }

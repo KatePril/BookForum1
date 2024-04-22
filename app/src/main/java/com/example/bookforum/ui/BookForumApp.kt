@@ -4,17 +4,14 @@ import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.ui.apiUi.BooksViewModel
 import com.example.bookforum.ui.apiUi.screens.ApiResultScreen
-import com.example.bookforum.ui.databaseUi.userUI.screens.LoginScreen
-import com.example.bookforum.ui.databaseUi.userUI.screens.RegistrationScreen
+import com.example.bookforum.ui.databaseUi.booksUI.screens.PostCreationScreen
+import com.example.bookforum.ui.databaseUi.booksUI.screens.PostsDisplayScreen
 
 @Composable
 fun BookForumApp() {
 //    RegistrationScreen()
-    LoginScreen()
-}
-
-@Composable
-fun BookApiApp() {
-    val booksViewModel: BooksViewModel = viewModel()
-    ApiResultScreen(uiState = booksViewModel.uiState, booksViewModel = booksViewModel)
+//    LoginScreen()
+//    PostCreationScreen()
+    PostsDisplayScreen()
+//    ApiResultScreen()
 }

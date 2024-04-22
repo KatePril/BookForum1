@@ -20,7 +20,7 @@ interface CommentDao {
     @Delete
     suspend fun delete(comment: Comment)
 
-    @Query("SELECT * from comments WHERE book_id = :id ORDER BY id ASC")
+    @Query("SELECT * from comments WHERE post_id = :id ORDER BY id ASC")
     fun getBookComments(id: Int): Flow<List<Comment>>
 
 }

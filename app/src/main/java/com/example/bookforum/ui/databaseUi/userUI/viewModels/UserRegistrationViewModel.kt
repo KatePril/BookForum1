@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.bookforum.TIMEOUT_MILLS
+import com.example.bookforum.utils.TIMEOUT_MILLS
 import com.example.bookforum.data.entities.User
 import com.example.bookforum.data.repositories.UsersRepository
 import com.example.bookforum.ui.databaseUi.userUI.states.AllUsersUIState
@@ -82,13 +82,6 @@ class UserRegistrationViewModel(private val usersRepository: UsersRepository) : 
         val emailRegex = Regex("""^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$""")
         return with(userDetails) {
             emailRegex.matches(email)
-        }
-    }
-
-    private fun validateInputs(userDetails: UserDetails = userRegistrationUIState.userDetails): Boolean {
-        val emailRegex = Regex("""^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$""")
-        return with(userDetails) {
-            username.isNotBlank() && password.isNotBlank() && emailRegex.matches(email)
         }
     }
 }

@@ -15,9 +15,9 @@ import androidx.room.PrimaryKey
             onDelete = ForeignKey.CASCADE
         ),
         ForeignKey(
-            entity = Book::class,
+            entity = Post::class,
             parentColumns = ["id"],
-            childColumns = ["book_id"],
+            childColumns = ["post_id"],
             onDelete = ForeignKey.CASCADE
         )
     ]
@@ -29,6 +29,6 @@ data class Comment(
     val text: String,
     @ColumnInfo(name = "user_id")
     val userId: Int,
-    @ColumnInfo(name = "book_id")
+    @ColumnInfo(name = "post_id")
     val bookId: Int
 )

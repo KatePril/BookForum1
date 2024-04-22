@@ -6,20 +6,20 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.example.bookforum.data.entities.LikedBook
+import com.example.bookforum.data.entities.LikedPost
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface LikedBookDao {
+interface LikedPostDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(likedBook: LikedBook)
+    suspend fun insert(likedPost: LikedPost)
 
     @Update
-    suspend fun update(likedBook: LikedBook)
+    suspend fun update(likedPost: LikedPost)
 
     @Delete
-    suspend fun delete(likedBook: LikedBook)
+    suspend fun delete(likedPost: LikedPost)
 
-    @Query("SELECT book_id from liked_books WHERE user_id = :id")
-    fun getLikedBooks(id: Int): Flow<List<Int>>
+    @Query("SELECT post_id from liked_posts WHERE user_id = :id")
+    fun getLikedPosts(id: Int): Flow<List<Int>>
 }

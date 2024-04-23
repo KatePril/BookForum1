@@ -11,6 +11,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -26,10 +27,11 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun PostCreationScreen(
-    navigateToPostsDisplay: () -> Unit,
+    navigateToPostsDisplay: (Int) -> Unit,
     viewModel: PostCreationViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val coroutineScope = rememberCoroutineScope()
+    val userUiState = viewModel.userUiState.collectAsState()
 
     PostCreationBody(
         postCreationUiState = viewModel.postCreationUiState,
@@ -38,7 +40,7 @@ fun PostCreationScreen(
             coroutineScope.launch {
                 viewModel.savePost()
             }
-            navigateToPostsDisplay()
+            navigateToPostsDisplay(userUiState.value.user.id)
         },
         modifier = Modifier.fillMaxWidth()
     )

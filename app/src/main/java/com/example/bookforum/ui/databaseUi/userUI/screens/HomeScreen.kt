@@ -19,7 +19,7 @@ fun HomeScreen(
 ) {
     Scaffold(
         topBar = {
-            ForumTopAppBar()
+//            ForumTopAppBar()
         },
         floatingActionButton = {
             FloatingActionButton(onClick = { /*TODO*/ }) {

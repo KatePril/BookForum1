@@ -47,8 +47,8 @@ fun RegistrationScreen(
             coroutineScope.launch {
                 viewModel.saveUser()
             }
-            navigateToPostsDisplayPage(viewModel.userRegistrationUIState.userDetails.id)
-            /*TODO check if the id passed is correct*/
+            navigateToPostsDisplayPage(1)
+            /*TODO FIX id argument*/
         },
         modifier = Modifier.fillMaxWidth()
     )

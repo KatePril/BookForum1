@@ -44,7 +44,7 @@ fun ForumNavHost(
             )
         }
         composable(
-            route = PostsDisplayDestination.route,
+            route = PostsDisplayDestination.routeWithArgs,
             arguments = listOf(navArgument(PostsDisplayDestination.userIdArg) {
                 type = NavType.IntType
             })
@@ -52,18 +52,16 @@ fun ForumNavHost(
             PostsDisplayScreen(
                 navigateToGlobalPage = {
                     navController.navigate("${ApiSearchDestination.route}/$it")
-                    /*TODO add user id parsing*/
                 },
                 navigateToPostCreation = {
                     navController.navigate("${PostCreationDestination.route}/$it")
-                    /*TODO add user id parsing*/
                 },
                 navigateToFavouritePosts = { /*TODO*/ },
                 navigateToProfile = { /*TODO*/ }
             )
         }
         composable(
-            route = PostCreationDestination.route,
+            route = PostCreationDestination.routeWithArgs,
             arguments = listOf(navArgument(PostCreationDestination.userIdArg) {
                 type = NavType.IntType
             })
@@ -71,12 +69,11 @@ fun ForumNavHost(
             PostCreationScreen(
                 navigateToPostsDisplay = {
                     navController.navigate("${PostsDisplayDestination.route}/$it")
-                    /*TODO add user id parsing*/
                 }
             )
         }
         composable(
-            route = ApiSearchDestination.route,
+            route = ApiSearchDestination.routeWithArgs,
             arguments = listOf(navArgument(ApiSearchDestination.userIdArg) {
                 type = NavType.IntType
             })
@@ -84,7 +81,6 @@ fun ForumNavHost(
             ApiResultScreen(
                 navigateToGlobalPage = {
                     navController.navigate("${PostsDisplayDestination.route}/$it")
-                    /*TODO add user id parsing*/
                 },
                 navigateToFavouritePosts = { /*TODO*/ },
                 navigateToProfile = { /*TODO*/ }

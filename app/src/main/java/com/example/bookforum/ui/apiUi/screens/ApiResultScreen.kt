@@ -17,6 +17,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -28,7 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.apiUi.ApiUiState
-import com.example.bookforum.ui.apiUi.BooksViewModel
+import com.example.bookforum.ui.apiUi.PostsViewModel
 import com.example.bookforum.ui.apiUi.screens.bodyScreens.ErrorApiScreen
 import com.example.bookforum.ui.apiUi.screens.bodyScreens.LoadingResultScreen
 import com.example.bookforum.ui.apiUi.screens.bodyScreens.NoResultsFoundMsg
@@ -39,15 +40,17 @@ import com.example.compose.BookForumTheme
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun ApiResultScreen(
-    navigateToGlobalPage: () -> Unit,
+    navigateToGlobalPage: (Int) -> Unit,
     navigateToFavouritePosts: () -> Unit,
     navigateToProfile: () -> Unit,
-    viewModel: BooksViewModel = viewModel(factory = ForumViewModelProvider.Factory)
+    viewModel: PostsViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
+    val userUiState = viewModel.userUiState.collectAsState()
+
     Scaffold(
         topBar = {
             ForumTopAppBar(
-                navigateToGlobalPage = navigateToGlobalPage,
+                navigateToGlobalPage = { navigateToGlobalPage(userUiState.value.user.id) },
                 navigateToFavouritePosts = navigateToFavouritePosts,
                 navigateToProfile = navigateToProfile
             )
@@ -64,7 +67,7 @@ fun ApiResultScreen(
 
 @Composable
 private fun ApiResultScreenBody(
-    viewModel: BooksViewModel,
+    viewModel: PostsViewModel,
     modifier: Modifier = Modifier
 ) {
     Column (
@@ -97,7 +100,7 @@ private fun ApiResultScreenBody(
 
 @Composable
 private fun ApiSearchTextField(
-    booksViewModel: BooksViewModel,
+    postsViewModel: PostsViewModel,
     modifier: Modifier = Modifier
 ) {
     var queryInput by remember { mutableStateOf("") }
@@ -115,7 +118,7 @@ private fun ApiSearchTextField(
             modifier = modifier.height(55.dp)
         )
         Button(
-            onClick = { booksViewModel.getBooks(queryInput) },
+            onClick = { postsViewModel.getBooks(queryInput) },
             shape = RoundedCornerShape(
                 topEnd = 16.dp,
                 bottomEnd = 16.dp

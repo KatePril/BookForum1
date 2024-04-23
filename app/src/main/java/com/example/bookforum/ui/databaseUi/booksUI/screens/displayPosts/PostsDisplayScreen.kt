@@ -47,25 +47,26 @@ import com.example.compose.BookForumTheme
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun PostsDisplayScreen(
-    navigateToGlobalPage: () -> Unit,
-    navigateToPostCreation: () -> Unit,
+    navigateToGlobalPage: (Int) -> Unit,
+    navigateToPostCreation: (Int) -> Unit,
     navigateToFavouritePosts: () -> Unit,
     navigateToProfile: () -> Unit,
     viewModel: PostsDisplayViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val postsUiState by viewModel.postsUiState.collectAsState()
+    val userUiState = viewModel.userUiState.collectAsState()
 
     Scaffold(
         topBar = {
             ForumTopAppBar(
-                navigateToGlobalPage = navigateToGlobalPage,
+                navigateToGlobalPage = { navigateToGlobalPage(userUiState.value.user.id) },
                 navigateToFavouritePosts = navigateToFavouritePosts,
                 navigateToProfile = navigateToProfile
             )
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = navigateToPostCreation
+                onClick = { navigateToPostCreation(userUiState.value.user.id) }
             ) {
                 Icon(
                     imageVector = Icons.Filled.DriveFileRenameOutline,

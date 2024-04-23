@@ -1,11 +1,12 @@
 package com.example.bookforum.ui
 
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.bookforum.ForumApplication
-import com.example.bookforum.ui.apiUi.BooksViewModel
+import com.example.bookforum.ui.apiUi.PostsViewModel
 import com.example.bookforum.ui.databaseUi.booksUI.viewModels.PostCreationViewModel
 import com.example.bookforum.ui.databaseUi.booksUI.viewModels.PostsDisplayViewModel
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.UserLoginViewModel
@@ -15,7 +16,10 @@ object ForumViewModelProvider {
 
     val Factory = viewModelFactory {
         initializer {
-            BooksViewModel()
+            PostsViewModel(
+                this.createSavedStateHandle(),
+                forumApplication().container.usersRepository
+            )
         }
         initializer {
             UserRegistrationViewModel(
@@ -29,12 +33,16 @@ object ForumViewModelProvider {
         }
         initializer {
             PostCreationViewModel(
-                forumApplication().container.postsRepository
+                this.createSavedStateHandle(),
+                forumApplication().container.postsRepository,
+                forumApplication().container.usersRepository
             )
         }
         initializer {
             PostsDisplayViewModel(
-                forumApplication().container.postsRepository
+                this.createSavedStateHandle(),
+                forumApplication().container.postsRepository,
+                forumApplication().container.usersRepository
             )
         }
     }

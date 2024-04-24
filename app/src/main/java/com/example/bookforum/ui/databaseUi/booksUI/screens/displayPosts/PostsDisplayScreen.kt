@@ -76,6 +76,7 @@ fun PostsDisplayScreen(
         },
         modifier = Modifier
     ) { innerPadding ->
+        Text(text = userUiState.value.user.id.toString())
         PostsDisplayBody(
             postsList = postsUiState.postsList,
             contentPadding = innerPadding,

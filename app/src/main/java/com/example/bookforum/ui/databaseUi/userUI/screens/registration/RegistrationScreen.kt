@@ -40,15 +40,14 @@ fun RegistrationScreen(
     val usersUIState by viewModel.usersUIState.collectAsState()
     viewModel.userRegistrationUIState = viewModel.userRegistrationUIState.copy(usersList = usersUIState.usernameList)
     RegistrationBody(
-        userRegistrationUIState = viewModel.userRegistrationUIState,
+        viewModel = viewModel,
         usersList = usersUIState.usernameList,
+        navigateToPostsDisplayPage = navigateToPostsDisplayPage,
         onUserValueChange = viewModel::updateUiState,
         onSaveClick = {
             coroutineScope.launch {
                 viewModel.saveUser()
             }
-            navigateToPostsDisplayPage(1)
-            /*TODO FIX id argument*/
         },
         modifier = Modifier.fillMaxWidth()
     )
@@ -56,8 +55,9 @@ fun RegistrationScreen(
 
 @Composable
 private fun RegistrationBody(
-    userRegistrationUIState: UserRegistrationUIState,
+    viewModel: UserRegistrationViewModel,
     usersList: List<User>,
+    navigateToPostsDisplayPage: (Int) -> Unit,
     onUserValueChange: KFunction2<UserDetails, List<User>, Unit>,
     onSaveClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -67,20 +67,41 @@ private fun RegistrationBody(
         modifier = modifier.padding(16.dp)
     ) {
         UserRegistrationForm(
-            userDetails = userRegistrationUIState.userDetails,
-            userValidationDetails = userRegistrationUIState.userValidationDetails,
+            userDetails = viewModel.userRegistrationUIState.userDetails,
+            userValidationDetails = viewModel.userRegistrationUIState.userValidationDetails,
             usersList = usersList,
             onValueChange = onUserValueChange,
             modifier = modifier.fillMaxWidth()
         )
-        Button(
-            onClick = onSaveClick,
-            enabled = userRegistrationUIState.userValidationDetails.areInputsValid,
-            shape = MaterialTheme.shapes.small,
-            modifier = modifier.fillMaxWidth()
-        ) {
-            Text(stringResource(R.string.sign_up_action))
-        }
+        SaveUserButton(
+            viewModel = viewModel,
+            navigateToPostsDisplayPage = navigateToPostsDisplayPage,
+            onSaveClick = onSaveClick
+        )
+    }
+}
+
+@Composable
+private fun SaveUserButton(
+    viewModel: UserRegistrationViewModel,
+    navigateToPostsDisplayPage: (Int) -> Unit,
+    onSaveClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val userUiState = viewModel.getUserUiState(viewModel.userRegistrationUIState.userDetails.username).collectAsState()
+
+    Button(
+        onClick = {
+            onSaveClick()
+            if (userUiState.value != null) {
+                navigateToPostsDisplayPage(userUiState.value!!.userDetails.id)
+            }
+        },
+        enabled = viewModel.userRegistrationUIState.userValidationDetails.areInputsValid,
+        shape = MaterialTheme.shapes.small,
+        modifier = modifier.fillMaxWidth()
+    ) {
+        Text(stringResource(R.string.sign_up_action))
     }
 }
 

@@ -8,10 +8,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.bookforum.utils.TIMEOUT_MILLS
 import com.example.bookforum.data.entities.User
+import com.example.bookforum.data.entities.toDetails
 import com.example.bookforum.data.repositories.UsersRepository
 import com.example.bookforum.ui.databaseUi.userUI.states.AllUsersUIState
 import com.example.bookforum.ui.databaseUi.userUI.states.UserDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.UserRegistrationUIState
+import com.example.bookforum.ui.databaseUi.userUI.states.UserUiState
 import com.example.bookforum.ui.databaseUi.userUI.states.UserValidationDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.toUser
 import kotlinx.coroutines.flow.SharingStarted
@@ -21,6 +23,7 @@ import kotlinx.coroutines.flow.stateIn
 
 class UserRegistrationViewModel(private val usersRepository: UsersRepository) : ViewModel() {
     var userRegistrationUIState by mutableStateOf(UserRegistrationUIState())
+
     var usersUIState: StateFlow<AllUsersUIState> =
         usersRepository.getAllUsernames()
             .map { AllUsersUIState(it) }
@@ -29,6 +32,14 @@ class UserRegistrationViewModel(private val usersRepository: UsersRepository) : 
                 started = SharingStarted.WhileSubscribed(TIMEOUT_MILLS),
                 initialValue = AllUsersUIState()
             )
+
+    fun getUserUiState(username: String) = usersRepository.getUserByUsername(username)
+        .map { it?.toDetails()?.let { details -> UserUiState(details) } }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(),
+            initialValue = UserUiState()
+        )
 
     fun updateUiState(userDetails: UserDetails, usersList: List<User>) {
         userRegistrationUIState =

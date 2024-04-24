@@ -4,28 +4,13 @@ import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.bookforum.data.entities.toDetails
 import com.example.bookforum.data.repositories.UsersRepository
 import com.example.bookforum.ui.databaseUi.userUI.states.UserLogInDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.UserLogInUiState
-import com.example.bookforum.ui.databaseUi.userUI.states.UserUiState
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
 
-class UserLoginViewModel(private val usersRepository: UsersRepository) : ViewModel() {
+class LoginViewModel(usersRepository: UsersRepository) : UserByUsernameViewModel(usersRepository) {
 
     var userLogInUiState by mutableStateOf(UserLogInUiState())
-
-    fun getUserUiState(username: String) = usersRepository.getUserByUsername(username)
-        .map { it?.toDetails()?.let { details -> UserUiState(details) } }
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(),
-            initialValue = UserUiState()
-        )
 
     fun updateUiState(userLogInDetails: UserLogInDetails) {
         userLogInUiState = UserLogInUiState(

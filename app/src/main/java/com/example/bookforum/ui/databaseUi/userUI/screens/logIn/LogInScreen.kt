@@ -25,14 +25,14 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.userUI.states.UserLogInDetails
-import com.example.bookforum.ui.databaseUi.userUI.viewModels.UserLoginViewModel
+import com.example.bookforum.ui.databaseUi.userUI.viewModels.LoginViewModel
 import com.example.compose.BookForumTheme
 
 @Composable
 fun LoginScreen(
     navigateToRegistration: () -> Unit,
     navigateToPostsDisplayPage: (Int) -> Unit,
-    viewModel: UserLoginViewModel = viewModel(factory = ForumViewModelProvider.Factory)
+    viewModel: LoginViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     LogInBody(
         viewModel = viewModel,
@@ -44,7 +44,7 @@ fun LoginScreen(
 
 @Composable
 private fun LogInBody(
-    viewModel: UserLoginViewModel,
+    viewModel: LoginViewModel,
     onValueChange: (UserLogInDetails) -> Unit,
     onCreateAccountClick: () -> Unit,
     navigateToPostsDisplayPage: (Int) -> Unit,
@@ -75,11 +75,11 @@ private fun LogInBody(
 
 @Composable
 private fun LogInButton(
-    viewModel: UserLoginViewModel,
+    viewModel: LoginViewModel,
     navigateToPostsDisplayPage: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val userUiState = viewModel.getUserUiState(viewModel.userLogInUiState.userDetails.username).collectAsState()
+    val userUiState = viewModel.getUserUiStateByUsername(viewModel.userLogInUiState.userDetails.username).collectAsState()
     var isLogInSuccessful by remember { mutableStateOf(false) }
     if (!isLogInSuccessful) {
         Text(

@@ -24,9 +24,8 @@ import com.example.bookforum.R
 import com.example.bookforum.data.entities.User
 import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.userUI.states.UserDetails
-import com.example.bookforum.ui.databaseUi.userUI.states.UserRegistrationUIState
 import com.example.bookforum.ui.databaseUi.userUI.states.UserValidationDetails
-import com.example.bookforum.ui.databaseUi.userUI.viewModels.UserRegistrationViewModel
+import com.example.bookforum.ui.databaseUi.userUI.viewModels.RegistrationViewModel
 import com.example.compose.BookForumTheme
 import kotlinx.coroutines.launch
 import kotlin.reflect.KFunction2
@@ -34,7 +33,7 @@ import kotlin.reflect.KFunction2
 @Composable
 fun RegistrationScreen(
     navigateToPostsDisplayPage: (Int) -> Unit,
-    viewModel: UserRegistrationViewModel = viewModel(factory = ForumViewModelProvider.Factory)
+    viewModel: RegistrationViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val coroutineScope = rememberCoroutineScope()
     val usersUIState by viewModel.usersUIState.collectAsState()
@@ -55,7 +54,7 @@ fun RegistrationScreen(
 
 @Composable
 private fun RegistrationBody(
-    viewModel: UserRegistrationViewModel,
+    viewModel: RegistrationViewModel,
     usersList: List<User>,
     navigateToPostsDisplayPage: (Int) -> Unit,
     onUserValueChange: KFunction2<UserDetails, List<User>, Unit>,
@@ -83,12 +82,12 @@ private fun RegistrationBody(
 
 @Composable
 private fun SaveUserButton(
-    viewModel: UserRegistrationViewModel,
+    viewModel: RegistrationViewModel,
     navigateToPostsDisplayPage: (Int) -> Unit,
     onSaveClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val userUiState = viewModel.getUserUiState(viewModel.userRegistrationUIState.userDetails.username).collectAsState()
+    val userUiState = viewModel.getUserUiStateByUsername(viewModel.userRegistrationUIState.userDetails.username).collectAsState()
 
     Button(
         onClick = {

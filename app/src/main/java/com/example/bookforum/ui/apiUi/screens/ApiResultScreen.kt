@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.apiUi.ApiUiState
-import com.example.bookforum.ui.apiUi.PostsViewModel
+import com.example.bookforum.ui.apiUi.BooksViewModel
 import com.example.bookforum.ui.apiUi.screens.bodyScreens.ErrorApiScreen
 import com.example.bookforum.ui.apiUi.screens.bodyScreens.LoadingResultScreen
 import com.example.bookforum.ui.apiUi.screens.bodyScreens.NoResultsFoundMsg
@@ -43,7 +43,7 @@ fun ApiResultScreen(
     navigateToGlobalPage: (Int) -> Unit,
     navigateToFavouritePosts: () -> Unit,
     navigateToProfile: () -> Unit,
-    viewModel: PostsViewModel = viewModel(factory = ForumViewModelProvider.Factory)
+    viewModel: BooksViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val userUiState = viewModel.userUiState.collectAsState()
 
@@ -67,7 +67,7 @@ fun ApiResultScreen(
 
 @Composable
 private fun ApiResultScreenBody(
-    viewModel: PostsViewModel,
+    viewModel: BooksViewModel,
     modifier: Modifier = Modifier
 ) {
     Column (
@@ -100,7 +100,7 @@ private fun ApiResultScreenBody(
 
 @Composable
 private fun ApiSearchTextField(
-    postsViewModel: PostsViewModel,
+    booksViewModel: BooksViewModel,
     modifier: Modifier = Modifier
 ) {
     var queryInput by remember { mutableStateOf("") }
@@ -118,7 +118,7 @@ private fun ApiSearchTextField(
             modifier = modifier.height(55.dp)
         )
         Button(
-            onClick = { postsViewModel.getBooks(queryInput) },
+            onClick = { booksViewModel.getBooks(queryInput) },
             shape = RoundedCornerShape(
                 topEnd = 16.dp,
                 bottomEnd = 16.dp

@@ -24,22 +24,9 @@ class PostCreationViewModel(
     savedStateHandle: SavedStateHandle,
     private val postsRepository: PostsRepository,
     private val usersRepository: UsersRepository
-) : ViewModel() {
-
-    private val userId: Int = checkNotNull(savedStateHandle[PostsDisplayDestination.userIdArg])
+): UserByIdViewModel(savedStateHandle, usersRepository) {
 
     var postCreationUiState by mutableStateOf(PostCreationUiState())
-
-    val userUiState: StateFlow<UserByIdUiState> =
-        usersRepository.getUserById(userId)
-            .filterNotNull()
-            .map { UserByIdUiState(it) }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(TIMEOUT_MILLS),
-                initialValue = UserByIdUiState()
-            )
-
     fun updateUiState(postDetails: PostDetails) {
         postCreationUiState = PostCreationUiState(
             postDetails = postDetails,

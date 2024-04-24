@@ -6,11 +6,11 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.bookforum.data.repositories.PostsRepository
 import com.example.bookforum.data.repositories.UsersRepository
 import com.example.bookforum.network.BooksApi
 import com.example.bookforum.ui.databaseUi.booksUI.screens.displayPosts.PostsDisplayDestination
 import com.example.bookforum.ui.databaseUi.booksUI.states.UserByIdUiState
+import com.example.bookforum.ui.databaseUi.booksUI.viewModels.UserByIdViewModel
 import com.example.bookforum.utils.API_HOST
 import com.example.bookforum.utils.SecretKeys
 import com.example.bookforum.utils.TIMEOUT_MILLS
@@ -23,22 +23,10 @@ import kotlinx.coroutines.launch
 import java.io.IOException
 
 
-class PostsViewModel(
+class BooksViewModel(
     savedStateHandle: SavedStateHandle,
     private val usersRepository: UsersRepository
-) : ViewModel() {
-
-    private val userId: Int = checkNotNull(savedStateHandle[PostsDisplayDestination.userIdArg])
-
-    val userUiState: StateFlow<UserByIdUiState> =
-        usersRepository.getUserById(userId)
-            .filterNotNull()
-            .map { UserByIdUiState(it) }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(TIMEOUT_MILLS),
-                initialValue = UserByIdUiState()
-            )
+) : UserByIdViewModel(savedStateHandle, usersRepository) {
 
     var uiState: ApiUiState by mutableStateOf(ApiUiState.NotEntered)
         private set

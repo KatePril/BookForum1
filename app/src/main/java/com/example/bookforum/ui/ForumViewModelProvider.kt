@@ -6,7 +6,7 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.bookforum.ForumApplication
-import com.example.bookforum.ui.apiUi.PostsViewModel
+import com.example.bookforum.ui.apiUi.BooksViewModel
 import com.example.bookforum.ui.databaseUi.booksUI.viewModels.PostCreationViewModel
 import com.example.bookforum.ui.databaseUi.booksUI.viewModels.PostsDisplayViewModel
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.LoginViewModel
@@ -16,7 +16,7 @@ object ForumViewModelProvider {
 
     val Factory = viewModelFactory {
         initializer {
-            PostsViewModel(
+            BooksViewModel(
                 this.createSavedStateHandle(),
                 forumApplication().container.usersRepository
             )

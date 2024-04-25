@@ -1,6 +1,7 @@
 package com.example.bookforum.apiTests.fake
 
 import com.example.bookforum.network.apiObjects.Book
+import com.example.bookforum.network.apiObjects.ResultObject
 
 object FakeDataSource {
     val booksList = listOf(
@@ -25,4 +26,5 @@ object FakeDataSource {
             year = "2004"
         )
     )
+    val result = ResultObject(results = booksList)
 }

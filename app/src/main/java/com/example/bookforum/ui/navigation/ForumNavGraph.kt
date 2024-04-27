@@ -9,10 +9,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.bookforum.ui.apiUi.screens.ApiResultScreen
 import com.example.bookforum.ui.apiUi.screens.ApiSearchDestination
-import com.example.bookforum.ui.databaseUi.booksUI.screens.createPost.PostCreationDestination
-import com.example.bookforum.ui.databaseUi.booksUI.screens.createPost.PostCreationScreen
-import com.example.bookforum.ui.databaseUi.booksUI.screens.displayPosts.PostsDisplayDestination
-import com.example.bookforum.ui.databaseUi.booksUI.screens.displayPosts.PostsDisplayScreen
+import com.example.bookforum.ui.databaseUi.postsUI.screens.createPost.PostCreationDestination
+import com.example.bookforum.ui.databaseUi.postsUI.screens.createPost.PostCreationScreen
+import com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.FeedDestination
+import com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.FeedScreen
 import com.example.bookforum.ui.databaseUi.userUI.screens.logIn.LogInDestination
 import com.example.bookforum.ui.databaseUi.userUI.screens.logIn.LoginScreen
 import com.example.bookforum.ui.databaseUi.userUI.screens.registration.RegistrationDestination
@@ -32,24 +32,24 @@ fun ForumNavHost(
             LoginScreen(
                 navigateToRegistration = { navController.navigate(RegistrationDestination.route) },
                 navigateToPostsDisplayPage = {
-                    navController.navigate("${PostsDisplayDestination.route}/$it")
+                    navController.navigate("${FeedDestination.route}/$it")
                 }
             )
         }
         composable(route = RegistrationDestination.route) {
             RegistrationScreen(
                 navigateToPostsDisplayPage = {
-                    navController.navigate("${PostsDisplayDestination.route}/$it")
+                    navController.navigate("${FeedDestination.route}/$it")
                 }
             )
         }
         composable(
-            route = PostsDisplayDestination.routeWithArgs,
-            arguments = listOf(navArgument(PostsDisplayDestination.userIdArg) {
+            route = FeedDestination.routeWithArgs,
+            arguments = listOf(navArgument(FeedDestination.userIdArg) {
                 type = NavType.IntType
             })
         ) {
-            PostsDisplayScreen(
+            FeedScreen(
                 navigateToGlobalPage = {
                     navController.navigate("${ApiSearchDestination.route}/$it")
                 },
@@ -68,7 +68,7 @@ fun ForumNavHost(
         ) {
             PostCreationScreen(
                 navigateToPostsDisplay = {
-                    navController.navigate("${PostsDisplayDestination.route}/$it")
+                    navController.navigate("${FeedDestination.route}/$it")
                 }
             )
         }
@@ -80,7 +80,7 @@ fun ForumNavHost(
         ) {
             ApiResultScreen(
                 navigateToGlobalPage = {
-                    navController.navigate("${PostsDisplayDestination.route}/$it")
+                    navController.navigate("${FeedDestination.route}/$it")
                 },
                 navigateToFavouritePosts = { /*TODO*/ },
                 navigateToProfile = { /*TODO*/ }

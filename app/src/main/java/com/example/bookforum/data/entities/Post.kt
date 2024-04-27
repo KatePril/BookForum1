@@ -2,7 +2,7 @@ package com.example.bookforum.data.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.bookforum.ui.databaseUi.booksUI.states.PostDetails
+import com.example.bookforum.ui.databaseUi.postsUI.states.PostDetails
 
 @Entity(tableName = "posts")
 data class Post(

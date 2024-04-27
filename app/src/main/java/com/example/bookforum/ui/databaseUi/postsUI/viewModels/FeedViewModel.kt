@@ -1,21 +1,18 @@
-package com.example.bookforum.ui.databaseUi.booksUI.viewModels
+package com.example.bookforum.ui.databaseUi.postsUI.viewModels
 
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.bookforum.data.repositories.PostsRepository
 import com.example.bookforum.data.repositories.UsersRepository
-import com.example.bookforum.ui.databaseUi.booksUI.screens.displayPosts.PostsDisplayDestination
-import com.example.bookforum.ui.databaseUi.booksUI.states.PostsDisplayUiState
-import com.example.bookforum.ui.databaseUi.booksUI.states.UserByIdUiState
+import com.example.bookforum.ui.databaseUi.postsUI.states.PostsDisplayUiState
+import com.example.bookforum.ui.databaseUi.userUI.viewModels.UserByIdViewModel
 import com.example.bookforum.utils.TIMEOUT_MILLS
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-class PostsDisplayViewModel(
+class FeedViewModel(
     savedStateHandle: SavedStateHandle,
     private val postsRepository: PostsRepository,
     private val usersRepository: UsersRepository

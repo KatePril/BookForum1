@@ -28,7 +28,7 @@ fun ErrorApiScreen(
         Image(
             painter = painterResource(R.drawable.ic_connection_error),
             contentDescription = "Error",
-            modifier = modifier.size(250.dp)
+            modifier = modifier.size(200.dp)
         )
         Text(
             text = message,

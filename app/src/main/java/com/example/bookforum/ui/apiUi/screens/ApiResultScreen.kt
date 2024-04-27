@@ -34,7 +34,7 @@ import com.example.bookforum.ui.apiUi.screens.bodyScreens.ErrorApiScreen
 import com.example.bookforum.ui.apiUi.screens.bodyScreens.LoadingResultScreen
 import com.example.bookforum.ui.apiUi.screens.bodyScreens.NoResultsFoundMsg
 import com.example.bookforum.ui.apiUi.screens.bodyScreens.SearchResultScreen
-import com.example.bookforum.ui.forumScreens.ForumTopAppBar
+import com.example.bookforum.ui.screenParts.ForumTopAppBar
 import com.example.compose.BookForumTheme
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

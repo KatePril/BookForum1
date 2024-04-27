@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.booksUI.screens.createPost
+package com.example.bookforum.ui.databaseUi.postsUI.screens.createPost
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
@@ -20,9 +20,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.ui.ForumViewModelProvider
-import com.example.bookforum.ui.databaseUi.booksUI.states.PostCreationUiState
-import com.example.bookforum.ui.databaseUi.booksUI.states.PostDetails
-import com.example.bookforum.ui.databaseUi.booksUI.viewModels.PostCreationViewModel
+import com.example.bookforum.ui.databaseUi.postsUI.states.PostCreationUiState
+import com.example.bookforum.ui.databaseUi.postsUI.states.PostDetails
+import com.example.bookforum.ui.databaseUi.postsUI.viewModels.PostCreationViewModel
 import kotlinx.coroutines.launch
 
 @Composable

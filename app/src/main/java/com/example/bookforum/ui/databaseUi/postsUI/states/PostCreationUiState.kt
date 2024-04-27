@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.booksUI.states
+package com.example.bookforum.ui.databaseUi.postsUI.states
 
 data class PostCreationUiState (
     val postDetails: PostDetails = PostDetails(),

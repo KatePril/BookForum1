@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.booksUI.states
+package com.example.bookforum.ui.databaseUi.postsUI.states
 
 import com.example.bookforum.data.entities.Post
 

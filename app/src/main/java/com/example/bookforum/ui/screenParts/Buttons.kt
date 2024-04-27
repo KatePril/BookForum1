@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.forumScreens
+package com.example.bookforum.ui.screenParts
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExpandLess

@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.booksUI.screens.displayPosts
+package com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
@@ -38,20 +38,20 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.Post
 import com.example.bookforum.ui.ForumViewModelProvider
-import com.example.bookforum.ui.databaseUi.booksUI.viewModels.PostsDisplayViewModel
-import com.example.bookforum.ui.forumScreens.ButtonWithIcon
-import com.example.bookforum.ui.forumScreens.ExpandButton
-import com.example.bookforum.ui.forumScreens.ForumTopAppBar
+import com.example.bookforum.ui.databaseUi.postsUI.viewModels.FeedViewModel
+import com.example.bookforum.ui.screenParts.ButtonWithIcon
+import com.example.bookforum.ui.screenParts.ExpandButton
+import com.example.bookforum.ui.screenParts.ForumTopAppBar
 import com.example.compose.BookForumTheme
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun PostsDisplayScreen(
+fun FeedScreen(
     navigateToGlobalPage: (Int) -> Unit,
     navigateToPostCreation: (Int) -> Unit,
     navigateToFavouritePosts: () -> Unit,
     navigateToProfile: () -> Unit,
-    viewModel: PostsDisplayViewModel = viewModel(factory = ForumViewModelProvider.Factory)
+    viewModel: FeedViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val postsUiState by viewModel.postsUiState.collectAsState()
     val userUiState = viewModel.userUiState.collectAsState()

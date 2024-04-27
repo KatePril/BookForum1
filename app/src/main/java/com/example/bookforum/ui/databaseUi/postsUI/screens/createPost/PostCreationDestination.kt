@@ -1,6 +1,5 @@
-package com.example.bookforum.ui.databaseUi.booksUI.screens.createPost
+package com.example.bookforum.ui.databaseUi.postsUI.screens.createPost
 
-import com.example.bookforum.ui.apiUi.screens.ApiSearchDestination
 import com.example.bookforum.ui.navigation.NavigationDestination
 
 object PostCreationDestination : NavigationDestination {

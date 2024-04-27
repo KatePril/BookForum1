@@ -18,7 +18,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,7 +34,7 @@ import kotlin.reflect.KFunction2
 
 @Composable
 fun RegistrationScreen(
-    navigateToPostsDisplayPage: (Int) -> Unit,
+    navigateToFeedPage: (Int) -> Unit,
     viewModel: RegistrationViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -44,7 +43,7 @@ fun RegistrationScreen(
     RegistrationBody(
         viewModel = viewModel,
         usersList = usersUIState.usernameList,
-        navigateToPostsDisplayPage = navigateToPostsDisplayPage,
+        navigateToFeed = navigateToFeedPage,
         onUserValueChange = viewModel::updateUiState,
         onSaveClick = {
             coroutineScope.launch {
@@ -59,7 +58,7 @@ fun RegistrationScreen(
 private fun RegistrationBody(
     viewModel: RegistrationViewModel,
     usersList: List<User>,
-    navigateToPostsDisplayPage: (Int) -> Unit,
+    navigateToFeed: (Int) -> Unit,
     onUserValueChange: KFunction2<UserDetails, List<User>, Unit>,
     onSaveClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -77,7 +76,7 @@ private fun RegistrationBody(
         )
         SaveUserButton(
             viewModel = viewModel,
-            navigateToPostsDisplayPage = navigateToPostsDisplayPage,
+            navigateToFeedPage = navigateToFeed,
             onSaveClick = onSaveClick
         )
     }
@@ -86,7 +85,7 @@ private fun RegistrationBody(
 @Composable
 private fun SaveUserButton(
     viewModel: RegistrationViewModel,
-    navigateToPostsDisplayPage: (Int) -> Unit,
+    navigateToFeedPage: (Int) -> Unit,
     onSaveClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -109,7 +108,7 @@ private fun SaveUserButton(
         Button(
             onClick = {
                 if (userUiState.value != null) {
-                    navigateToPostsDisplayPage(userUiState.value!!.userDetails.id)
+                    navigateToFeedPage(userUiState.value!!.userDetails.id)
                 }
             },
             shape = MaterialTheme.shapes.small,
@@ -182,11 +181,13 @@ private fun UserRegistrationInput(
         modifier = modifier.fillMaxWidth(),
         singleLine = true
     )
-    Text(
-        text = if (isValid) stringResource(R.string.required_field) else stringResource(msgText),
-        modifier = modifier.padding(start = 8.dp),
-        color = if (isValid) Color.Black else MaterialTheme.colorScheme.error
-    )
+    if (!isValid) {
+        Text(
+            text = stringResource(msgText),
+            modifier = modifier.padding(start = 8.dp),
+            color = MaterialTheme.colorScheme.error
+        )
+    }
 }
 
 @Preview(showSystemUi = true, showBackground = true)

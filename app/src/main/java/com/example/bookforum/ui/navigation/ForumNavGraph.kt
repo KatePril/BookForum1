@@ -13,8 +13,8 @@ import com.example.bookforum.ui.databaseUi.postsUI.screens.createPost.PostCreati
 import com.example.bookforum.ui.databaseUi.postsUI.screens.createPost.PostCreationScreen
 import com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.FeedDestination
 import com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.FeedScreen
-import com.example.bookforum.ui.databaseUi.postsUI.screens.profile.ProfileDestination
-import com.example.bookforum.ui.databaseUi.postsUI.screens.profile.ProfileScreen
+import com.example.bookforum.ui.databaseUi.userUI.screens.profile.ProfileDestination
+import com.example.bookforum.ui.databaseUi.userUI.screens.profile.ProfileScreen
 import com.example.bookforum.ui.databaseUi.userUI.screens.logIn.LogInDestination
 import com.example.bookforum.ui.databaseUi.userUI.screens.logIn.LoginScreen
 import com.example.bookforum.ui.databaseUi.userUI.screens.registration.RegistrationDestination
@@ -40,7 +40,7 @@ fun ForumNavHost(
         }
         composable(route = RegistrationDestination.route) {
             RegistrationScreen(
-                navigateToPostsDisplayPage = {
+                navigateToFeedPage = {
                     navController.navigate("${FeedDestination.route}/$it")
                 }
             )
@@ -52,7 +52,7 @@ fun ForumNavHost(
             })
         ) {
             ProfileScreen(
-                navigateBack = { navController.navigate("${ProfileDestination.route}/$it") }
+                navigateBack = { navController.navigate("${FeedDestination.route}/$it") }
             )
         }
         composable(
@@ -69,7 +69,7 @@ fun ForumNavHost(
                     navController.navigate("${PostCreationDestination.route}/$it")
                 },
                 navigateToFavouritePosts = { /*TODO*/ },
-                navigateToProfile = { /*TODO*/ }
+                navigateToProfile = { navController.navigate("${ProfileDestination.route}/$it") }
             )
         }
         composable(
@@ -95,7 +95,7 @@ fun ForumNavHost(
                     navController.navigate("${FeedDestination.route}/$it")
                 },
                 navigateToFavouritePosts = { /*TODO*/ },
-                navigateToProfile = { /*TODO*/ }
+                navigateToProfile = { navController.navigate("${ProfileDestination.route}/$it") }
             )
         }
     }

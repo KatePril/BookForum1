@@ -6,10 +6,9 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.bookforum.data.entities.User
 import com.example.bookforum.data.entities.toDetails
 import com.example.bookforum.data.repositories.UsersRepository
-import com.example.bookforum.ui.databaseUi.postsUI.screens.profile.ProfileDestination
+import com.example.bookforum.ui.databaseUi.userUI.screens.profile.ProfileDestination
 import com.example.bookforum.ui.databaseUi.userUI.states.AllUsersUIState
 import com.example.bookforum.ui.databaseUi.userUI.states.UserDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.UserRegistrationUIState
@@ -57,16 +56,16 @@ class ProfileViewModel(
         }
     }
 
-    fun updateUiState(userDetails: UserDetails, usersList: List<User>) {
+    fun updateUiState(userDetails: UserDetails) {
         registrationUIState =
             UserRegistrationUIState(
                 userDetails = userDetails,
                 userValidationDetails = UserValidationDetails(
-                    isUsernameValid = userDetailsValidator.isUsernameUnique(userDetails, usersList),
+                    isUsernameValid = userDetailsValidator.isUsernameUnique(userDetails, usersListUIState.usernameList),
                     isPasswordValid = userDetailsValidator.isPasswordValid(userDetails),
                     isEmailValid = userDetailsValidator.isEmailValid(userDetails)
                 ),
-                usersList = usersList
+                usersList = usersListUIState.usernameList
             )
     }
 

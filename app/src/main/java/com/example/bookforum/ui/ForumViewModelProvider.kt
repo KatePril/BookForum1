@@ -10,6 +10,7 @@ import com.example.bookforum.ui.apiUi.BooksViewModel
 import com.example.bookforum.ui.databaseUi.postsUI.viewModels.PostCreationViewModel
 import com.example.bookforum.ui.databaseUi.postsUI.viewModels.FeedViewModel
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.LoginViewModel
+import com.example.bookforum.ui.databaseUi.userUI.viewModels.ProfileViewModel
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.RegistrationViewModel
 
 object ForumViewModelProvider {
@@ -28,6 +29,12 @@ object ForumViewModelProvider {
         }
         initializer {
             LoginViewModel(
+                forumApplication().container.usersRepository
+            )
+        }
+        initializer {
+            ProfileViewModel(
+                this.createSavedStateHandle(),
                 forumApplication().container.usersRepository
             )
         }

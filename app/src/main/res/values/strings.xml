@@ -24,4 +24,13 @@
     <string name="no_posts_msg">No one has posted anything yet. Be the first to write a post</string>
     <string name="cancel_action">Cancel</string>
     <string name="continue_action">Click here to continue</string>
+    <string name="delete_alert_title">Are you sure you want to proceed?</string>
+    <string name="delete_alert_text">Account deletion is irreversible action</string>
+    <string name="confirm_delete_action">Confirm</string>
+    <string name="dismiss_delete_action">Dismiss</string>
+    <string name="delete_account_action">Delete account</string>
+    <string name="update_profile_action">Update profile</string>
+    <string name="username_profile_input">Your username</string>
+    <string name="email_profile_input">Your email</string>
+    <string name="password_profile_input">Your password</string>
 </resources>

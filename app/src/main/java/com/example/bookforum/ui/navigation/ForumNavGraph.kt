@@ -13,6 +13,8 @@ import com.example.bookforum.ui.databaseUi.postsUI.screens.createPost.PostCreati
 import com.example.bookforum.ui.databaseUi.postsUI.screens.createPost.PostCreationScreen
 import com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.FeedDestination
 import com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.FeedScreen
+import com.example.bookforum.ui.databaseUi.postsUI.screens.profile.ProfileDestination
+import com.example.bookforum.ui.databaseUi.postsUI.screens.profile.ProfileScreen
 import com.example.bookforum.ui.databaseUi.userUI.screens.logIn.LogInDestination
 import com.example.bookforum.ui.databaseUi.userUI.screens.logIn.LoginScreen
 import com.example.bookforum.ui.databaseUi.userUI.screens.registration.RegistrationDestination
@@ -41,6 +43,16 @@ fun ForumNavHost(
                 navigateToPostsDisplayPage = {
                     navController.navigate("${FeedDestination.route}/$it")
                 }
+            )
+        }
+        composable(
+            route = ProfileDestination.routeWithArgs,
+            arguments = listOf(navArgument(ProfileDestination.userIdArg){
+                type = NavType.IntType
+            })
+        ) {
+            ProfileScreen(
+                navigateBack = { navController.navigate("${ProfileDestination.route}/$it") }
             )
         }
         composable(

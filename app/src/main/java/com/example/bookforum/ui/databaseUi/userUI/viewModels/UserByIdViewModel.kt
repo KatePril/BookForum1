@@ -15,9 +15,10 @@ import kotlinx.coroutines.flow.stateIn
 
 open class UserByIdViewModel(
     savedStateHandle: SavedStateHandle,
+    private val destinationUserArg: String,
     private val usersRepository: UsersRepository
 ): ViewModel()  {
-    private val userId: Int = checkNotNull(savedStateHandle[FeedDestination.userIdArg])
+    private val userId: Int = checkNotNull(savedStateHandle[destinationUserArg])
 
     val userUiState: StateFlow<UserByIdUiState> =
         usersRepository.getUserById(userId)

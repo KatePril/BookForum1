@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.userUI.viewModels
+package com.example.bookforum.ui.databaseUi.userUI.viewModels.utils
 
 import android.util.Log
 import com.example.bookforum.data.entities.User

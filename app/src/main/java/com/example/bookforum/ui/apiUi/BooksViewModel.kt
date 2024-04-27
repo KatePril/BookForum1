@@ -7,6 +7,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.bookforum.data.repositories.UsersRepository
 import com.example.bookforum.network.BooksApi
+import com.example.bookforum.ui.apiUi.screens.ApiSearchDestination
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.UserByIdViewModel
 import com.example.bookforum.utils.API_HOST
 import com.example.bookforum.utils.SecretKeys
@@ -17,7 +18,7 @@ import java.io.IOException
 class BooksViewModel(
     savedStateHandle: SavedStateHandle,
     private val usersRepository: UsersRepository
-) : UserByIdViewModel(savedStateHandle, usersRepository) {
+) : UserByIdViewModel(savedStateHandle, ApiSearchDestination.userIdArg, usersRepository) {
 
     var uiState: ApiUiState by mutableStateOf(ApiUiState.NotEntered)
         private set

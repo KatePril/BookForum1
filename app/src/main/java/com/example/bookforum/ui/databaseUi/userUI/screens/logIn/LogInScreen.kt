@@ -1,14 +1,11 @@
 package com.example.bookforum.ui.databaseUi.userUI.screens.logIn
 
-import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -26,6 +23,7 @@ import com.example.bookforum.R
 import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.userUI.states.UserLogInDetails
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.LoginViewModel
+import com.example.bookforum.ui.screenParts.FormInput
 import com.example.compose.BookForumTheme
 
 @Composable
@@ -116,40 +114,21 @@ private fun UserLogInForm(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier.padding(16.dp)
     ) {
-        UserLogInInput(
+        FormInput(
             value = userLogInDetails.username,
             onValueChange = {username: String -> onValueChange(userLogInDetails.copy(username = username))},
             labelText = R.string.username_input_label,
+            color = MaterialTheme.colorScheme.primaryContainer,
             modifier = modifier
         )
-        UserLogInInput(
+        FormInput(
             value = userLogInDetails.password,
             onValueChange = {password: String -> onValueChange(userLogInDetails.copy(password = password))},
             labelText = R.string.password_input_label,
+            color = MaterialTheme.colorScheme.primaryContainer,
             modifier = modifier
         )
     }
-}
-
-@Composable
-private fun UserLogInInput(
-    value: String,
-    onValueChange: (String) -> Unit,
-    @StringRes labelText: Int,
-    modifier: Modifier = Modifier
-) {
-    OutlinedTextField(
-        value = value,
-        onValueChange = { onValueChange(it) },
-        label = { Text(text = stringResource(labelText)) },
-        colors = OutlinedTextFieldDefaults.colors(
-            focusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
-            unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
-            disabledContainerColor = MaterialTheme.colorScheme.primaryContainer,
-        ),
-        modifier = modifier.fillMaxWidth(),
-        singleLine = true
-    )
 }
 
 @Preview(showSystemUi = true, showBackground = true)

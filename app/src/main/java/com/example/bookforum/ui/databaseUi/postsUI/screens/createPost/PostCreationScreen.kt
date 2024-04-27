@@ -1,14 +1,11 @@
 package com.example.bookforum.ui.databaseUi.postsUI.screens.createPost
 
-import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -23,6 +20,7 @@ import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.postsUI.states.PostCreationUiState
 import com.example.bookforum.ui.databaseUi.postsUI.states.PostDetails
 import com.example.bookforum.ui.databaseUi.postsUI.viewModels.PostCreationViewModel
+import com.example.bookforum.ui.screenParts.FormInput
 import kotlinx.coroutines.launch
 
 @Composable
@@ -91,52 +89,34 @@ private fun PostCreationForm(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier.padding(16.dp)
     ) {
-        PostCreationInput(
+        FormInput(
             value = postDetails.title,
             onValueChange = {title: String -> onValueChange(postDetails.copy(title = title))},
             labelText = R.string.title_input,
+            color = MaterialTheme.colorScheme.tertiaryContainer,
             modifier = modifier
         )
-        PostCreationInput(
+        FormInput(
             value = postDetails.author,
             onValueChange = {author: String -> onValueChange(postDetails.copy(author = author))},
             labelText = R.string.authors_input,
+            color = MaterialTheme.colorScheme.tertiaryContainer,
             modifier = modifier
         )
-        PostCreationInput(
+        FormInput(
             value = postDetails.published,
             onValueChange = {published: String -> onValueChange(postDetails.copy(published = published))},
             labelText = R.string.published_input,
+            color = MaterialTheme.colorScheme.tertiaryContainer,
             modifier = modifier
         )
-        PostCreationInput(
+        FormInput(
             value = postDetails.review,
             onValueChange = {review: String -> onValueChange(postDetails.copy(review = review))},
             labelText = R.string.review_input,
+            color = MaterialTheme.colorScheme.tertiaryContainer,
             singleLine = false,
             modifier = modifier
         )
     }
-}
-
-@Composable
-private fun PostCreationInput(
-    value: String,
-    onValueChange: (String) -> Unit,
-    @StringRes labelText: Int,
-    singleLine: Boolean = true,
-    modifier: Modifier = Modifier
-) {
-    OutlinedTextField(
-        value = value,
-        onValueChange = { onValueChange(it) },
-        label = { Text(text = stringResource(id = labelText)) },
-        colors = OutlinedTextFieldDefaults.colors(
-            focusedContainerColor = MaterialTheme.colorScheme.tertiaryContainer,
-            unfocusedContainerColor = MaterialTheme.colorScheme.tertiaryContainer,
-            disabledContainerColor = MaterialTheme.colorScheme.tertiaryContainer,
-        ),
-        modifier = modifier.fillMaxWidth(),
-        singleLine = singleLine
-    )
 }

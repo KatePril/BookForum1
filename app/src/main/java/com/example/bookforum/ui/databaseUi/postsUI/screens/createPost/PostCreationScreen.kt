@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -40,6 +41,9 @@ fun PostCreationScreen(
             }
             navigateToPostsDisplay(userUiState.value.user.id)
         },
+        onCancelClick = {
+            navigateToPostsDisplay(userUiState.value.user.id)
+        },
         modifier = Modifier.fillMaxWidth()
     )
 }
@@ -49,6 +53,7 @@ private fun PostCreationBody(
     postCreationUiState: PostCreationUiState,
     onValueChange: (PostDetails) -> Unit,
     onSaveClick: () -> Unit,
+    onCancelClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -75,6 +80,16 @@ private fun PostCreationBody(
             modifier = modifier.fillMaxWidth()
         ) {
             Text(text = stringResource(R.string.submit_post_action))
+        }
+        Button(
+            onClick = onCancelClick,
+            shape = MaterialTheme.shapes.small,
+            colors = ButtonDefaults.buttonColors(
+                containerColor = MaterialTheme.colorScheme.tertiary
+            ),
+            modifier = modifier.fillMaxWidth()
+        ) {
+            Text(text = stringResource(R.string.cancel_action))
         }
     }
 }

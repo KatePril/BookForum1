@@ -13,7 +13,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -89,18 +92,31 @@ private fun SaveUserButton(
 ) {
     val userUiState = viewModel.getUserUiStateByUsername(viewModel.userRegistrationUIState.userDetails.username).collectAsState()
 
+    var isSaved by remember { mutableStateOf(false) }
+
     Button(
         onClick = {
             onSaveClick()
-            if (userUiState.value != null) {
-                navigateToPostsDisplayPage(userUiState.value!!.userDetails.id)
-            }
+            isSaved = true
         },
         enabled = viewModel.userRegistrationUIState.userValidationDetails.areInputsValid,
         shape = MaterialTheme.shapes.small,
         modifier = modifier.fillMaxWidth()
     ) {
         Text(stringResource(R.string.sign_up_action))
+    }
+    if (isSaved) {
+        Button(
+            onClick = {
+                if (userUiState.value != null) {
+                    navigateToPostsDisplayPage(userUiState.value!!.userDetails.id)
+                }
+            },
+            shape = MaterialTheme.shapes.small,
+            modifier = modifier.fillMaxWidth()
+        ) {
+            Text(stringResource(R.string.continue_action))
+        }
     }
 }
 

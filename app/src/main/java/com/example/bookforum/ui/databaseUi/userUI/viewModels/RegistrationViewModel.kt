@@ -21,6 +21,7 @@ import kotlinx.coroutines.flow.stateIn
 class RegistrationViewModel(usersRepository: UsersRepository) : UserByUsernameViewModel(usersRepository) {
 
     var userRegistrationUIState by mutableStateOf(UserRegistrationUIState())
+    private val userDetailsValidator = UserDetailsValidator()
 
     var usersUIState: StateFlow<AllUsersUIState> =
         usersRepository.getAllUsernames()
@@ -36,9 +37,9 @@ class RegistrationViewModel(usersRepository: UsersRepository) : UserByUsernameVi
             UserRegistrationUIState(
                 userDetails = userDetails,
                 userValidationDetails = UserValidationDetails(
-                    isUsernameValid = isUsernameUnique(userDetails),
-                    isPasswordValid = isPasswordValid(userDetails),
-                    isEmailValid = isEmailValid(userDetails)
+                    isUsernameValid = userDetailsValidator.isUsernameUnique(userDetails, usersList),
+                    isPasswordValid = userDetailsValidator.isPasswordValid(userDetails),
+                    isEmailValid = userDetailsValidator.isEmailValid(userDetails)
                 ),
                 usersList = usersList
             )
@@ -46,43 +47,13 @@ class RegistrationViewModel(usersRepository: UsersRepository) : UserByUsernameVi
 
     suspend fun saveUser() {
         if (userRegistrationUIState.userValidationDetails.areInputsValid) {
-            usersRepository.insertUser(userRegistrationUIState.userDetails.toUser())
+            if (userDetailsValidator.isUsernameUnique(userRegistrationUIState.userDetails, userRegistrationUIState.usersList)) {
+                usersRepository.insertUser(userRegistrationUIState.userDetails.toUser())
+            }
         }
     }
 
     suspend fun deleteUserById(id: Int) {
         usersRepository.deleteUserById(id)
-    }
-
-
-
-
-    private fun isUsernameUnique(userDetails: UserDetails = userRegistrationUIState.userDetails): Boolean {
-        return with(userDetails) {
-            var isUnique = username.isNotBlank()
-
-            for (user in userRegistrationUIState.usersList) {
-                Log.i("USERNAME", user.username)
-                if (user.username == username) {
-                    isUnique = false
-                    break
-                }
-            }
-
-            isUnique
-        }
-    }
-
-    private fun isPasswordValid(userDetails: UserDetails = userRegistrationUIState.userDetails): Boolean {
-        return with(userDetails) {
-            password.isNotBlank()
-        }
-    }
-
-    private fun isEmailValid(userDetails: UserDetails = userRegistrationUIState.userDetails): Boolean {
-        val emailRegex = Regex("""^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$""")
-        return with(userDetails) {
-            emailRegex.matches(email)
-        }
     }
 }

@@ -23,4 +23,5 @@
     <string name="published_input">When was the book published?</string>
     <string name="no_posts_msg">No one has posted anything yet. Be the first to write a post</string>
     <string name="cancel_action">Cancel</string>
+    <string name="continue_action">Click here to continue</string>
 </resources>

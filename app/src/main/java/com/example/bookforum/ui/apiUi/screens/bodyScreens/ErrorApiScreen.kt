@@ -37,9 +37,3 @@ fun ErrorApiScreen(
     }
 
 }
-
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun ErrorApiScreenPreview() {
-//    ErrorApiScreen()
-}

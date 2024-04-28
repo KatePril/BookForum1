@@ -30,6 +30,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.apiUi.ApiUiState
 import com.example.bookforum.ui.apiUi.BooksViewModel
+import com.example.bookforum.ui.apiUi.screens.bodyScreens.ApiSearchTextField
 import com.example.bookforum.ui.apiUi.screens.bodyScreens.ErrorApiScreen
 import com.example.bookforum.ui.apiUi.screens.bodyScreens.LoadingResultScreen
 import com.example.bookforum.ui.apiUi.screens.bodyScreens.NoResultsFoundMsg
@@ -96,47 +97,4 @@ private fun ApiResultScreenBody(
         }
     }
 
-}
-
-@Composable
-private fun ApiSearchTextField(
-    booksViewModel: BooksViewModel,
-    modifier: Modifier = Modifier
-) {
-    var queryInput by remember { mutableStateOf("") }
-    Spacer(modifier = modifier.height(100.dp))
-    Row (
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center,
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-    ) {
-        TextField(
-            value = queryInput,
-            onValueChange = { queryInput = it },
-            modifier = modifier.height(55.dp)
-        )
-        Button(
-            onClick = { booksViewModel.getBooks(queryInput) },
-            shape = RoundedCornerShape(
-                topEnd = 16.dp,
-                bottomEnd = 16.dp
-            ),
-            modifier = modifier.height(55.dp)
-        ) {
-            Icon(
-                imageVector = Icons.Filled.Search,
-                contentDescription = null
-            )
-        }
-    }
-}
-
-@Preview(showSystemUi = true, showBackground = true)
-@Composable
-fun ApiResultScreenPreview() {
-    BookForumTheme {
-//        ApiResultScreen()
-    }
 }

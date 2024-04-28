@@ -54,7 +54,7 @@ fun FeedScreen(
     viewModel: FeedViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val postsUiState by viewModel.postsUiState.collectAsState()
-    val userUiState = viewModel.userUiState.collectAsState()
+    val userUiState = viewModel.getUserUiState.collectAsState()
 
     Scaffold(
         topBar = {

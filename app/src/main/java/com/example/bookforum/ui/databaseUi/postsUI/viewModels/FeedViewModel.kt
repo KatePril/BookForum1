@@ -1,12 +1,13 @@
 package com.example.bookforum.ui.databaseUi.postsUI.viewModels
 
 import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.bookforum.data.repositories.PostsRepository
 import com.example.bookforum.data.repositories.UsersRepository
 import com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.FeedDestination
 import com.example.bookforum.ui.databaseUi.postsUI.states.PostsDisplayUiState
-import com.example.bookforum.ui.databaseUi.userUI.viewModels.UserByIdViewModel
+import com.example.bookforum.ui.databaseUi.userUI.viewModels.utils.getUserUiStateById
 import com.example.bookforum.utils.TIMEOUT_MILLS
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -17,7 +18,11 @@ class FeedViewModel(
     savedStateHandle: SavedStateHandle,
     private val postsRepository: PostsRepository,
     private val usersRepository: UsersRepository
-): UserByIdViewModel(savedStateHandle, FeedDestination.userIdArg, usersRepository) {
+): ViewModel() {
+
+    private val userId: Int = checkNotNull(savedStateHandle[FeedDestination.userIdArg])
+
+    val getUserUiState = getUserUiStateById(userId, usersRepository, viewModelScope)
 
     val postsUiState: StateFlow<PostsDisplayUiState> = postsRepository
         .getAllPosts()

@@ -46,7 +46,7 @@ fun ApiResultScreen(
     navigateToProfile: (Int) -> Unit,
     viewModel: BooksViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
-    val userUiState = viewModel.userUiState.collectAsState()
+    val userUiState = viewModel.getUserUiState.collectAsState()
 
     Scaffold(
         topBar = {

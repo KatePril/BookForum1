@@ -29,7 +29,7 @@ fun PostCreationScreen(
     viewModel: PostCreationViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val coroutineScope = rememberCoroutineScope()
-    val userUiState = viewModel.userUiState.collectAsState()
+    val userUiState = viewModel.getUserUiState.collectAsState()
 
     PostCreationBody(
         postCreationUiState = viewModel.postCreationUiState,

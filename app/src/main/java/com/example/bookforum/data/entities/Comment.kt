@@ -31,7 +31,7 @@ data class Comment(
     @ColumnInfo(name = "user_id")
     val userId: Int,
     @ColumnInfo(name = "post_id")
-    val bookId: Int
+    val postId: Int
 )
 
 
@@ -40,5 +40,5 @@ fun CommentDetails.toComment(): CommentDetails = CommentDetails(
     date = date,
     text = text,
     userId = userId,
-    bookId = bookId
+    postId = postId
 )

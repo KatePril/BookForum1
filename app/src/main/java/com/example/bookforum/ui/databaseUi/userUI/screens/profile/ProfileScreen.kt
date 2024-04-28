@@ -35,6 +35,7 @@ import com.example.bookforum.ui.databaseUi.userUI.states.UserDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.UserRegistrationUIState
 import com.example.bookforum.ui.databaseUi.userUI.states.UserValidationDetails
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.ProfileViewModel
+import com.example.bookforum.ui.screenParts.ButtonWithIcon
 import kotlinx.coroutines.launch
 
 @Composable
@@ -108,12 +109,11 @@ private fun BackButton(
         horizontalArrangement = Arrangement.Start,
         modifier = modifier.fillMaxWidth()
     ) {
-        IconButton(onClick = onClick) {
-            Icon(
-                imageVector = Icons.Filled.ArrowBack,
-                contentDescription = null
-            )
-        }
+        ButtonWithIcon(
+            imageVector = Icons.Filled.ArrowBack,
+            onClick = onClick,
+            tint = MaterialTheme.colorScheme.primaryContainer
+        )
     }
 }
 

@@ -38,11 +38,11 @@ fun RegistrationScreen(
     viewModel: RegistrationViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val coroutineScope = rememberCoroutineScope()
-    val usersUIState by viewModel.usersUIState.collectAsState()
-    viewModel.userRegistrationUIState = viewModel.userRegistrationUIState.copy(usersList = usersUIState.usernameList)
+//    val usersUIState by viewModel.usersUIState.collectAsState()
+//    viewModel.userRegistrationUIState = viewModel.userRegistrationUIState.copy(usersList = usersUIState.usernameList)
     RegistrationBody(
         viewModel = viewModel,
-        usersList = usersUIState.usernameList,
+        usersList = viewModel.usersUIState.usernameList,
         navigateToFeed = navigateToFeedPage,
         onUserValueChange = viewModel::updateUiState,
         onSaveClick = {

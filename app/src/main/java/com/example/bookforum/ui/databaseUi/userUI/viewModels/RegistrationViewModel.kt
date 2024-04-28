@@ -17,31 +17,35 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 class RegistrationViewModel(usersRepository: UsersRepository) : UserByUsernameViewModel(usersRepository) {
 
     var userRegistrationUIState by mutableStateOf(UserRegistrationUIState())
     private val userDetailsValidator = UserDetailsValidator()
 
-    var usersUIState: StateFlow<AllUsersUIState> =
-        usersRepository.getAllUsernames()
-            .map { AllUsersUIState(it) }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(TIMEOUT_MILLS),
-                initialValue = AllUsersUIState()
-            )
+    var usersUIState by mutableStateOf(AllUsersUIState())
+
+    init {
+        viewModelScope.launch {
+            usersUIState = usersRepository.getAllUsernames()
+                .map { AllUsersUIState(it) }
+                .stateIn(
+                    scope = viewModelScope
+                ).value
+        }
+    }
 
     fun updateUiState(userDetails: UserDetails, usersList: List<User>) {
         userRegistrationUIState =
             UserRegistrationUIState(
                 userDetails = userDetails,
                 userValidationDetails = UserValidationDetails(
-                    isUsernameValid = userDetailsValidator.isUsernameUnique(userDetails, usersList),
+                    isUsernameValid = userDetailsValidator.isUsernameUnique(userDetails, usersUIState.usernameList),
                     isPasswordValid = userDetailsValidator.isPasswordValid(userDetails),
                     isEmailValid = userDetailsValidator.isEmailValid(userDetails)
                 ),
-                usersList = usersList
+                usersList = usersUIState.usernameList
             )
     }
 

@@ -34,8 +34,6 @@ class ProfileViewModel(
 
     private var usersUIState by mutableStateOf(AllUsersUIState())
 
-//    : StateFlow<AllUsersUIState> =
-
 
     private val userId: Int = checkNotNull(savedStateHandle[ProfileDestination.userIdArg])
 

@@ -33,6 +33,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun RegistrationScreen(
     navigateToFeedPage: (Int) -> Unit,
+    onCancelClick: () -> Unit,
     viewModel: RegistrationViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -45,6 +46,7 @@ fun RegistrationScreen(
                 viewModel.saveUser()
             }
         },
+        onCancelClick = onCancelClick,
         modifier = Modifier.fillMaxWidth()
     )
 }
@@ -55,6 +57,7 @@ private fun RegistrationBody(
     navigateToFeed: (Int) -> Unit,
     onInputValueChange: (UserDetails) -> Unit,
     onSaveClick: () -> Unit,
+    onCancelClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -72,6 +75,13 @@ private fun RegistrationBody(
             navigateToFeedPage = navigateToFeed,
             onSaveClick = onSaveClick
         )
+        Button(
+            onClick = onCancelClick,
+            shape = MaterialTheme.shapes.small,
+            modifier = modifier.fillMaxWidth()
+        ) {
+            Text(stringResource(R.string.cancel_action))
+        }
     }
 }
 

@@ -4,8 +4,7 @@ import com.example.bookforum.data.entities.User
 
 data class UserRegistrationUIState(
     val userDetails: UserDetails = UserDetails(),
-    val userValidationDetails: UserValidationDetails = UserValidationDetails(),
-    val usersList: List<User> = listOf()
+    val userValidationDetails: UserValidationDetails = UserValidationDetails()
 )
 
 

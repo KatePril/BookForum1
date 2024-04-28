@@ -46,8 +46,7 @@ class ProfileViewModel(
                             isUsernameValid = true,
                             isPasswordValid = true,
                             isEmailValid = true
-                        ),
-                        usersList = usersListState.usersList
+                        )
                     )
                 }
                 .stateIn(
@@ -70,8 +69,7 @@ class ProfileViewModel(
                     isUsernameValid = userDetailsValidator.isUsernameUnique(userDetails, usersListState.usersList),
                     isPasswordValid = userDetailsValidator.isPasswordValid(userDetails),
                     isEmailValid = userDetailsValidator.isEmailValid(userDetails)
-                ),
-                usersList = usersListState.usersList
+                )
             )
     }
 

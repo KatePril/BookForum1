@@ -42,7 +42,8 @@ fun ForumNavHost(
             RegistrationScreen(
                 navigateToFeedPage = {
                     navController.navigate("${FeedDestination.route}/$it")
-                }
+                },
+                onCancelClick = { navController.navigate(LogInDestination.route) }
             )
         }
         composable(

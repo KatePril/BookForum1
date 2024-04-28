@@ -94,8 +94,6 @@ private fun ProfileBody(
             Text(stringResource(R.string.update_profile_action))
         }
         DeleteButton(
-            userUiState = userUiState,
-            navigateBack = navigateBack,
             onDeleteClick = onDeleteClick
         )
     }
@@ -187,8 +185,6 @@ private fun ProfileInput(
 
 @Composable
 private fun DeleteButton(
-    userUiState: UserRegistrationUIState,
-    navigateBack: (Int) -> Unit,
     onDeleteClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {

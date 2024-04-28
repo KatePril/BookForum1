@@ -40,8 +40,7 @@ class RegistrationViewModel(usersRepository: UsersRepository) : UserByUsernameVi
                     isUsernameValid = userDetailsValidator.isUsernameUnique(userDetails, usersListState.usersList),
                     isPasswordValid = userDetailsValidator.isPasswordValid(userDetails),
                     isEmailValid = userDetailsValidator.isEmailValid(userDetails)
-                ),
-                usersList = usersListState.usersList
+                )
             )
     }
 

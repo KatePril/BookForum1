@@ -23,14 +23,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
-import com.example.bookforum.data.entities.User
 import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.userUI.states.UserDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.UserValidationDetails
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.RegistrationViewModel
 import com.example.compose.BookForumTheme
 import kotlinx.coroutines.launch
-import kotlin.reflect.KFunction2
 
 @Composable
 fun RegistrationScreen(
@@ -64,8 +62,8 @@ private fun RegistrationBody(
         modifier = modifier.padding(16.dp)
     ) {
         UserRegistrationForm(
-            userDetails = viewModel.userRegistrationUIState.userDetails,
-            userValidationDetails = viewModel.userRegistrationUIState.userValidationDetails,
+            userDetails = viewModel.registrationUIState.userDetails,
+            userValidationDetails = viewModel.registrationUIState.userValidationDetails,
             onValueChange = onInputValueChange,
             modifier = modifier.fillMaxWidth()
         )
@@ -84,7 +82,7 @@ private fun SaveUserButton(
     onSaveClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val userUiState = viewModel.getUserUiStateByUsername(viewModel.userRegistrationUIState.userDetails.username).collectAsState()
+    val userUiState = viewModel.getUserUiStateByUsername(viewModel.registrationUIState.userDetails.username).collectAsState()
 
     var isSaved by remember { mutableStateOf(false) }
 
@@ -93,7 +91,7 @@ private fun SaveUserButton(
             onSaveClick()
             isSaved = true
         },
-        enabled = viewModel.userRegistrationUIState.userValidationDetails.areInputsValid,
+        enabled = viewModel.registrationUIState.userValidationDetails.areInputsValid,
         shape = MaterialTheme.shapes.small,
         modifier = modifier.fillMaxWidth()
     ) {

@@ -16,9 +16,6 @@ import com.example.bookforum.ui.databaseUi.userUI.states.UserRegistrationUIState
 import com.example.bookforum.ui.databaseUi.userUI.states.UserValidationDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.toUser
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.utils.UserDetailsValidator
-import com.example.bookforum.utils.TIMEOUT_MILLS
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
@@ -32,7 +29,7 @@ class ProfileViewModel(
 
     private val userDetailsValidator = UserDetailsValidator()
 
-    private var usersUIState by mutableStateOf(AllUsersUIState())
+    private var usersListState by mutableStateOf(AllUsersUIState())
 
 
     private val userId: Int = checkNotNull(savedStateHandle[ProfileDestination.userIdArg])
@@ -50,13 +47,13 @@ class ProfileViewModel(
                             isPasswordValid = true,
                             isEmailValid = true
                         ),
-                        usersList = usersUIState.usernameList
+                        usersList = usersListState.usersList
                     )
                 }
                 .stateIn(
                     scope = viewModelScope
                 ).value
-            usersUIState = usersRepository.getAllUsernames()
+            usersListState = usersRepository.getAllUsernames()
                 .map { AllUsersUIState(it) }
                 .stateIn(
                     scope = viewModelScope
@@ -65,22 +62,22 @@ class ProfileViewModel(
     }
 
     fun updateUiState(userDetails: UserDetails) {
-        Log.i("USERNAMES_LIST", usersUIState.usernameList.toString())
+        Log.i("USERNAMES_LIST", usersListState.usersList.toString())
         registrationUIState =
             UserRegistrationUIState(
                 userDetails = userDetails,
                 userValidationDetails = UserValidationDetails(
-                    isUsernameValid = userDetailsValidator.isUsernameUnique(userDetails, usersUIState.usernameList),
+                    isUsernameValid = userDetailsValidator.isUsernameUnique(userDetails, usersListState.usersList),
                     isPasswordValid = userDetailsValidator.isPasswordValid(userDetails),
                     isEmailValid = userDetailsValidator.isEmailValid(userDetails)
                 ),
-                usersList = usersUIState.usernameList
+                usersList = usersListState.usersList
             )
     }
 
     suspend fun updateUser() {
         if (registrationUIState.userValidationDetails.areInputsValid) {
-            if (userDetailsValidator.isUsernameUnique(registrationUIState.userDetails, registrationUIState.usersList)) {
+            if (userDetailsValidator.isUsernameUnique(registrationUIState.userDetails, usersListState.usersList)) {
                 usersRepository.updateUser(registrationUIState.userDetails.toUser())
             }
         }

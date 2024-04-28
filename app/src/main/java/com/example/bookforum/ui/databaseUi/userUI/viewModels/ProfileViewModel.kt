@@ -32,14 +32,10 @@ class ProfileViewModel(
 
     private val userDetailsValidator = UserDetailsValidator()
 
-    private var usersUIState: StateFlow<AllUsersUIState> =
-        usersRepository.getAllUsernames()
-            .map { AllUsersUIState(it) }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(TIMEOUT_MILLS),
-                initialValue = AllUsersUIState()
-            )
+    private var usersUIState by mutableStateOf(AllUsersUIState())
+
+//    : StateFlow<AllUsersUIState> =
+
 
     private val userId: Int = checkNotNull(savedStateHandle[ProfileDestination.userIdArg])
 
@@ -56,9 +52,14 @@ class ProfileViewModel(
                             isPasswordValid = true,
                             isEmailValid = true
                         ),
-                        usersList = usersUIState.value.usernameList
+                        usersList = usersUIState.usernameList
                     )
                 }
+                .stateIn(
+                    scope = viewModelScope
+                ).value
+            usersUIState = usersRepository.getAllUsernames()
+                .map { AllUsersUIState(it) }
                 .stateIn(
                     scope = viewModelScope
                 ).value
@@ -66,16 +67,16 @@ class ProfileViewModel(
     }
 
     fun updateUiState(userDetails: UserDetails) {
-        Log.i("USERNAMES_LIST", usersUIState.value.usernameList.toString())
+        Log.i("USERNAMES_LIST", usersUIState.usernameList.toString())
         registrationUIState =
             UserRegistrationUIState(
                 userDetails = userDetails,
                 userValidationDetails = UserValidationDetails(
-                    isUsernameValid = userDetailsValidator.isUsernameUnique(userDetails, usersUIState.value.usernameList),
+                    isUsernameValid = userDetailsValidator.isUsernameUnique(userDetails, usersUIState.usernameList),
                     isPasswordValid = userDetailsValidator.isPasswordValid(userDetails),
                     isEmailValid = userDetailsValidator.isEmailValid(userDetails)
                 ),
-                usersList = usersUIState.value.usernameList
+                usersList = usersUIState.usernameList
             )
     }
 

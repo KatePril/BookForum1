@@ -40,6 +40,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun ProfileScreen(
     navigateBack: (Int) -> Unit,
+    navigateBackOnDelete: () -> Unit,
     viewModel: ProfileViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -51,11 +52,13 @@ fun ProfileScreen(
             coroutineScope.launch {
                 viewModel.updateUser()
             }
+            navigateBack(viewModel.registrationUIState.userDetails.id)
         },
         onDeleteClick = {
             coroutineScope.launch {
                 viewModel.deleteUser()
             }
+            navigateBackOnDelete()
         },
         onInputValueChange = viewModel::updateUiState
     )
@@ -129,23 +132,23 @@ private fun ProfileForm(
     ) {
         ProfileInput(
             value = userDetails.username,
-            onValueChange = { onInputValueChange(UserDetails().copy(username = it)) },
+            onValueChange = { onInputValueChange(userDetails.copy(username = it)) },
             labelText = R.string.username_profile_input,
             msgText = R.string.invalid_username,
             isValid = userValidationDetails.isUsernameValid
         )
         ProfileInput(
             value = userDetails.email,
-            onValueChange = { onInputValueChange(UserDetails().copy(email = it)) },
+            onValueChange = { onInputValueChange(userDetails.copy(email = it)) },
             labelText = R.string.email_input_label,
             msgText = R.string.invalid_email,
             isValid = userValidationDetails.isEmailValid
         )
         ProfileInput(
             value = userDetails.password,
-            onValueChange = { onInputValueChange(UserDetails().copy(password = it)) },
+            onValueChange = { onInputValueChange(userDetails.copy(password = it)) },
             labelText = R.string.password_input_label,
-            msgText = R.string.invalid_username,
+            msgText = R.string.invalid_password,
             isValid = userValidationDetails.isPasswordValid
         )
     }
@@ -209,7 +212,6 @@ private fun DeleteButton(
             onConfirmClick = {
                 onDeleteClick()
                 isAlertDialogOpened = false
-                navigateBack(userUiState.userDetails.id)
             }
         )
     }

@@ -11,7 +11,7 @@ class UserDetailsValidator {
 
             for (user in usersList) {
                 Log.i("USERNAME", user.username)
-                if (user.username == username) {
+                if (user.username == username && user.id != id) {
                     isUnique = false
                     break
                 }

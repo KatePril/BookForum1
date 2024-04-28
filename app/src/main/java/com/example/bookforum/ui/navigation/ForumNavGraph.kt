@@ -52,7 +52,8 @@ fun ForumNavHost(
             })
         ) {
             ProfileScreen(
-                navigateBack = { navController.navigate("${FeedDestination.route}/$it") }
+                navigateBack = { navController.navigate("${FeedDestination.route}/$it") },
+                navigateBackOnDelete = { navController.navigate(LogInDestination.route) }
             )
         }
         composable(

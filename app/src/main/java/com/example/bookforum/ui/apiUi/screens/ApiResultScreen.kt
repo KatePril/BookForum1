@@ -41,6 +41,7 @@ import com.example.compose.BookForumTheme
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun ApiResultScreen(
+    quitAccount: () -> Unit,
     navigateToGlobalPage: (Int) -> Unit,
     navigateToFavouritePosts: () -> Unit,
     navigateToProfile: (Int) -> Unit,
@@ -51,6 +52,7 @@ fun ApiResultScreen(
     Scaffold(
         topBar = {
             ForumTopAppBar(
+                quitAccount = quitAccount,
                 navigateToGlobalPage = { navigateToGlobalPage(userUiState.value.user.id) },
                 navigateToFavouritePosts = navigateToFavouritePosts,
                 navigateToProfile = { navigateToProfile(userUiState.value.user.id) }

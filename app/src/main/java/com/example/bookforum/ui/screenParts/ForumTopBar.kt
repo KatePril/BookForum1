@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Button
@@ -25,6 +26,7 @@ import com.example.compose.BookForumTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ForumTopAppBar (
+    quitAccount: () -> Unit,
     navigateToGlobalPage: () -> Unit,
     navigateToFavouritePosts: () -> Unit,
     navigateToProfile: () -> Unit,
@@ -33,6 +35,7 @@ fun ForumTopAppBar (
     TopAppBar(
         title = {
             TitleBody(
+                quitAccount = quitAccount,
                 navigateToGlobalPage = navigateToGlobalPage,
                 navigateToFavouritePosts = navigateToFavouritePosts,
                 navigateToProfile = navigateToProfile,
@@ -45,6 +48,7 @@ fun ForumTopAppBar (
 
 @Composable
 private fun TitleBody(
+    quitAccount: () -> Unit,
     navigateToGlobalPage: () -> Unit,
     navigateToFavouritePosts: () -> Unit,
     navigateToProfile: () -> Unit,
@@ -76,6 +80,12 @@ private fun TitleBody(
             tint = MaterialTheme.colorScheme.secondaryContainer,
             modifier = modifier
         )
+        ButtonWithIcon(
+            imageVector = Icons.Filled.ExitToApp,
+            onClick = quitAccount,
+            tint = MaterialTheme.colorScheme.secondaryContainer,
+            modifier = modifier
+        )
     }
 }
 
@@ -83,6 +93,6 @@ private fun TitleBody(
 @Composable
 fun ForumTopAppBarPreview() {
     BookForumTheme {
-//        ForumTopAppBar()
+//        ForumTopAppBar({}, {}, {})
     }
 }

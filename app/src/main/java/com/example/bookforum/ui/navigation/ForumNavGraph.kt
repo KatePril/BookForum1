@@ -64,6 +64,7 @@ fun ForumNavHost(
             })
         ) {
             FeedScreen(
+                quitAccount = { navController.navigate(LogInDestination.route) },
                 navigateToGlobalPage = {
                     navController.navigate("${ApiSearchDestination.route}/$it")
                 },
@@ -93,6 +94,7 @@ fun ForumNavHost(
             })
         ) {
             ApiResultScreen(
+                quitAccount = { navController.navigate(LogInDestination.route) },
                 navigateToGlobalPage = {
                     navController.navigate("${FeedDestination.route}/$it")
                 },

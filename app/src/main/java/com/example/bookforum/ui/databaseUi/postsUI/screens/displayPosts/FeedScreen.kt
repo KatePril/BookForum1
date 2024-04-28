@@ -47,6 +47,7 @@ import com.example.compose.BookForumTheme
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun FeedScreen(
+    quitAccount: () -> Unit,
     navigateToGlobalPage: (Int) -> Unit,
     navigateToPostCreation: (Int) -> Unit,
     navigateToFavouritePosts: () -> Unit,
@@ -59,6 +60,7 @@ fun FeedScreen(
     Scaffold(
         topBar = {
             ForumTopAppBar(
+                quitAccount = quitAccount,
                 navigateToGlobalPage = { navigateToGlobalPage(userUiState.value.user.id) },
                 navigateToFavouritePosts = navigateToFavouritePosts,
                 navigateToProfile = { navigateToProfile(userUiState.value.user.id) }

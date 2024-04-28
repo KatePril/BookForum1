@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.example.bookforum.ui.databaseUi.commentUi.states.CommentDetails
 
 @Entity(
     tableName = "comments",
@@ -31,4 +32,13 @@ data class Comment(
     val userId: Int,
     @ColumnInfo(name = "post_id")
     val bookId: Int
+)
+
+
+fun CommentDetails.toComment(): CommentDetails = CommentDetails(
+    id = id,
+    date = date,
+    text = text,
+    userId = userId,
+    bookId = bookId
 )

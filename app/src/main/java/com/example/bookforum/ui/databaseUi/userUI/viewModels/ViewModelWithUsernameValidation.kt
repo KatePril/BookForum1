@@ -34,14 +34,18 @@ open class ViewModelWithUsernameValidation(private val usersRepository: UsersRep
     }
 
     fun updateUiState(userDetails: UserDetails) {
-        Log.i("USERNAMES_LIST", usersListState.usersList.toString())
+        val isUsernameValid = userDetailsValidator.isUsernameUnique(userDetails, usersListState.usersList)
+        val isPasswordValid = userDetailsValidator.isPasswordValid(userDetails)
+        val isEmailValid = userDetailsValidator.isEmailValid(userDetails)
+
         registrationUIState =
             UserRegistrationUIState(
                 userDetails = userDetails,
                 userValidationDetails = UserValidationDetails(
-                    isUsernameValid = userDetailsValidator.isUsernameUnique(userDetails, usersListState.usersList),
-                    isPasswordValid = userDetailsValidator.isPasswordValid(userDetails),
-                    isEmailValid = userDetailsValidator.isEmailValid(userDetails)
+                    isUsernameValid = isUsernameValid,
+                    isPasswordValid = isPasswordValid,
+                    isEmailValid = isEmailValid,
+                    areInputsValid = isUsernameValid && isPasswordValid && isEmailValid
                 )
             )
     }

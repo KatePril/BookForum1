@@ -53,7 +53,6 @@ fun ProfileScreen(
             coroutineScope.launch {
                 viewModel.updateUser()
             }
-            navigateBack(viewModel.registrationUIState.userDetails.id)
         },
         onDeleteClick = {
             coroutineScope.launch {
@@ -111,8 +110,7 @@ private fun BackButton(
     ) {
         ButtonWithIcon(
             imageVector = Icons.Filled.ArrowBack,
-            onClick = onClick,
-            tint = MaterialTheme.colorScheme.primaryContainer
+            onClick = onClick
         )
     }
 }

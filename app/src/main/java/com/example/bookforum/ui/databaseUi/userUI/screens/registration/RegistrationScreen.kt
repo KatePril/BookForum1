@@ -38,13 +38,10 @@ fun RegistrationScreen(
     viewModel: RegistrationViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val coroutineScope = rememberCoroutineScope()
-//    val usersUIState by viewModel.usersUIState.collectAsState()
-//    viewModel.userRegistrationUIState = viewModel.userRegistrationUIState.copy(usersList = usersUIState.usernameList)
     RegistrationBody(
         viewModel = viewModel,
-        usersList = viewModel.usersUIState.usernameList,
         navigateToFeed = navigateToFeedPage,
-        onUserValueChange = viewModel::updateUiState,
+        onInputValueChange = viewModel::updateUiState,
         onSaveClick = {
             coroutineScope.launch {
                 viewModel.saveUser()
@@ -57,9 +54,8 @@ fun RegistrationScreen(
 @Composable
 private fun RegistrationBody(
     viewModel: RegistrationViewModel,
-    usersList: List<User>,
     navigateToFeed: (Int) -> Unit,
-    onUserValueChange: KFunction2<UserDetails, List<User>, Unit>,
+    onInputValueChange: (UserDetails) -> Unit,
     onSaveClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -70,8 +66,7 @@ private fun RegistrationBody(
         UserRegistrationForm(
             userDetails = viewModel.userRegistrationUIState.userDetails,
             userValidationDetails = viewModel.userRegistrationUIState.userValidationDetails,
-            usersList = usersList,
-            onValueChange = onUserValueChange,
+            onValueChange = onInputValueChange,
             modifier = modifier.fillMaxWidth()
         )
         SaveUserButton(
@@ -123,8 +118,7 @@ private fun SaveUserButton(
 private fun UserRegistrationForm(
     userDetails: UserDetails,
     userValidationDetails: UserValidationDetails,
-    usersList: List<User>,
-    onValueChange: KFunction2<UserDetails, List<User>, Unit>,
+    onValueChange: (UserDetails) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -133,24 +127,21 @@ private fun UserRegistrationForm(
     ) {
         UserRegistrationInput(
             value = userDetails.username,
-            usersList = usersList,
-            onValueChange = { username: String, users: List<User> ->  onValueChange(userDetails.copy(username = username), users) },
+            onValueChange = { onValueChange(userDetails.copy(username = it)) },
             labelText = R.string.username_input_label,
             msgText = R.string.invalid_username,
             isValid = userValidationDetails.isUsernameValid
         )
         UserRegistrationInput(
             value = userDetails.password,
-            usersList = usersList,
-            onValueChange = { password: String, users: List<User> ->  onValueChange(userDetails.copy(password = password), users) },
+            onValueChange = { onValueChange(userDetails.copy(password = it)) },
             labelText = R.string.password_input_label,
             msgText = R.string.invalid_password,
             isValid = userValidationDetails.isPasswordValid
         )
         UserRegistrationInput(
             value = userDetails.email,
-            usersList = usersList,
-            onValueChange = { email: String, users: List<User> ->  onValueChange(userDetails.copy(email = email), users) },
+            onValueChange = { onValueChange(userDetails.copy(email = it)) },
             labelText = R.string.email_input_label,
             msgText = R.string.invalid_email,
             isValid = userValidationDetails.isEmailValid
@@ -162,8 +153,7 @@ private fun UserRegistrationForm(
 @Composable
 private fun UserRegistrationInput(
     value: String,
-    usersList: List<User>,
-    onValueChange: (String, List<User>) -> Unit,
+    onValueChange: (String) -> Unit,
     @StringRes labelText: Int,
     @StringRes msgText: Int,
     isValid: Boolean = true,
@@ -171,7 +161,7 @@ private fun UserRegistrationInput(
 ) {
     OutlinedTextField(
         value = value,
-        onValueChange = { onValueChange(it, usersList) },
+        onValueChange = { onValueChange(it) },
         label = { Text(text = stringResource(labelText)) },
         colors = OutlinedTextFieldDefaults.colors(
             focusedContainerColor = MaterialTheme.colorScheme.tertiaryContainer,

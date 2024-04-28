@@ -36,7 +36,7 @@ class RegistrationViewModel(usersRepository: UsersRepository) : UserByUsernameVi
         }
     }
 
-    fun updateUiState(userDetails: UserDetails, usersList: List<User>) {
+    fun updateUiState(userDetails: UserDetails) {
         userRegistrationUIState =
             UserRegistrationUIState(
                 userDetails = userDetails,

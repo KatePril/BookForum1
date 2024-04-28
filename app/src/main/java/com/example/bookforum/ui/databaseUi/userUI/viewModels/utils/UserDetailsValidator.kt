@@ -1,6 +1,5 @@
 package com.example.bookforum.ui.databaseUi.userUI.viewModels.utils
 
-import android.util.Log
 import com.example.bookforum.data.entities.User
 import com.example.bookforum.ui.databaseUi.userUI.states.UserDetails
 
@@ -10,7 +9,6 @@ class UserDetailsValidator {
             var isUnique = username.isNotBlank()
 
             for (user in usersList) {
-//                Log.i("USERNAME", user.username)
                 if (user.username == username && user.id != id) {
                     isUnique = false
                     break

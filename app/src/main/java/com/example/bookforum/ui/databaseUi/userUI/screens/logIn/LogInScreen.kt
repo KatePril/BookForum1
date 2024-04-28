@@ -78,8 +78,11 @@ private fun LogInButton(
     modifier: Modifier = Modifier
 ) {
     val userUiState = viewModel.getUserUiStateByUsername(viewModel.userLogInUiState.userDetails.username).collectAsState()
+
     var isLogInSuccessful by remember { mutableStateOf(false) }
-    if (!isLogInSuccessful) {
+    var wasButtonClicked by remember { mutableStateOf(false) }
+    
+    if (wasButtonClicked && !isLogInSuccessful) {
         Text(
             text = stringResource(R.string.incorrect_log_in_message),
             color = MaterialTheme.colorScheme.error,
@@ -89,6 +92,7 @@ private fun LogInButton(
     }
     Button(
         onClick = {
+            wasButtonClicked = true
             if (userUiState.value != null) {
                 isLogInSuccessful = viewModel.checkPassword(userUiState.value!!.userDetails.password)
                 if (isLogInSuccessful) {

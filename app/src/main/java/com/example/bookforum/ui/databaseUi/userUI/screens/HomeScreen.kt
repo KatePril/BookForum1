@@ -11,6 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.compose.BookForumTheme
 
+/*TODO Delete*/
+
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(
@@ -21,7 +23,7 @@ fun HomeScreen(
 //            ForumTopAppBar()
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = { /*TODO*/ }) {
+            FloatingActionButton(onClick = {  }) {
                 Icon(imageVector = Icons.Filled.DriveFileRenameOutline, contentDescription = null)
             }
         },

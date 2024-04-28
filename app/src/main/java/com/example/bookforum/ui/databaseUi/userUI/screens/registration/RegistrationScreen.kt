@@ -96,17 +96,6 @@ private fun SaveUserButton(
 
     var isSaved by remember { mutableStateOf(false) }
 
-    Button(
-        onClick = {
-            onSaveClick()
-            isSaved = true
-        },
-        enabled = viewModel.registrationUIState.userValidationDetails.areInputsValid,
-        shape = MaterialTheme.shapes.small,
-        modifier = modifier.fillMaxWidth()
-    ) {
-        Text(stringResource(R.string.sign_up_action))
-    }
     if (isSaved) {
         Button(
             onClick = {
@@ -118,6 +107,18 @@ private fun SaveUserButton(
             modifier = modifier.fillMaxWidth()
         ) {
             Text(stringResource(R.string.continue_action))
+        }
+    } else {
+        Button(
+            onClick = {
+                onSaveClick()
+                isSaved = true
+            },
+            enabled = viewModel.registrationUIState.userValidationDetails.areInputsValid,
+            shape = MaterialTheme.shapes.small,
+            modifier = modifier.fillMaxWidth()
+        ) {
+            Text(stringResource(R.string.sign_up_action))
         }
     }
 }

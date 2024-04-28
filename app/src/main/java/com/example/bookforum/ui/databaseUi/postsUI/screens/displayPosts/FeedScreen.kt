@@ -50,7 +50,7 @@ fun FeedScreen(
     navigateToGlobalPage: (Int) -> Unit,
     navigateToPostCreation: (Int) -> Unit,
     navigateToFavouritePosts: () -> Unit,
-    navigateToProfile: () -> Unit,
+    navigateToProfile: (Int) -> Unit,
     viewModel: FeedViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val postsUiState by viewModel.postsUiState.collectAsState()
@@ -61,7 +61,7 @@ fun FeedScreen(
             ForumTopAppBar(
                 navigateToGlobalPage = { navigateToGlobalPage(userUiState.value.user.id) },
                 navigateToFavouritePosts = navigateToFavouritePosts,
-                navigateToProfile = navigateToProfile
+                navigateToProfile = { navigateToProfile(userUiState.value.user.id) }
             )
         },
         floatingActionButton = {

@@ -1,7 +1,5 @@
 package com.example.bookforum.ui.databaseUi.userUI.states
 
-import com.example.bookforum.data.entities.User
-
 data class UserRegistrationUIState(
     val userDetails: UserDetails = UserDetails(),
     val userValidationDetails: UserValidationDetails = UserValidationDetails()

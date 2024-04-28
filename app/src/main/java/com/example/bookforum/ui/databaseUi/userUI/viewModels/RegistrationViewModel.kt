@@ -13,6 +13,7 @@ import com.example.bookforum.ui.databaseUi.userUI.states.UserUiState
 import com.example.bookforum.ui.databaseUi.userUI.states.UserValidationDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.toUser
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.utils.UserDetailsValidator
+import com.example.bookforum.ui.databaseUi.userUI.viewModels.utils.getUserUiStateByUsername
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn

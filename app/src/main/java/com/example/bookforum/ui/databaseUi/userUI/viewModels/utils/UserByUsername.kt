@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.userUI.viewModels
+package com.example.bookforum.ui.databaseUi.userUI.viewModels.utils
 
 import com.example.bookforum.data.entities.toDetails
 import com.example.bookforum.data.repositories.UsersRepository

@@ -10,6 +10,7 @@ import com.example.bookforum.data.repositories.UsersRepository
 import com.example.bookforum.ui.databaseUi.userUI.states.UserLogInDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.UserLogInUiState
 import com.example.bookforum.ui.databaseUi.userUI.states.UserUiState
+import com.example.bookforum.ui.databaseUi.userUI.viewModels.utils.getUserUiStateByUsername
 import kotlinx.coroutines.flow.StateFlow
 
 class LoginViewModel(usersRepository: UsersRepository) : ViewModel() {

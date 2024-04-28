@@ -1,13 +1,13 @@
-package com.example.bookforum
+package com.example.bookforum.daoTests
 
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.bookforum.data.ForumDatabase
-import com.example.bookforum.data.daos.CommentDao
+import com.example.bookforum.data.daos.LikedPostDao
 import com.example.bookforum.data.entities.Post
-import com.example.bookforum.data.entities.Comment
+import com.example.bookforum.data.entities.LikedPost
 import com.example.bookforum.data.entities.User
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -20,18 +20,18 @@ import java.io.IOException
 import kotlin.jvm.Throws
 
 @RunWith(AndroidJUnit4::class)
-class CommentDaoTest {
-    private lateinit var commentDao: CommentDao
+class LikedPostDaoTest {
+    private lateinit var likedPostDao: LikedPostDao
     private lateinit var forumDatabase: ForumDatabase
 
-    private var comment1 = Comment(1, "18.04.2024", "something", 1, 2)
-    private var comment2 = Comment(2, "19.04.2024", "something", 2, 1)
-    private var comment3 = Comment(3, "20.04.2024", "something", 1, 1)
+    private var likedBook1 = LikedPost(1, 1, 1)
+    private var likedBook2 = LikedPost(2, 2, 1)
+    private var likedBook3 = LikedPost(3, 2, 2)
 
     private var book1 = Post(
         id = 1,
         title = "Game of thrones",
-        author = "Jorge R R Martin",
+        author = "George R R Martin",
         published = "1997",
         review = "An amazing book"
     )
@@ -46,30 +46,30 @@ class CommentDaoTest {
     private var user1 = User(1, "ron", "1111", "ronaldwisley@gmail.com")
     private var user2 = User(2, "luna", "0000", "luuuuna@gmail.com")
 
-    private suspend fun addOneCommentToDB() {
+    suspend fun addOneLikedBookToDb() {
         forumDatabase.userDao().insert(user1)
-        forumDatabase.bookDao().insert(book2)
-        commentDao.insert(comment1)
+        forumDatabase.bookDao().insert(book1)
+        likedPostDao.insert(likedBook1)
     }
 
-    private suspend fun addThreeCommentsToDb() {
+    suspend fun addThreeLikedBooksToDb() {
         forumDatabase.userDao().insert(user1)
-        forumDatabase.bookDao().insert(book2)
-        commentDao.insert(comment1)
-
         forumDatabase.userDao().insert(user2)
         forumDatabase.bookDao().insert(book1)
-        commentDao.insert(comment2)
-        commentDao.insert(comment3)
+        forumDatabase.bookDao().insert(book2)
+
+        likedPostDao.insert(likedBook1)
+        likedPostDao.insert(likedBook2)
+        likedPostDao.insert(likedBook3)
     }
 
     @Before
-    fun createDB() {
+    fun createDb() {
         val context: Context = ApplicationProvider.getApplicationContext()
         forumDatabase = Room.inMemoryDatabaseBuilder(context, ForumDatabase::class.java)
             .allowMainThreadQueries()
             .build()
-        commentDao = forumDatabase.commentDao()
+        likedPostDao = forumDatabase.likedPostDao()
     }
 
     @After
@@ -80,37 +80,38 @@ class CommentDaoTest {
 
     @Test
     @Throws(Exception::class)
-    fun daoInsert_insertsCommentIntoDB() = runBlocking {
-        addOneCommentToDB()
-        val bookComment = commentDao.getBookComments(2).first()
-        assertEquals(bookComment[0], comment1)
+    fun daoInsert_insertLikedBookIntoDB() = runBlocking {
+        addOneLikedBookToDb()
+        val likedBooks = likedPostDao.getLikedPosts(1).first()
+        assertEquals(likedBooks[0], likedBook1.bookId)
     }
 
     @Test
     @Throws(Exception::class)
-    fun daoGetBookComments_returnsCommentsByBookIdFromDB() = runBlocking {
-        addThreeCommentsToDb()
-        val bookComments = commentDao.getBookComments(1).first()
-        assertEquals(bookComments[0], comment2)
-        assertEquals(bookComments[1], comment3)
+    fun daoGetLikedBooks_returnsBooksIdsByUserIdFromDB() = runBlocking {
+        addThreeLikedBooksToDb()
+        val likedBooks = likedPostDao.getLikedPosts(2).first()
+        assertEquals(likedBooks[0], likedBook2.bookId)
+        assertEquals(likedBooks[1], likedBook3.bookId)
     }
 
     @Test
     @Throws(Exception::class)
-    fun daoUpdate_updatesCommentInDB() = runBlocking {
-        addOneCommentToDB()
-        val updatedComment = comment1.copy(text = "something new")
-        commentDao.update(updatedComment)
-        val bookComment = commentDao.getBookComments(2).first()
-        assertEquals(bookComment[0], updatedComment)
+    fun daoUpdate_updatesLikedBookInDB() = runBlocking {
+        addThreeLikedBooksToDb()
+        val updatedLikedBook = likedBook1.copy(bookId = 2)
+        likedPostDao.update(updatedLikedBook)
+        val likedBooks = likedPostDao.getLikedPosts(1).first()
+        assertEquals(likedBooks[0], updatedLikedBook.bookId)
     }
 
     @Test
     @Throws(Exception::class)
-    fun daoDelete_deletesCommentFromBD() = runBlocking {
-        addThreeCommentsToDb()
-        commentDao.delete(comment2)
-        val bookComments = commentDao.getBookComments(1).first()
-        assertEquals(bookComments[0], comment3)
+    fun daoDelete_deletesLikedBookFromDB() = runBlocking {
+        addThreeLikedBooksToDb()
+        likedPostDao.delete(likedBook2)
+        val likedBooks = likedPostDao.getLikedPosts(2).first()
+        assertEquals(likedBooks[0], likedBook3.bookId)
     }
+
 }

@@ -32,15 +32,15 @@ class PostCreationViewModel(
         )
     }
 
-    suspend fun savePost() {
-        if (validateInputs()) {
-            postsRepository.insertPost(postCreationUiState.postDetails.toPost())
-        }
-    }
-
     private fun validateInputs(postDetails: PostDetails = postCreationUiState.postDetails): Boolean {
         return with(postDetails) {
             title.isNotBlank() && author.isNotBlank() && published.isNotBlank() && review.isNotBlank()
+        }
+    }
+
+    suspend fun savePost() {
+        if (validateInputs()) {
+            postsRepository.insertPost(postCreationUiState.postDetails.toPost())
         }
     }
 }

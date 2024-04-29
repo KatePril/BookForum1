@@ -21,6 +21,6 @@ interface CommentDao {
     suspend fun delete(comment: Comment)
 
     @Query("SELECT * from comments WHERE post_id = :id ORDER BY id ASC")
-    fun getBookComments(id: Int): Flow<List<Comment>>
+    fun getCommentsByPost(id: Int): Flow<List<Comment>>
 
 }

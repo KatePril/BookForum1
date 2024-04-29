@@ -82,7 +82,7 @@ class CommentDaoTest {
     @Throws(Exception::class)
     fun daoInsert_insertsCommentIntoDB() = runBlocking {
         addOneCommentToDB()
-        val bookComment = commentDao.getBookComments(2).first()
+        val bookComment = commentDao.getCommentsByPost(2).first()
         assertEquals(bookComment[0], comment1)
     }
 
@@ -90,7 +90,7 @@ class CommentDaoTest {
     @Throws(Exception::class)
     fun daoGetBookComments_returnsCommentsByBookIdFromDB() = runBlocking {
         addThreeCommentsToDb()
-        val bookComments = commentDao.getBookComments(1).first()
+        val bookComments = commentDao.getCommentsByPost(1).first()
         assertEquals(bookComments[0], comment2)
         assertEquals(bookComments[1], comment3)
     }
@@ -101,7 +101,7 @@ class CommentDaoTest {
         addOneCommentToDB()
         val updatedComment = comment1.copy(text = "something new")
         commentDao.update(updatedComment)
-        val bookComment = commentDao.getBookComments(2).first()
+        val bookComment = commentDao.getCommentsByPost(2).first()
         assertEquals(bookComment[0], updatedComment)
     }
 
@@ -110,7 +110,7 @@ class CommentDaoTest {
     fun daoDelete_deletesCommentFromBD() = runBlocking {
         addThreeCommentsToDb()
         commentDao.delete(comment2)
-        val bookComments = commentDao.getBookComments(1).first()
+        val bookComments = commentDao.getCommentsByPost(1).first()
         assertEquals(bookComments[0], comment3)
     }
 }

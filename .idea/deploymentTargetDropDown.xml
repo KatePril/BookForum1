@@ -2,32 +2,7 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="ApiResultScreenPreview">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\Kate\.android\avd\Resizable_API_34.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-04-21T10:57:26.818952700Z" />
-        </State>
-      </entry>
-      <entry key="EmptyPostsDisplayBodyPreview">
-        <State />
-      </entry>
-      <entry key="EmptyPostsDisplayBodyPreview (1)">
-        <State />
-      </entry>
-      <entry key="PostItemPreview">
-        <State />
-      </entry>
-      <entry key="UserDaoTest">
+      <entry key="CommentCreationFormPreview">
         <State />
       </entry>
       <entry key="app">

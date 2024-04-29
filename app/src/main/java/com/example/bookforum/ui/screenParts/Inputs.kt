@@ -44,6 +44,7 @@ fun FormInputWithMessage(
     @StringRes msgText: Int,
     color: Color,
     isValid: Boolean = true,
+    singleLine: Boolean = true,
     modifier: Modifier = Modifier
 ) {
     OutlinedTextField(
@@ -56,7 +57,7 @@ fun FormInputWithMessage(
             disabledContainerColor = color,
         ),
         modifier = modifier.fillMaxWidth(),
-        singleLine = true
+        singleLine = singleLine
     )
     if (!isValid) {
         Text(

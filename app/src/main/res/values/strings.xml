@@ -33,4 +33,6 @@
     <string name="username_profile_input">Your username</string>
     <string name="email_profile_input">Your email</string>
     <string name="password_profile_input">Your password</string>
+    <string name="comment_input">Write your comment here</string>
+    <string name="invalid_comment">Comment field can\'t be empty</string>
 </resources>

@@ -29,7 +29,7 @@ class CommentViewModel(
     private val usersRepository: UsersRepository,
     private val commentsRepository: CommentsRepository
 ) : ViewModel() {
-    private val userId: Int = checkNotNull(savedStateHandle[CommentPageDestination.userIdArg])
+    val userId: Int = checkNotNull(savedStateHandle[CommentPageDestination.userIdArg])
     private val postId: Int = checkNotNull(savedStateHandle[CommentPageDestination.postIdArg])
 
     var commentCreationUiState by mutableStateOf(CommentCreationUiState())

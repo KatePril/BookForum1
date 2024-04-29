@@ -1,6 +1,7 @@
 package com.example.bookforum.ui.databaseUi.commentUi.viewModels
 
 import android.os.Build
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -90,6 +91,7 @@ class CommentViewModel(
     suspend fun saveComment() {
         if (validateText()) {
             commentsRepository.insertComment(commentCreationUiState.commentDetails.toComment())
+            updateUiState(commentCreationUiState.commentDetails.copy(text = ""))
         }
         commentsUiState = commentsRepository
                 .getCommentsByPost(postId)
@@ -97,5 +99,6 @@ class CommentViewModel(
             .stateIn(
                 scope = viewModelScope
             ).value
+        Log.i("COMMENTS_LIST", commentsUiState.toString())
     }
 }

@@ -47,6 +47,7 @@ import com.example.compose.BookForumTheme
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun FeedScreen(
+    onCommentsButtonClick: (Int, Int) -> Unit,
     quitAccount: () -> Unit,
     navigateToGlobalPage: (Int) -> Unit,
     navigateToPostCreation: (Int) -> Unit,
@@ -55,20 +56,19 @@ fun FeedScreen(
     viewModel: FeedViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val postsUiState by viewModel.postsUiState.collectAsState()
-    val userUiState = viewModel.getUserUiState.collectAsState()
 
     Scaffold(
         topBar = {
             ForumTopAppBar(
                 quitAccount = quitAccount,
-                navigateToGlobalPage = { navigateToGlobalPage(userUiState.value.user.id) },
+                navigateToGlobalPage = { navigateToGlobalPage(viewModel.userId) },
                 navigateToFavouritePosts = navigateToFavouritePosts,
-                navigateToProfile = { navigateToProfile(userUiState.value.user.id) }
+                navigateToProfile = { navigateToProfile(viewModel.userId) }
             )
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { navigateToPostCreation(userUiState.value.user.id) }
+                onClick = { navigateToPostCreation(viewModel.userId) }
             ) {
                 Icon(
                     imageVector = Icons.Filled.DriveFileRenameOutline,
@@ -78,8 +78,8 @@ fun FeedScreen(
         },
         modifier = Modifier
     ) { innerPadding ->
-        Text(text = userUiState.value.user.id.toString())
         PostsDisplayBody(
+            onCommentsButtonClick = { onCommentsButtonClick(viewModel.userId, it) },
             postsList = postsUiState.postsList,
             contentPadding = innerPadding,
             modifier = Modifier.fillMaxSize()
@@ -89,6 +89,7 @@ fun FeedScreen(
 
 @Composable
 private fun PostsDisplayBody(
+    onCommentsButtonClick: (Int) -> Unit,
     postsList: List<Post>,
     contentPadding: PaddingValues = PaddingValues(0.dp),
     modifier: Modifier = Modifier
@@ -106,6 +107,7 @@ private fun PostsDisplayBody(
             )
         } else {
             PostsList(
+                onCommentsButtonClick = onCommentsButtonClick,
                 postsList = postsList,
                 contentPadding = contentPadding
             )
@@ -115,6 +117,7 @@ private fun PostsDisplayBody(
 
 @Composable
 private fun PostsList(
+    onCommentsButtonClick: (Int) -> Unit,
     postsList: List<Post>,
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier
@@ -126,6 +129,7 @@ private fun PostsList(
     ) {
         items(postsList) { post ->
             PostItem(
+                onCommentsButtonClick = { onCommentsButtonClick(post.id) },
                 post = post,
                 modifier = modifier
             )
@@ -137,6 +141,6 @@ private fun PostsList(
 @Composable
 fun EmptyPostsDisplayBodyPreview() {
     BookForumTheme {
-        PostsDisplayBody(postsList = listOf())
+//        PostsDisplayBody(postsList = listOf())
     }
 }

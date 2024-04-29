@@ -16,13 +16,10 @@ import kotlinx.coroutines.flow.stateIn
 
 class FeedViewModel(
     savedStateHandle: SavedStateHandle,
-    private val postsRepository: PostsRepository,
-    private val usersRepository: UsersRepository
+    private val postsRepository: PostsRepository
 ): ViewModel() {
 
-    private val userId: Int = checkNotNull(savedStateHandle[FeedDestination.userIdArg])
-
-    val getUserUiState = getUserUiStateById(userId, usersRepository, viewModelScope)
+    val userId: Int = checkNotNull(savedStateHandle[FeedDestination.userIdArg])
 
     val postsUiState: StateFlow<PostsDisplayUiState> = postsRepository
         .getAllPosts()

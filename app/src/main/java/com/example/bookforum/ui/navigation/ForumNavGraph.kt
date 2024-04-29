@@ -66,6 +66,9 @@ fun ForumNavHost(
             })
         ) {
             FeedScreen(
+                onCommentsButtonClick = { userId: Int, postId: Int ->
+                    navController.navigate("${CommentPageDestination.route}/$userId/$postId")
+                },
                 quitAccount = { navController.navigate(LogInDestination.route) },
                 navigateToGlobalPage = {
                     navController.navigate("${ApiSearchDestination.route}/$it")

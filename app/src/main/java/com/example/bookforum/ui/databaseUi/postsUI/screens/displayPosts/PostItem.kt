@@ -19,15 +19,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.bookforum.data.entities.Post
 import com.example.bookforum.ui.screenParts.ButtonWithIcon
 import com.example.bookforum.ui.screenParts.ExpandButton
-import com.example.compose.BookForumTheme
 
 @Composable
 internal fun PostItem(
+    onCommentsButtonClick: () -> Unit,
     post: Post,
     modifier: Modifier = Modifier
 ) {
@@ -52,7 +51,7 @@ internal fun PostItem(
                     expanded = expanded,
                     liked = liked,
                     onLikeButtonClick = { /*TODO*/ },
-                    onCommentsButtonClick = { /*TODO*/ },
+                    onCommentsButtonClick = onCommentsButtonClick,
                     onExpandButtonClick = { expanded = !expanded },
                     modifier = modifier.weight(1f)
                 )
@@ -121,23 +120,23 @@ fun PostInfo(
     }
 }
 
-@Preview(showSystemUi = true, showBackground = true)
-@Composable
-fun PostItemPreview() {
-    BookForumTheme {
-        PostItem(
-            post = Post(
-                id = 1,
-//                title = "A Game of Thrones",
-                title = "Harry Potter and the Sorcerer's Stone",
-                author = "George R. R. Martin",
-                published = "01.08.1996",
-                review = "\"Game of Thrones\" is a captivating introduction to Martin's epic saga," +
-                        "blending elements of fantasy, political intrigue, and human drama into " +
-                        "a spellbinding tale that will leave readers eager for more." +
-                        "Whether you're a fan of fantasy or simply enjoy a compelling story, " +
-                        "this book is sure to captivate and enthrall."
-            )
-        )
-    }
-}
+//@Preview(showSystemUi = true, showBackground = true)
+//@Composable
+//fun PostItemPreview() {
+//    BookForumTheme {
+//        PostItem(
+//            post = Post(
+//                id = 1,
+////                title = "A Game of Thrones",
+//                title = "Harry Potter and the Sorcerer's Stone",
+//                author = "George R. R. Martin",
+//                published = "01.08.1996",
+//                review = "\"Game of Thrones\" is a captivating introduction to Martin's epic saga," +
+//                        "blending elements of fantasy, political intrigue, and human drama into " +
+//                        "a spellbinding tale that will leave readers eager for more." +
+//                        "Whether you're a fan of fantasy or simply enjoy a compelling story, " +
+//                        "this book is sure to captivate and enthrall."
+//            )
+//        )
+//    }
+//}

@@ -35,4 +35,5 @@
     <string name="password_profile_input">Your password</string>
     <string name="comment_input">Write your comment here</string>
     <string name="invalid_comment">Comment field can\'t be empty</string>
+    <string name="no_comments_msg">There is no comments yet. Be the first to leave a comment</string>
 </resources>

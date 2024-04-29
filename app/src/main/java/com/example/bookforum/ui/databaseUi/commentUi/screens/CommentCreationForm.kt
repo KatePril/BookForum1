@@ -22,7 +22,7 @@ import com.example.bookforum.ui.screenParts.FormInputWithMessage
 import com.example.compose.BookForumTheme
 
 @Composable
-fun CommentCreationForm(
+internal fun CommentCreationForm(
     commentCreationUiState: CommentCreationUiState,
     onValueChange: (CommentDetails) -> Unit,
     onSendClick: () -> Unit,
@@ -34,7 +34,7 @@ fun CommentCreationForm(
     ) {
         Column(
             modifier = modifier
-                .padding(16.dp)
+                .padding(end = 16.dp)
                 .weight(2f)
         ) {
             FormInputWithMessage(
@@ -48,7 +48,6 @@ fun CommentCreationForm(
         }
         Column (
             modifier = modifier
-                .padding(end = 16.dp)
         ) {
             IconButton(
                 onClick = onSendClick,

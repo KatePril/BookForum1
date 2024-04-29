@@ -34,14 +34,14 @@ class CommentViewModel(
 
     var commentCreationUiState by mutableStateOf(CommentCreationUiState())
 
-    val commentsUiState: StateFlow<List<Comment>> = commentsRepository
+    val commentsUiState: List<Comment> = commentsRepository
         .getCommentsByPost(postId)
         .filterNotNull()
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(TIMEOUT_MILLS),
             initialValue = listOf()
-        )
+        ).value
 
     fun getUserById(id: Int): StateFlow<UserByIdUiState> =
         getUserUiStateById(

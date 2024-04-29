@@ -9,6 +9,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.bookforum.ui.apiUi.screens.ApiResultScreen
 import com.example.bookforum.ui.apiUi.screens.ApiSearchDestination
+import com.example.bookforum.ui.databaseUi.commentUi.screens.CommentPageDestination
+import com.example.bookforum.ui.databaseUi.commentUi.screens.CommentsScreen
 import com.example.bookforum.ui.databaseUi.postsUI.screens.createPost.PostCreationDestination
 import com.example.bookforum.ui.databaseUi.postsUI.screens.createPost.PostCreationScreen
 import com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.FeedDestination
@@ -82,7 +84,7 @@ fun ForumNavHost(
             })
         ) {
             PostCreationScreen(
-                navigateToPostsDisplay = {
+                navigateToFeed = {
                     navController.navigate("${FeedDestination.route}/$it")
                 }
             )
@@ -95,11 +97,21 @@ fun ForumNavHost(
         ) {
             ApiResultScreen(
                 quitAccount = { navController.navigate(LogInDestination.route) },
-                navigateToGlobalPage = {
-                    navController.navigate("${FeedDestination.route}/$it")
-                },
+                navigateToGlobalPage = { navController.navigate("${FeedDestination.route}/$it") },
                 navigateToFavouritePosts = { /*TODO*/ },
                 navigateToProfile = { navController.navigate("${ProfileDestination.route}/$it") }
+            )
+        }
+        composable(
+            route = CommentPageDestination.routeWithArgs,
+            arguments = listOf(navArgument(CommentPageDestination.userIdArg) {
+                type = NavType.IntType
+            }, navArgument(CommentPageDestination.postIdArg) {
+                type = NavType.IntType
+            })
+        ) {
+            CommentsScreen(
+                navigateToFeed = { navController.navigate("${FeedDestination.route}/$it") }
             )
         }
     }

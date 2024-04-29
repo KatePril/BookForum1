@@ -25,7 +25,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun PostCreationScreen(
-    navigateToPostsDisplay: (Int) -> Unit,
+    navigateToFeed: (Int) -> Unit,
     viewModel: PostCreationViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -38,10 +38,10 @@ fun PostCreationScreen(
             coroutineScope.launch {
                 viewModel.savePost()
             }
-            navigateToPostsDisplay(userUiState.value.user.id)
+            navigateToFeed(userUiState.value.user.id)
         },
         onCancelClick = {
-            navigateToPostsDisplay(userUiState.value.user.id)
+            navigateToFeed(userUiState.value.user.id)
         },
         modifier = Modifier.fillMaxWidth()
     )

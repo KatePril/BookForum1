@@ -21,6 +21,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -34,14 +35,18 @@ class CommentViewModel(
 
     var commentCreationUiState by mutableStateOf(CommentCreationUiState())
 
-    val commentsUiState: List<Comment> = commentsRepository
-        .getCommentsByPost(postId)
-        .filterNotNull()
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(TIMEOUT_MILLS),
-            initialValue = listOf()
-        ).value
+    var commentsUiState = emptyList<Comment>()
+
+    init {
+        viewModelScope.launch {
+            commentsUiState = commentsRepository
+                .getCommentsByPost(postId)
+                .filterNotNull()
+                .stateIn(
+                    scope = viewModelScope
+                ).value
+        }
+    }
 
     fun getUserById(id: Int): StateFlow<UserByIdUiState> =
         getUserUiStateById(
@@ -51,6 +56,7 @@ class CommentViewModel(
         )
 
     fun updateUiState(commentDetails: CommentDetails) {
+        /* TODO commentList does not update after addition of the new comment */
         commentCreationUiState = CommentCreationUiState(
             commentDetails = commentDetails
                 .copy(
@@ -85,5 +91,11 @@ class CommentViewModel(
         if (validateText()) {
             commentsRepository.insertComment(commentCreationUiState.commentDetails.toComment())
         }
+        commentsUiState = commentsRepository
+                .getCommentsByPost(postId)
+            .filterNotNull()
+            .stateIn(
+                scope = viewModelScope
+            ).value
     }
 }

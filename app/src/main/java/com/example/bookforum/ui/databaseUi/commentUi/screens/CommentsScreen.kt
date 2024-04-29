@@ -1,5 +1,6 @@
 package com.example.bookforum.ui.databaseUi.commentUi.screens
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -37,6 +38,8 @@ fun CommentsScreen(
     viewModel: CommentViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val coroutineScope = rememberCoroutineScope()
+
+    Log.i("COMMENTS_LIST", viewModel.commentsUiState.toString())
 
     CommentScreenBody(
         navigateToFeed = { navigateToFeed(viewModel.userId) },
@@ -84,7 +87,8 @@ fun CommentScreenBody(
             Text(
                 text = stringResource(R.string.no_comments_msg),
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.bodyMedium
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = modifier.padding(top = 16.dp)
             )
         } else {
             CommentsList(
@@ -103,7 +107,7 @@ private fun CommentsList(
 ) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp),
-        modifier = modifier
+        modifier = modifier.padding(top = 16.dp)
     ) {
         items(commentsList) {comment ->
             val userUiState = getUserById(comment.userId).collectAsState()

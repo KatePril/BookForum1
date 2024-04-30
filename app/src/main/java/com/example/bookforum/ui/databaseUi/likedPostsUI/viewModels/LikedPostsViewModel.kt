@@ -11,30 +11,43 @@ import com.example.bookforum.utils.TIMEOUT_MILLS
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 class LikedPostsViewModel(
     savedStateHandle: SavedStateHandle,
     private val likedPostsRepository: LikedPostsRepository
 ): ViewModel() {
     val userId: Int = checkNotNull(savedStateHandle[FeedDestination.userIdArg])
+
+    private var checkedPost: Int? = null
     fun checkLikedPostExistence(userId: Int, postId: Int): Int? {
-        val likedPostUiState : StateFlow<Int?> = likedPostsRepository
+        viewModelScope.launch {
+            checkedPost = likedPostsRepository
             .getLikedPostByIds(userId =userId, postId = postId)
             .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(TIMEOUT_MILLS),
-                initialValue = null
-            )
-        Log.i("LIKE_EXISTENCE", likedPostUiState.value.toString())
-        return likedPostUiState.value
+                scope = viewModelScope
+            ).value
+        }
+        Log.i("CHECKED_POST", checkedPost.toString())
+        return checkedPost
     }
+
+
+
+//    = likedPostsRepository
+//            .getLikedPostByIds(userId =userId, postId = postId)
+//            .stateIn(
+//                scope = viewModelScope,
+//                started = SharingStarted.WhileSubscribed(TIMEOUT_MILLS),
+//                initialValue = null
+//            ).value
 
     suspend fun updateLikedPost(likedPost: LikedPost) {
         Log.i("UPDATE_LIKE", likedPost.toString())
         if (checkLikedPostExistence(likedPost.userId, likedPost.postId) == null) {
-            likedPostsRepository.deleteLikedPost(likedPost)
-        } else {
             likedPostsRepository.insertLikedPost(likedPost)
+        } else {
+            likedPostsRepository.deleteLikedPost(likedPost)
         }
     }
 }

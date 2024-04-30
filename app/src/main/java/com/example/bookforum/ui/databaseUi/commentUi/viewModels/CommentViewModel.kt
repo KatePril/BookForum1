@@ -57,7 +57,6 @@ class CommentViewModel(
         )
 
     fun updateUiState(commentDetails: CommentDetails) {
-        /* TODO commentList does not update after addition of the new comment */
         commentCreationUiState = CommentCreationUiState(
             commentDetails = commentDetails
                 .copy(

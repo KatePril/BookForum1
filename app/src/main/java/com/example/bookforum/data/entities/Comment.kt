@@ -35,7 +35,7 @@ data class Comment(
 )
 
 
-fun CommentDetails.toComment(): CommentDetails = CommentDetails(
+fun Comment.toCommentDetails(): CommentDetails = CommentDetails(
     id = id,
     date = date,
     text = text,

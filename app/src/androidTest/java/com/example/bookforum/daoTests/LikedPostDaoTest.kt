@@ -17,16 +17,16 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.IOException
-import kotlin.jvm.Throws
+import kotlin.Throws
 
 @RunWith(AndroidJUnit4::class)
 class LikedPostDaoTest {
     private lateinit var likedPostDao: LikedPostDao
     private lateinit var forumDatabase: ForumDatabase
 
-    private var likedBook1 = LikedPost(1, 1, 1)
-    private var likedBook2 = LikedPost(2, 2, 1)
-    private var likedBook3 = LikedPost(3, 2, 2)
+    private var likedPost1 = LikedPost(1, 1, 1)
+    private var likedPost2 = LikedPost(2, 2, 1)
+    private var likedPost3 = LikedPost(3, 2, 2)
 
     private var book1 = Post(
         id = 1,
@@ -46,21 +46,21 @@ class LikedPostDaoTest {
     private var user1 = User(1, "ron", "1111", "ronaldwisley@gmail.com")
     private var user2 = User(2, "luna", "0000", "luuuuna@gmail.com")
 
-    suspend fun addOneLikedBookToDb() {
+    private suspend fun addOneLikedPostToDb() {
         forumDatabase.userDao().insert(user1)
         forumDatabase.bookDao().insert(book1)
-        likedPostDao.insert(likedBook1)
+        likedPostDao.insert(likedPost1)
     }
 
-    suspend fun addThreeLikedBooksToDb() {
+    private suspend fun addThreeLikedPostsToDb() {
         forumDatabase.userDao().insert(user1)
         forumDatabase.userDao().insert(user2)
         forumDatabase.bookDao().insert(book1)
         forumDatabase.bookDao().insert(book2)
 
-        likedPostDao.insert(likedBook1)
-        likedPostDao.insert(likedBook2)
-        likedPostDao.insert(likedBook3)
+        likedPostDao.insert(likedPost1)
+        likedPostDao.insert(likedPost2)
+        likedPostDao.insert(likedPost3)
     }
 
     @Before
@@ -81,37 +81,53 @@ class LikedPostDaoTest {
     @Test
     @Throws(Exception::class)
     fun daoInsert_insertLikedBookIntoDB() = runBlocking {
-        addOneLikedBookToDb()
-        val likedBooks = likedPostDao.getLikedPosts(1).first()
-        assertEquals(likedBooks[0], likedBook1.bookId)
+        addOneLikedPostToDb()
+        val likedPosts = likedPostDao.getLikedPosts(1).first()
+        assertEquals(likedPosts[0], likedPost1.bookId)
     }
 
     @Test
     @Throws(Exception::class)
     fun daoGetLikedBooks_returnsBooksIdsByUserIdFromDB() = runBlocking {
-        addThreeLikedBooksToDb()
-        val likedBooks = likedPostDao.getLikedPosts(2).first()
-        assertEquals(likedBooks[0], likedBook2.bookId)
-        assertEquals(likedBooks[1], likedBook3.bookId)
+        addThreeLikedPostsToDb()
+        val likedPosts = likedPostDao.getLikedPosts(2).first()
+        assertEquals(likedPosts[0], likedPost2.bookId)
+        assertEquals(likedPosts[1], likedPost3.bookId)
     }
 
     @Test
     @Throws(Exception::class)
     fun daoUpdate_updatesLikedBookInDB() = runBlocking {
-        addThreeLikedBooksToDb()
-        val updatedLikedBook = likedBook1.copy(bookId = 2)
-        likedPostDao.update(updatedLikedBook)
-        val likedBooks = likedPostDao.getLikedPosts(1).first()
-        assertEquals(likedBooks[0], updatedLikedBook.bookId)
+        addThreeLikedPostsToDb()
+        val updatedLikedPost = likedPost1.copy(bookId = 2)
+        likedPostDao.update(updatedLikedPost)
+        val likedPosts = likedPostDao.getLikedPosts(1).first()
+        assertEquals(likedPosts[0], updatedLikedPost.bookId)
     }
 
     @Test
     @Throws(Exception::class)
     fun daoDelete_deletesLikedBookFromDB() = runBlocking {
-        addThreeLikedBooksToDb()
-        likedPostDao.delete(likedBook2)
+        addThreeLikedPostsToDb()
+        likedPostDao.delete(likedPost2)
         val likedBooks = likedPostDao.getLikedPosts(2).first()
-        assertEquals(likedBooks[0], likedBook3.bookId)
+        assertEquals(likedBooks[0], likedPost3.bookId)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun daoGetLikedPostByIds_returnsLikedPostIdFromDB() = runBlocking {
+        addOneLikedPostToDb()
+        val likedPost = likedPostDao.getLikedPostByIds(1, 1).first()
+        assertEquals(likedPost, likedPost1.id)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun daoGetLikedPostByIds_returnsNull() = runBlocking {
+        addOneLikedPostToDb()
+        val likedPost = likedPostDao.getLikedPostByIds(1, 2).first()
+        assertEquals(likedPost, null)
     }
 
 }

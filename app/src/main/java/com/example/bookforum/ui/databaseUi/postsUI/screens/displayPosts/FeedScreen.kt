@@ -57,8 +57,8 @@ fun FeedScreen(
         modifier = Modifier
     ) { innerPadding ->
         PostsDisplayBody(
-            checkCommentExistence = {
-                likedPostsViewModel.checkCommentExistence(feedViewModel.userId, it)
+            checkLikedPostExistence = {
+                likedPostsViewModel.checkLikedPostExistence(feedViewModel.userId, it)
             },
             onLikeButtonClicked = { id: Int, postId: Int ->
                 coroutineScope.launch {

@@ -1,5 +1,6 @@
 package com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,7 +17,7 @@ class LikedPostsViewModel(
     private val likedPostsRepository: LikedPostsRepository
 ): ViewModel() {
     val userId: Int = checkNotNull(savedStateHandle[FeedDestination.userIdArg])
-    fun checkCommentExistence(userId: Int, postId: Int): Int? {
+    fun checkLikedPostExistence(userId: Int, postId: Int): Int? {
         val likedPostUiState : StateFlow<Int?> = likedPostsRepository
             .getLikedPostByIds(userId =userId, postId = postId)
             .stateIn(
@@ -24,11 +25,13 @@ class LikedPostsViewModel(
                 started = SharingStarted.WhileSubscribed(TIMEOUT_MILLS),
                 initialValue = null
             )
+        Log.i("LIKE_EXISTENCE", likedPostUiState.value.toString())
         return likedPostUiState.value
     }
 
     suspend fun updateLikedPost(likedPost: LikedPost) {
-        if (checkCommentExistence(likedPost.userId, likedPost.postId) == null) {
+        Log.i("UPDATE_LIKE", likedPost.toString())
+        if (checkLikedPostExistence(likedPost.userId, likedPost.postId) == null) {
             likedPostsRepository.deleteLikedPost(likedPost)
         } else {
             likedPostsRepository.insertLikedPost(likedPost)

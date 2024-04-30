@@ -26,12 +26,14 @@ import com.example.bookforum.ui.screenParts.ExpandButton
 
 @Composable
 internal fun PostItem(
+    checkLikedPostExistence: (Int) -> Int?,
+    onLikeButtonClicked: (Int, Int) -> Unit,
     onCommentsButtonClick: () -> Unit,
     post: Post,
     modifier: Modifier = Modifier
 ) {
     var expanded by remember { mutableStateOf(false) }
-    var liked by remember { mutableStateOf(false) }
+    val liked = checkLikedPostExistence(post.id)
     Card(
         modifier = modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
@@ -49,8 +51,8 @@ internal fun PostItem(
 
                 PostButtons(
                     expanded = expanded,
-                    liked = liked,
-                    onLikeButtonClick = { /*TODO*/ },
+                    liked = liked != null,
+                    onLikeButtonClick = { onLikeButtonClicked(liked ?: 0, post.id) },
                     onCommentsButtonClick = onCommentsButtonClick,
                     onExpandButtonClick = { expanded = !expanded },
                     modifier = modifier.weight(1f)

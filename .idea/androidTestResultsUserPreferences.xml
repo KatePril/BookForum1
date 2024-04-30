@@ -36,6 +36,7 @@
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
+                  <entry key="Pixel_Tablet_API_31" value="120" />
                   <entry key="Resizable_API_34_new_2" value="120" />
                   <entry key="Tests" value="360" />
                 </map>

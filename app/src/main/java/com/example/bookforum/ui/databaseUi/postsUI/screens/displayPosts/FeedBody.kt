@@ -21,7 +21,7 @@ import com.example.compose.BookForumTheme
 
 @Composable
 internal fun PostsDisplayBody(
-    checkCommentExistence: (Int) -> Int?,
+    checkLikedPostExistence: (Int) -> Int?,
     onLikeButtonClicked: (Int, Int) -> Unit,
     onCommentsButtonClick: (Int) -> Unit,
     postsList: List<Post>,
@@ -42,7 +42,7 @@ internal fun PostsDisplayBody(
             )
         } else {
             PostsList(
-                checkCommentExistence = checkCommentExistence,
+                checkLikedPostExistence = checkLikedPostExistence,
                 onLikeButtonClicked = onLikeButtonClicked,
                 onCommentsButtonClick = onCommentsButtonClick,
                 postsList = postsList,
@@ -54,7 +54,7 @@ internal fun PostsDisplayBody(
 
 @Composable
 private fun PostsList(
-    checkCommentExistence: (Int) -> Int?,
+    checkLikedPostExistence: (Int) -> Int?,
     onLikeButtonClicked: (Int, Int) -> Unit,
     onCommentsButtonClick: (Int) -> Unit,
     postsList: List<Post>,
@@ -68,6 +68,8 @@ private fun PostsList(
     ) {
         items(postsList) { post ->
             PostItem(
+                checkLikedPostExistence = checkLikedPostExistence,
+                onLikeButtonClicked = onLikeButtonClicked,
                 onCommentsButtonClick = { onCommentsButtonClick(post.id) },
                 post = post,
                 modifier = modifier

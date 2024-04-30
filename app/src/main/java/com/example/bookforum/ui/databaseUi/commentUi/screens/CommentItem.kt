@@ -57,7 +57,6 @@ private fun CommentHeader(
         modifier = modifier
             .fillMaxWidth()
     ) {
-        /*TODO fix usernames display*/
         Text(
             text = username,
             style = MaterialTheme.typography.displaySmall

@@ -110,6 +110,7 @@ private fun CommentsList(
         modifier = modifier.padding(top = 16.dp)
     ) {
         items(commentsList) {comment ->
+            /*TODO fix usernames display*/
             val userUiState = getUserById(comment.userId).collectAsState()
             CommentCard(
                 comment = comment,

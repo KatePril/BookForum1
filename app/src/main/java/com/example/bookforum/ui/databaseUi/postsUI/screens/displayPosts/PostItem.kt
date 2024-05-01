@@ -1,5 +1,6 @@
 package com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -32,9 +33,11 @@ internal fun PostItem(
 ) {
     var expanded by remember { mutableStateOf(false) }
     val coroutineScope = rememberCoroutineScope()
+    likedPostsViewModel.checkLikedPostExistence(userId, post.id)
     var liked by remember {
-        mutableStateOf(likedPostsViewModel.checkLikedPostExistence(userId, post.id))
+        mutableStateOf(likedPostsViewModel.checkedPostLiveData.value)
     }
+    Log.i("LIKED", liked.toString())
     Card(
         modifier = modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
@@ -64,7 +67,9 @@ internal fun PostItem(
                                 )
                             )
                         }
-                        liked = likedPostsViewModel.checkLikedPostExistence(userId, post.id)
+                        likedPostsViewModel.checkLikedPostExistence(userId, post.id)
+                        liked = likedPostsViewModel.checkedPostLiveData.value
+                        Log.i("LIKED_UPDATED", liked.toString())
                     },
                     onCommentsButtonClick = onCommentsButtonClick,
                     onExpandButtonClick = { expanded = !expanded },

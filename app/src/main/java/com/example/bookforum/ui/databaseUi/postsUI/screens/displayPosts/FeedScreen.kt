@@ -10,15 +10,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.bookforum.data.entities.LikedPost
 import com.example.bookforum.ui.ForumViewModelProvider
-import com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels.LikedPostsViewModel
 import com.example.bookforum.ui.databaseUi.postsUI.viewModels.FeedViewModel
 import com.example.bookforum.ui.screenParts.ForumTopAppBar
-import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable

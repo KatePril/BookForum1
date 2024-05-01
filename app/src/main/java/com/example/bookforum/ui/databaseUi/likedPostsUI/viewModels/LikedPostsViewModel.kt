@@ -1,6 +1,9 @@
 package com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels
 
 import android.util.Log
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,6 +15,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class LikedPostsViewModel(
     savedStateHandle: SavedStateHandle,
@@ -19,7 +23,7 @@ class LikedPostsViewModel(
 ): ViewModel() {
     val userId: Int = checkNotNull(savedStateHandle[FeedDestination.userIdArg])
 
-    private var checkedPost: Int? = null
+    private var checkedPost: Int? = null /*TODO FIX null causes like not be filled despite being liked*/
     fun checkLikedPostExistence(userId: Int, postId: Int): Int? {
         viewModelScope.launch {
             checkedPost = likedPostsRepository
@@ -32,17 +36,7 @@ class LikedPostsViewModel(
         return checkedPost
     }
 
-
-
-//    = likedPostsRepository
-//            .getLikedPostByIds(userId =userId, postId = postId)
-//            .stateIn(
-//                scope = viewModelScope,
-//                started = SharingStarted.WhileSubscribed(TIMEOUT_MILLS),
-//                initialValue = null
-//            ).value
-
-    suspend fun updateLikedPost(likedPost: LikedPost) {
+    suspend fun updateLikedPost(likedPost: LikedPost) = runBlocking {
         Log.i("UPDATE_LIKE", likedPost.toString())
         if (checkLikedPostExistence(likedPost.userId, likedPost.postId) == null) {
             likedPostsRepository.insertLikedPost(likedPost)

@@ -29,11 +29,9 @@ fun FeedScreen(
     navigateToPostCreation: (Int) -> Unit,
     navigateToFavouritePosts: () -> Unit,
     navigateToProfile: (Int) -> Unit,
-    feedViewModel: FeedViewModel = viewModel(factory = ForumViewModelProvider.Factory),
-    likedPostsViewModel: LikedPostsViewModel = viewModel(factory = ForumViewModelProvider.Factory)
+    feedViewModel: FeedViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val postsUiState by feedViewModel.postsUiState.collectAsState()
-    val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
         topBar = {
@@ -57,20 +55,7 @@ fun FeedScreen(
         modifier = Modifier
     ) { innerPadding ->
         PostsDisplayBody(
-            checkLikedPostExistence = {
-                likedPostsViewModel.checkLikedPostExistence(feedViewModel.userId, it)
-            },
-            onLikeButtonClicked = { id: Int, postId: Int ->
-                coroutineScope.launch {
-                    likedPostsViewModel
-                        .updateLikedPost(LikedPost(
-                            id = id,
-                            userId = feedViewModel.userId,
-                            postId = postId
-                        )
-                    )
-                }
-            },
+            userId = feedViewModel.userId,
             onCommentsButtonClick = { onCommentsButtonClick(feedViewModel.userId, it) },
             postsList = postsUiState.postsList,
             contentPadding = innerPadding,

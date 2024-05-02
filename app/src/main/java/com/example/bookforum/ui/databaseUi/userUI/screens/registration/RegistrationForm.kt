@@ -11,6 +11,7 @@ import com.example.bookforum.R
 import com.example.bookforum.ui.databaseUi.userUI.states.UserDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.UserValidationDetails
 import com.example.bookforum.ui.screenParts.FormInputWithMessage
+import com.example.bookforum.utils.hashPassword
 
 @Composable
 internal fun RegistrationForm(

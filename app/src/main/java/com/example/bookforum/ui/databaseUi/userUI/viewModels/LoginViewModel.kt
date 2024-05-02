@@ -11,6 +11,7 @@ import com.example.bookforum.ui.databaseUi.userUI.states.UserLogInDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.UserLogInUiState
 import com.example.bookforum.ui.databaseUi.userUI.states.UserUiState
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.utils.getUserUiStateByUsername
+import com.example.bookforum.utils.hashPassword
 import kotlinx.coroutines.flow.StateFlow
 
 class LoginViewModel(usersRepository: UsersRepository) : ViewModel() {
@@ -33,7 +34,7 @@ class LoginViewModel(usersRepository: UsersRepository) : ViewModel() {
 
     fun checkPassword(correctPassword: String): Boolean {
         Log.i("LOG_IN", correctPassword)
-        return correctPassword == userLogInUiState.userDetails.password
+        return correctPassword == hashPassword(userLogInUiState.userDetails.password)
     }
 
     private fun validateInput(userLogInDetails: UserLogInDetails = userLogInUiState.userDetails): Boolean {

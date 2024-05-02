@@ -7,10 +7,9 @@ import com.example.bookforum.data.entities.Post
 import com.example.bookforum.data.repositories.LikedPostsRepository
 import com.example.bookforum.data.repositories.PostsRepository
 import com.example.bookforum.ui.databaseUi.likedPostsUI.screens.LikedPostsPageDestination
-import com.example.bookforum.utils.TIMEOUT_MILLS
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 class LikedPostsListViewModel(
     savedStateHandle: SavedStateHandle,
@@ -22,24 +21,22 @@ class LikedPostsListViewModel(
     var postsListUiState: List<Post>? = emptyList()
 
     init {
-        val idsList = likedPostsRepository
-            .getLikedPosts(userId)
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(TIMEOUT_MILLS),
-                initialValue = listOf()
-            ).value
-        if (idsList != null) {
-            postsListUiState = idsList.map { getPostById(it).value!! }
+        viewModelScope.launch {
+            val idsList = likedPostsRepository
+                .getLikedPosts(userId)
+                .stateIn(
+                    scope = viewModelScope
+                ).value
+            if (idsList != null) {
+                postsListUiState = idsList.map { getPostById(it).value!! }
+            }
         }
     }
 
 
-    private fun getPostById(id: Int): StateFlow<Post?> = postsRepository
+    private suspend fun getPostById(id: Int): StateFlow<Post?> = postsRepository
         .getPost(id)
         .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(TIMEOUT_MILLS),
-            initialValue = null
+            scope = viewModelScope
         )
 }

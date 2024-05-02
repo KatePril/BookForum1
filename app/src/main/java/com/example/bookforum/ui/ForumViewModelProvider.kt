@@ -11,6 +11,7 @@ import com.example.bookforum.ui.databaseUi.commentUi.viewModels.CommentViewModel
 import com.example.bookforum.ui.databaseUi.postsUI.viewModels.PostCreationViewModel
 import com.example.bookforum.ui.databaseUi.postsUI.viewModels.FeedViewModel
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.LoginViewModel
+import com.example.bookforum.ui.databaseUi.userUI.viewModels.PasswordChangeViewModel
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.ProfileViewModel
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.RegistrationViewModel
 
@@ -40,6 +41,12 @@ object ForumViewModelProvider {
             )
         }
         initializer {
+            PasswordChangeViewModel(
+                savedStateHandle = this.createSavedStateHandle(),
+                usersRepository = forumApplication().container.usersRepository
+            )
+        }
+        initializer {
             PostCreationViewModel(
                 savedStateHandle = this.createSavedStateHandle(),
                 postsRepository = forumApplication().container.postsRepository,
@@ -59,6 +66,7 @@ object ForumViewModelProvider {
                 commentsRepository = forumApplication().container.commentsRepository
             )
         }
+
     }
 }
 

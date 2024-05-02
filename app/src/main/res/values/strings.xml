@@ -36,4 +36,8 @@
     <string name="comment_input">Write your comment here</string>
     <string name="invalid_comment">Comment field can\'t be empty</string>
     <string name="no_comments_msg">There is no comments yet. Be the first to leave a comment</string>
+    <string name="change_password_action">Change password</string>
+    <string name="incorrect_old_password_msg">Old password is incorrect</string>
+    <string name="old_password_input">Enter old password</string>
+    <string name="new_password_input">Enter new password</string>
 </resources>

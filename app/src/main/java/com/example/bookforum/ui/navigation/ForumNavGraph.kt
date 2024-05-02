@@ -19,6 +19,8 @@ import com.example.bookforum.ui.databaseUi.userUI.screens.profile.ProfileDestina
 import com.example.bookforum.ui.databaseUi.userUI.screens.profile.ProfileScreen
 import com.example.bookforum.ui.databaseUi.userUI.screens.logIn.LogInDestination
 import com.example.bookforum.ui.databaseUi.userUI.screens.logIn.LoginScreen
+import com.example.bookforum.ui.databaseUi.userUI.screens.passwordChange.PasswordChangeDestination
+import com.example.bookforum.ui.databaseUi.userUI.screens.passwordChange.PasswordChangeScreen
 import com.example.bookforum.ui.databaseUi.userUI.screens.registration.RegistrationDestination
 import com.example.bookforum.ui.databaseUi.userUI.screens.registration.RegistrationScreen
 
@@ -56,7 +58,18 @@ fun ForumNavHost(
         ) {
             ProfileScreen(
                 navigateBack = { navController.navigate("${FeedDestination.route}/$it") },
+                onChangePasswordClick = { navController.navigate("${PasswordChangeDestination.route}/$it")},
                 navigateBackOnDelete = { navController.navigate(LogInDestination.route) }
+            )
+        }
+        composable(
+            route = PasswordChangeDestination.routeWithArgs,
+            arguments = listOf(navArgument(PasswordChangeDestination.userIdArg){
+                type = NavType.IntType
+            })
+        ) {
+            PasswordChangeScreen(
+                navigateBack = { navController.navigate("${ProfileDestination.route}/$it") }
             )
         }
         composable(

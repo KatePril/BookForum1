@@ -39,13 +39,5 @@ internal fun ProfileForm(
             color = MaterialTheme.colorScheme.primaryContainer,
             isValid = userValidationDetails.isEmailValid
         )
-        FormInputWithMessage(
-            value = userDetails.password,
-            onValueChange = { onInputValueChange(userDetails.copy(password = it)) },
-            labelText = R.string.password_input_label,
-            msgText = R.string.invalid_password,
-            color = MaterialTheme.colorScheme.primaryContainer,
-            isValid = userValidationDetails.isPasswordValid
-        )
     }
 }

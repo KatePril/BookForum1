@@ -1,6 +1,5 @@
 package com.example.bookforum.ui.databaseUi.userUI.viewModels
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue

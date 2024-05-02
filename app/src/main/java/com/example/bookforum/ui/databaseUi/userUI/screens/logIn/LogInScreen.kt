@@ -26,7 +26,6 @@ fun LoginScreen(
 ) {
     LogInBody(
         viewModel = viewModel,
-        onValueChange = viewModel::updateUiState,
         onCreateAccountClick = navigateToRegistration,
         navigateToPostsDisplayPage = navigateToPostsDisplayPage
     )
@@ -35,7 +34,6 @@ fun LoginScreen(
 @Composable
 private fun LogInBody(
     viewModel: LoginViewModel,
-    onValueChange: (UserLogInDetails) -> Unit,
     onCreateAccountClick: () -> Unit,
     navigateToPostsDisplayPage: (Int) -> Unit,
     modifier: Modifier = Modifier
@@ -44,9 +42,9 @@ private fun LogInBody(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier.padding(16.dp)
     ) {
-        UserLogInForm(
+        LogInForm(
             userLogInDetails = viewModel.userLogInUiState.userDetails,
-            onValueChange = onValueChange
+            onValueChange = viewModel::updateUiState
         )
         LogInButton(
             navigateToPostsDisplayPage = navigateToPostsDisplayPage,
@@ -65,7 +63,7 @@ private fun LogInBody(
 
 
 @Composable
-private fun UserLogInForm(
+private fun LogInForm(
     userLogInDetails: UserLogInDetails,
     onValueChange: (UserLogInDetails) -> Unit,
     modifier: Modifier = Modifier
@@ -76,14 +74,14 @@ private fun UserLogInForm(
     ) {
         FormInput(
             value = userLogInDetails.username,
-            onValueChange = {username: String -> onValueChange(userLogInDetails.copy(username = username))},
+            onValueChange = { onValueChange(userLogInDetails.copy(username = it))},
             labelText = R.string.username_input_label,
             color = MaterialTheme.colorScheme.primaryContainer,
             modifier = modifier
         )
         FormInput(
             value = userLogInDetails.password,
-            onValueChange = {password: String -> onValueChange(userLogInDetails.copy(password = password))},
+            onValueChange = { onValueChange(userLogInDetails.copy(password = it))},
             labelText = R.string.password_input_label,
             color = MaterialTheme.colorScheme.primaryContainer,
             modifier = modifier

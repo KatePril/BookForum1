@@ -1,6 +1,10 @@
 package com.example.bookforum.ui.screenParts
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material3.Icon
@@ -29,8 +33,9 @@ fun ExpandButton(
 fun ButtonWithIcon(
     imageVector: ImageVector,
     onClick: () -> Unit,
-    tint: Color = MaterialTheme.colorScheme.secondary,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    tint: Color = MaterialTheme.colorScheme.secondary
+
 ) {
     IconButton(
         onClick = onClick,
@@ -40,6 +45,22 @@ fun ButtonWithIcon(
             imageVector = imageVector,
             contentDescription = null,
             tint = tint
+        )
+    }
+}
+
+@Composable
+fun BackButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        horizontalArrangement = Arrangement.Start,
+        modifier = modifier.fillMaxWidth()
+    ) {
+        ButtonWithIcon(
+            imageVector = Icons.Filled.ArrowBack,
+            onClick = onClick
         )
     }
 }

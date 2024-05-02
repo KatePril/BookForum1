@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,12 +22,14 @@ import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.userUI.states.UserDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.UserRegistrationUIState
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.ProfileViewModel
+import com.example.bookforum.ui.screenParts.BackButton
 import com.example.bookforum.ui.screenParts.ButtonWithIcon
 import kotlinx.coroutines.launch
 
 @Composable
 fun ProfileScreen(
     navigateBack: (Int) -> Unit,
+    onChangePasswordClick: (Int) -> Unit,
     navigateBackOnDelete: () -> Unit,
     viewModel: ProfileViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
@@ -35,6 +38,7 @@ fun ProfileScreen(
     ProfileBody(
         userUiState = viewModel.registrationUIState,
         navigateBack = navigateBack,
+        onChangePasswordClick = onChangePasswordClick,
         onUpdateClick = {
             coroutineScope.launch {
                 viewModel.updateUser()
@@ -54,6 +58,7 @@ fun ProfileScreen(
 private fun ProfileBody(
     userUiState: UserRegistrationUIState,
     navigateBack: (Int) -> Unit,
+    onChangePasswordClick: (Int) -> Unit,
     onUpdateClick: () -> Unit,
     onDeleteClick: () -> Unit,
     onInputValueChange: (UserDetails) -> Unit,
@@ -79,24 +84,19 @@ private fun ProfileBody(
         ) {
             Text(stringResource(R.string.update_profile_action))
         }
+        Button(
+            onClick = { onChangePasswordClick(userUiState.userDetails.id) },
+            shape = MaterialTheme.shapes.small,
+            modifier = modifier.fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = MaterialTheme.colorScheme.secondary
+            )
+        ) {
+            Text(stringResource(R.string.change_password_action))
+        }
         DeleteButton(
             onDeleteClick = onDeleteClick
         )
     }
 }
 
-@Composable
-private fun BackButton(
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    Row(
-        horizontalArrangement = Arrangement.Start,
-        modifier = modifier.fillMaxWidth()
-    ) {
-        ButtonWithIcon(
-            imageVector = Icons.Filled.ArrowBack,
-            onClick = onClick
-        )
-    }
-}

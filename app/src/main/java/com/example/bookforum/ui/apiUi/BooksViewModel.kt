@@ -11,7 +11,7 @@ import com.example.bookforum.network.BooksApi
 import com.example.bookforum.ui.apiUi.screens.ApiSearchDestination
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.utils.getUserUiStateById
 import com.example.bookforum.utils.API_HOST
-import com.example.bookforum.utils.SecretKeys
+import com.example.bookforum.utils.XRapidAPIKey
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -30,7 +30,7 @@ class BooksViewModel(
         uiState = ApiUiState.Loading
         viewModelScope.launch {
             uiState = try {
-                val response = BooksApi.retrofitService.getBooks(query, SecretKeys.XRapidAPIKey, API_HOST)
+                val response = BooksApi.retrofitService.getBooks(query, XRapidAPIKey, API_HOST)
                 val body = response.body()?.results
                 ApiUiState.Success(body)
             } catch (e: IOException) {

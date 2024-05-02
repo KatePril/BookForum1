@@ -9,6 +9,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -34,9 +35,7 @@ internal fun PostItem(
     var expanded by remember { mutableStateOf(false) }
     val coroutineScope = rememberCoroutineScope()
     likedPostsViewModel.checkLikedPostExistence(userId, post.id)
-    var liked by remember {
-        mutableStateOf(likedPostsViewModel.checkedPostLiveData.value)
-    }
+    val liked by likedPostsViewModel.checkedPostFlow.collectAsState()
     Log.i("LIKED", liked.toString())
     Card(
         modifier = modifier.fillMaxWidth(),
@@ -66,10 +65,10 @@ internal fun PostItem(
                                     postId = post.id
                                 )
                             )
+//                            likedPostsViewModel.checkLikedPostExistence(userId, post.id)
+//                            liked = likedPostsViewModel.checkedPostLiveData.value
+                            Log.i("LIKED_UPDATED", liked.toString())
                         }
-                        likedPostsViewModel.checkLikedPostExistence(userId, post.id)
-                        liked = likedPostsViewModel.checkedPostLiveData.value
-                        Log.i("LIKED_UPDATED", liked.toString())
                     },
                     onCommentsButtonClick = onCommentsButtonClick,
                     onExpandButtonClick = { expanded = !expanded },

@@ -23,7 +23,7 @@ fun FeedScreen(
     quitAccount: () -> Unit,
     navigateToGlobalPage: (Int) -> Unit,
     navigateToPostCreation: (Int) -> Unit,
-    navigateToFavouritePosts: () -> Unit,
+    navigateToFavouritePosts: (Int) -> Unit,
     navigateToProfile: (Int) -> Unit,
     feedViewModel: FeedViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
@@ -34,7 +34,7 @@ fun FeedScreen(
             ForumTopAppBar(
                 quitAccount = quitAccount,
                 navigateToGlobalPage = { navigateToGlobalPage(feedViewModel.userId) },
-                navigateToFavouritePosts = navigateToFavouritePosts,
+                navigateToFavouritePosts = { navigateToFavouritePosts(feedViewModel.userId) },
                 navigateToProfile = { navigateToProfile(feedViewModel.userId) }
             )
         },

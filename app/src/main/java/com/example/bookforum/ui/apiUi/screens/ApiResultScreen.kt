@@ -43,19 +43,18 @@ import com.example.compose.BookForumTheme
 fun ApiResultScreen(
     quitAccount: () -> Unit,
     navigateToGlobalPage: (Int) -> Unit,
-    navigateToFavouritePosts: () -> Unit,
+    navigateToFavouritePosts: (Int) -> Unit,
     navigateToProfile: (Int) -> Unit,
     viewModel: BooksViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
-    val userUiState = viewModel.getUserUiState.collectAsState()
 
     Scaffold(
         topBar = {
             ForumTopAppBar(
                 quitAccount = quitAccount,
-                navigateToGlobalPage = { navigateToGlobalPage(userUiState.value.user.id) },
-                navigateToFavouritePosts = navigateToFavouritePosts,
-                navigateToProfile = { navigateToProfile(userUiState.value.user.id) }
+                navigateToGlobalPage = { navigateToGlobalPage(viewModel.userId) },
+                navigateToFavouritePosts = { navigateToFavouritePosts(viewModel.userId) },
+                navigateToProfile = { navigateToProfile(viewModel.userId) }
             )
         }
     ) { innerPadding ->

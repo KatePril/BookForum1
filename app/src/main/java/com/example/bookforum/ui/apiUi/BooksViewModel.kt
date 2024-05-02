@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.bookforum.data.repositories.UsersRepository
 import com.example.bookforum.network.BooksApi
 import com.example.bookforum.ui.apiUi.screens.ApiSearchDestination
+import com.example.bookforum.ui.databaseUi.likedPostsUI.screens.LikedPostsPageDestination
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.utils.getUserUiStateById
 import com.example.bookforum.utils.API_HOST
 import com.example.bookforum.utils.SecretKeys
@@ -20,9 +21,7 @@ class BooksViewModel(
     savedStateHandle: SavedStateHandle,
     private val usersRepository: UsersRepository
 ) : ViewModel() {
-    private val userId: Int = checkNotNull(savedStateHandle[ApiSearchDestination.userIdArg])
-
-    val getUserUiState = getUserUiStateById(userId, usersRepository, viewModelScope)
+    val userId: Int = checkNotNull(savedStateHandle[LikedPostsPageDestination.userIdArg])
     var uiState: ApiUiState by mutableStateOf(ApiUiState.NotEntered)
         private set
 

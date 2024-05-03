@@ -21,7 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.bookforum.R
-import com.example.compose.BookForumTheme
+import com.example.bookforum.ui.theme.BookForumTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -8,9 +8,4 @@ import com.example.bookforum.ui.navigation.ForumNavHost
 @Composable
 fun BookForumApp(navController: NavHostController = rememberNavController()) {
     ForumNavHost(navController = navController)
-//    RegistrationScreen()
-//    LoginScreen()
-//    PostCreationScreen()
-//    PostsDisplayScreen()
-//    ApiResultScreen()
 }

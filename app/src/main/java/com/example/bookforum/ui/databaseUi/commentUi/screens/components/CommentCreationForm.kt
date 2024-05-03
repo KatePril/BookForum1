@@ -19,7 +19,7 @@ import com.example.bookforum.R
 import com.example.bookforum.ui.databaseUi.commentUi.states.CommentCreationUiState
 import com.example.bookforum.ui.databaseUi.commentUi.states.CommentDetails
 import com.example.bookforum.ui.screenParts.FormInputWithMessage
-import com.example.compose.BookForumTheme
+import com.example.bookforum.ui.theme.BookForumTheme
 
 @Composable
 internal fun CommentCreationForm(

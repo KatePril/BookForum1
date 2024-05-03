@@ -17,7 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.Comment
 import com.example.bookforum.data.entities.User
-import com.example.compose.BookForumTheme
+import com.example.bookforum.ui.theme.BookForumTheme
 
 @Composable
 internal fun CommentCard(

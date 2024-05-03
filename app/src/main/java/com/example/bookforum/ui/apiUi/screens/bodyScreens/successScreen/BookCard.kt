@@ -29,7 +29,7 @@ import coil.request.ImageRequest
 import com.example.bookforum.R
 import com.example.bookforum.network.apiObjects.Book
 import com.example.bookforum.ui.screenParts.ExpandButton
-import com.example.compose.BookForumTheme
+import com.example.bookforum.ui.theme.BookForumTheme
 
 @Composable
 internal fun BookCard(

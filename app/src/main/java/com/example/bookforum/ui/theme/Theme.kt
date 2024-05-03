@@ -1,4 +1,4 @@
-package com.example.compose
+package com.example.bookforum.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -16,8 +16,6 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
-import com.example.bookforum.ui.theme.Shapes
-import com.example.bookforum.ui.theme.Typography
 
 
 private val LightColors = lightColorScheme(
@@ -84,23 +82,6 @@ private val DarkColors = darkColorScheme(
     outlineVariant = md_theme_dark_outlineVariant,
     scrim = md_theme_dark_scrim,
 )
-
-//@Composable
-//fun BookForumTheme(
-//  useDarkTheme: Boolean = isSystemInDarkTheme(),
-//  content: @Composable() () -> Unit
-//) {
-//  val colors = if (!useDarkTheme) {
-//    LightColors
-//  } else {
-//    DarkColors
-//  }
-//
-//  MaterialTheme(
-//    colorScheme = colors,
-//    content = content
-//  )
-//}
 
 @Composable
 fun BookForumTheme(

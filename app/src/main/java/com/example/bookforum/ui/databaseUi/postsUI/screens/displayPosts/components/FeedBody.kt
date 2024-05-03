@@ -18,7 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.Post
-import com.example.compose.BookForumTheme
+import com.example.bookforum.ui.theme.BookForumTheme
 
 @Composable
 internal fun PostsDisplayBody(

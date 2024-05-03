@@ -65,8 +65,6 @@ internal fun PostItem(
                                     postId = post.id
                                 )
                             )
-//                            likedPostsViewModel.checkLikedPostExistence(userId, post.id)
-//                            liked = likedPostsViewModel.checkedPostLiveData.value
                             Log.i("LIKED_UPDATED", liked.toString())
                         }
                     },

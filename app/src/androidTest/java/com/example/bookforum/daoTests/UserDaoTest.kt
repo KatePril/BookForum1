@@ -94,15 +94,6 @@ class UserDaoTest {
 
     @Test
     @Throws(Exception::class)
-    fun daoDeleteUserById_deletesUserByIdFromDB() = runBlocking {
-        addTwoUsersToDb()
-        userDao.deleteUserById(1)
-        val allUsers = userDao.getAllUsers().first()
-        assertEquals(allUsers[0], user2)
-    }
-
-    @Test
-    @Throws(Exception::class)
     fun daoUpdate_updatesUserInDB() = runBlocking {
         addOneUserToDb()
         val userUpdated = user1.copy(username = "harry")

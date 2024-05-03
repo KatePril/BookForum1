@@ -31,8 +31,4 @@ class RegistrationViewModel(
             }
         }
     }
-
-    suspend fun deleteUserById(id: Int) {
-        usersRepository.deleteUserById(id)
-    }
 }

@@ -21,8 +21,7 @@ object ForumViewModelProvider {
     val Factory = viewModelFactory {
         initializer {
             BooksViewModel(
-                savedStateHandle = this.createSavedStateHandle(),
-                usersRepository = forumApplication().container.usersRepository
+                savedStateHandle = this.createSavedStateHandle()
             )
         }
         initializer {

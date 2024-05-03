@@ -6,20 +6,16 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.bookforum.data.repositories.UsersRepository
 import com.example.bookforum.network.BooksApi
-import com.example.bookforum.ui.apiUi.screens.ApiSearchDestination
 import com.example.bookforum.ui.databaseUi.likedPostsUI.screens.LikedPostsPageDestination
-import com.example.bookforum.ui.databaseUi.userUI.viewModels.utils.getUserUiStateById
 import com.example.bookforum.utils.API_HOST
-import com.example.bookforum.utils.SecretKeys
+import com.example.bookforum.utils.XRapidAPIKey
 import kotlinx.coroutines.launch
 import java.io.IOException
 
 
 class BooksViewModel(
-    savedStateHandle: SavedStateHandle,
-    private val usersRepository: UsersRepository
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     val userId: Int = checkNotNull(savedStateHandle[LikedPostsPageDestination.userIdArg])
     var uiState: ApiUiState by mutableStateOf(ApiUiState.NotEntered)
@@ -29,7 +25,7 @@ class BooksViewModel(
         uiState = ApiUiState.Loading
         viewModelScope.launch {
             uiState = try {
-                val response = BooksApi.retrofitService.getBooks(query, SecretKeys.XRapidAPIKey, API_HOST)
+                val response = BooksApi.retrofitService.getBooks(query, XRapidAPIKey, API_HOST)
                 val body = response.body()?.results
                 ApiUiState.Success(body)
             } catch (e: IOException) {

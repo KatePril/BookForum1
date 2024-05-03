@@ -12,8 +12,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import com.example.bookforum.R
 import com.example.bookforum.data.entities.Comment
 import com.example.bookforum.data.entities.User
 import com.example.compose.BookForumTheme
@@ -26,10 +27,12 @@ internal fun CommentCard(
 ) {
     Card(
         modifier = modifier.fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = dimensionResource(R.dimen.default_elevation)
+        )
     ) {
         Column(
-            modifier = modifier.padding(16.dp)
+            modifier = modifier.padding(dimensionResource(R.dimen.padding_large))
         ) {
             CommentHeader(
                 username = user.username,
@@ -37,7 +40,10 @@ internal fun CommentCard(
                 modifier = modifier
             )
             Divider(
-                modifier = modifier.padding(top = 8.dp, bottom = 8.dp)
+                modifier = modifier.padding(
+                    top = dimensionResource(R.dimen.padding_medium),
+                    bottom = dimensionResource(R.dimen.padding_medium)
+                )
             )
             Text(
                 text = comment.text,

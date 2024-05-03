@@ -19,7 +19,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
+import com.example.bookforum.R
 import com.example.bookforum.ui.apiUi.BooksViewModel
 
 @Composable
@@ -28,7 +30,9 @@ internal fun ApiSearchTextField(
     modifier: Modifier = Modifier
 ) {
     var queryInput by remember { mutableStateOf("") }
-    Spacer(modifier = modifier.height(100.dp))
+    Spacer(
+        modifier = modifier.height(100.dp)
+    )
     Row (
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
@@ -44,8 +48,8 @@ internal fun ApiSearchTextField(
         Button(
             onClick = { booksViewModel.getBooks(queryInput) },
             shape = RoundedCornerShape(
-                topEnd = 16.dp,
-                bottomEnd = 16.dp
+                topEnd = dimensionResource(R.dimen.padding_large),
+                bottomEnd = dimensionResource(R.dimen.padding_large)
             ),
             modifier = modifier.height(55.dp)
         ) {

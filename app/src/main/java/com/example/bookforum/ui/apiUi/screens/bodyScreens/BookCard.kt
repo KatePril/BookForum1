@@ -21,9 +21,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.bookforum.R
@@ -41,13 +41,16 @@ internal fun BookCard(
         modifier = modifier
             .fillMaxWidth()
             .padding(
-                start = 16.dp,
-                top = 8.dp,
-                end = 16.dp,
-                bottom = 16.dp
+                start = dimensionResource(R.dimen.padding_large),
+                top = dimensionResource(R.dimen.padding_medium),
+                end = dimensionResource(R.dimen.padding_large),
+                bottom = dimensionResource(R.dimen.padding_large)
             ),
         colors = CardDefaults.cardColors(
             containerColor = if (expanded) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.tertiaryContainer
+        ),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = dimensionResource(R.dimen.default_elevation)
         )
     ) {
         Column(
@@ -60,7 +63,7 @@ internal fun BookCard(
                 )
         ) {
             Row (
-                modifier = modifier.padding(16.dp),
+                modifier = modifier.padding(dimensionResource(R.dimen.padding_large)),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 BookApiPhoto(imgLink = book.imgLink, modifier = modifier.weight(1f))
@@ -90,7 +93,7 @@ private fun BookApiPhoto(imgLink: String, modifier: Modifier = Modifier) {
         contentScale = ContentScale.Fit,
         error = painterResource(R.drawable.ic_broken_image),
         placeholder = painterResource(R.drawable.loading_img),
-        modifier = modifier.padding(end = 16.dp)
+        modifier = modifier.padding(end = dimensionResource(R.dimen.padding_large))
     )
 }
 
@@ -125,9 +128,9 @@ private fun BookApiDescription(
 ) {
     Box (
         modifier = modifier.padding(
-            start = 16.dp,
-            end = 16.dp,
-            bottom = 16.dp
+            start = dimensionResource(R.dimen.padding_large),
+            end = dimensionResource(R.dimen.padding_large),
+            bottom = dimensionResource(R.dimen.padding_large)
         )
     ) {
         Text(

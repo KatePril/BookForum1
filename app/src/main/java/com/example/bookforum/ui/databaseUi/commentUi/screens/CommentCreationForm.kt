@@ -13,8 +13,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.example.bookforum.R
 import com.example.bookforum.ui.databaseUi.commentUi.states.CommentCreationUiState
 import com.example.bookforum.ui.databaseUi.commentUi.states.CommentDetails
@@ -34,7 +34,7 @@ internal fun CommentCreationForm(
     ) {
         Column(
             modifier = modifier
-                .padding(end = 16.dp)
+                .padding(end = dimensionResource(R.dimen.padding_large))
                 .weight(2f)
         ) {
             FormInputWithMessage(

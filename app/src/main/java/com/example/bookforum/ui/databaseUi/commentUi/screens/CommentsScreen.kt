@@ -17,9 +17,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.Comment
@@ -67,7 +67,7 @@ fun CommentScreenBody(
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier.padding(16.dp),
+        modifier = modifier.padding(dimensionResource(R.dimen.padding_large)),
     ) {
         Row(
             horizontalArrangement = Arrangement.Start,
@@ -88,7 +88,7 @@ fun CommentScreenBody(
                 text = stringResource(R.string.no_comments_msg),
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.bodyMedium,
-                modifier = modifier.padding(top = 16.dp)
+                modifier = modifier.padding(top = dimensionResource(R.dimen.padding_large))
             )
         } else {
             CommentsList(
@@ -106,8 +106,8 @@ private fun CommentsList(
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-        modifier = modifier.padding(top = 16.dp)
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_large)),
+        modifier = modifier.padding(top = dimensionResource(R.dimen.padding_large))
     ) {
         items(commentsList) {comment ->
             /*TODO fix usernames display*/

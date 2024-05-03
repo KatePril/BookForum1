@@ -16,8 +16,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.bookforum.R
 import com.example.bookforum.data.entities.LikedPost
 import com.example.bookforum.data.entities.Post
 import com.example.bookforum.ui.ForumViewModelProvider
@@ -39,10 +41,12 @@ internal fun PostItem(
     Log.i("LIKED", liked.toString())
     Card(
         modifier = modifier.fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = dimensionResource(R.dimen.default_elevation)
+        )
     ) {
         Column(
-            modifier = modifier.padding(16.dp)
+            modifier = modifier.padding(dimensionResource(R.dimen.padding_large))
         ) {
             Row(
                 modifier = modifier
@@ -76,7 +80,7 @@ internal fun PostItem(
             if (expanded) {
                 Text(
                     text = post.review,
-                    modifier = modifier.padding(top = 16.dp)
+                    modifier = modifier.padding(top = dimensionResource(R.dimen.padding_large))
                 )
             }
         }

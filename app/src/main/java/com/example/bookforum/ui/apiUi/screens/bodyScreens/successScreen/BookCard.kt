@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.apiUi.screens.bodyScreens
+package com.example.bookforum.ui.apiUi.screens.bodyScreens.successScreen
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring

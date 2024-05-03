@@ -13,6 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.ui.ForumViewModelProvider
+import com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.components.PostsDisplayBody
 import com.example.bookforum.ui.databaseUi.postsUI.viewModels.FeedViewModel
 import com.example.bookforum.ui.screenParts.ForumTopAppBar
 

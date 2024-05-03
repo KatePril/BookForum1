@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.userUI.screens.profile
+package com.example.bookforum.ui.databaseUi.userUI.screens.profile.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

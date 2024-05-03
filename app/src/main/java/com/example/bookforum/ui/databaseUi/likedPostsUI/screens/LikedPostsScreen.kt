@@ -26,7 +26,7 @@ import com.example.bookforum.R
 import com.example.bookforum.data.entities.Post
 import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels.LikedPostsListViewModel
-import com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.PostItem
+import com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.components.PostItem
 import com.example.bookforum.ui.screenParts.ForumTopAppBar
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

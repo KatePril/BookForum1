@@ -9,6 +9,8 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.ui.ForumViewModelProvider
+import com.example.bookforum.ui.databaseUi.userUI.screens.passwordChange.components.ChangePasswordButton
+import com.example.bookforum.ui.databaseUi.userUI.screens.passwordChange.components.PasswordChangeForm
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.PasswordChangeViewModel
 import com.example.bookforum.ui.screenParts.BackButton
 

@@ -16,6 +16,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.ui.ForumViewModelProvider
+import com.example.bookforum.ui.databaseUi.userUI.screens.profile.components.DeleteButton
+import com.example.bookforum.ui.databaseUi.userUI.screens.profile.components.ProfileForm
 import com.example.bookforum.ui.databaseUi.userUI.states.UserDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.UserRegistrationUIState
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.ProfileViewModel

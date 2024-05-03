@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.commentUi.screens
+package com.example.bookforum.ui.databaseUi.commentUi.screens.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

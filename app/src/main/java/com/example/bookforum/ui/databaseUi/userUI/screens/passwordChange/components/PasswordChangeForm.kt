@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.userUI.screens.passwordChange
+package com.example.bookforum.ui.databaseUi.userUI.screens.passwordChange.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

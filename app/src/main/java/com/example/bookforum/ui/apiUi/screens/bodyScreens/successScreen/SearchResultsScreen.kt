@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.apiUi.screens.bodyScreens
+package com.example.bookforum.ui.apiUi.screens.bodyScreens.successScreen
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding

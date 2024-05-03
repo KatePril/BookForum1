@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.apiUi.screens.bodyScreens
+package com.example.bookforum.ui.apiUi.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

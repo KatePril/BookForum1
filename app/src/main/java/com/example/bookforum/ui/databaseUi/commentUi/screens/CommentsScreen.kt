@@ -24,6 +24,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.Comment
 import com.example.bookforum.ui.ForumViewModelProvider
+import com.example.bookforum.ui.databaseUi.commentUi.screens.components.CommentCard
+import com.example.bookforum.ui.databaseUi.commentUi.screens.components.CommentCreationForm
 import com.example.bookforum.ui.databaseUi.commentUi.states.CommentCreationUiState
 import com.example.bookforum.ui.databaseUi.commentUi.states.CommentDetails
 import com.example.bookforum.ui.databaseUi.commentUi.viewModels.CommentViewModel

@@ -7,6 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.text.input.ImeAction
 import com.example.bookforum.R
 import com.example.bookforum.ui.databaseUi.postsUI.states.PostDetails
 import com.example.bookforum.ui.screenParts.FormInput
@@ -26,6 +27,7 @@ internal fun PostCreationForm(
             onValueChange = {title: String -> onValueChange(postDetails.copy(title = title))},
             labelText = R.string.title_input,
             color = MaterialTheme.colorScheme.tertiaryContainer,
+            imeAction = ImeAction.Next,
             modifier = modifier
         )
         FormInput(
@@ -33,6 +35,7 @@ internal fun PostCreationForm(
             onValueChange = {author: String -> onValueChange(postDetails.copy(author = author))},
             labelText = R.string.authors_input,
             color = MaterialTheme.colorScheme.tertiaryContainer,
+            imeAction = ImeAction.Next,
             modifier = modifier
         )
         FormInput(
@@ -40,6 +43,7 @@ internal fun PostCreationForm(
             onValueChange = {published: String -> onValueChange(postDetails.copy(published = published))},
             labelText = R.string.published_input,
             color = MaterialTheme.colorScheme.tertiaryContainer,
+            imeAction = ImeAction.Next,
             modifier = modifier
         )
         FormInput(

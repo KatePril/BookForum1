@@ -7,6 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.text.input.ImeAction
 import com.example.bookforum.R
 import com.example.bookforum.ui.databaseUi.userUI.states.PasswordDetails
 import com.example.bookforum.ui.screenParts.FormInput
@@ -26,6 +27,7 @@ internal fun PasswordChangeForm(
             onValueChange = { onValueChange(passwordDetails.copy(oldPassword = it)) },
             labelText = R.string.old_password_input,
             color = MaterialTheme.colorScheme.primaryContainer,
+            imeAction = ImeAction.Next,
             modifier = modifier
         )
         FormInput(

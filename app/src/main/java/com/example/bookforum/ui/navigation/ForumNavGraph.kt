@@ -24,7 +24,7 @@ import com.example.bookforum.ui.databaseUi.userUI.screens.logIn.LoginScreen
 import com.example.bookforum.ui.navigation.destinations.PasswordChangeDestination
 import com.example.bookforum.ui.databaseUi.userUI.screens.passwordChange.PasswordChangeScreen
 import com.example.bookforum.ui.navigation.destinations.RegistrationDestination
-import com.example.bookforum.ui.databaseUi.userUI.screens.registration.components.RegistrationScreen
+import com.example.bookforum.ui.databaseUi.userUI.screens.registration.RegistrationScreen
 
 @Composable
 fun ForumNavHost(

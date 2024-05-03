@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.ui.ForumViewModelProvider
@@ -77,6 +78,7 @@ private fun LogInForm(
             onValueChange = { onValueChange(userLogInDetails.copy(username = it))},
             labelText = R.string.username_input_label,
             color = MaterialTheme.colorScheme.primaryContainer,
+            imeAction = ImeAction.Next,
             modifier = modifier
         )
         FormInput(

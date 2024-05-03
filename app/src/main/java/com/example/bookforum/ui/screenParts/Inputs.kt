@@ -3,6 +3,7 @@ package com.example.bookforum.ui.screenParts
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -11,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -19,8 +21,9 @@ fun FormInput(
     onValueChange: (String) -> Unit,
     @StringRes labelText: Int,
     color: Color,
+    modifier: Modifier = Modifier,
+    imeAction: ImeAction = ImeAction.Done,
     singleLine: Boolean = true,
-    modifier: Modifier = Modifier
 ) {
     OutlinedTextField(
         value = value,
@@ -32,7 +35,10 @@ fun FormInput(
             disabledContainerColor = color,
         ),
         modifier = modifier.fillMaxWidth(),
-        singleLine = singleLine
+        singleLine = singleLine,
+        keyboardOptions = KeyboardOptions.Default.copy(
+            imeAction = imeAction
+        )
     )
 }
 
@@ -43,9 +49,10 @@ fun FormInputWithMessage(
     @StringRes labelText: Int,
     @StringRes msgText: Int,
     color: Color,
+    modifier: Modifier = Modifier,
     isValid: Boolean = true,
-    singleLine: Boolean = true,
-    modifier: Modifier = Modifier
+    imeAction: ImeAction = ImeAction.Done,
+    singleLine: Boolean = true
 ) {
     OutlinedTextField(
         value = value,
@@ -57,7 +64,10 @@ fun FormInputWithMessage(
             disabledContainerColor = color,
         ),
         modifier = modifier.fillMaxWidth(),
-        singleLine = singleLine
+        singleLine = singleLine,
+        keyboardOptions = KeyboardOptions.Default.copy(
+            imeAction = imeAction
+        )
     )
     if (!isValid) {
         Text(

@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.userUI.screens.registration
+package com.example.bookforum.ui.databaseUi.userUI.screens.registration.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -7,6 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.text.input.ImeAction
 import com.example.bookforum.R
 import com.example.bookforum.ui.databaseUi.userUI.states.UserDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.UserValidationDetails
@@ -29,7 +30,9 @@ internal fun RegistrationForm(
             labelText = R.string.username_input_label,
             msgText = R.string.invalid_username,
             color = MaterialTheme.colorScheme.tertiaryContainer,
-            isValid = userValidationDetails.isUsernameValid
+            isValid = userValidationDetails.isUsernameValid,
+            imeAction = ImeAction.Next,
+            modifier = modifier
         )
         FormInputWithMessage(
             value = userDetails.password,
@@ -37,7 +40,9 @@ internal fun RegistrationForm(
             labelText = R.string.password_input_label,
             msgText = R.string.invalid_password,
             color = MaterialTheme.colorScheme.tertiaryContainer,
-            isValid = userValidationDetails.isPasswordValid
+            isValid = userValidationDetails.isPasswordValid,
+            imeAction = ImeAction.Next,
+            modifier = modifier
         )
         FormInputWithMessage(
             value = userDetails.email,
@@ -45,7 +50,8 @@ internal fun RegistrationForm(
             labelText = R.string.email_input_label,
             msgText = R.string.invalid_email,
             color = MaterialTheme.colorScheme.tertiaryContainer,
-            isValid = userValidationDetails.isEmailValid
+            isValid = userValidationDetails.isEmailValid,
+            modifier = modifier
         )
     }
 }

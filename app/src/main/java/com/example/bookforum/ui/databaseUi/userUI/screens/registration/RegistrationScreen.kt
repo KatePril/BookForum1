@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.userUI.screens.registration.components
+package com.example.bookforum.ui.databaseUi.userUI.screens.registration
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,7 +15,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.ui.ForumViewModelProvider
-import com.example.bookforum.ui.databaseUi.userUI.screens.registration.RegistrationForm
+import com.example.bookforum.ui.databaseUi.userUI.screens.registration.components.RegistrationForm
+import com.example.bookforum.ui.databaseUi.userUI.screens.registration.components.SaveUserButton
 import com.example.bookforum.ui.databaseUi.userUI.states.UserDetails
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.RegistrationViewModel
 import kotlinx.coroutines.launch

@@ -7,7 +7,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.bookforum.network.BooksApi
-import com.example.bookforum.ui.databaseUi.likedPostsUI.screens.LikedPostsPageDestination
+import com.example.bookforum.ui.navigation.destinations.LikedPostsPageDestination
 import com.example.bookforum.utils.API_HOST
 import com.example.bookforum.utils.XRapidAPIKey
 import kotlinx.coroutines.launch

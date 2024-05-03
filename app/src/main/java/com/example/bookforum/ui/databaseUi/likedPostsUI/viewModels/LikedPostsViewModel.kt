@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.bookforum.data.entities.LikedPost
 import com.example.bookforum.data.repositories.LikedPostsRepository
-import com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.FeedDestination
+import com.example.bookforum.ui.navigation.destinations.FeedDestination
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

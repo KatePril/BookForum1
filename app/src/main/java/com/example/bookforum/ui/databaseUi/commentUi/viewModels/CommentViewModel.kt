@@ -11,14 +11,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.bookforum.data.entities.Comment
 import com.example.bookforum.data.repositories.CommentsRepository
 import com.example.bookforum.data.repositories.UsersRepository
-import com.example.bookforum.ui.databaseUi.commentUi.screens.CommentPageDestination
+import com.example.bookforum.ui.navigation.destinations.CommentPageDestination
 import com.example.bookforum.ui.databaseUi.commentUi.states.CommentCreationUiState
 import com.example.bookforum.ui.databaseUi.commentUi.states.CommentDetails
 import com.example.bookforum.ui.databaseUi.commentUi.states.toComment
 import com.example.bookforum.ui.databaseUi.postsUI.states.UserByIdUiState
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.utils.getUserUiStateById
-import com.example.bookforum.utils.TIMEOUT_MILLS
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.stateIn

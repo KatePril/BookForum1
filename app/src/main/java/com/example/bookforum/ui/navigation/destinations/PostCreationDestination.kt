@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.postsUI.screens.createPost
+package com.example.bookforum.ui.navigation.destinations
 
 import com.example.bookforum.ui.navigation.NavigationDestination
 

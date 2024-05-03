@@ -9,22 +9,21 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.bookforum.ui.apiUi.screens.ApiResultScreen
 import com.example.bookforum.ui.apiUi.screens.ApiSearchDestination
-import com.example.bookforum.ui.databaseUi.commentUi.screens.CommentPageDestination
+import com.example.bookforum.ui.navigation.destinations.CommentPageDestination
 import com.example.bookforum.ui.databaseUi.commentUi.screens.CommentsScreen
-import com.example.bookforum.ui.databaseUi.likedPostsUI.screens.LikedPostsPageDestination
+import com.example.bookforum.ui.navigation.destinations.LikedPostsPageDestination
 import com.example.bookforum.ui.databaseUi.likedPostsUI.screens.LikedPostsScreen
-import com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels.LikedPostsListViewModel
-import com.example.bookforum.ui.databaseUi.postsUI.screens.createPost.PostCreationDestination
+import com.example.bookforum.ui.navigation.destinations.PostCreationDestination
 import com.example.bookforum.ui.databaseUi.postsUI.screens.createPost.PostCreationScreen
-import com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.FeedDestination
+import com.example.bookforum.ui.navigation.destinations.FeedDestination
 import com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.FeedScreen
-import com.example.bookforum.ui.databaseUi.userUI.screens.profile.ProfileDestination
+import com.example.bookforum.ui.navigation.destinations.ProfileDestination
 import com.example.bookforum.ui.databaseUi.userUI.screens.profile.ProfileScreen
-import com.example.bookforum.ui.databaseUi.userUI.screens.logIn.LogInDestination
+import com.example.bookforum.ui.navigation.destinations.LogInDestination
 import com.example.bookforum.ui.databaseUi.userUI.screens.logIn.LoginScreen
-import com.example.bookforum.ui.databaseUi.userUI.screens.passwordChange.PasswordChangeDestination
+import com.example.bookforum.ui.navigation.destinations.PasswordChangeDestination
 import com.example.bookforum.ui.databaseUi.userUI.screens.passwordChange.PasswordChangeScreen
-import com.example.bookforum.ui.databaseUi.userUI.screens.registration.RegistrationDestination
+import com.example.bookforum.ui.navigation.destinations.RegistrationDestination
 import com.example.bookforum.ui.databaseUi.userUI.screens.registration.RegistrationScreen
 
 @Composable

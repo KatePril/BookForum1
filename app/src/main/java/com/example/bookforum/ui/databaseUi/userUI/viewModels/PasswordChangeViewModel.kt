@@ -1,6 +1,5 @@
 package com.example.bookforum.ui.databaseUi.userUI.viewModels
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -8,19 +7,11 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.bookforum.data.entities.User
-import com.example.bookforum.data.entities.toDetails
 import com.example.bookforum.data.repositories.UsersRepository
-import com.example.bookforum.ui.databaseUi.userUI.screens.profile.ProfileDestination
+import com.example.bookforum.ui.navigation.destinations.ProfileDestination
 import com.example.bookforum.ui.databaseUi.userUI.states.PasswordDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.PasswordUiState
-import com.example.bookforum.ui.databaseUi.userUI.states.UserRegistrationUIState
-import com.example.bookforum.ui.databaseUi.userUI.states.UserUiState
-import com.example.bookforum.ui.databaseUi.userUI.states.UserValidationDetails
-import com.example.bookforum.ui.databaseUi.userUI.viewModels.utils.getUserUiStateByUsername
 import com.example.bookforum.utils.hashPassword
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 

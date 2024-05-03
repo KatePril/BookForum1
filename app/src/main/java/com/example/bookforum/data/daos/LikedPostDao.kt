@@ -22,4 +22,7 @@ interface LikedPostDao {
 
     @Query("SELECT post_id from liked_posts WHERE user_id = :id")
     fun getLikedPosts(id: Int): Flow<List<Int>>
+
+    @Query("SELECT id from liked_posts WHERE user_id = :userId AND post_id = :postId")
+    fun getLikedPostByIds(userId: Int, postId: Int): Flow<Int?>
 }

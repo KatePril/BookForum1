@@ -8,6 +8,8 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.bookforum.ForumApplication
 import com.example.bookforum.ui.apiUi.BooksViewModel
 import com.example.bookforum.ui.databaseUi.commentUi.viewModels.CommentViewModel
+import com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels.LikedPostsListViewModel
+import com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels.LikedPostsViewModel
 import com.example.bookforum.ui.databaseUi.postsUI.viewModels.PostCreationViewModel
 import com.example.bookforum.ui.databaseUi.postsUI.viewModels.FeedViewModel
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.LoginViewModel
@@ -20,8 +22,7 @@ object ForumViewModelProvider {
     val Factory = viewModelFactory {
         initializer {
             BooksViewModel(
-                savedStateHandle = this.createSavedStateHandle(),
-                usersRepository = forumApplication().container.usersRepository
+                savedStateHandle = this.createSavedStateHandle()
             )
         }
         initializer {
@@ -56,6 +57,19 @@ object ForumViewModelProvider {
         initializer {
             FeedViewModel(
                 savedStateHandle = this.createSavedStateHandle(),
+                postsRepository = forumApplication().container.postsRepository
+            )
+        }
+        initializer {
+            LikedPostsViewModel(
+                savedStateHandle = this.createSavedStateHandle(),
+                likedPostsRepository = forumApplication().container.likedPostsRepository
+            )
+        }
+        initializer {
+            LikedPostsListViewModel(
+                savedStateHandle = this.createSavedStateHandle(),
+                likedPostsRepository = forumApplication().container.likedPostsRepository,
                 postsRepository = forumApplication().container.postsRepository
             )
         }

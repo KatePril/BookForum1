@@ -11,6 +11,9 @@ import com.example.bookforum.ui.apiUi.screens.ApiResultScreen
 import com.example.bookforum.ui.apiUi.screens.ApiSearchDestination
 import com.example.bookforum.ui.databaseUi.commentUi.screens.CommentPageDestination
 import com.example.bookforum.ui.databaseUi.commentUi.screens.CommentsScreen
+import com.example.bookforum.ui.databaseUi.likedPostsUI.screens.LikedPostsPageDestination
+import com.example.bookforum.ui.databaseUi.likedPostsUI.screens.LikedPostsScreen
+import com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels.LikedPostsListViewModel
 import com.example.bookforum.ui.databaseUi.postsUI.screens.createPost.PostCreationDestination
 import com.example.bookforum.ui.databaseUi.postsUI.screens.createPost.PostCreationScreen
 import com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.FeedDestination
@@ -89,7 +92,9 @@ fun ForumNavHost(
                 navigateToPostCreation = {
                     navController.navigate("${PostCreationDestination.route}/$it")
                 },
-                navigateToFavouritePosts = { /*TODO*/ },
+                navigateToFavouritePosts = {
+                    navController.navigate("${LikedPostsPageDestination.route}/$it")
+                },
                 navigateToProfile = { navController.navigate("${ProfileDestination.route}/$it") }
             )
         }
@@ -106,6 +111,29 @@ fun ForumNavHost(
             )
         }
         composable(
+            route = LikedPostsPageDestination.routeWithArgs,
+            arguments = listOf(navArgument(FeedDestination.userIdArg) {
+                type = NavType.IntType
+            })
+        ) {
+            LikedPostsScreen(
+                onCommentsButtonClick = { userId: Int, postId: Int ->
+                    navController.navigate("${CommentPageDestination.route}/$userId/$postId")
+                },
+                quitAccount = { navController.navigate(LogInDestination.route) },
+                navigateToGlobalPage = {
+                    navController.navigate("${ApiSearchDestination.route}/$it")
+                },
+                navigateToPostCreation = {
+                    navController.navigate("${PostCreationDestination.route}/$it")
+                },
+                navigateToFavouritePosts = {
+                    navController.navigate("${LikedPostsPageDestination.route}/$it")
+                },
+                navigateToProfile = { navController.navigate("${ProfileDestination.route}/$it") }
+            )
+        }
+        composable(
             route = ApiSearchDestination.routeWithArgs,
             arguments = listOf(navArgument(ApiSearchDestination.userIdArg) {
                 type = NavType.IntType
@@ -114,7 +142,9 @@ fun ForumNavHost(
             ApiResultScreen(
                 quitAccount = { navController.navigate(LogInDestination.route) },
                 navigateToGlobalPage = { navController.navigate("${FeedDestination.route}/$it") },
-                navigateToFavouritePosts = { /*TODO*/ },
+                navigateToFavouritePosts = {
+                    navController.navigate("${LikedPostsPageDestination.route}/$it")
+                },
                 navigateToProfile = { navController.navigate("${ProfileDestination.route}/$it") }
             )
         }

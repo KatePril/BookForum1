@@ -1,37 +1,42 @@
 package com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts
 
-import androidx.compose.foundation.layout.Arrangement
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Comment
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.bookforum.data.entities.LikedPost
 import com.example.bookforum.data.entities.Post
-import com.example.bookforum.ui.screenParts.ButtonWithIcon
-import com.example.bookforum.ui.screenParts.ExpandButton
+import com.example.bookforum.ui.ForumViewModelProvider
+import com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels.LikedPostsViewModel
+import kotlinx.coroutines.launch
 
 @Composable
 internal fun PostItem(
+    userId: Int,
     onCommentsButtonClick: () -> Unit,
     post: Post,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    likedPostsViewModel: LikedPostsViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     var expanded by remember { mutableStateOf(false) }
-    var liked by remember { mutableStateOf(false) }
+    val coroutineScope = rememberCoroutineScope()
+    likedPostsViewModel.checkLikedPostExistence(userId, post.id)
+    val liked by likedPostsViewModel.checkedPostFlow.collectAsState()
+    Log.i("LIKED", liked.toString())
     Card(
         modifier = modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
@@ -49,8 +54,20 @@ internal fun PostItem(
 
                 PostButtons(
                     expanded = expanded,
-                    liked = liked,
-                    onLikeButtonClick = { /*TODO*/ },
+                    liked = liked != null,
+                    onLikeButtonClick = {
+                        coroutineScope.launch {
+                            likedPostsViewModel
+                                .updateLikedPost(
+                                    LikedPost(
+                                    id = liked ?: 0,
+                                    userId = userId,
+                                    postId = post.id
+                                )
+                            )
+                            Log.i("LIKED_UPDATED", liked.toString())
+                        }
+                    },
                     onCommentsButtonClick = onCommentsButtonClick,
                     onExpandButtonClick = { expanded = !expanded },
                     modifier = modifier.weight(1f)
@@ -63,60 +80,6 @@ internal fun PostItem(
                 )
             }
         }
-    }
-}
-
-@Composable
-private fun PostButtons(
-    expanded: Boolean,
-    liked: Boolean,
-    onLikeButtonClick: () -> Unit,
-    onCommentsButtonClick: () -> Unit,
-    onExpandButtonClick: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    Row (
-        modifier = modifier,
-        horizontalArrangement = Arrangement.End
-    ) {
-        ButtonWithIcon(
-            imageVector = if (liked) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
-            onClick = onLikeButtonClick,
-            modifier = modifier
-        )
-        ButtonWithIcon(
-            imageVector = Icons.Filled.Comment,
-            onClick = onCommentsButtonClick,
-            modifier = modifier
-        )
-        ExpandButton(
-            expanded = expanded,
-            onClick = onExpandButtonClick,
-            modifier = modifier
-        )
-    }
-}
-
-@Composable
-fun PostInfo(
-    post: Post,
-    modifier: Modifier = Modifier
-) {
-    Column(
-        modifier = modifier
-    ) {
-        Text(
-            text = post.title,
-            style = MaterialTheme.typography.displayMedium
-        )
-        Text(
-            text = "By ${post.author}",
-            style = MaterialTheme.typography.bodyLarge
-        )
-        Text(
-            text = "Published: ${post.published}",
-            style = MaterialTheme.typography.bodyMedium
-        )
     }
 }
 

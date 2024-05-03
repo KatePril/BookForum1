@@ -28,5 +28,5 @@ data class LikedPost(
     @ColumnInfo(name = "user_id")
     val userId: Int,
     @ColumnInfo(name = "post_id")
-    val bookId: Int
+    val postId: Int
 )

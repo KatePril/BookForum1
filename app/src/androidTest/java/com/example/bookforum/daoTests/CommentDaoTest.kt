@@ -33,14 +33,16 @@ class CommentDaoTest {
         title = "Game of thrones",
         author = "Jorge R R Martin",
         published = "1997",
-        review = "An amazing book"
+        review = "An amazing book",
+        userId = 1
     )
     private var book2 = Post(
         id = 2,
         title = "Harry Potter and the Philosopher stone",
         author = "J K Rowling",
         published = "1996",
-        review = "The best book ever"
+        review = "The best book ever",
+        userId = 2
     )
 
     private var user1 = User(1, "ron", "1111", "ronaldwisley@gmail.com")
@@ -48,16 +50,18 @@ class CommentDaoTest {
 
     private suspend fun addOneCommentToDB() {
         forumDatabase.userDao().insert(user1)
+        forumDatabase.userDao().insert(user2)
         forumDatabase.bookDao().insert(book2)
         commentDao.insert(comment1)
     }
 
     private suspend fun addThreeCommentsToDb() {
         forumDatabase.userDao().insert(user1)
+        forumDatabase.userDao().insert(user2)
+
         forumDatabase.bookDao().insert(book2)
         commentDao.insert(comment1)
 
-        forumDatabase.userDao().insert(user2)
         forumDatabase.bookDao().insert(book1)
         commentDao.insert(comment2)
         commentDao.insert(comment3)

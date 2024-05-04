@@ -17,12 +17,14 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.LikedPost
 import com.example.bookforum.data.entities.Post
 import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels.LikedPostsViewModel
+import com.example.bookforum.ui.theme.BookForumTheme
 import kotlinx.coroutines.launch
 
 @Composable
@@ -101,8 +103,11 @@ internal fun PostItem(
 //                        "blending elements of fantasy, political intrigue, and human drama into " +
 //                        "a spellbinding tale that will leave readers eager for more." +
 //                        "Whether you're a fan of fantasy or simply enjoy a compelling story, " +
-//                        "this book is sure to captivate and enthrall."
-//            )
+//                        "this book is sure to captivate and enthrall.",
+//                userId = 0
+//            ),
+//            onCommentsButtonClick = {},
+//            userId = 0
 //        )
 //    }
 //}

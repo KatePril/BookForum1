@@ -27,7 +27,7 @@ class PostCreationViewModel(
     var postCreationUiState by mutableStateOf(PostCreationUiState())
     fun updateUiState(postDetails: PostDetails) {
         postCreationUiState = PostCreationUiState(
-            postDetails = postDetails,
+            postDetails = postDetails.copy(userId = userId),
             areInputsValid = validateInputs(postDetails)
         )
     }

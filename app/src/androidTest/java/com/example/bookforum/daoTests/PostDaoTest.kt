@@ -7,6 +7,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.bookforum.data.ForumDatabase
 import com.example.bookforum.data.daos.PostDao
 import com.example.bookforum.data.entities.Post
+import com.example.bookforum.data.entities.User
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -27,7 +28,8 @@ class PostDaoTest {
         title = "Game of thrones",
         author = "Jorge R R Martin",
         published = "1997",
-        review = "An amazing book"
+        review = "An amazing book",
+        userId = 1
     )
 
     private var book2 = Post(
@@ -35,14 +37,21 @@ class PostDaoTest {
         title = "Harry Potter and the Philosopher stone",
         author = "J K Rowling",
         published = "1996",
-        review = "The best book ever"
+        review = "The best book ever",
+        userId = 2
     )
 
+    private var user1 = User(1, "ron", "1111", "ronaldwisley@gmail.com")
+    private var user2 = User(2, "luna", "0000", "luuuuna@gmail.com")
+
     private suspend fun addOneBookToDB() {
+        forumDatabase.userDao().insert(user1)
         postDao.insert(book1)
     }
 
     private suspend fun addTwoBooksToDB() {
+        forumDatabase.userDao().insert(user1)
+        forumDatabase.userDao().insert(user2)
         postDao.insert(book1)
         postDao.insert(book2)
     }

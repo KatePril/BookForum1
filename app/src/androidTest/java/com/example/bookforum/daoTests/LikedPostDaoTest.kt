@@ -28,19 +28,21 @@ class LikedPostDaoTest {
     private var likedPost2 = LikedPost(2, 2, 1)
     private var likedPost3 = LikedPost(3, 2, 2)
 
-    private var book1 = Post(
+    private var post1 = Post(
         id = 1,
         title = "Game of thrones",
         author = "George R R Martin",
         published = "1997",
-        review = "An amazing book"
+        review = "An amazing book",
+        userId = 1
     )
-    private var book2 = Post(
+    private var post2 = Post(
         id = 2,
         title = "Harry Potter and the Philosopher stone",
         author = "J K Rowling",
         published = "1996",
-        review = "The best book ever"
+        review = "The best book ever",
+        userId = 2
     )
 
     private var user1 = User(1, "ron", "1111", "ronaldwisley@gmail.com")
@@ -48,15 +50,15 @@ class LikedPostDaoTest {
 
     private suspend fun addOneLikedPostToDb() {
         forumDatabase.userDao().insert(user1)
-        forumDatabase.bookDao().insert(book1)
+        forumDatabase.bookDao().insert(post1)
         likedPostDao.insert(likedPost1)
     }
 
     private suspend fun addThreeLikedPostsToDb() {
         forumDatabase.userDao().insert(user1)
         forumDatabase.userDao().insert(user2)
-        forumDatabase.bookDao().insert(book1)
-        forumDatabase.bookDao().insert(book2)
+        forumDatabase.bookDao().insert(post1)
+        forumDatabase.bookDao().insert(post2)
 
         likedPostDao.insert(likedPost1)
         likedPostDao.insert(likedPost2)

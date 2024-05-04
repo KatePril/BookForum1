@@ -7,7 +7,8 @@ data class PostDetails(
     val title: String = "",
     val author: String = "",
     val published: String = "",
-    val review: String = ""
+    val review: String = "",
+    val userId: Int = 0
 )
 
 fun PostDetails.toPost(): Post = Post(
@@ -15,5 +16,6 @@ fun PostDetails.toPost(): Post = Post(
     title = title,
     author = author,
     published = published,
-    review = review
+    review = review,
+    userId = userId
 )

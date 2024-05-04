@@ -9,6 +9,7 @@ data class Message(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val text: String,
+    val date: String,
     @ColumnInfo(name = "sender_id")
     val senderId: Int,
     @ColumnInfo(name = "receiver_id")

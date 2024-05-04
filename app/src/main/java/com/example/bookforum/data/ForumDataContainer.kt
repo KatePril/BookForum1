@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.bookforum.data.repositories.PostsRepository
 import com.example.bookforum.data.repositories.CommentsRepository
 import com.example.bookforum.data.repositories.LikedPostsRepository
+import com.example.bookforum.data.repositories.MessagesRepository
 import com.example.bookforum.data.repositories.UsersRepository
 
 class ForumDataContainer(private val context: Context): ForumContainer {
@@ -18,5 +19,8 @@ class ForumDataContainer(private val context: Context): ForumContainer {
     }
     override val likedPostsRepository: LikedPostsRepository by lazy {
         LikedPostsRepository(ForumDatabase.getDatabase(context).likedPostDao())
+    }
+    override val messagesRepository: MessagesRepository by  lazy {
+        MessagesRepository(ForumDatabase.getDatabase(context).messageDao())
     }
 }

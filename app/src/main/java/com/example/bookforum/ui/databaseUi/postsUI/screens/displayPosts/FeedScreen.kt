@@ -21,6 +21,7 @@ import com.example.bookforum.ui.screenParts.ForumTopAppBar
 @Composable
 fun FeedScreen(
     onCommentsButtonClick: (Int, Int) -> Unit,
+    onEditButtonClick: (Int, Int) -> Unit,
     quitAccount: () -> Unit,
     navigateToGlobalPage: (Int) -> Unit,
     navigateToPostCreation: (Int) -> Unit,
@@ -54,6 +55,7 @@ fun FeedScreen(
         PostsDisplayBody(
             userId = feedViewModel.userId,
             onCommentsButtonClick = { onCommentsButtonClick(feedViewModel.userId, it) },
+            onEditButtonClick = { onEditButtonClick(feedViewModel.userId, it) },
             postsList = postsUiState.postsList,
             contentPadding = innerPadding,
             modifier = Modifier.fillMaxSize()

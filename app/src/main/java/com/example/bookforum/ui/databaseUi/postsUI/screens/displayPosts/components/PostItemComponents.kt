@@ -1,15 +1,19 @@
 package com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Comment
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.bookforum.data.entities.Post
 import com.example.bookforum.ui.screenParts.ButtonWithIcon
@@ -19,13 +23,15 @@ import com.example.bookforum.ui.screenParts.ExpandButton
 internal fun PostButtons(
     expanded: Boolean,
     liked: Boolean,
+    isAuthor: Boolean,
     onLikeButtonClick: () -> Unit,
     onCommentsButtonClick: () -> Unit,
     onExpandButtonClick: () -> Unit,
+    onEditButtonClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row (
-        modifier = modifier,
+        modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.End
     ) {
         ButtonWithIcon(
@@ -43,6 +49,13 @@ internal fun PostButtons(
             onClick = onExpandButtonClick,
             modifier = modifier
         )
+        if (isAuthor) {
+            ButtonWithIcon(
+                imageVector = Icons.Filled.Edit,
+                onClick = onEditButtonClick,
+                modifier = modifier
+            )
+        }
     }
 }
 

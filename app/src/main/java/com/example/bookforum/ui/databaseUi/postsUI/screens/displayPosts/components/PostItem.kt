@@ -17,20 +17,19 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.LikedPost
 import com.example.bookforum.data.entities.Post
 import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels.LikedPostsViewModel
-import com.example.bookforum.ui.theme.BookForumTheme
 import kotlinx.coroutines.launch
 
 @Composable
 internal fun PostItem(
     userId: Int,
     onCommentsButtonClick: () -> Unit,
+    onEditButtonClick: () -> Unit,
     post: Post,
     modifier: Modifier = Modifier,
     likedPostsViewModel: LikedPostsViewModel = viewModel(factory = ForumViewModelProvider.Factory)
@@ -60,6 +59,7 @@ internal fun PostItem(
                 PostButtons(
                     expanded = expanded,
                     liked = liked != null,
+                    isAuthor = userId == post.userId,
                     onLikeButtonClick = {
                         coroutineScope.launch {
                             likedPostsViewModel
@@ -74,6 +74,7 @@ internal fun PostItem(
                         }
                     },
                     onCommentsButtonClick = onCommentsButtonClick,
+                    onEditButtonClick = onEditButtonClick,
                     onExpandButtonClick = { expanded = !expanded },
                     modifier = modifier.weight(1f)
                 )

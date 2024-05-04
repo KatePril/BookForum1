@@ -24,6 +24,7 @@ import com.example.bookforum.ui.theme.BookForumTheme
 internal fun PostsDisplayBody(
     userId: Int,
     onCommentsButtonClick: (Int) -> Unit,
+    onEditButtonClick: (Int) -> Unit,
     postsList: List<Post>,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp)
@@ -44,6 +45,7 @@ internal fun PostsDisplayBody(
             PostsList(
                 userId = userId,
                 onCommentsButtonClick = onCommentsButtonClick,
+                onEditButtonClick = onEditButtonClick,
                 postsList = postsList,
                 contentPadding = contentPadding
             )
@@ -55,6 +57,7 @@ internal fun PostsDisplayBody(
 private fun PostsList(
     userId: Int,
     onCommentsButtonClick: (Int) -> Unit,
+    onEditButtonClick: (Int) -> Unit,
     postsList: List<Post>,
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier
@@ -68,6 +71,7 @@ private fun PostsList(
             PostItem(
                 userId = userId,
                 onCommentsButtonClick = { onCommentsButtonClick(post.id) },
+                onEditButtonClick = { onEditButtonClick(post.id) },
                 post = post,
                 modifier = modifier
             )

@@ -33,6 +33,7 @@ import com.example.bookforum.ui.screenParts.ForumTopAppBar
 @Composable
 fun LikedPostsScreen(
     onCommentsButtonClick: (Int, Int) -> Unit,
+    onEditButtonClick: (Int, Int) -> Unit,
     quitAccount: () -> Unit,
     navigateToGlobalPage: (Int) -> Unit,
     navigateToPostCreation: (Int) -> Unit,
@@ -66,6 +67,7 @@ fun LikedPostsScreen(
         LikedPostsBody(
             userId = viewModel.userId,
             onCommentsButtonClick = { onCommentsButtonClick(viewModel.userId, it) },
+            onEditButtonClick = { onEditButtonClick(viewModel.userId, it) },
             postsList = postsListUiState ?: listOf(),
             contentPadding = innerPadding,
             modifier = Modifier.fillMaxSize()
@@ -77,6 +79,7 @@ fun LikedPostsScreen(
 internal fun LikedPostsBody(
     userId: Int,
     onCommentsButtonClick: (Int) -> Unit,
+    onEditButtonClick: (Int) -> Unit,
     postsList: List<Post>,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp)
@@ -97,6 +100,7 @@ internal fun LikedPostsBody(
             LikedPostsList(
                 userId = userId,
                 onCommentsButtonClick = onCommentsButtonClick,
+                onEditButtonClick = onEditButtonClick,
                 postsList = postsList,
                 contentPadding = contentPadding
             )
@@ -108,6 +112,7 @@ internal fun LikedPostsBody(
 private fun LikedPostsList(
     userId: Int,
     onCommentsButtonClick: (Int) -> Unit,
+    onEditButtonClick: (Int) -> Unit,
     postsList: List<Post>,
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier
@@ -121,6 +126,7 @@ private fun LikedPostsList(
             PostItem(
                 userId = userId,
                 onCommentsButtonClick = { onCommentsButtonClick(post.id) },
+                onEditButtonClick = { onEditButtonClick(post.id) },
                 post = post,
                 modifier = modifier
             )

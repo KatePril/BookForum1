@@ -25,6 +25,7 @@ import com.example.bookforum.ui.navigation.destinations.PasswordChangeDestinatio
 import com.example.bookforum.ui.databaseUi.userUI.screens.passwordChange.PasswordChangeScreen
 import com.example.bookforum.ui.navigation.destinations.RegistrationDestination
 import com.example.bookforum.ui.databaseUi.userUI.screens.registration.RegistrationScreen
+import com.example.bookforum.ui.navigation.destinations.EditPostDestination
 
 @Composable
 fun ForumNavHost(
@@ -84,6 +85,9 @@ fun ForumNavHost(
                 onCommentsButtonClick = { userId: Int, postId: Int ->
                     navController.navigate("${CommentPageDestination.route}/$userId/$postId")
                 },
+                onEditButtonClick = { userId: Int, postId: Int ->
+                    navController.navigate("${EditPostDestination.route}/$userId/$postId")
+                },
                 quitAccount = { navController.navigate(LogInDestination.route) },
                 navigateToGlobalPage = {
                     navController.navigate("${ApiSearchDestination.route}/$it")
@@ -118,6 +122,9 @@ fun ForumNavHost(
             LikedPostsScreen(
                 onCommentsButtonClick = { userId: Int, postId: Int ->
                     navController.navigate("${CommentPageDestination.route}/$userId/$postId")
+                },
+                onEditButtonClick = { userId: Int, postId: Int ->
+                    navController.navigate("${EditPostDestination.route}/$userId/$postId")
                 },
                 quitAccount = { navController.navigate(LogInDestination.route) },
                 navigateToGlobalPage = {
@@ -158,6 +165,16 @@ fun ForumNavHost(
             CommentsScreen(
                 navigateToFeed = { navController.navigate("${FeedDestination.route}/$it") }
             )
+        }
+        composable(
+            route = EditPostDestination.routeWithArgs,
+            arguments = listOf(navArgument(EditPostDestination.userIdArg) {
+                type = NavType.IntType
+            }, navArgument(EditPostDestination.postIdArg) {
+                type = NavType.IntType
+            })
+        ) {
+
         }
     }
 }

@@ -1,5 +1,6 @@
-package com.example.bookforum.ui.databaseUi.userUI.screens.profile.components
+package com.example.bookforum.ui.screenParts
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
@@ -20,7 +21,8 @@ import androidx.compose.ui.res.stringResource
 import com.example.bookforum.R
 
 @Composable
-internal fun DeleteButton(
+fun DeleteButton(
+    @StringRes buttonText: Int,
     onDeleteClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -35,7 +37,7 @@ internal fun DeleteButton(
         shape = MaterialTheme.shapes.small,
         modifier = modifier.fillMaxWidth()
     ) {
-        Text(text = stringResource(R.string.delete_account_action))
+        Text(text = stringResource(buttonText))
     }
 
     if (isAlertDialogOpened) {

@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.postsUI.screens.createPost
+package com.example.bookforum.ui.databaseUi.postsUI.screens.editPost
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,7 +13,7 @@ import com.example.bookforum.ui.databaseUi.postsUI.states.PostDetails
 import com.example.bookforum.ui.screenParts.FormInput
 
 @Composable
-internal fun PostCreationForm(
+internal fun EditPostForm(
     postDetails: PostDetails,
     onValueChange: (PostDetails) -> Unit,
     modifier: Modifier = Modifier
@@ -25,31 +25,28 @@ internal fun PostCreationForm(
         FormInput(
             value = postDetails.title,
             onValueChange = { onValueChange(postDetails.copy(title = it)) },
-            labelText = R.string.title_input,
+            labelText = R.string.edit_title_input,
             color = MaterialTheme.colorScheme.tertiaryContainer,
-            imeAction = ImeAction.Next,
             modifier = modifier
         )
         FormInput(
             value = postDetails.author,
             onValueChange = { onValueChange(postDetails.copy(author = it)) },
-            labelText = R.string.authors_input,
+            labelText = R.string.edit_author_input,
             color = MaterialTheme.colorScheme.tertiaryContainer,
-            imeAction = ImeAction.Next,
             modifier = modifier
         )
         FormInput(
             value = postDetails.published,
             onValueChange = { onValueChange(postDetails.copy(published = it))},
-            labelText = R.string.published_input,
+            labelText = R.string.edit_published_input,
             color = MaterialTheme.colorScheme.tertiaryContainer,
-            imeAction = ImeAction.Next,
             modifier = modifier
         )
         FormInput(
             value = postDetails.review,
             onValueChange = { onValueChange(postDetails.copy(review = it)) },
-            labelText = R.string.review_input,
+            labelText = R.string.edit_review_input,
             color = MaterialTheme.colorScheme.tertiaryContainer,
             singleLine = false,
             modifier = modifier

@@ -25,7 +25,7 @@
     <string name="cancel_action">Cancel</string>
     <string name="continue_action">Click here to continue</string>
     <string name="delete_alert_title">Are you sure you want to proceed?</string>
-    <string name="delete_alert_text">Account deletion is irreversible action</string>
+    <string name="delete_alert_text">This action is irreversible</string>
     <string name="confirm_delete_action">Confirm</string>
     <string name="dismiss_delete_action">Dismiss</string>
     <string name="delete_account_action">Delete account</string>
@@ -40,4 +40,10 @@
     <string name="incorrect_old_password_msg">Old password is incorrect</string>
     <string name="old_password_input">Enter old password</string>
     <string name="new_password_input">Enter new password</string>
+    <string name="edit_title_input">Title: </string>
+    <string name="edit_author_input">Author: </string>
+    <string name="edit_published_input">Published on: </string>
+    <string name="edit_review_input">Review: </string>
+    <string name="edit_post_action">Edit post</string>
+    <string name="delete_post_action">Delete post</string>
 </resources>

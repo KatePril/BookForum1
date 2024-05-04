@@ -4,8 +4,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.bookforum.data.repositories.PostsRepository
-import com.example.bookforum.ui.navigation.destinations.FeedDestination
 import com.example.bookforum.ui.databaseUi.postsUI.states.PostsDisplayUiState
+import com.example.bookforum.ui.navigation.destinations.FeedDestination
 import com.example.bookforum.utils.TIMEOUT_MILLS
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

@@ -17,6 +17,7 @@ import com.example.bookforum.ui.navigation.destinations.PostCreationDestination
 import com.example.bookforum.ui.databaseUi.postsUI.screens.createPost.PostCreationScreen
 import com.example.bookforum.ui.navigation.destinations.FeedDestination
 import com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.FeedScreen
+import com.example.bookforum.ui.databaseUi.postsUI.screens.editPost.EditPostScreen
 import com.example.bookforum.ui.navigation.destinations.ProfileDestination
 import com.example.bookforum.ui.databaseUi.userUI.screens.profile.ProfileScreen
 import com.example.bookforum.ui.navigation.destinations.LogInDestination
@@ -174,7 +175,9 @@ fun ForumNavHost(
                 type = NavType.IntType
             })
         ) {
-
+            EditPostScreen(
+                navigateBack = { navController.navigate("${FeedDestination.route}/$it") }
+            )
         }
     }
 }

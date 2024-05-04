@@ -16,8 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.ui.ForumViewModelProvider
-import com.example.bookforum.ui.databaseUi.userUI.screens.profile.components.DeleteButton
-import com.example.bookforum.ui.databaseUi.userUI.screens.profile.components.ProfileForm
+import com.example.bookforum.ui.screenParts.DeleteButton
 import com.example.bookforum.ui.databaseUi.userUI.states.UserDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.UserRegistrationUIState
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.ProfileViewModel
@@ -93,6 +92,7 @@ private fun ProfileBody(
             Text(stringResource(R.string.change_password_action))
         }
         DeleteButton(
+            buttonText = R.string.delete_account_action,
             onDeleteClick = onDeleteClick
         )
     }

@@ -10,12 +10,14 @@ import com.example.bookforum.ui.apiUi.BooksViewModel
 import com.example.bookforum.ui.databaseUi.commentUi.viewModels.CommentViewModel
 import com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels.LikedPostsListViewModel
 import com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels.LikedPostsViewModel
+import com.example.bookforum.ui.databaseUi.postsUI.viewModels.EditPostViewModel
 import com.example.bookforum.ui.databaseUi.postsUI.viewModels.PostCreationViewModel
 import com.example.bookforum.ui.databaseUi.postsUI.viewModels.FeedViewModel
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.LoginViewModel
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.PasswordChangeViewModel
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.ProfileViewModel
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.RegistrationViewModel
+import com.example.bookforum.ui.navigation.destinations.EditPostDestination
 
 object ForumViewModelProvider {
 
@@ -80,7 +82,12 @@ object ForumViewModelProvider {
                 commentsRepository = forumApplication().container.commentsRepository
             )
         }
-
+        initializer {
+            EditPostViewModel(
+                savedStateHandle = this.createSavedStateHandle(),
+                postsRepository = forumApplication().container.postsRepository
+            )
+        }
     }
 }
 

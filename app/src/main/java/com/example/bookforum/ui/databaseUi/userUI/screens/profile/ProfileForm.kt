@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.userUI.screens.profile.components
+package com.example.bookforum.ui.databaseUi.userUI.screens.profile
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -34,7 +34,7 @@ internal fun ProfileForm(
         FormInputWithMessage(
             value = userDetails.email,
             onValueChange = { onInputValueChange(userDetails.copy(email = it)) },
-            labelText = R.string.email_input_label,
+            labelText = R.string.email_profile_input,
             msgText = R.string.invalid_email,
             color = MaterialTheme.colorScheme.primaryContainer,
             isValid = userValidationDetails.isEmailValid

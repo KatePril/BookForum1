@@ -13,9 +13,6 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="LikedPostDaoTest">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="MessageDaoTest">
         <option name="selectionMode" value="DROPDOWN" />
         <DropdownSelection timestamp="2024-05-04T15:26:50.735251100Z">
@@ -28,6 +25,9 @@
         <DialogSelection />
       </SelectionState>
       <SelectionState runConfigName="daoGetChatMessages_getsMessagesByChatFromDB()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="daoGetUserByNotId_returnsUsersByNotIdFromDB()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

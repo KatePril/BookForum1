@@ -77,6 +77,14 @@ class UserDaoTest {
 
     @Test
     @Throws(Exception::class)
+    fun daoGetUserByNotId_returnsUsersByNotIdFromDB() = runBlocking {
+        addTwoUsersToDb()
+        val users = userDao.getUserByNotId(1).first()
+        assertEquals(users[0], user2)
+    }
+
+    @Test
+    @Throws(Exception::class)
     fun daoGetUserByUsername_returnsUserByUsernameFromDB() = runBlocking {
         addOneUserToDb()
         val user = userDao.getUserByUsername("ron").first()

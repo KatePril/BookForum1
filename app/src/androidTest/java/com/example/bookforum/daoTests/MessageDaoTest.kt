@@ -44,7 +44,7 @@ class MessageDaoTest {
 
     private var user1 = User(1, "ron", "1111", "ronaldwisley@gmail.com")
     private var user2 = User(2, "luna", "0000", "luuuuna@gmail.com")
-    private var user3 = User(2, "draco", "2222", "dracomalfoy@gmail.com")
+    private var user3 = User(3, "draco", "2222", "dracomalfoy@gmail.com")
 
     private suspend fun addOneMessageToDB() {
         forumDatabase.userDao().insert(user1)

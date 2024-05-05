@@ -24,6 +24,7 @@ import com.example.bookforum.ui.screenParts.ForumTopAppBar
 fun ApiResultScreen(
     quitAccount: () -> Unit,
     navigateToGlobalPage: (Int) -> Unit,
+    navigateToChatsList: (Int) -> Unit,
     navigateToFavouritePosts: (Int) -> Unit,
     navigateToProfile: (Int) -> Unit,
     viewModel: BooksViewModel = viewModel(factory = ForumViewModelProvider.Factory)
@@ -34,6 +35,7 @@ fun ApiResultScreen(
             ForumTopAppBar(
                 quitAccount = quitAccount,
                 navigateToGlobalPage = { navigateToGlobalPage(viewModel.userId) },
+                navigateToChatsList = { navigateToChatsList(viewModel.userId) },
                 navigateToFavouritePosts = { navigateToFavouritePosts(viewModel.userId) },
                 navigateToProfile = { navigateToProfile(viewModel.userId) }
             )

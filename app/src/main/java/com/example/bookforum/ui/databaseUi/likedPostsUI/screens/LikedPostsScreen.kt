@@ -26,7 +26,7 @@ import com.example.bookforum.R
 import com.example.bookforum.data.entities.Post
 import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels.LikedPostsListViewModel
-import com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.components.PostItem
+import com.example.bookforum.ui.databaseUi.postsUI.screens.feed.components.PostItem
 import com.example.bookforum.ui.screenParts.ForumTopAppBar
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -36,6 +36,7 @@ fun LikedPostsScreen(
     onEditButtonClick: (Int, Int) -> Unit,
     quitAccount: () -> Unit,
     navigateToGlobalPage: (Int) -> Unit,
+    navigateToChatsList: (Int) -> Unit,
     navigateToPostCreation: (Int) -> Unit,
     navigateToFavouritePosts: (Int) -> Unit,
     navigateToProfile: (Int) -> Unit,
@@ -48,6 +49,7 @@ fun LikedPostsScreen(
             ForumTopAppBar(
                 quitAccount = quitAccount,
                 navigateToGlobalPage = { navigateToGlobalPage(viewModel.userId) },
+                navigateToChatsList = { navigateToChatsList(viewModel.userId) },
                 navigateToFavouritePosts = { navigateToFavouritePosts(viewModel.userId) },
                 navigateToProfile = { navigateToProfile(viewModel.userId) }
             )

@@ -1,6 +1,5 @@
-package com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.components
+package com.example.bookforum.ui.databaseUi.postsUI.screens.feed.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,7 +12,6 @@ import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.bookforum.data.entities.Post
 import com.example.bookforum.ui.screenParts.ButtonWithIcon

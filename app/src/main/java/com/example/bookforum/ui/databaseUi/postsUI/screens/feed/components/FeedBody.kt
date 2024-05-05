@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.components
+package com.example.bookforum.ui.databaseUi.postsUI.screens.feed.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

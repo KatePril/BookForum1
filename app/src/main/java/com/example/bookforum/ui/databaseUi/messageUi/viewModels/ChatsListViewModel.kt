@@ -23,7 +23,6 @@ class ChatsListViewModel(
         viewModelScope.launch {
             contactsList = usersRepository
                 .getUserByNotId(userId)
-                .filterNotNull()
                 .stateIn(
                     scope = viewModelScope
                 ).value

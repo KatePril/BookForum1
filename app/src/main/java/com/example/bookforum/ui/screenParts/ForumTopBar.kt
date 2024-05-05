@@ -29,6 +29,7 @@ import com.example.bookforum.ui.theme.BookForumTheme
 fun ForumTopAppBar (
     quitAccount: () -> Unit,
     navigateToGlobalPage: () -> Unit,
+    navigateToChatsList: () -> Unit,
     navigateToFavouritePosts: () -> Unit,
     navigateToProfile: () -> Unit,
     modifier: Modifier = Modifier
@@ -38,6 +39,7 @@ fun ForumTopAppBar (
             TitleBody(
                 quitAccount = quitAccount,
                 navigateToGlobalPage = navigateToGlobalPage,
+                navigateToChatsList = navigateToChatsList,
                 navigateToFavouritePosts = navigateToFavouritePosts,
                 navigateToProfile = navigateToProfile,
                 modifier = modifier
@@ -51,6 +53,7 @@ fun ForumTopAppBar (
 private fun TitleBody(
     quitAccount: () -> Unit,
     navigateToGlobalPage: () -> Unit,
+    navigateToChatsList: () -> Unit,
     navigateToFavouritePosts: () -> Unit,
     navigateToProfile: () -> Unit,
     modifier: Modifier = Modifier
@@ -71,7 +74,7 @@ private fun TitleBody(
         Spacer(modifier = modifier.weight(0.5f))
         ButtonWithIcon(
             imageVector = Icons.Filled.Chat,
-            onClick = { /*TODO*/ },
+            onClick = navigateToChatsList,
             tint = MaterialTheme.colorScheme.secondaryContainer,
             modifier = modifier)
         ButtonWithIcon(

@@ -46,4 +46,5 @@
     <string name="edit_review_input">Review: </string>
     <string name="edit_post_action">Edit post</string>
     <string name="delete_post_action">Delete post</string>
+    <string name="no_chats_msg">There is no users you can chat with. Please come back later</string>
 </resources>

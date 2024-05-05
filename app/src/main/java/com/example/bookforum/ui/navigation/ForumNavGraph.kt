@@ -13,10 +13,12 @@ import com.example.bookforum.ui.navigation.destinations.CommentPageDestination
 import com.example.bookforum.ui.databaseUi.commentUi.screens.CommentsScreen
 import com.example.bookforum.ui.navigation.destinations.LikedPostsPageDestination
 import com.example.bookforum.ui.databaseUi.likedPostsUI.screens.LikedPostsScreen
+import com.example.bookforum.ui.databaseUi.messageUi.screens.chatsList.ChatsList
+import com.example.bookforum.ui.databaseUi.messageUi.screens.chatsList.ChatsListScreen
 import com.example.bookforum.ui.navigation.destinations.PostCreationDestination
 import com.example.bookforum.ui.databaseUi.postsUI.screens.createPost.PostCreationScreen
 import com.example.bookforum.ui.navigation.destinations.FeedDestination
-import com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.FeedScreen
+import com.example.bookforum.ui.databaseUi.postsUI.screens.feed.FeedScreen
 import com.example.bookforum.ui.databaseUi.postsUI.screens.editPost.EditPostScreen
 import com.example.bookforum.ui.navigation.destinations.ProfileDestination
 import com.example.bookforum.ui.databaseUi.userUI.screens.profile.ProfileScreen
@@ -98,10 +100,15 @@ fun ForumNavHost(
                 navigateToPostCreation = {
                     navController.navigate("${PostCreationDestination.route}/$it")
                 },
+                navigateToChatsList = {
+                    navController.navigate("${ChatsListDestination.route}/$it")
+                },
                 navigateToFavouritePosts = {
                     navController.navigate("${LikedPostsPageDestination.route}/$it")
                 },
-                navigateToProfile = { navController.navigate("${ProfileDestination.route}/$it") }
+                navigateToProfile = {
+                    navController.navigate("${ProfileDestination.route}/$it")
+                }
             )
         }
         composable(
@@ -133,13 +140,18 @@ fun ForumNavHost(
                 navigateToGlobalPage = {
                     navController.navigate("${ApiSearchDestination.route}/$it")
                 },
+                navigateToChatsList = {
+                    navController.navigate("${ChatsListDestination.route}/$it")
+                },
                 navigateToPostCreation = {
                     navController.navigate("${PostCreationDestination.route}/$it")
                 },
                 navigateToFavouritePosts = {
                     navController.navigate("${LikedPostsPageDestination.route}/$it")
                 },
-                navigateToProfile = { navController.navigate("${ProfileDestination.route}/$it") }
+                navigateToProfile = {
+                    navController.navigate("${ProfileDestination.route}/$it")
+                }
             )
         }
         composable(
@@ -150,11 +162,18 @@ fun ForumNavHost(
         ) {
             ApiResultScreen(
                 quitAccount = { navController.navigate(LogInDestination.route) },
-                navigateToGlobalPage = { navController.navigate("${FeedDestination.route}/$it") },
+                navigateToGlobalPage = {
+                    navController.navigate("${FeedDestination.route}/$it")
+                },
+                navigateToChatsList = {
+                    navController.navigate("${ChatsListDestination.route}/$it")
+                },
                 navigateToFavouritePosts = {
                     navController.navigate("${LikedPostsPageDestination.route}/$it")
                 },
-                navigateToProfile = { navController.navigate("${ProfileDestination.route}/$it") }
+                navigateToProfile = {
+                    navController.navigate("${ProfileDestination.route}/$it")
+                }
             )
         }
         composable(
@@ -187,7 +206,24 @@ fun ForumNavHost(
                 type = NavType.IntType
             })
         ) {
-            /*TODO create screen*/
+            ChatsListScreen(
+                onItemClick = { currentUserId: Int, receiverId ->
+                    navController.navigate("${ChatDestination.route}/$currentUserId/$receiverId")
+                },
+                quitAccount = { navController.navigate(LogInDestination.route) },
+                navigateToGlobalPage = {
+                    navController.navigate("${FeedDestination.route}/$it")
+                },
+                navigateToChatsList = {
+                    navController.navigate("${ChatsListDestination.route}/$it")
+                },
+                navigateToFavouritePosts = {
+                    navController.navigate("${LikedPostsPageDestination.route}/$it")
+                },
+                navigateToProfile = {
+                    navController.navigate("${ProfileDestination.route}/$it")
+                }
+            )
         }
         composable(
             route = ChatDestination.routeWithArgs,

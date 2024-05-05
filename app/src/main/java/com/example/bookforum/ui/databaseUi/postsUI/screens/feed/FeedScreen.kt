@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts
+package com.example.bookforum.ui.databaseUi.postsUI.screens.feed
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,7 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.ui.ForumViewModelProvider
-import com.example.bookforum.ui.databaseUi.postsUI.screens.displayPosts.components.PostsDisplayBody
+import com.example.bookforum.ui.databaseUi.postsUI.screens.feed.components.PostsDisplayBody
 import com.example.bookforum.ui.databaseUi.postsUI.viewModels.FeedViewModel
 import com.example.bookforum.ui.screenParts.ForumTopAppBar
 
@@ -24,6 +24,7 @@ fun FeedScreen(
     onEditButtonClick: (Int, Int) -> Unit,
     quitAccount: () -> Unit,
     navigateToGlobalPage: (Int) -> Unit,
+    navigateToChatsList: (Int) -> Unit,
     navigateToPostCreation: (Int) -> Unit,
     navigateToFavouritePosts: (Int) -> Unit,
     navigateToProfile: (Int) -> Unit,
@@ -36,6 +37,7 @@ fun FeedScreen(
             ForumTopAppBar(
                 quitAccount = quitAccount,
                 navigateToGlobalPage = { navigateToGlobalPage(feedViewModel.userId) },
+                navigateToChatsList = { navigateToChatsList(feedViewModel.userId) },
                 navigateToFavouritePosts = { navigateToFavouritePosts(feedViewModel.userId) },
                 navigateToProfile = { navigateToProfile(feedViewModel.userId) }
             )

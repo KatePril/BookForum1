@@ -26,6 +26,8 @@ import com.example.bookforum.ui.navigation.destinations.PasswordChangeDestinatio
 import com.example.bookforum.ui.databaseUi.userUI.screens.passwordChange.PasswordChangeScreen
 import com.example.bookforum.ui.navigation.destinations.RegistrationDestination
 import com.example.bookforum.ui.databaseUi.userUI.screens.registration.RegistrationScreen
+import com.example.bookforum.ui.navigation.destinations.ChatDestination
+import com.example.bookforum.ui.navigation.destinations.ChatsListDestination
 import com.example.bookforum.ui.navigation.destinations.EditPostDestination
 
 @Composable
@@ -178,6 +180,24 @@ fun ForumNavHost(
             EditPostScreen(
                 navigateBack = { navController.navigate("${FeedDestination.route}/$it") }
             )
+        }
+        composable(
+            route = ChatsListDestination.routeWithArgs,
+            arguments = listOf(navArgument(ChatsListDestination.userIdArg) {
+                type = NavType.IntType
+            })
+        ) {
+            /*TODO create screen*/
+        }
+        composable(
+            route = ChatDestination.routeWithArgs,
+            arguments = listOf(navArgument(ChatDestination.userIdArg){
+                type = NavType.IntType
+            }, navArgument(ChatDestination.receiverIdArg) {
+                type = NavType.IntType
+            })
+        ) {
+            /*TODO create screen*/
         }
     }
 }

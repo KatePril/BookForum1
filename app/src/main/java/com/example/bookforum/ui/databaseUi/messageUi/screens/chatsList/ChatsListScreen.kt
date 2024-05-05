@@ -42,10 +42,11 @@ fun ChatsListScreen(
                 navigateToProfile = { navigateToProfile(viewModel.userId) }
             )
         }
-    ) {
+    ) { innerPadding ->
         ChatsListBody(
             onItemClick = { onItemClick(viewModel.userId, it) },
-            usersList = viewModel.contactsList
+            usersList = viewModel.contactsList,
+            contentPadding = innerPadding
         )
     }
 }

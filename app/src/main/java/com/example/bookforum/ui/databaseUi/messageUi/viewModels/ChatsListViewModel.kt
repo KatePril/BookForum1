@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.bookforum.data.entities.User
 import com.example.bookforum.data.repositories.UsersRepository
 import com.example.bookforum.ui.navigation.destinations.ChatsListDestination
-import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 

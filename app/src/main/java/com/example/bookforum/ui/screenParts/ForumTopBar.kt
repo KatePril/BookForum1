@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Chat
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Favorite
@@ -68,6 +69,11 @@ private fun TitleBody(
             )
         }
         Spacer(modifier = modifier.weight(0.5f))
+        ButtonWithIcon(
+            imageVector = Icons.Filled.Chat,
+            onClick = { /*TODO*/ },
+            tint = MaterialTheme.colorScheme.secondaryContainer,
+            modifier = modifier)
         ButtonWithIcon(
             imageVector = Icons.Filled.Favorite,
             onClick = navigateToFavouritePosts,

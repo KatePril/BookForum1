@@ -73,7 +73,7 @@ class CommentViewModel(
             TODO("VERSION.SDK_INT < O")
         }
 
-        val formatter = DateTimeFormatter.ofPattern("HH:mm, dd.MM.yyyy")
+        val formatter = DateTimeFormatter.ofPattern("HH:mm dd.MM.yyyy")
         return current.format(formatter)
     }
 

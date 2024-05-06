@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.messageUi.screens.chat
+package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,18 +18,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.Message
-import com.example.bookforum.data.entities.User
 import com.example.bookforum.ui.theme.BookForumTheme
 
 @Composable
-fun ReceiverMessageCard(
-    user: User,
+fun CurrentUserMessageCard(
     message: Message,
     modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier.fillMaxWidth()
     ) {
+        Spacer(modifier = modifier.weight(1f))
         Card(
             modifier = modifier
                 .weight(2f)
@@ -40,10 +39,10 @@ fun ReceiverMessageCard(
             shape = RoundedCornerShape(
                 topStart = dimensionResource(id = R.dimen.padding_large),
                 topEnd = dimensionResource(id = R.dimen.padding_large),
-                bottomEnd = dimensionResource(id = R.dimen.padding_large)
+                bottomStart = dimensionResource(id = R.dimen.padding_large)
             ),
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.tertiaryContainer
+                containerColor = MaterialTheme.colorScheme.secondary
             )
         ) {
             Column(
@@ -58,37 +57,27 @@ fun ReceiverMessageCard(
                     modifier = modifier
                         .fillMaxWidth()
                         .padding(bottom = dimensionResource(id = R.dimen.padding_medium)),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.End
                 ) {
-                    Text(
-                        text = user.username,
-                        style = MaterialTheme.typography.bodyMedium
-                    )
                     Text(
                         text = message.date,
                         style = MaterialTheme.typography.bodySmall
                     )
                 }
-                Text(
-                    text = message.text,
-                    style = MaterialTheme.typography.labelLarge
-                )
+                Text(text = message.text)
             }
         }
-        Spacer(modifier = modifier.weight(1f))
     }
-
 }
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun ReceiverMessageCardPreview() {
+fun CurrentUserMessageCardPreview() {
     BookForumTheme {
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
-            ReceiverMessageCard(
-                user = User(0, "anyablue", "", ""),
+            CurrentUserMessageCard(
                 message = Message(0, "Hi :)", "12:00 06.05.2024", 0, 0)
             )
         }

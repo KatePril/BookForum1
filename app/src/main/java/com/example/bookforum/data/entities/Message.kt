@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.example.bookforum.ui.databaseUi.messageUi.states.MessageDetails
 
 @Entity(
     tableName = "messages",
@@ -33,4 +34,10 @@ data class Message(
     val receiverId: Int
 )
 
-/* TODO message details */
+fun Message.toDetails(): MessageDetails = MessageDetails(
+    id = id,
+    text = text,
+    date = date,
+    senderId =  senderId,
+    receiverId = receiverId
+)

@@ -22,7 +22,7 @@ import com.example.bookforum.data.entities.User
 import com.example.bookforum.ui.theme.BookForumTheme
 
 @Composable
-fun ReceiverMessageCard(
+internal fun ReceiverMessageCard(
     user: User,
     message: Message,
     modifier: Modifier = Modifier

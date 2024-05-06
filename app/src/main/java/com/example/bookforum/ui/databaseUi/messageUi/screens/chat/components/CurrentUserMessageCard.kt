@@ -21,7 +21,7 @@ import com.example.bookforum.data.entities.Message
 import com.example.bookforum.ui.theme.BookForumTheme
 
 @Composable
-fun CurrentUserMessageCard(
+internal fun CurrentUserMessageCard(
     message: Message,
     modifier: Modifier = Modifier
 ) {

@@ -32,3 +32,5 @@ data class Message(
     @ColumnInfo(name = "receiver_id")
     val receiverId: Int
 )
+
+/* TODO message details */

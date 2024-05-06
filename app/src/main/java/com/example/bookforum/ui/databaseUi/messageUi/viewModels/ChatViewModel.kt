@@ -41,6 +41,7 @@ class ChatViewModel(
                     scope = viewModelScope
                 ).value
         }
-
     }
+
+    /*TODO implement saving new comment*/
 }

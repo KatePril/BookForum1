@@ -32,16 +32,11 @@ class CommentViewModel(
 
     var commentCreationUiState by mutableStateOf(CommentCreationUiState())
 
-    var commentsUiState = emptyList<Comment>()
+    var commentsUiState by mutableStateOf(emptyList<Comment>())
 
     init {
         viewModelScope.launch {
-            commentsUiState = commentsRepository
-                .getCommentsByPost(postId)
-                .filterNotNull()
-                .stateIn(
-                    scope = viewModelScope
-                ).value
+            commentsUiState = getCommentsList()
         }
     }
 
@@ -76,13 +71,16 @@ class CommentViewModel(
         if (validateText()) {
             commentsRepository.insertComment(commentCreationUiState.commentDetails.toComment())
             updateUiState(commentCreationUiState.commentDetails.copy(text = ""))
+            commentsUiState = getCommentsList()
         }
-        commentsUiState = commentsRepository
-                .getCommentsByPost(postId)
-            .filterNotNull()
-            .stateIn(
-                scope = viewModelScope
-            ).value
+
         Log.i("COMMENTS_LIST", commentsUiState.toString())
     }
+
+    private suspend fun getCommentsList(): List<Comment> = commentsRepository
+        .getCommentsByPost(postId)
+        .filterNotNull()
+        .stateIn(
+            scope = viewModelScope
+        ).value
 }

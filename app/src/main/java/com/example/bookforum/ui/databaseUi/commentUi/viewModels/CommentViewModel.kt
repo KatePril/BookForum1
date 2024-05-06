@@ -40,6 +40,13 @@ class CommentViewModel(
         }
     }
 
+    private suspend fun getCommentsList(): List<Comment> = commentsRepository
+        .getCommentsByPost(postId)
+        .filterNotNull()
+        .stateIn(
+            scope = viewModelScope
+        ).value
+
     fun getUserById(id: Int): StateFlow<UserByIdUiState> =
         getUserUiStateById(
             userId = id,
@@ -76,11 +83,4 @@ class CommentViewModel(
 
         Log.i("COMMENTS_LIST", commentsUiState.toString())
     }
-
-    private suspend fun getCommentsList(): List<Comment> = commentsRepository
-        .getCommentsByPost(postId)
-        .filterNotNull()
-        .stateIn(
-            scope = viewModelScope
-        ).value
 }

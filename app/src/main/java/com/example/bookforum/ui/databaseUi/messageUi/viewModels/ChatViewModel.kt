@@ -29,7 +29,7 @@ class ChatViewModel(
     val receiverId: Int = checkNotNull(savedStateHandle[ChatDestination.receiverIdArg])
 
     lateinit var receiver: User
-    lateinit var messagesList: List<Message>
+    var messagesList by mutableStateOf(emptyList<Message>())
     var messageCreationUiState by mutableStateOf(MessageCreationUiState())
 
     init {
@@ -39,17 +39,19 @@ class ChatViewModel(
                 .stateIn(
                     scope = viewModelScope
                 ).value
-            messagesList = messagesRepository
-                .getChatMessages(
-                    currentUserId = userId,
-                    receiverId = receiverId
-                )
-                .filterNotNull()
-                .stateIn(
-                    scope = viewModelScope
-                ).value
+            messagesList = getMessagesList()
         }
     }
+
+    private suspend fun getMessagesList(): List<Message> = messagesRepository
+        .getChatMessages(
+            currentUserId = userId,
+            receiverId = receiverId
+        )
+        .filterNotNull()
+        .stateIn(
+            scope = viewModelScope
+        ).value
 
     fun updateUiState(messageDetails: MessageDetails) {
         messageCreationUiState = MessageCreationUiState(
@@ -75,15 +77,7 @@ class ChatViewModel(
         if (validateText()) {
             messagesRepository.insertMessage(messageCreationUiState.messageDetails.toMessage())
             updateUiState(messageCreationUiState.messageDetails.copy(text = ""))
+            messagesList = getMessagesList()
         }
-        messagesList = messagesRepository
-            .getChatMessages(
-                currentUserId = userId,
-                receiverId = receiverId
-            )
-            .filterNotNull()
-            .stateIn(
-                scope = viewModelScope
-            ).value
     }
 }

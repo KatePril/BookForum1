@@ -19,9 +19,15 @@ import androidx.compose.ui.text.style.TextAlign
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.Message
 import com.example.bookforum.data.entities.User
+import com.example.bookforum.data.entities.toDetails
+import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.CurrentUserRow
+import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.ReceiverMessageCard
+import com.example.bookforum.ui.databaseUi.messageUi.states.MessageDetails
 
 @Composable
 internal fun ChatBody(
+    onDeleteClick: (Int) -> Unit,
+    onEditButtonClick: (MessageDetails) -> Unit,
     receiver: User,
     messagesList: List<Message>,
     contentPadding: PaddingValues,
@@ -43,6 +49,8 @@ internal fun ChatBody(
             )
         } else {
             MessagesList(
+                onDeleteClick = onDeleteClick,
+                onEditButtonClick = onEditButtonClick,
                 receiver = receiver,
                 messagesList = messagesList,
                 contentPadding = contentPadding,
@@ -54,6 +62,8 @@ internal fun ChatBody(
 
 @Composable
 internal fun MessagesList(
+    onDeleteClick: (Int) -> Unit,
+    onEditButtonClick: (MessageDetails) -> Unit,
     receiver: User,
     messagesList: List<Message>,
     contentPadding: PaddingValues,
@@ -72,7 +82,9 @@ internal fun MessagesList(
                     modifier = modifier
                 )
             } else {
-                CurrentUserMessageCard(
+                CurrentUserRow(
+                    onDeleteClick = { onDeleteClick(message.id) },
+                    onEditButtonClick = { onEditButtonClick(message.toDetails()) },
                     message = message,
                     modifier =  modifier
                 )

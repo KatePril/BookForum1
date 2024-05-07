@@ -33,6 +33,7 @@ data class Message(
     @ColumnInfo(name = "receiver_id")
     val receiverId: Int
 )
+/*TODO add isEdited*/
 
 fun Message.toDetails(): MessageDetails = MessageDetails(
     id = id,

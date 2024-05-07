@@ -75,15 +75,11 @@ class ChatViewModel(
 
     suspend fun saveMessage() {
         if (validateText()) {
-            messagesRepository.insertMessage(messageCreationUiState.messageDetails.toMessage())
-            updateUiState(messageCreationUiState.messageDetails.copy(text = ""))
-            messagesList = getMessagesList()
-        }
-    }
-
-    suspend fun updateMessage() {
-        if (validateText()) {
-            messagesRepository.updateMessage(messageCreationUiState.messageDetails.toMessage())
+            if (messageCreationUiState.messageDetails.id == 0) {
+                messagesRepository.insertMessage(messageCreationUiState.messageDetails.toMessage())
+            } else {
+                messagesRepository.updateMessage(messageCreationUiState.messageDetails.toMessage())
+            }
             updateUiState(messageCreationUiState.messageDetails.copy(text = ""))
             messagesList = getMessagesList()
         }

@@ -5,14 +5,12 @@ import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.ChatBody
-import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.ChatBottomBar
-import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.ChatTopBar
+import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.bars.ChatBottomBar
+import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.bars.ChatTopBar
 import com.example.bookforum.ui.databaseUi.messageUi.viewModels.ChatViewModel
-import com.example.bookforum.ui.theme.BookForumTheme
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -50,6 +48,12 @@ fun ChatScreen(
         }
     ) { innerPadding ->
         ChatBody(
+            onDeleteClick = {
+                coroutineScope.launch {
+                    viewModel.deleteMessage(it)
+                }
+            },
+            onEditButtonClick = viewModel::updateUiState,
             receiver = viewModel.receiver,
             messagesList = viewModel.messagesList,
             contentPadding = innerPadding

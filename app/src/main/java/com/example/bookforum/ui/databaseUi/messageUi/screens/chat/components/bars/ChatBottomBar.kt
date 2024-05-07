@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components
+package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.bars
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

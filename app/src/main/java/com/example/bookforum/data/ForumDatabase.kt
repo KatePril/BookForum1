@@ -22,7 +22,7 @@ import com.example.bookforum.data.entities.User
 )
 abstract class ForumDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
-    abstract fun bookDao(): PostDao
+    abstract fun postDao(): PostDao
     abstract fun commentDao(): CommentDao
     abstract fun likedPostDao(): LikedPostDao
     abstract fun messageDao(): MessageDao

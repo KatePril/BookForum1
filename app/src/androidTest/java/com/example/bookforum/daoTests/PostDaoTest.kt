@@ -62,7 +62,7 @@ class PostDaoTest {
         forumDatabase = Room.inMemoryDatabaseBuilder(context, ForumDatabase::class.java)
             .allowMainThreadQueries()
             .build()
-        postDao = forumDatabase.bookDao()
+        postDao = forumDatabase.postDao()
     }
 
     @After

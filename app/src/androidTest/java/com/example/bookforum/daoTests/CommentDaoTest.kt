@@ -51,7 +51,7 @@ class CommentDaoTest {
     private suspend fun addOneCommentToDB() {
         forumDatabase.userDao().insert(user1)
         forumDatabase.userDao().insert(user2)
-        forumDatabase.bookDao().insert(book2)
+        forumDatabase.postDao().insert(book2)
         commentDao.insert(comment1)
     }
 
@@ -59,10 +59,10 @@ class CommentDaoTest {
         forumDatabase.userDao().insert(user1)
         forumDatabase.userDao().insert(user2)
 
-        forumDatabase.bookDao().insert(book2)
+        forumDatabase.postDao().insert(book2)
         commentDao.insert(comment1)
 
-        forumDatabase.bookDao().insert(book1)
+        forumDatabase.postDao().insert(book1)
         commentDao.insert(comment2)
         commentDao.insert(comment3)
     }

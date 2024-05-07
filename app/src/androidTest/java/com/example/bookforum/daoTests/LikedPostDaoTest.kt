@@ -50,15 +50,15 @@ class LikedPostDaoTest {
 
     private suspend fun addOneLikedPostToDb() {
         forumDatabase.userDao().insert(user1)
-        forumDatabase.bookDao().insert(post1)
+        forumDatabase.postDao().insert(post1)
         likedPostDao.insert(likedPost1)
     }
 
     private suspend fun addThreeLikedPostsToDb() {
         forumDatabase.userDao().insert(user1)
         forumDatabase.userDao().insert(user2)
-        forumDatabase.bookDao().insert(post1)
-        forumDatabase.bookDao().insert(post2)
+        forumDatabase.postDao().insert(post1)
+        forumDatabase.postDao().insert(post2)
 
         likedPostDao.insert(likedPost1)
         likedPostDao.insert(likedPost2)

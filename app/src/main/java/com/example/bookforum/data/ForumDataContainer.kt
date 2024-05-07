@@ -12,7 +12,7 @@ class ForumDataContainer(private val context: Context): ForumContainer {
         UsersRepository(ForumDatabase.getDatabase(context).userDao())
     }
     override val postsRepository: PostsRepository by lazy {
-        PostsRepository(ForumDatabase.getDatabase(context).bookDao())
+        PostsRepository(ForumDatabase.getDatabase(context).postDao())
     }
     override val commentsRepository: CommentsRepository by lazy {
         CommentsRepository(ForumDatabase.getDatabase(context).commentDao())

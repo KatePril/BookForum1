@@ -1,6 +1,5 @@
 package com.example.bookforum.ui.databaseUi.commentUi.screens
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,7 +12,6 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,15 +21,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.Comment
+import com.example.bookforum.data.entities.User
 import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.commentUi.screens.components.CommentCard
 import com.example.bookforum.ui.databaseUi.commentUi.screens.components.CommentCreationForm
 import com.example.bookforum.ui.databaseUi.commentUi.states.CommentCreationUiState
 import com.example.bookforum.ui.databaseUi.commentUi.states.CommentDetails
 import com.example.bookforum.ui.databaseUi.commentUi.viewModels.CommentViewModel
-import com.example.bookforum.ui.databaseUi.postsUI.states.UserByIdUiState
 import com.example.bookforum.ui.screenParts.ButtonWithIcon
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 @Composable
@@ -40,8 +37,6 @@ fun CommentsScreen(
     viewModel: CommentViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val coroutineScope = rememberCoroutineScope()
-
-    Log.i("COMMENTS_LIST", viewModel.commentsUiState.toString())
 
     CommentScreenBody(
         navigateToFeed = { navigateToFeed(viewModel.userId) },
@@ -52,8 +47,8 @@ fun CommentsScreen(
                 viewModel.saveComment()
             }
         },
-        getUserById = viewModel::getUserById,
         commentsList = viewModel.commentsUiState,
+        users = viewModel.usersHashMap
     )
 }
 
@@ -63,8 +58,8 @@ fun CommentScreenBody(
     commentCreationUiState: CommentCreationUiState,
     onValueChange: (CommentDetails) -> Unit,
     onSendClick: () -> Unit,
-    getUserById: (Int) -> StateFlow<UserByIdUiState>,
     commentsList: List<Comment>,
+    users: Map<Int, User>,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -94,8 +89,8 @@ fun CommentScreenBody(
             )
         } else {
             CommentsList(
-                getUserById = getUserById,
                 commentsList = commentsList,
+                users = users
             )
         }
     }
@@ -103,8 +98,8 @@ fun CommentScreenBody(
 
 @Composable
 private fun CommentsList(
-    getUserById: (Int) -> StateFlow<UserByIdUiState>,
     commentsList: List<Comment>,
+    users: Map<Int, User>,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -112,13 +107,13 @@ private fun CommentsList(
         modifier = modifier.padding(top = dimensionResource(R.dimen.padding_large))
     ) {
         items(commentsList) {comment ->
-            /*TODO fix usernames display*/
-            val userUiState = getUserById(comment.userId).collectAsState()
-            CommentCard(
-                comment = comment,
-                user = userUiState.value.user,
-                modifier = modifier
-            )
+            users[comment.userId]?.let {
+                CommentCard(
+                    comment = comment,
+                    user = it,
+                    modifier = modifier
+                )
+            }
         }
     }
 }

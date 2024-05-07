@@ -80,4 +80,18 @@ class ChatViewModel(
             messagesList = getMessagesList()
         }
     }
+
+    suspend fun updateMessage() {
+        if (validateText()) {
+            messagesRepository.updateMessage(messageCreationUiState.messageDetails.toMessage())
+            updateUiState(messageCreationUiState.messageDetails.copy(text = ""))
+            messagesList = getMessagesList()
+        }
+    }
+
+    suspend fun deleteMessage(id: Int) {
+        messagesRepository.deleteMessageById(id)
+        messagesList = getMessagesList()
+    }
+
 }

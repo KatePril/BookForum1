@@ -13,6 +13,7 @@ import com.example.bookforum.ui.navigation.destinations.CommentPageDestination
 import com.example.bookforum.ui.databaseUi.commentUi.screens.CommentsScreen
 import com.example.bookforum.ui.navigation.destinations.LikedPostsPageDestination
 import com.example.bookforum.ui.databaseUi.likedPostsUI.screens.LikedPostsScreen
+import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.ChatScreen
 import com.example.bookforum.ui.databaseUi.messageUi.screens.chatsList.ChatsList
 import com.example.bookforum.ui.databaseUi.messageUi.screens.chatsList.ChatsListScreen
 import com.example.bookforum.ui.navigation.destinations.PostCreationDestination
@@ -233,7 +234,18 @@ fun ForumNavHost(
                 type = NavType.IntType
             })
         ) {
-            /*TODO create screen*/
+            ChatScreen(
+                navigateToChatsList = {
+                    navController.navigate("${ChatsListDestination.route}/$it")
+                },
+                quitAccount = { navController.navigate(LogInDestination.route) },
+                navigateToFavouritePosts = {
+                    navController.navigate("${LikedPostsPageDestination.route}/$it")
+                },
+                navigateToProfile = {
+                    navController.navigate("${ProfileDestination.route}/$it")
+                }
+            )
         }
     }
 }

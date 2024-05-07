@@ -1,13 +1,17 @@
 package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -23,20 +27,28 @@ internal fun ChatBody(
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier
 ) {
-    if (messagesList.isEmpty()) {
-        Text(
-            text = stringResource(R.string.no_messages_msg),
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.bodyMedium,
-            modifier = modifier.padding(top = dimensionResource(R.dimen.padding_large))
-        )
-    } else {
-        MessagesList(
-            receiver = receiver,
-            messagesList = messagesList,
-            contentPadding = contentPadding,
-            modifier = modifier
-        )
+    Log.i("MESSAGES", messagesList.toString())
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier.padding(dimensionResource(R.dimen.padding_large)),
+    ) {
+        if (messagesList.isEmpty()) {
+            Text(
+                text = stringResource(R.string.no_messages_msg),
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(contentPadding)
+            )
+        } else {
+            MessagesList(
+                receiver = receiver,
+                messagesList = messagesList,
+                contentPadding = contentPadding,
+                modifier = modifier
+            )
+        }
     }
 }
 

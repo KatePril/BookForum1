@@ -28,7 +28,7 @@ class ChatViewModel(
     val userId: Int = checkNotNull(savedStateHandle[ChatDestination.userIdArg])
     val receiverId: Int = checkNotNull(savedStateHandle[ChatDestination.receiverIdArg])
 
-    lateinit var receiver: User
+    var receiver: User = User(0, "", "", "")
     var messagesList by mutableStateOf(emptyList<Message>())
     var messageCreationUiState by mutableStateOf(MessageCreationUiState())
 

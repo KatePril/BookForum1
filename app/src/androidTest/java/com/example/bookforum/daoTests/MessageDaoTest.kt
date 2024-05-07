@@ -112,4 +112,13 @@ class MessageDaoTest {
         assertEquals(messages[1], message3)
     }
 
+    @Test
+    @Throws(Exception::class)
+    fun daoDeleteMessageById_deletesMessageFromDBById() = runBlocking {
+        addThreeMessagesToDB()
+        messageDao.deleteMessageById(message1.id)
+        val messages = messageDao.getChatMessages(2, 1).first()
+        assertEquals(messages[0], message3)
+    }
+
 }

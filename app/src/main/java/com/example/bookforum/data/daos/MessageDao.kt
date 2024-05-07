@@ -22,4 +22,7 @@ interface MessageDao {
 
     @Query("SELECT * FROM messages WHERE (sender_id = :currentUserId AND receiver_id = :receiverId) OR (sender_id = :receiverId AND receiver_id = :currentUserId) ORDER BY id ASC")
     fun getChatMessages(currentUserId: Int, receiverId: Int): Flow<List<Message>>
+
+    @Query("DELETE FROM messages WHERE id = :id")
+    suspend fun deleteMessageById(id: Int)
 }

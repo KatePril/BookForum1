@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.commentUi.screens.components
+package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -14,17 +14,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.res.stringResource
 import com.example.bookforum.R
-import com.example.bookforum.ui.databaseUi.commentUi.states.CommentCreationUiState
-import com.example.bookforum.ui.databaseUi.commentUi.states.CommentDetails
+import com.example.bookforum.ui.databaseUi.messageUi.states.MessageCreationUiState
+import com.example.bookforum.ui.databaseUi.messageUi.states.MessageDetails
+import com.example.bookforum.ui.screenParts.FormInput
 import com.example.bookforum.ui.screenParts.FormInputWithMessage
-import com.example.bookforum.ui.theme.BookForumTheme
 
 @Composable
-internal fun CommentCreationForm(
-    commentCreationUiState: CommentCreationUiState,
-    onValueChange: (CommentDetails) -> Unit,
+fun ChatBottomBar(
+    messageCreationUiState: MessageCreationUiState,
+    onValueChange: (MessageDetails) -> Unit,
     onSendClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -37,11 +37,10 @@ internal fun CommentCreationForm(
                 .padding(end = dimensionResource(R.dimen.padding_large))
                 .weight(2f)
         ) {
-            FormInputWithMessage(
-                value = commentCreationUiState.commentDetails.text,
-                onValueChange = {onValueChange(commentCreationUiState.commentDetails.copy(text = it))},
-                labelText = R.string.comment_input,
-                msgText = R.string.invalid_comment,
+            FormInput(
+                value = messageCreationUiState.messageDetails.text,
+                onValueChange = { onValueChange(messageCreationUiState.messageDetails.copy(text = it)) },
+                labelText = R.string.message_input,
                 color = MaterialTheme.colorScheme.primaryContainer,
                 singleLine = false
             )
@@ -53,7 +52,7 @@ internal fun CommentCreationForm(
                 onClick = onSendClick,
                 modifier = modifier
                     .background(MaterialTheme.colorScheme.primary, MaterialTheme.shapes.small),
-                enabled = commentCreationUiState.isTextValid
+                enabled = messageCreationUiState.isTextValid
             ) {
                 Icon(
                     imageVector = Icons.Filled.Send,
@@ -62,13 +61,5 @@ internal fun CommentCreationForm(
                 )
             }
         }
-    }
-}
-
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun CommentCreationFormPreview() {
-    BookForumTheme {
-        CommentCreationForm(commentCreationUiState = CommentCreationUiState(), {}, {})
     }
 }

@@ -48,4 +48,5 @@
     <string name="delete_post_action">Delete post</string>
     <string name="no_chats_msg">There is no users you can chat with. Please come back later</string>
     <string name="no_messages_msg">There is no messages yet</string>
+    <string name="message_input" />
 </resources>

@@ -35,12 +35,12 @@ internal fun ReceiverMessageCard(
                 .weight(2f)
                 .fillMaxWidth(),
             elevation = CardDefaults.cardElevation(
-                defaultElevation = dimensionResource(id = R.dimen.default_elevation)
+                defaultElevation = dimensionResource(R.dimen.default_elevation)
             ),
             shape = RoundedCornerShape(
-                topStart = dimensionResource(id = R.dimen.padding_large),
-                topEnd = dimensionResource(id = R.dimen.padding_large),
-                bottomEnd = dimensionResource(id = R.dimen.padding_large)
+                topStart = dimensionResource(R.dimen.padding_large),
+                topEnd = dimensionResource(R.dimen.padding_large),
+                bottomEnd = dimensionResource(R.dimen.padding_large)
             ),
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.tertiaryContainer
@@ -57,7 +57,7 @@ internal fun ReceiverMessageCard(
                 Row(
                     modifier = modifier
                         .fillMaxWidth()
-                        .padding(bottom = dimensionResource(id = R.dimen.padding_medium)),
+                        .padding(bottom = dimensionResource(R.dimen.padding_medium)),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(

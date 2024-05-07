@@ -57,10 +57,10 @@ fun ChatScreen(
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun ChatScreenPreview() {
-    BookForumTheme {
-        ChatScreen(navigateToChatsList = {}, quitAccount = {}, navigateToFavouritePosts = {}, navigateToProfile = {})
-    }
-}
+//@Preview(showBackground = true, showSystemUi = true)
+//@Composable
+//fun ChatScreenPreview() {
+//    BookForumTheme {
+//        ChatScreen(navigateToChatsList = {}, quitAccount = {}, navigateToFavouritePosts = {}, navigateToProfile = {})
+//    }
+//}

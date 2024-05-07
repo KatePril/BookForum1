@@ -10,6 +10,7 @@ import com.example.bookforum.ui.apiUi.BooksViewModel
 import com.example.bookforum.ui.databaseUi.commentUi.viewModels.CommentViewModel
 import com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels.LikedPostsListViewModel
 import com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels.LikedPostsViewModel
+import com.example.bookforum.ui.databaseUi.messageUi.viewModels.ChatViewModel
 import com.example.bookforum.ui.databaseUi.messageUi.viewModels.ChatsListViewModel
 import com.example.bookforum.ui.databaseUi.postsUI.viewModels.EditPostViewModel
 import com.example.bookforum.ui.databaseUi.postsUI.viewModels.PostCreationViewModel
@@ -92,6 +93,13 @@ object ForumViewModelProvider {
         initializer {
             ChatsListViewModel(
                 savedStateHandle = this.createSavedStateHandle(),
+                usersRepository = forumApplication().container.usersRepository
+            )
+        }
+        initializer {
+            ChatViewModel(
+                savedStateHandle = this.createSavedStateHandle(),
+                messagesRepository = forumApplication().container.messagesRepository,
                 usersRepository = forumApplication().container.usersRepository
             )
         }

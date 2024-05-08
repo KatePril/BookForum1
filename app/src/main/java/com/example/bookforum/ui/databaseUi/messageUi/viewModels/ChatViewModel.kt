@@ -26,10 +26,12 @@ class ChatViewModel(
 ): ViewModel() {
 
     val userId: Int = checkNotNull(savedStateHandle[ChatDestination.userIdArg])
-    val receiverId: Int = checkNotNull(savedStateHandle[ChatDestination.receiverIdArg])
+    private val receiverId: Int = checkNotNull(savedStateHandle[ChatDestination.receiverIdArg])
 
     var receiver: User = User(0, "", "", "")
     var messagesList by mutableStateOf(emptyList<Message>())
+    private var messageMap by mutableStateOf(emptyMap<Int, Message>())
+    private var usersMap by mutableStateOf(emptyMap<Int, User>())
     var messageCreationUiState by mutableStateOf(MessageCreationUiState())
 
     init {
@@ -40,6 +42,27 @@ class ChatViewModel(
                     scope = viewModelScope
                 ).value
             messagesList = getMessagesList()
+            fillMaps()
+        }
+    }
+
+    private suspend fun fillMaps() {
+        messageMap = emptyMap()
+        for (message in messagesList) {
+            val reply = messagesRepository
+                .getMessageById(message.reply)
+                .stateIn(
+                    scope = viewModelScope
+                ).value
+            messageMap += Pair(message.reply, reply)
+            if (reply != null) {
+                val sender = usersRepository
+                    .getUserById(reply.senderId)
+                    .stateIn(
+                        scope = viewModelScope
+                    ).value
+                usersMap += Pair(reply.senderId, sender)
+            }
         }
     }
 
@@ -84,12 +107,18 @@ class ChatViewModel(
             }
             updateUiState(messageCreationUiState.messageDetails.copy(text = ""))
             messagesList = getMessagesList()
+            fillMaps()
         }
     }
 
     suspend fun deleteMessage(id: Int) {
         messagesRepository.deleteMessageById(id)
         messagesList = getMessagesList()
+        fillMaps()
     }
+
+    fun getReplyById(id: Int): Message? = messageMap[id]
+
+    fun getReplySender(id: Int): User? = usersMap[id]
 
 }

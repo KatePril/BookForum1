@@ -4,7 +4,7 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-05-08T08:09:33.212785600Z">
+        <DropdownSelection timestamp="2024-05-08T14:46:13.204962400Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\Kate\.android\avd\Resizable_API_34_new_5.avd" />
@@ -29,6 +29,14 @@
       </SelectionState>
       <SelectionState runConfigName="daoGetMessageById_returnsMessageFromDBById()">
         <option name="selectionMode" value="DROPDOWN" />
+        <DropdownSelection timestamp="2024-05-08T14:46:04.470195300Z">
+          <Target type="DEFAULT_BOOT">
+            <handle>
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\Kate\.android\avd\Resizable_API_34_new_5.avd" />
+            </handle>
+          </Target>
+        </DropdownSelection>
+        <DialogSelection />
       </SelectionState>
     </selectionStates>
   </component>

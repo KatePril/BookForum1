@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards
+package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

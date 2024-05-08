@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards
+package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents
 
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
@@ -19,9 +19,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringResource
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.Message
+import com.example.bookforum.data.entities.User
 import com.example.bookforum.ui.screenParts.FilledButtonWithIcon
 
 @Composable
@@ -57,6 +57,8 @@ internal fun MessageButtons(
 internal fun CurrentUserMessageCard(
     onMessageClick: () -> Unit,
     message: Message,
+    replyMessage: Message?,
+    replySender: User?,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -92,6 +94,14 @@ internal fun CurrentUserMessageCard(
                 Text(
                     text = message.date,
                     style = MaterialTheme.typography.bodySmall
+                )
+            }
+            if (replyMessage != null && replySender != null) {
+                ReplyBlock(
+                    username = replySender.username,
+                    text = replyMessage.text,
+                    surfaceColor = MaterialTheme.colorScheme.tertiaryContainer,
+                    textColor = MaterialTheme.colorScheme.secondary
                 )
             }
             Text(text = message.text)

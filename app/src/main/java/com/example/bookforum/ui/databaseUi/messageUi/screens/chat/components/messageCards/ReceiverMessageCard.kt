@@ -15,13 +15,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.Message
 import com.example.bookforum.data.entities.User
-import com.example.bookforum.ui.theme.BookForumTheme
+import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents.EditedMessage
+import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents.ReplyBlock
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -29,6 +27,8 @@ internal fun ReceiverMessageCard(
     onMessageClick: () -> Unit,
     user: User,
     message: Message,
+    replyMessage: Message?,
+    replySender: User?,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -74,6 +74,14 @@ internal fun ReceiverMessageCard(
                         style = MaterialTheme.typography.bodySmall
                     )
                 }
+                if (replyMessage != null && replySender != null) {
+                    ReplyBlock(
+                        username = replySender.username,
+                        text = replyMessage.text,
+                        surfaceColor = MaterialTheme.colorScheme.secondary,
+                        textColor = MaterialTheme.colorScheme.tertiaryContainer
+                    )
+                }
                 Text(
                     text = message.text,
                     style = MaterialTheme.typography.labelLarge
@@ -88,21 +96,22 @@ internal fun ReceiverMessageCard(
 
 }
 
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun ReceiverMessageCardPreview() {
-    BookForumTheme {
-        Column(
-            modifier = Modifier.padding(16.dp)
-        ) {
-            ReceiverMessageCard(
-                onMessageClick = {},
-                user = User(0, "anyablue", "", ""),
-                message = Message(
-                    0, "Hi :)", "12:00 06.05.2024", 0, 0, 0, 0
-                )
-            )
-        }
-
-    }
-}
+//@Preview(showBackground = true, showSystemUi = true)
+//@Composable
+//fun ReceiverMessageCardPreview() {
+//    BookForumTheme {
+//        Column(
+//            modifier = Modifier.padding(16.dp)
+//        ) {
+//            ReceiverMessageCard(
+//                onMessageClick = {},
+//                user = User(0, "anyablue", "", ""),
+//                message = Message(
+//                    0, "Hi :)", "12:00 06.05.2024", 0, 0, 0, 0
+//                ),
+//                replyMessage = null
+//            )
+//        }
+//
+//    }
+//}

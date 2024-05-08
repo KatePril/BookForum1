@@ -61,7 +61,9 @@ fun ChatScreen(
             onEditButtonClick = viewModel::updateUiState,
             receiver = viewModel.receiver,
             messagesList = viewModel.messagesList,
-            contentPadding = innerPadding
+            contentPadding = innerPadding,
+            getMessageById = viewModel::getReplyById,
+            getSenderById = viewModel::getReplySender
         )
     }
 }

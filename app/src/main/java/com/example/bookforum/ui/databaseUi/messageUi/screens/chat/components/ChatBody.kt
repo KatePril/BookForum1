@@ -26,6 +26,8 @@ import com.example.bookforum.ui.databaseUi.messageUi.states.MessageDetails
 
 @Composable
 internal fun ChatBody(
+    getMessageById: (Int) -> Message?,
+    getSenderById: (Int) -> User?,
     onMessageClick: (Int) -> Unit,
     onDeleteClick: (Int) -> Unit,
     onEditButtonClick: (MessageDetails) -> Unit,
@@ -50,6 +52,8 @@ internal fun ChatBody(
             )
         } else {
             MessagesList(
+                getMessageById =  getMessageById,
+                getSenderById = getSenderById,
                 onMessageClick = onMessageClick,
                 onDeleteClick = onDeleteClick,
                 onEditButtonClick = onEditButtonClick,
@@ -64,6 +68,8 @@ internal fun ChatBody(
 
 @Composable
 internal fun MessagesList(
+    getSenderById: (Int) -> User?,
+    getMessageById: (Int) -> Message?,
     onMessageClick: (Int) -> Unit,
     onDeleteClick: (Int) -> Unit,
     onEditButtonClick: (MessageDetails) -> Unit,
@@ -78,12 +84,15 @@ internal fun MessagesList(
         modifier = modifier
     ) {
         items(messagesList) {message ->
+            val reply = getMessageById(message.reply)
             if (message.senderId == receiver.id) {
                 ReceiverMessageCard(
                     onMessageClick = { onMessageClick(message.id) },
                     user = receiver,
                     message = message,
-                    modifier = modifier
+                    modifier = modifier,
+                    replyMessage = reply,
+                    replySender = reply?.let { getSenderById(it.senderId) }
                 )
             } else {
                 CurrentUserRow(
@@ -91,7 +100,9 @@ internal fun MessagesList(
                     onDeleteClick = { onDeleteClick(message.id) },
                     onEditButtonClick = { onEditButtonClick(message.toDetails()) },
                     message = message,
-                    modifier =  modifier
+                    modifier =  modifier,
+                    replyMessage = reply,
+                    replySender = reply?.let { getSenderById(it.senderId) }
                 )
             }
         }

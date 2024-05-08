@@ -1,5 +1,6 @@
 package com.example.bookforum.ui.databaseUi.messageUi.viewModels
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -50,11 +51,11 @@ class ChatViewModel(
         messageMap = emptyMap()
         for (message in messagesList) {
             val reply = messagesRepository
-                .getMessageById(message.reply)
+                .getMessageById(message.id)
                 .stateIn(
                     scope = viewModelScope
                 ).value
-            messageMap += Pair(message.reply, reply)
+            messageMap += Pair(message.id, reply)
             if (reply != null) {
                 val sender = usersRepository
                     .getUserById(reply.senderId)
@@ -64,6 +65,7 @@ class ChatViewModel(
                 usersMap += Pair(reply.senderId, sender)
             }
         }
+        Log.i("MESSAGES_MAP", messageMap.toString())
     }
 
     private suspend fun getMessagesList(): List<Message> = messagesRepository
@@ -105,7 +107,7 @@ class ChatViewModel(
                     messageCreationUiState.messageDetails.copy(edited = 1).toMessage()
                 )
             }
-            updateUiState(messageCreationUiState.messageDetails.copy(text = ""))
+            updateUiState(messageCreationUiState.messageDetails.copy(text = "", reply = 0))
             messagesList = getMessagesList()
             fillMaps()
         }

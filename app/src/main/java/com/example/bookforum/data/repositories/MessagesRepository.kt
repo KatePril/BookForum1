@@ -15,4 +15,6 @@ class MessagesRepository(private val messageDao: MessageDao) {
     suspend fun deleteMessage(message: Message) = messageDao.delete(message)
 
     suspend fun deleteMessageById(id: Int) = messageDao.deleteMessageById(id)
+
+    fun getMessageById(id: Int): Flow<Message> = messageDao.getMessageById(id)
 }

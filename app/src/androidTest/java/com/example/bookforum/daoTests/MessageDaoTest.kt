@@ -127,4 +127,11 @@ class MessageDaoTest {
         assertEquals(messages[0], message3)
     }
 
+    @Test
+    @Throws(Exception::class)
+    fun daoGetMessageById_returnsMessageFromDBById() = runBlocking {
+        addOneMessageToDB()
+        val message = messageDao.getMessageById(1).first()
+        assertEquals(message, message1)
+    }
 }

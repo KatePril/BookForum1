@@ -42,34 +42,6 @@ fun ChatBottomBar(
     Column(
         modifier = modifier.fillMaxWidth()
     ) {
-        if (messageCreationUiState.messageDetails.reply != 0) {
-            val reply = getMessageById(messageCreationUiState.messageDetails.reply)
-            Log.i("REPLY_MSG", reply.toString())
-            if (reply != null) {
-                val sender = getSenderById(reply.senderId)
-                Log.i("REPLY_SENDER", sender.toString())
-                Surface(
-                    color = MaterialTheme.colorScheme.tertiaryContainer,
-                    modifier = modifier.fillMaxWidth()
-                ) {
-                    Row(
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = modifier.padding(8.dp)
-                    ) {
-                        Text(text = "${sender?.username}: ${reply.text}")
-                        ButtonWithIcon(
-                            imageVector = Icons.Filled.Cancel,
-                            onClick = {
-                                onValueChange(messageCreationUiState.messageDetails.copy(reply = 0))
-                            },
-                            tint = MaterialTheme.colorScheme.error,
-                            modifier = modifier.size(16.dp)
-                        )
-                    }
-                }
-            }
-        }
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier.fillMaxWidth()

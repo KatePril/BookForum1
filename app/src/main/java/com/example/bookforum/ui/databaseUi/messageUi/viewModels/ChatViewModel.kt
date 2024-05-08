@@ -78,7 +78,9 @@ class ChatViewModel(
             if (messageCreationUiState.messageDetails.id == 0) {
                 messagesRepository.insertMessage(messageCreationUiState.messageDetails.toMessage())
             } else {
-                messagesRepository.updateMessage(messageCreationUiState.messageDetails.toMessage())
+                messagesRepository.updateMessage(
+                    messageCreationUiState.messageDetails.copy(edited = 1).toMessage()
+                )
             }
             updateUiState(messageCreationUiState.messageDetails.copy(text = ""))
             messagesList = getMessagesList()

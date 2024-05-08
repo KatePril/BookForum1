@@ -31,7 +31,8 @@ data class Message(
     @ColumnInfo(name = "sender_id")
     val senderId: Int,
     @ColumnInfo(name = "receiver_id")
-    val receiverId: Int
+    val receiverId: Int,
+    val edited: Int
 )
 /*TODO add isEdited*/
 
@@ -40,5 +41,6 @@ fun Message.toDetails(): MessageDetails = MessageDetails(
     text = text,
     date = date,
     senderId =  senderId,
-    receiverId = receiverId
+    receiverId = receiverId,
+    edited = edited
 )

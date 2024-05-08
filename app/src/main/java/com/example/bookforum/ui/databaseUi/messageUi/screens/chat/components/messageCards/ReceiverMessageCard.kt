@@ -89,7 +89,7 @@ fun ReceiverMessageCardPreview() {
         ) {
             ReceiverMessageCard(
                 user = User(0, "anyablue", "", ""),
-                message = Message(0, "Hi :)", "12:00 06.05.2024", 0, 0)
+                message = Message(0, "Hi :)", "12:00 06.05.2024", 0, 0, 0)
             )
         }
 

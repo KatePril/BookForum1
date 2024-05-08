@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -51,12 +52,15 @@ internal fun MessageButtons(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun CurrentUserMessageCard(
+    onMessageClick: () -> Unit,
     message: Message,
     modifier: Modifier = Modifier
 ) {
     Card(
+        onClick = onMessageClick,
         modifier = modifier
             .fillMaxWidth(),
         elevation = CardDefaults.cardElevation(

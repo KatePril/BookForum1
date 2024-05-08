@@ -15,6 +15,7 @@ import com.example.bookforum.ui.theme.BookForumTheme
 
 @Composable
 internal fun CurrentUserRow(
+    onMessageClick: () -> Unit,
     onDeleteClick: () -> Unit,
     onEditButtonClick: () -> Unit,
     message: Message,
@@ -31,6 +32,7 @@ internal fun CurrentUserRow(
             modifier = modifier
         )
         CurrentUserMessageCard(
+            onMessageClick = onMessageClick,
             message = message,
             modifier = modifier.weight(2f)
         )
@@ -45,9 +47,12 @@ fun CurrentUserMessageCardPreview() {
             modifier = Modifier.padding(16.dp)
         ) {
             CurrentUserRow(
+                onMessageClick = {},
                 onEditButtonClick = {},
                 onDeleteClick = {},
-                message = Message(0, "Hi :)", "12:00 06.05.2024", 0, 0, 1)
+                message = Message(
+                    0, "Hi :)", "12:00 06.05.2024", 0, 0, 1, 0
+                )
             )
         }
 

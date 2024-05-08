@@ -26,7 +26,8 @@ class MessageDaoTest {
         date = "12:00",
         senderId = 1,
         receiverId = 2,
-        edited = 0
+        edited = 0,
+        reply = 0
     )
     private var message2 = Message(
         id = 2,
@@ -34,7 +35,8 @@ class MessageDaoTest {
         date = "13:44",
         senderId = 3,
         receiverId = 2,
-        edited = 0
+        edited = 0,
+        reply = 0
     )
     private var message3 = Message(
         id = 3,
@@ -42,7 +44,8 @@ class MessageDaoTest {
         date = "13:44",
         senderId = 2,
         receiverId = 1,
-        edited = 0
+        edited = 0,
+        reply = 0
     )
 
     private var user1 = User(1, "ron", "1111", "ronaldwisley@gmail.com")

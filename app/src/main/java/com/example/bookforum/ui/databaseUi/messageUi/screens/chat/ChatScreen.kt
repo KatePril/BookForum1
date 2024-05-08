@@ -48,6 +48,11 @@ fun ChatScreen(
         }
     ) { innerPadding ->
         ChatBody(
+            onMessageClick = {
+                 viewModel.updateUiState(
+                     viewModel.messageCreationUiState.messageDetails.copy(reply = it)
+                 )
+            },
             onDeleteClick = {
                 coroutineScope.launch {
                     viewModel.deleteMessage(it)

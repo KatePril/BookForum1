@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,8 +23,10 @@ import com.example.bookforum.data.entities.Message
 import com.example.bookforum.data.entities.User
 import com.example.bookforum.ui.theme.BookForumTheme
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun ReceiverMessageCard(
+    onMessageClick: () -> Unit,
     user: User,
     message: Message,
     modifier: Modifier = Modifier
@@ -32,6 +35,7 @@ internal fun ReceiverMessageCard(
         modifier = modifier.fillMaxWidth()
     ) {
         Card(
+            onClick = onMessageClick,
             modifier = modifier
                 .weight(2f)
                 .fillMaxWidth(),
@@ -92,8 +96,11 @@ fun ReceiverMessageCardPreview() {
             modifier = Modifier.padding(16.dp)
         ) {
             ReceiverMessageCard(
+                onMessageClick = {},
                 user = User(0, "anyablue", "", ""),
-                message = Message(0, "Hi :)", "12:00 06.05.2024", 0, 0, 0)
+                message = Message(
+                    0, "Hi :)", "12:00 06.05.2024", 0, 0, 0, 0
+                )
             )
         }
 

@@ -26,6 +26,7 @@ import com.example.bookforum.ui.databaseUi.messageUi.states.MessageDetails
 
 @Composable
 internal fun ChatBody(
+    onMessageClick: (Int) -> Unit,
     onDeleteClick: (Int) -> Unit,
     onEditButtonClick: (MessageDetails) -> Unit,
     receiver: User,
@@ -49,6 +50,7 @@ internal fun ChatBody(
             )
         } else {
             MessagesList(
+                onMessageClick = onMessageClick,
                 onDeleteClick = onDeleteClick,
                 onEditButtonClick = onEditButtonClick,
                 receiver = receiver,
@@ -62,6 +64,7 @@ internal fun ChatBody(
 
 @Composable
 internal fun MessagesList(
+    onMessageClick: (Int) -> Unit,
     onDeleteClick: (Int) -> Unit,
     onEditButtonClick: (MessageDetails) -> Unit,
     receiver: User,
@@ -77,12 +80,14 @@ internal fun MessagesList(
         items(messagesList) {message ->
             if (message.senderId == receiver.id) {
                 ReceiverMessageCard(
+                    onMessageClick = { onMessageClick(message.id) },
                     user = receiver,
                     message = message,
                     modifier = modifier
                 )
             } else {
                 CurrentUserRow(
+                    onMessageClick = { onMessageClick(message.id) },
                     onDeleteClick = { onDeleteClick(message.id) },
                     onEditButtonClick = { onEditButtonClick(message.toDetails()) },
                     message = message,

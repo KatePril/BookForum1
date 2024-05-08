@@ -9,6 +9,7 @@ data class MessageDetails(
     val senderId: Int = 0,
     val receiverId: Int = 0,
     val edited: Int = 0,
+    val reply: Int = 0
 )
 
 fun MessageDetails.toMessage(): Message = Message(
@@ -17,5 +18,6 @@ fun MessageDetails.toMessage(): Message = Message(
     date = date,
     senderId =  senderId,
     receiverId = receiverId,
-    edited = edited
+    edited = edited,
+    reply = reply
 )

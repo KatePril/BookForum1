@@ -25,21 +25,24 @@ class MessageDaoTest {
         text = "Hi",
         date = "12:00",
         senderId = 1,
-        receiverId = 2
+        receiverId = 2,
+        edited = 0
     )
     private var message2 = Message(
         id = 2,
         text = "Hello",
         date = "13:44",
         senderId = 3,
-        receiverId = 2
+        receiverId = 2,
+        edited = 0
     )
     private var message3 = Message(
         id = 3,
         text = "How are you?",
         date = "13:44",
         senderId = 2,
-        receiverId = 1
+        receiverId = 1,
+        edited = 0
     )
 
     private var user1 = User(1, "ron", "1111", "ronaldwisley@gmail.com")

@@ -1,5 +1,6 @@
 package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.Message
 import com.example.bookforum.ui.screenParts.FilledButtonWithIcon
@@ -89,6 +91,10 @@ internal fun CurrentUserMessageCard(
                 )
             }
             Text(text = message.text)
+            Log.i("EDITED", message.edited.toString())
+            if (message.edited == 1) {
+                EditedMessage()
+            }
         }
     }
 }

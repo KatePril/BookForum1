@@ -37,7 +37,7 @@ internal fun ChatsList(
     ) {
         items(usersList) { user ->
             ChatItem(
-                user = user,
+                chatTitle = user.username,
                 onItemClick = { onItemClick(user.id) },
                 modifier = modifier
             )
@@ -47,8 +47,8 @@ internal fun ChatsList(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun ChatItem(
-    user: User,
+fun ChatItem(
+    chatTitle: String,
     onItemClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -60,7 +60,7 @@ private fun ChatItem(
         )
     ) {
         Text(
-            text = user.username,
+            text = chatTitle,
             modifier = modifier.padding(dimensionResource(R.dimen.padding_large)),
             style = MaterialTheme.typography.labelLarge
         )
@@ -74,7 +74,7 @@ fun ChatItemPreview() {
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
-            ChatItem(user = User(1, "anyablue", "", ""), onItemClick = {})
+            ChatItem("anyablue", onItemClick = {})
         }
     }
 }

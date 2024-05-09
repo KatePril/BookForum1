@@ -21,6 +21,6 @@ interface GroupDao {
     suspend fun delete(group: Group)
 
     @Query("SELECT groups.id, groups.title FROM groups INNER JOIN group_members ON (group_members.user_id = :id) AND (group_members.group_id = groups.id)")
-    fun getGroupsByUser(id: Int): Flow<Group>
+    fun getGroupsByUser(id: Int): Flow<List<Group>>
 
 }

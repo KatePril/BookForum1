@@ -29,6 +29,6 @@ class ForumDataContainer(private val context: Context): ForumContainer {
         GroupsRepository(ForumDatabase.getDatabase(context).groupDao())
     }
     override val groupMembersRepository: GroupMembersRepository by lazy {
-        GroupMembersRepository(ForumDatabase.getDatabase(context).groupMembersDao())
+        GroupMembersRepository(ForumDatabase.getDatabase(context).groupMemberDao())
     }
 }

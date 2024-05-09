@@ -32,7 +32,7 @@ abstract class ForumDatabase : RoomDatabase() {
     abstract fun likedPostDao(): LikedPostDao
     abstract fun messageDao(): MessageDao
     abstract fun groupDao(): GroupDao
-    abstract fun groupMembersDao(): GroupMemberDao
+    abstract fun groupMemberDao(): GroupMemberDao
 
     companion object {
         @Volatile

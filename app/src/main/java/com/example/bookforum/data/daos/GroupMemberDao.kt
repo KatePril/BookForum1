@@ -7,6 +7,8 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.bookforum.data.entities.GroupMember
+import com.example.bookforum.data.entities.User
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface GroupMemberDao {
@@ -20,5 +22,8 @@ interface GroupMemberDao {
     suspend fun delete(groupMember: GroupMember)
 
     @Query("SELECT * FROM group_members WHERE group_id = :id")
-    fun getGroupMembersByGroupId(id: Int)
+    fun getGroupMembersByGroupId(id: Int): Flow<List<GroupMember>>
+
+    @Query("SELECT users.id, users.username, users.password, users.email FROM users INNER JOIN group_members WHERE (group_members.group_id = :id) AND (group_members.user_id = users.id)")
+    fun getUsersByGroupId(id: Int): Flow<List<User>>
 }

@@ -8,4 +8,5 @@ class GroupMembersRepository(private val groupMemberDao: GroupMemberDao) {
     suspend fun updateGroupMember(groupMember: GroupMember) = groupMemberDao.update(groupMember)
     suspend fun deleteGroupMember(groupMember: GroupMember) = groupMemberDao.delete(groupMember)
     fun getGroupMembersByGroupId(id: Int) = groupMemberDao.getGroupMembersByGroupId(id)
+    fun getUsersByGroupId(id: Int) = groupMemberDao.getUsersByGroupId(id)
 }

@@ -3,7 +3,12 @@ package com.example.bookforum.ui.databaseUi.messageUi.screens.chatsList
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -24,6 +29,7 @@ import com.example.bookforum.ui.screenParts.ForumTopAppBar
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun ChatsListScreen(
+    navigateToGroups: (Int) -> Unit,
     onItemClick: (Int, Int) -> Unit,
     quitAccount: () -> Unit,
     navigateToGlobalPage: (Int) -> Unit,
@@ -44,6 +50,8 @@ fun ChatsListScreen(
         }
     ) { innerPadding ->
         ChatsListBody(
+            navigateToPrivateChats = { navigateToChatsList(viewModel.userId) },
+            navigateToGroups = { navigateToGroups(viewModel.userId) },
             onItemClick = { onItemClick(viewModel.userId, it) },
             usersList = viewModel.contactsList,
             contentPadding = innerPadding
@@ -53,29 +61,42 @@ fun ChatsListScreen(
 
 @Composable
 private fun ChatsListBody(
+    navigateToPrivateChats: () -> Unit,
+    navigateToGroups: () -> Unit,
     onItemClick: (Int) -> Unit,
     usersList: List<User>,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier.padding(dimensionResource(R.dimen.padding_large)),
+        modifier = modifier.padding(contentPadding)
     ) {
-        if (usersList.isEmpty()) {
-            Text(
-                text = stringResource(R.string.no_chats_msg),
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.displayMedium,
-                modifier = modifier.padding(contentPadding)
-            )
-        } else {
-            ChatsList(
-                onItemClick = onItemClick,
-                usersList = usersList,
-                contentPadding = contentPadding,
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = modifier.padding(dimensionResource(R.dimen.padding_large)),
+        ) {
+            ChatsNavigationButtons(
+                navigateToPrivateChats = navigateToPrivateChats,
+                navigateToGroups = navigateToGroups,
+                privateChatsColor = MaterialTheme.colorScheme.tertiary,
+                groupColor = MaterialTheme.colorScheme.tertiaryContainer,
                 modifier = modifier
             )
+            if (usersList.isEmpty()) {
+                Text(
+                    text = stringResource(R.string.no_chats_msg),
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.displayMedium,
+                    modifier = modifier
+                )
+            } else {
+                ChatsList(
+                    onItemClick = onItemClick,
+                    usersList = usersList,
+                    modifier = modifier
+                )
+            }
         }
     }
+
 }

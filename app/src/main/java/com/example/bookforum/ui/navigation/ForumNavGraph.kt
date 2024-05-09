@@ -208,6 +208,7 @@ fun ForumNavHost(
             })
         ) {
             ChatsListScreen(
+                navigateToGroups = {/*TODO*/},
                 onItemClick = { currentUserId: Int, receiverId ->
                     navController.navigate("${ChatDestination.route}/$currentUserId/$receiverId")
                 },

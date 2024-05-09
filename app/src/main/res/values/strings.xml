@@ -50,4 +50,6 @@
     <string name="no_messages_msg">There is no messages yet</string>
     <string name="message_input"> </string>
     <string name="edited">Edited</string>
+    <string name="go_to_private_chats_action">Private chats</string>
+    <string name="go_to_groups_action">Groups</string>
 </resources>

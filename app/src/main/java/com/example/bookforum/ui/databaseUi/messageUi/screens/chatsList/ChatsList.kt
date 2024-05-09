@@ -25,11 +25,13 @@ import com.example.bookforum.ui.theme.BookForumTheme
 internal fun ChatsList(
     onItemClick: (Int) -> Unit,
     usersList: List<User>,
-    contentPadding: PaddingValues,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
-        contentPadding = contentPadding,
+        contentPadding = PaddingValues(
+            top = dimensionResource(R.dimen.padding_large),
+            bottom = dimensionResource(R.dimen.padding_large)
+        ),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_large)),
         modifier = modifier
     ) {
@@ -87,8 +89,7 @@ fun ChatsListPreview() {
                 User(1, "anyablue", "", ""),
                 User(2, "Kate", "", ""),
                 User(3, "Hermione", "", "")
-            ),
-            contentPadding = PaddingValues(0.dp)
+            )
         )
     }
 }

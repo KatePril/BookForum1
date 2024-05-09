@@ -1,25 +1,10 @@
 package com.example.bookforum.ui.databaseUi.messageUi.screens.chat
 
 import android.annotation.SuppressLint
-import android.util.Log
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.absolutePadding
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.ChatBody
@@ -27,7 +12,6 @@ import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.bar
 import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.bars.ChatTopBar
 import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.ReplyCanceller
 import com.example.bookforum.ui.databaseUi.messageUi.viewModels.ChatViewModel
-import com.example.bookforum.ui.screenParts.ButtonWithIcon
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

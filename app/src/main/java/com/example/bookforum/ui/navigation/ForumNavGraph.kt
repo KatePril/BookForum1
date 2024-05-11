@@ -28,6 +28,9 @@ import com.example.bookforum.ui.navigation.destinations.userDestinations.Passwor
 import com.example.bookforum.ui.databaseUi.userUI.screens.passwordChange.PasswordChangeScreen
 import com.example.bookforum.ui.navigation.destinations.userDestinations.RegistrationDestination
 import com.example.bookforum.ui.databaseUi.userUI.screens.registration.RegistrationScreen
+import com.example.bookforum.ui.navigation.destinations.groupDestination.GroupCreationDestination
+import com.example.bookforum.ui.navigation.destinations.groupDestination.GroupDestination
+import com.example.bookforum.ui.navigation.destinations.groupDestination.GroupsListDestination
 import com.example.bookforum.ui.navigation.destinations.messageDestinations.ChatDestination
 import com.example.bookforum.ui.navigation.destinations.messageDestinations.ChatsListDestination
 import com.example.bookforum.ui.navigation.destinations.postDestinations.EditPostDestination
@@ -246,6 +249,32 @@ fun ForumNavHost(
                     navController.navigate("${ProfileDestination.route}/$it")
                 }
             )
+        }
+        composable(
+            route = GroupsListDestination.routeWithArgs,
+            arguments = listOf(navArgument(GroupsListDestination.userIdArg){
+                type = NavType.IntType
+            })
+        ) {
+            TODO("Add GroupsListScreen")
+        }
+        composable(
+            route = GroupCreationDestination.routeWithArgs,
+            arguments = listOf(navArgument(GroupCreationDestination.routeWithArgs){
+                type = NavType.IntType
+            })
+        ){
+            TODO("Add GroupCreationScreen")
+        }
+        composable(
+            route = GroupDestination.routeWithArgs,
+            arguments = listOf(navArgument(GroupDestination.userIdArg){
+                type = NavType.IntType
+            }, navArgument(GroupDestination.groupIdArg){
+                type = NavType.IntType
+            })
+        ){
+            TODO("Add GroupScreen")
         }
     }
 }

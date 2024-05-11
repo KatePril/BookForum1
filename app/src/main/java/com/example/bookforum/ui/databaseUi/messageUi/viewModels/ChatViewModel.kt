@@ -14,7 +14,7 @@ import com.example.bookforum.data.repositories.UsersRepository
 import com.example.bookforum.ui.databaseUi.messageUi.states.MessageCreationUiState
 import com.example.bookforum.ui.databaseUi.messageUi.states.MessageDetails
 import com.example.bookforum.ui.databaseUi.messageUi.states.toMessage
-import com.example.bookforum.ui.navigation.destinations.ChatDestination
+import com.example.bookforum.ui.navigation.destinations.messageDestinations.ChatDestination
 import com.example.bookforum.utils.getCurrentTime
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.stateIn

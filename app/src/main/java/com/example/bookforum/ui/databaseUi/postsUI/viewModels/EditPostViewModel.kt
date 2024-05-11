@@ -11,7 +11,7 @@ import com.example.bookforum.data.repositories.PostsRepository
 import com.example.bookforum.ui.databaseUi.postsUI.states.PostCreationUiState
 import com.example.bookforum.ui.databaseUi.postsUI.states.PostDetails
 import com.example.bookforum.ui.databaseUi.postsUI.states.toPost
-import com.example.bookforum.ui.navigation.destinations.EditPostDestination
+import com.example.bookforum.ui.navigation.destinations.postDestinations.EditPostDestination
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn

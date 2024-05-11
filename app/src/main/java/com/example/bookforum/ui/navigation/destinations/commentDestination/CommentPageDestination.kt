@@ -1,9 +1,9 @@
-package com.example.bookforum.ui.navigation.destinations
+package com.example.bookforum.ui.navigation.destinations.commentDestination
 
 import com.example.bookforum.ui.navigation.NavigationDestination
 
-object EditPostDestination : NavigationDestination {
-    override val route = "edit_post_page"
+object CommentPageDestination : NavigationDestination {
+    override val route = "comments_page"
     const val userIdArg = "userId"
     const val postIdArg = "postId"
     val routeWithArgs = "$route/{$userIdArg}/{$postIdArg}"

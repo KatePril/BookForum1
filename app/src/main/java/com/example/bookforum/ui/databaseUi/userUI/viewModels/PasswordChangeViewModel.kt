@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.bookforum.data.entities.User
 import com.example.bookforum.data.repositories.UsersRepository
-import com.example.bookforum.ui.navigation.destinations.ProfileDestination
+import com.example.bookforum.ui.navigation.destinations.userDestinations.ProfileDestination
 import com.example.bookforum.ui.databaseUi.userUI.states.PasswordDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.PasswordUiState
 import com.example.bookforum.utils.hashPassword

@@ -19,7 +19,6 @@ import com.example.bookforum.ui.databaseUi.userUI.viewModels.LoginViewModel
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.PasswordChangeViewModel
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.ProfileViewModel
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.RegistrationViewModel
-import com.example.bookforum.ui.navigation.destinations.EditPostDestination
 
 object ForumViewModelProvider {
 

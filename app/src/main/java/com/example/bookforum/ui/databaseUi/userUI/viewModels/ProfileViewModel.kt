@@ -4,7 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.bookforum.data.entities.toDetails
 import com.example.bookforum.data.repositories.UsersRepository
-import com.example.bookforum.ui.navigation.destinations.ProfileDestination
+import com.example.bookforum.ui.navigation.destinations.userDestinations.ProfileDestination
 import com.example.bookforum.ui.databaseUi.userUI.states.UserRegistrationUIState
 import com.example.bookforum.ui.databaseUi.userUI.states.UserValidationDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.toUser

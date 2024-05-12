@@ -12,14 +12,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DriveFileRenameOutline
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
@@ -27,6 +24,7 @@ import com.example.bookforum.data.entities.Post
 import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels.LikedPostsListViewModel
 import com.example.bookforum.ui.databaseUi.postsUI.screens.feed.components.PostItem
+import com.example.bookforum.ui.screenParts.EmptyListMsg
 import com.example.bookforum.ui.screenParts.ForumTopAppBar
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -92,10 +90,8 @@ internal fun LikedPostsBody(
         modifier = modifier.padding(dimensionResource(R.dimen.padding_large)),
     ) {
         if (postsList.isEmpty()) {
-            Text(
-                text = "You haven't liked any posts yet",
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.displayMedium,
+            EmptyListMsg(
+                msgId = R.string.no_liked_posts_msg,
                 modifier = modifier.padding(contentPadding)
             )
         } else {

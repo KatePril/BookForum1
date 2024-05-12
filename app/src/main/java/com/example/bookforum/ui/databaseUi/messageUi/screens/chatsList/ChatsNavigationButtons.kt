@@ -4,20 +4,20 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.example.bookforum.R
 
 @Composable
 fun ChatsNavigationButtons(
-    navigateToPrivateChats: () -> Unit,
-    navigateToGroups: () -> Unit,
-    privateChatsColor: Color,
-    groupColor: Color,
-    modifier: Modifier =Modifier
+    modifier: Modifier = Modifier,
+    navigateToPrivateChats: () -> Unit = {},
+    navigateToGroups: () -> Unit = {},
+    enabledPrivateChats: Boolean = true,
+    enabledGroups: Boolean = true
 ) {
     Row(
         modifier = modifier.fillMaxWidth()
@@ -25,17 +25,19 @@ fun ChatsNavigationButtons(
         Button(
             onClick = navigateToPrivateChats,
             colors = ButtonDefaults.buttonColors(
-                containerColor = privateChatsColor
+                containerColor = MaterialTheme.colorScheme.tertiary
             ),
+            enabled = enabledPrivateChats,
             modifier = modifier.weight(1f)
         ) {
             Text(text = stringResource(R.string.go_to_private_chats_action))
         }
         Button(
-            onClick =navigateToGroups,
+            onClick = navigateToGroups,
             colors = ButtonDefaults.buttonColors(
-                containerColor = groupColor
+                containerColor = MaterialTheme.colorScheme.tertiary
             ),
+            enabled = enabledGroups,
             modifier = modifier.weight(1f)
         ) {
             Text(text = stringResource(R.string.go_to_groups_action))

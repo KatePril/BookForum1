@@ -47,9 +47,12 @@
     <string name="edit_post_action">Edit post</string>
     <string name="delete_post_action">Delete post</string>
     <string name="no_chats_msg">There is no users you can chat with. Please come back later</string>
+    <string name="no_groups_msg">There is no groups here. Please come back later or create a group</string>
     <string name="no_messages_msg">There is no messages yet</string>
     <string name="message_input"> </string>
     <string name="edited">Edited</string>
     <string name="go_to_private_chats_action">Private chats</string>
     <string name="go_to_groups_action">Groups</string>
+    <string name="no_liked_posts_msg">You haven\'t liked any posts yet</string>
+    <string name="create_group_action">Create group</string>
 </resources>

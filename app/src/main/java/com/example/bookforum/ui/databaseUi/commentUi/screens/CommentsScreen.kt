@@ -9,15 +9,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.Comment
@@ -29,6 +25,7 @@ import com.example.bookforum.ui.databaseUi.commentUi.states.CommentCreationUiSta
 import com.example.bookforum.ui.databaseUi.commentUi.states.CommentDetails
 import com.example.bookforum.ui.databaseUi.commentUi.viewModels.CommentViewModel
 import com.example.bookforum.ui.screenParts.ButtonWithIcon
+import com.example.bookforum.ui.screenParts.EmptyListMsg
 import kotlinx.coroutines.launch
 
 @Composable
@@ -81,10 +78,8 @@ fun CommentScreenBody(
             onSendClick = onSendClick
         )
         if (commentsList.isEmpty()) {
-            Text(
-                text = stringResource(R.string.no_comments_msg),
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.bodyMedium,
+            EmptyListMsg(
+                msgId = R.string.no_comments_msg,
                 modifier = modifier.padding(top = dimensionResource(R.dimen.padding_large))
             )
         } else {

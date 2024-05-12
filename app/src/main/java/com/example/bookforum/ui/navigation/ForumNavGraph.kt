@@ -11,6 +11,7 @@ import com.example.bookforum.ui.apiUi.screens.ApiResultScreen
 import com.example.bookforum.ui.apiUi.screens.ApiSearchDestination
 import com.example.bookforum.ui.navigation.destinations.commentDestination.CommentPageDestination
 import com.example.bookforum.ui.databaseUi.commentUi.screens.CommentsScreen
+import com.example.bookforum.ui.databaseUi.groupUi.screens.groupsList.GroupsListScreen
 import com.example.bookforum.ui.navigation.destinations.likedPostDestinations.LikedPostsPageDestination
 import com.example.bookforum.ui.databaseUi.likedPostsUI.screens.LikedPostsScreen
 import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.ChatScreen
@@ -210,7 +211,9 @@ fun ForumNavHost(
             })
         ) {
             ChatsListScreen(
-                navigateToGroups = {/*TODO*/},
+                navigateToGroups = {
+                    navController.navigate("${GroupsListDestination.route}/$it")
+                },
                 onItemClick = { currentUserId: Int, receiverId ->
                     navController.navigate("${ChatDestination.route}/$currentUserId/$receiverId")
                 },
@@ -256,7 +259,27 @@ fun ForumNavHost(
                 type = NavType.IntType
             })
         ) {
-            TODO("Add GroupsListScreen")
+            GroupsListScreen(
+                onCreateGroupClick = {
+                    navController.navigate("${GroupCreationDestination.route}/$it")
+                },
+                onItemClick = { userId: Int, groupId: Int ->
+                    navController.navigate("${GroupDestination.route}/$userId/$groupId")
+                },
+                quitAccount = { navController.navigate(LogInDestination.route) },
+                navigateToGlobalPage = {
+                    navController.navigate("${FeedDestination.route}/$it")
+                },
+                navigateToChatsList = {
+                    navController.navigate("${ChatsListDestination.route}/$it")
+                },
+                navigateToFavouritePosts = {
+                    navController.navigate("${LikedPostsPageDestination.route}/$it")
+                },
+                navigateToProfile = {
+                    navController.navigate("${ProfileDestination.route}/$it")
+                }
+            )
         }
         composable(
             route = GroupCreationDestination.routeWithArgs,

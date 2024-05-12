@@ -8,6 +8,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.bookforum.ForumApplication
 import com.example.bookforum.ui.apiUi.BooksViewModel
 import com.example.bookforum.ui.databaseUi.commentUi.viewModels.CommentViewModel
+import com.example.bookforum.ui.databaseUi.groupUi.viewModels.GroupsListViewModel
 import com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels.LikedPostsListViewModel
 import com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels.LikedPostsViewModel
 import com.example.bookforum.ui.databaseUi.messageUi.viewModels.ChatViewModel
@@ -100,6 +101,12 @@ object ForumViewModelProvider {
                 savedStateHandle = this.createSavedStateHandle(),
                 messagesRepository = forumApplication().container.messagesRepository,
                 usersRepository = forumApplication().container.usersRepository
+            )
+        }
+        initializer {
+            GroupsListViewModel(
+                savedStateHandle = this.createSavedStateHandle(),
+                groupsRepository = forumApplication().container.groupsRepository
             )
         }
     }

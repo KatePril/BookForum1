@@ -6,18 +6,15 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.Post
+import com.example.bookforum.ui.screenParts.EmptyListMsg
 import com.example.bookforum.ui.theme.BookForumTheme
 
 @Composable
@@ -35,10 +32,8 @@ internal fun PostsDisplayBody(
         modifier = modifier.padding(dimensionResource(R.dimen.padding_large)),
     ) {
         if (postsList.isEmpty()) {
-            Text(
-                text = stringResource(R.string.no_posts_msg),
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.displayMedium,
+            EmptyListMsg(
+                msgId = R.string.no_posts_msg,
                 modifier = modifier.padding(contentPadding)
             )
         } else {

@@ -3,27 +3,19 @@ package com.example.bookforum.ui.databaseUi.messageUi.screens.chatsList
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.User
 import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.messageUi.viewModels.ChatsListViewModel
+import com.example.bookforum.ui.screenParts.EmptyListMsg
 import com.example.bookforum.ui.screenParts.ForumTopAppBar
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -50,7 +42,6 @@ fun ChatsListScreen(
         }
     ) { innerPadding ->
         ChatsListBody(
-            navigateToPrivateChats = { navigateToChatsList(viewModel.userId) },
             navigateToGroups = { navigateToGroups(viewModel.userId) },
             onItemClick = { onItemClick(viewModel.userId, it) },
             usersList = viewModel.contactsList,
@@ -61,7 +52,6 @@ fun ChatsListScreen(
 
 @Composable
 private fun ChatsListBody(
-    navigateToPrivateChats: () -> Unit,
     navigateToGroups: () -> Unit,
     onItemClick: (Int) -> Unit,
     usersList: List<User>,
@@ -76,17 +66,13 @@ private fun ChatsListBody(
             modifier = modifier.padding(dimensionResource(R.dimen.padding_large)),
         ) {
             ChatsNavigationButtons(
-                navigateToPrivateChats = navigateToPrivateChats,
                 navigateToGroups = navigateToGroups,
-                privateChatsColor = MaterialTheme.colorScheme.tertiary,
-                groupColor = MaterialTheme.colorScheme.tertiaryContainer,
+                enabledPrivateChats = false,
                 modifier = modifier
             )
             if (usersList.isEmpty()) {
-                Text(
-                    text = stringResource(R.string.no_chats_msg),
-                    textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.displayMedium,
+                EmptyListMsg(
+                    msgId = R.string.no_chats_msg,
                     modifier = modifier
                 )
             } else {

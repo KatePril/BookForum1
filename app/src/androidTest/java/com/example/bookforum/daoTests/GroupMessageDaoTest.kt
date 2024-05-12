@@ -5,69 +5,77 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.bookforum.data.ForumDatabase
-import com.example.bookforum.data.daos.MessageDao
-import com.example.bookforum.data.entities.Message
+import com.example.bookforum.data.daos.GroupMessageDao
+import com.example.bookforum.data.entities.Group
+import com.example.bookforum.data.entities.GroupMessage
 import com.example.bookforum.data.entities.User
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
-import okio.IOException
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.io.IOException
 import kotlin.jvm.Throws
 
 @RunWith(AndroidJUnit4::class)
-class MessageDaoTest {
-    private lateinit var messageDao: MessageDao
+class GroupMessageDaoTest {
+    private lateinit var groupMessageDao: GroupMessageDao
     private lateinit var forumDatabase: ForumDatabase
 
-    private var message1 = Message(
+    private var message1 = GroupMessage(
         id = 1,
         text = "Hi",
         date = "12:00",
         senderId = 1,
         receiverId = 2,
+        groupId = 1,
         edited = 0,
         reply = 0
     )
-    private var message2 = Message(
+    private var message2 = GroupMessage(
         id = 2,
         text = "Hello",
         date = "13:44",
-        senderId = 3,
+        senderId = 1,
         receiverId = 2,
+        groupId = 2,
         edited = 0,
         reply = 0
     )
-    private var message3 = Message(
+    private var message3 = GroupMessage(
         id = 3,
         text = "How are you?",
         date = "13:44",
         senderId = 2,
         receiverId = 1,
+        groupId = 1,
         edited = 0,
         reply = 0
     )
 
     private var user1 = User(1, "ron", "1111", "ronaldwisley@gmail.com")
     private var user2 = User(2, "luna", "0000", "luuuuna@gmail.com")
-    private var user3 = User(3, "draco", "2222", "dracomalfoy@gmail.com")
+
+    private var group1 = Group(1, "BFFs")
+    private var group2 = Group(2, "Project for EXPO")
 
     private suspend fun addOneMessageToDB() {
         forumDatabase.userDao().insert(user1)
         forumDatabase.userDao().insert(user2)
-        messageDao.insert(message1)
+        forumDatabase.groupDao().insert(group1)
+        groupMessageDao.insert(message1)
     }
-
     private suspend fun addThreeMessagesToDB() {
         forumDatabase.userDao().insert(user1)
         forumDatabase.userDao().insert(user2)
-        forumDatabase.userDao().insert(user3)
-        messageDao.insert(message1)
-        messageDao.insert(message2)
-        messageDao.insert(message3)
+        forumDatabase.groupDao().insert(group1)
+        forumDatabase.groupDao().insert(group2)
+
+        groupMessageDao.insert(message1)
+        groupMessageDao.insert(message2)
+        groupMessageDao.insert(message3)
     }
 
     @Before
@@ -76,7 +84,7 @@ class MessageDaoTest {
         forumDatabase = Room.inMemoryDatabaseBuilder(context, ForumDatabase::class.java)
             .allowMainThreadQueries()
             .build()
-        messageDao = forumDatabase.messageDao()
+        groupMessageDao = forumDatabase.groupMessageDao()
     }
 
     @After
@@ -87,54 +95,38 @@ class MessageDaoTest {
 
     @Test
     @Throws(Exception::class)
-    fun daoInsert_insertsMessageIntoDB() = runBlocking {
+    fun daoInsert_insertsGroupMessageIntoDB() = runBlocking {
         addOneMessageToDB()
-        val messages = messageDao.getChatMessages(1, 2).first()
-        assertEquals(messages[0], message1)
+        val groupMessage = groupMessageDao.getGroupMessagesByGroupId(1).first()
+        assertEquals(groupMessage[0], message1)
     }
 
     @Test
     @Throws(Exception::class)
-    fun daoUpdate_updatesMessageInTheDB() = runBlocking {
+    fun daoUpdate_updatesGroupMessageInDB() = runBlocking {
         addOneMessageToDB()
-        val updatedMessage = message1.copy(text = "Hi :)")
-        messageDao.update(updatedMessage)
-        val messages = messageDao.getChatMessages(1, 2).first()
-        assertEquals(messages[0], updatedMessage)
+        val updatedGroupMessage = message1.copy(text = "Hi ;)")
+        groupMessageDao.update(updatedGroupMessage)
+        val groupMessage = groupMessageDao.getGroupMessagesByGroupId(1).first()
+        assertEquals(groupMessage[0], updatedGroupMessage)
     }
 
     @Test
     @Throws(Exception::class)
-    fun daoDelete_deletesMessageFromDB() = runBlocking {
+    fun daoDelete_deletedGroupMessageFromDB() = runBlocking {
         addThreeMessagesToDB()
-        messageDao.delete(message1)
-        val messages = messageDao.getChatMessages(1, 2).first()
-        assertEquals(messages[0], message3)
+        groupMessageDao.delete(message1)
+        val groupMessage = groupMessageDao.getGroupMessagesByGroupId(1).first()
+        assertEquals(groupMessage[0], message3)
     }
 
     @Test
     @Throws(Exception::class)
-    fun daoGetChatMessages_getsMessagesByChatFromDB() = runBlocking {
+    fun daoGetGroupMessagesByGroupId_returnsGroupMessagesByGroupIdFromDB() = runBlocking {
         addThreeMessagesToDB()
-        val messages = messageDao.getChatMessages(2, 1).first()
-        assertEquals(messages[0], message1)
-        assertEquals(messages[1], message3)
+        val groupMessages = groupMessageDao.getGroupMessagesByGroupId(1).first()
+        assertEquals(groupMessages[0], message1)
+        assertEquals(groupMessages[1], message3)
     }
 
-    @Test
-    @Throws(Exception::class)
-    fun daoDeleteMessageById_deletesMessageFromDBById() = runBlocking {
-        addThreeMessagesToDB()
-        messageDao.deleteMessageById(message1.id)
-        val messages = messageDao.getChatMessages(2, 1).first()
-        assertEquals(messages[0], message3)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun daoGetMessageById_returnsMessageFromDBById() = runBlocking {
-        addOneMessageToDB()
-        val message = messageDao.getMessageById(1).first()
-        assertEquals(message, message1)
-    }
 }

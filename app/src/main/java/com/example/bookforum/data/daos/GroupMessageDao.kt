@@ -21,5 +21,5 @@ interface GroupMessageDao {
     suspend fun delete(groupMessage: GroupMessage)
 
     @Query("SELECT * FROM group_messages WHERE group_id = :id")
-    fun getGroupMessages(id: Int): Flow<List<GroupMessage>>
+    fun getGroupMessagesByGroupId(id: Int): Flow<List<GroupMessage>>
 }

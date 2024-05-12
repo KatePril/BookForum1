@@ -5,7 +5,7 @@ import com.example.bookforum.data.entities.GroupMessage
 import kotlinx.coroutines.flow.Flow
 
 class GroupMessageRepository(private val groupMessageDao: GroupMessageDao) {
-    fun getGroupMessages(id: Int): Flow<List<GroupMessage>?> = groupMessageDao.getGroupMessages(id)
+    fun getGroupMessagesByGroupId(id: Int): Flow<List<GroupMessage>?> = groupMessageDao.getGroupMessagesByGroupId(id)
 
     suspend fun insertGroupMessage(groupMessage: GroupMessage) = groupMessageDao.insert(groupMessage)
 

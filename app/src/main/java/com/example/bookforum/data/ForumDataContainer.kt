@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.bookforum.data.repositories.PostsRepository
 import com.example.bookforum.data.repositories.CommentsRepository
 import com.example.bookforum.data.repositories.GroupMembersRepository
+import com.example.bookforum.data.repositories.GroupMessageRepository
 import com.example.bookforum.data.repositories.GroupsRepository
 import com.example.bookforum.data.repositories.LikedPostsRepository
 import com.example.bookforum.data.repositories.MessagesRepository
@@ -30,5 +31,8 @@ class ForumDataContainer(private val context: Context): ForumContainer {
     }
     override val groupMembersRepository: GroupMembersRepository by lazy {
         GroupMembersRepository(ForumDatabase.getDatabase(context).groupMemberDao())
+    }
+    override val groupMessageRepository: GroupMessageRepository by lazy {
+        GroupMessageRepository(ForumDatabase.getDatabase(context).groupMessageDao())
     }
 }

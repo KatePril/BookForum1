@@ -3,6 +3,7 @@ package com.example.bookforum.data
 import com.example.bookforum.data.repositories.PostsRepository
 import com.example.bookforum.data.repositories.CommentsRepository
 import com.example.bookforum.data.repositories.GroupMembersRepository
+import com.example.bookforum.data.repositories.GroupMessageRepository
 import com.example.bookforum.data.repositories.GroupsRepository
 import com.example.bookforum.data.repositories.LikedPostsRepository
 import com.example.bookforum.data.repositories.MessagesRepository
@@ -16,4 +17,5 @@ interface ForumContainer {
     val messagesRepository: MessagesRepository
     val groupsRepository: GroupsRepository
     val groupMembersRepository: GroupMembersRepository
+    val groupMessageRepository: GroupMessageRepository
 }

@@ -24,6 +24,7 @@ class GroupCreationViewModel(
 ){
     private var groupMembers by mutableStateOf(emptySet<Int>())
     var groupCreationUiState by mutableStateOf(GroupCreationUiState())
+    var groupId = 0
 
     fun addMember(memberId: Int) {
         groupMembers += memberId
@@ -38,7 +39,7 @@ class GroupCreationViewModel(
 
     suspend fun saveGroup() {
         if (validateTitle()) {
-            val groupId = groupsRepository
+            groupId = groupsRepository
                 .insertGroup(groupCreationUiState.groupDetails.toGroup())
                 .toInt()
             groupMembersRepository.insertGroupMember(

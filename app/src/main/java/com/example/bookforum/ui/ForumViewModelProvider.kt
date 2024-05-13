@@ -8,6 +8,8 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.bookforum.ForumApplication
 import com.example.bookforum.ui.apiUi.BooksViewModel
 import com.example.bookforum.ui.databaseUi.commentUi.viewModels.CommentViewModel
+import com.example.bookforum.ui.databaseUi.groupUi.screens.groupCreation.GroupCreationScreen
+import com.example.bookforum.ui.databaseUi.groupUi.viewModels.GroupCreationViewModel
 import com.example.bookforum.ui.databaseUi.groupUi.viewModels.GroupsListViewModel
 import com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels.LikedPostsListViewModel
 import com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels.LikedPostsViewModel
@@ -107,6 +109,14 @@ object ForumViewModelProvider {
             GroupsListViewModel(
                 savedStateHandle = this.createSavedStateHandle(),
                 groupsRepository = forumApplication().container.groupsRepository
+            )
+        }
+        initializer {
+            GroupCreationViewModel(
+                savedStateHandle = this.createSavedStateHandle(),
+                usersRepository = forumApplication().container.usersRepository,
+                groupsRepository = forumApplication().container.groupsRepository,
+                groupMembersRepository = forumApplication().container.groupMembersRepository
             )
         }
     }

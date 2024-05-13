@@ -55,4 +55,6 @@
     <string name="go_to_groups_action">Groups</string>
     <string name="no_liked_posts_msg">You haven\'t liked any posts yet</string>
     <string name="create_group_action">Create group</string>
+    <string name="save_group_action">Save Group</string>
+    <string name="group_title_input">Enter group title</string>
 </resources>

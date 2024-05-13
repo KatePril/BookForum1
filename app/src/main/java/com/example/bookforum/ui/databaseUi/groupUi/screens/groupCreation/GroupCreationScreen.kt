@@ -1,6 +1,7 @@
 package com.example.bookforum.ui.databaseUi.groupUi.screens.groupCreation
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -10,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
@@ -38,7 +40,9 @@ fun GroupCreationScreen(
                     }
                     navigateToChat(viewModel.userId, viewModel.groupId)
                 },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .padding(dimensionResource(R.dimen.padding_large))
+                    .fillMaxWidth()
             ) {
                 Text(text = stringResource(R.string.save_group_action))
             }
@@ -65,14 +69,14 @@ fun GroupCreationBody(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier
+        modifier = modifier.padding(dimensionResource(R.dimen.padding_large))
     ) {
         BackButton(onClick = navigateBack)
         FormInput(
             value = groupDetails.title,
             onValueChange = { onValueChange(groupDetails.copy(title =  it)) },
             labelText = R.string.group_title_input,
-            color = MaterialTheme.colorScheme.primary
+            color = MaterialTheme.colorScheme.primaryContainer
         )
         ChatsList(
             onItemClick = onItemClick,

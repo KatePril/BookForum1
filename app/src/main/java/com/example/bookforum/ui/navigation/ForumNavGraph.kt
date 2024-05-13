@@ -11,6 +11,7 @@ import com.example.bookforum.ui.apiUi.screens.ApiResultScreen
 import com.example.bookforum.ui.apiUi.screens.ApiSearchDestination
 import com.example.bookforum.ui.navigation.destinations.commentDestination.CommentPageDestination
 import com.example.bookforum.ui.databaseUi.commentUi.screens.CommentsScreen
+import com.example.bookforum.ui.databaseUi.groupUi.screens.groupCreation.GroupCreationScreen
 import com.example.bookforum.ui.databaseUi.groupUi.screens.groupsList.GroupsListScreen
 import com.example.bookforum.ui.navigation.destinations.likedPostDestinations.LikedPostsPageDestination
 import com.example.bookforum.ui.databaseUi.likedPostsUI.screens.LikedPostsScreen
@@ -283,11 +284,18 @@ fun ForumNavHost(
         }
         composable(
             route = GroupCreationDestination.routeWithArgs,
-            arguments = listOf(navArgument(GroupCreationDestination.routeWithArgs){
+            arguments = listOf(navArgument(GroupCreationDestination.userIdArg){
                 type = NavType.IntType
             })
         ){
-            TODO("Add GroupCreationScreen")
+            GroupCreationScreen(
+                navigateBack = {
+                    navController.navigate("${GroupsListDestination.route}/$it")
+                },
+                navigateToChat = { userId: Int, groupId: Int ->
+                    navController.navigate("${GroupDestination.route}/$userId/$groupId")
+                }
+            )
         }
         composable(
             route = GroupDestination.routeWithArgs,
@@ -297,7 +305,7 @@ fun ForumNavHost(
                 type = NavType.IntType
             })
         ){
-            TODO("Add GroupScreen")
+            /*TODO Add GroupScreen*/
         }
     }
 }

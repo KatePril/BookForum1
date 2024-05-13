@@ -26,7 +26,7 @@ import com.example.bookforum.ui.screenParts.ForumTopAppBar
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun GroupsListScreen(
-    onCreateGroupClick: () -> Unit,
+    onCreateGroupClick: (Int) -> Unit,
     onItemClick: (Int, Int) -> Unit,
     quitAccount: () -> Unit,
     navigateToGlobalPage: (Int) -> Unit,
@@ -47,7 +47,7 @@ fun GroupsListScreen(
         }
     ) { innerPadding ->
         GroupsListBody(
-            onCreateGroupClick = onCreateGroupClick,
+            onCreateGroupClick = { onCreateGroupClick(viewModel.userId) },
             navigateToPrivateChats = { navigateToChatsList(viewModel.userId) }, 
             onItemClick = { onItemClick(viewModel.userId, it) }, 
             groupsList = viewModel.groupsList,

@@ -10,9 +10,11 @@ import com.example.bookforum.data.entities.GroupMessage
 import com.example.bookforum.data.entities.User
 import com.example.bookforum.data.repositories.GroupMembersRepository
 import com.example.bookforum.data.repositories.GroupMessageRepository
+import com.example.bookforum.ui.databaseUi.groupUi.states.group.GroupMessageCreationUiState
+import com.example.bookforum.ui.databaseUi.groupUi.states.group.GroupMessageDetails
+import com.example.bookforum.ui.databaseUi.groupUi.states.group.toGroupMessage
 import com.example.bookforum.ui.navigation.destinations.groupDestination.GroupDestination
 import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -24,8 +26,13 @@ class GroupViewModel(
 
     val userId: Int = checkNotNull(savedStateHandle[GroupDestination.userIdArg])
     val groupId: Int = checkNotNull(savedStateHandle[GroupDestination.groupIdArg])
+
     var usersMap by mutableStateOf(emptyMap<Int, User>())
     var messagesList by mutableStateOf(emptyList<GroupMessage>())
+    var messagesMap by mutableStateOf(emptyMap<Int, GroupMessage>())
+
+    var groupMessageCreationUiState by mutableStateOf(GroupMessageCreationUiState())
+
     init {
         viewModelScope.launch {
             usersMap = groupMembersRepository
@@ -34,11 +41,56 @@ class GroupViewModel(
                 .stateIn(
                     scope = viewModelScope
                 ).value.associateBy { it.id }
-            messagesList = groupMessageRepository
-                .getGroupMessagesByGroupId(groupId)
-                .filterNotNull().stateIn(
-                    scope = viewModelScope
-                ).value
+            fillMessages()
         }
     }
+
+    private suspend fun fillMessages() {
+        messagesList = groupMessageRepository
+            .getGroupMessagesByGroupId(groupId)
+            .filterNotNull().stateIn(
+                scope = viewModelScope
+            ).value
+        messagesMap = messagesList.associateBy { it.id }
+    }
+
+
+    fun updateUiState(groupMessageDetails: GroupMessageDetails) {
+        groupMessageCreationUiState = GroupMessageCreationUiState(
+            groupMessageDetails = groupMessageDetails,
+            isTextValid = validateText(groupMessageDetails)
+        )
+    }
+
+    private fun validateText(
+        groupMessageDetails: GroupMessageDetails = groupMessageCreationUiState.groupMessageDetails
+    ): Boolean {
+        return with(groupMessageDetails) {
+            text.isNotBlank()
+        }
+    }
+
+    suspend fun saveMessage() {
+        if (validateText()) {
+            if (groupMessageCreationUiState.groupMessageDetails.id == 0) {
+                groupMessageRepository.insertGroupMessage(
+                    groupMessageCreationUiState.groupMessageDetails.toGroupMessage()
+                )
+            } else {
+                groupMessageRepository.updateGroupMessage(
+                    groupMessageCreationUiState.groupMessageDetails
+                        .copy(edited = 1)
+                        .toGroupMessage()
+                )
+            }
+            fillMessages()
+        }
+    }
+
+    suspend fun deleteMessage(groupMessage: GroupMessage) {
+        groupMessageRepository.deleteGroupMessage(groupMessage)
+        fillMessages()
+    }
+
+    fun getReplyById(id: Int): GroupMessage? = messagesMap[id]
 }

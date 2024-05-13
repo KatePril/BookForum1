@@ -22,7 +22,7 @@ class GroupCreationViewModel(
     savedStateHandle = savedStateHandle,
     usersRepository = usersRepository
 ){
-    var groupMembers by mutableStateOf(emptySet<Int>())
+    private var groupMembers by mutableStateOf(emptySet<Int>())
     var groupCreationUiState by mutableStateOf(GroupCreationUiState())
 
     fun addMember(memberId: Int) {

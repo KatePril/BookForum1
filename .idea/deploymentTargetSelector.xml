@@ -35,10 +35,10 @@
       </SelectionState>
       <SelectionState runConfigName="GroupMessageDaoTest">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-05-12T10:45:06.655598600Z">
+        <DropdownSelection timestamp="2024-05-13T17:13:30.271838700Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\Kate\.android\avd\Resizable_API_34_new_1.avd" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\Kate\.android\avd\Resizable_API_34_new_2.avd" />
             </handle>
           </Target>
         </DropdownSelection>

@@ -8,9 +8,9 @@ import com.example.bookforum.data.entities.GroupMember
 import com.example.bookforum.data.repositories.GroupMembersRepository
 import com.example.bookforum.data.repositories.GroupsRepository
 import com.example.bookforum.data.repositories.UsersRepository
-import com.example.bookforum.ui.databaseUi.groupUi.states.GroupCreationUiState
-import com.example.bookforum.ui.databaseUi.groupUi.states.GroupDetails
-import com.example.bookforum.ui.databaseUi.groupUi.states.toGroup
+import com.example.bookforum.ui.databaseUi.groupUi.states.groupCreation.GroupCreationUiState
+import com.example.bookforum.ui.databaseUi.groupUi.states.groupCreation.GroupDetails
+import com.example.bookforum.ui.databaseUi.groupUi.states.groupCreation.toGroup
 import com.example.bookforum.ui.databaseUi.messageUi.viewModels.ChatsListViewModel
 
 class GroupCreationViewModel(

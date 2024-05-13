@@ -1,7 +1,6 @@
 package com.example.bookforum.ui.databaseUi.groupUi.screens.groupCreation
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -17,7 +16,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.User
 import com.example.bookforum.ui.ForumViewModelProvider
-import com.example.bookforum.ui.databaseUi.groupUi.states.GroupDetails
+import com.example.bookforum.ui.databaseUi.groupUi.states.groupCreation.GroupDetails
 import com.example.bookforum.ui.databaseUi.groupUi.viewModels.GroupCreationViewModel
 import com.example.bookforum.ui.databaseUi.messageUi.screens.chatsList.ChatsList
 import com.example.bookforum.ui.screenParts.BackButton

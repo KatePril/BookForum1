@@ -40,6 +40,5 @@ class GroupViewModel(
                     scope = viewModelScope
                 ).value
         }
-
     }
 }

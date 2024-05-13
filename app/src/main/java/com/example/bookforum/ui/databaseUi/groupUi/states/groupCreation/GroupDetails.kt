@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.groupUi.states
+package com.example.bookforum.ui.databaseUi.groupUi.states.groupCreation
 
 import com.example.bookforum.data.entities.Group
 

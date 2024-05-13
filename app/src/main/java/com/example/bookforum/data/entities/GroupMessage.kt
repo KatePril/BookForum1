@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.example.bookforum.ui.databaseUi.groupUi.states.group.GroupMessageDetails
 
 @Entity(
     tableName = "group_messages",
@@ -33,4 +34,14 @@ data class GroupMessage(
     val groupId: Int,
     val edited: Int,
     val reply: Int
+)
+
+fun GroupMessage.toDetails(): GroupMessageDetails = GroupMessageDetails(
+    id = id,
+    text = text,
+    date = date,
+    senderId = senderId,
+    groupId = groupId,
+    edited = edited,
+    reply = reply
 )

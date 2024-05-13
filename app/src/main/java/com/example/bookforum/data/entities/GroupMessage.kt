@@ -15,12 +15,6 @@ import androidx.room.PrimaryKey
             onDelete = ForeignKey.CASCADE
         ),
         ForeignKey(
-            entity = User::class,
-            parentColumns = ["id"],
-            childColumns = ["receiver_id"],
-            onDelete = ForeignKey.CASCADE
-        ),
-        ForeignKey(
             entity = Group::class,
             parentColumns = ["id"],
             childColumns = ["group_id"],
@@ -35,8 +29,6 @@ data class GroupMessage(
     val date: String,
     @ColumnInfo(name = "sender_id")
     val senderId: Int,
-    @ColumnInfo(name = "receiver_id")
-    val receiverId: Int,
     @ColumnInfo(name = "group_id")
     val groupId: Int,
     val edited: Int,

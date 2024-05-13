@@ -29,7 +29,6 @@ class GroupMessageDaoTest {
         text = "Hi",
         date = "12:00",
         senderId = 1,
-        receiverId = 2,
         groupId = 1,
         edited = 0,
         reply = 0
@@ -39,7 +38,6 @@ class GroupMessageDaoTest {
         text = "Hello",
         date = "13:44",
         senderId = 1,
-        receiverId = 2,
         groupId = 2,
         edited = 0,
         reply = 0
@@ -49,7 +47,6 @@ class GroupMessageDaoTest {
         text = "How are you?",
         date = "13:44",
         senderId = 2,
-        receiverId = 1,
         groupId = 1,
         edited = 0,
         reply = 0

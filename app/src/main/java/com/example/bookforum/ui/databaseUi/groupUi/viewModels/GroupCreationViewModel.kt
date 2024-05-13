@@ -40,7 +40,8 @@ class GroupCreationViewModel(
     suspend fun saveGroup() {
         if (validateTitle()) {
             groupId = groupsRepository
-                .insertGroup(groupCreationUiState.groupDetails.toGroup()).toInt()
+                .insertGroup(groupCreationUiState.groupDetails.toGroup())
+                .toInt()
             groupMembersRepository.insertGroupMember(
                 GroupMember(
                     id = 0,

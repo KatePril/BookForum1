@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface GroupDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(group: Group)
+    suspend fun insert(group: Group): Long
 
     @Update
     suspend fun update(group: Group)

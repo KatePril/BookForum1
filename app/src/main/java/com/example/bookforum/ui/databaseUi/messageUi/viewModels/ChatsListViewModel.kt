@@ -9,7 +9,7 @@ import com.example.bookforum.ui.navigation.destinations.messageDestinations.Chat
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-class ChatsListViewModel(
+open class ChatsListViewModel(
     savedStateHandle: SavedStateHandle,
     private val usersRepository: UsersRepository
 ): ViewModel() {

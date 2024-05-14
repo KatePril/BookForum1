@@ -17,7 +17,7 @@ import com.example.bookforum.ui.screenParts.buttons.TopBarDefaultButtons
 import com.example.bookforum.ui.screenParts.topBars.ForumTopBar
 
 @Composable
-fun GroupTopBar(
+internal fun GroupTopBar(
     navigateToGroupsList: () -> Unit,
     navigateToGroupSettings: () -> Unit,
     quitAccount: () -> Unit,

@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun ChatScreen(
     navigateToChatsList: (Int) -> Unit,
-    quitAccount: (Int) -> Unit,
+    quitAccount: () -> Unit,
     navigateToFavouritePosts: (Int) -> Unit,
     navigateToProfile: (Int) -> Unit,
     viewModel: ChatViewModel = viewModel(factory = ForumViewModelProvider.Factory)
@@ -29,7 +29,7 @@ fun ChatScreen(
         topBar = {
             ChatTopBar(
                 navigateToChatsList = { navigateToChatsList(viewModel.userId) },
-                quitAccount = { quitAccount(viewModel.userId) },
+                quitAccount = quitAccount,
                 navigateToFavouritePosts = { navigateToFavouritePosts(viewModel.userId) },
                 navigateToProfile = { navigateToProfile(viewModel.userId) },
             )

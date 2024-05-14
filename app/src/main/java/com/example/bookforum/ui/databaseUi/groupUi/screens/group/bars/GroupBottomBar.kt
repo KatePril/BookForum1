@@ -10,7 +10,7 @@ import com.example.bookforum.ui.screenParts.forms.FormInput
 import com.example.bookforum.ui.screenParts.forms.TextInputForm
 
 @Composable
-fun GroupBottomBar(
+internal fun GroupBottomBar(
     groupMessageCreationUiState: GroupMessageCreationUiState,
     onValueChange: (GroupMessageDetails) -> Unit,
     onSendClick: () -> Unit,

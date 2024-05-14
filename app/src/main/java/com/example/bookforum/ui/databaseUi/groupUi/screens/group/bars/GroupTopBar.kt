@@ -1,10 +1,11 @@
-package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.bars
+package com.example.bookforum.ui.databaseUi.groupUi.screens.group.bars
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,8 +18,9 @@ import com.example.bookforum.ui.screenParts.buttons.TopBarDefaultButtons
 import com.example.bookforum.ui.screenParts.topBars.ForumTopBar
 
 @Composable
-fun ChatTopBar(
-    navigateToChatsList: () -> Unit,
+fun GroupTopBar(
+    navigateToGroupsList: () -> Unit,
+    navigateToGroupSettings: () -> Unit,
     quitAccount: () -> Unit,
     navigateToFavouritePosts: () -> Unit,
     navigateToProfile: () -> Unit,
@@ -26,7 +28,8 @@ fun ChatTopBar(
 ) {
     ForumTopBar {
         TitleBody(
-            navigateToChatsList = navigateToChatsList,
+            navigateToGroupsList = navigateToGroupsList,
+            navigateToGroupSettings = navigateToGroupSettings,
             quitAccount = quitAccount,
             navigateToFavouritePosts = navigateToFavouritePosts,
             navigateToProfile = navigateToProfile,
@@ -37,7 +40,8 @@ fun ChatTopBar(
 
 @Composable
 private fun TitleBody(
-    navigateToChatsList: () -> Unit,
+    navigateToGroupsList: () -> Unit,
+    navigateToGroupSettings: () -> Unit,
     quitAccount: () -> Unit,
     navigateToFavouritePosts: () -> Unit,
     navigateToProfile: () -> Unit,
@@ -49,11 +53,17 @@ private fun TitleBody(
     ) {
         ButtonWithIcon(
             imageVector = Icons.Filled.ArrowBack,
-            onClick = navigateToChatsList,
+            onClick = navigateToGroupsList,
             tint = MaterialTheme.colorScheme.secondaryContainer,
             modifier = modifier
         )
         Spacer(modifier = modifier.weight(1f))
+        ButtonWithIcon(
+            imageVector = Icons.Filled.Settings,
+            onClick = navigateToGroupSettings,
+            tint = MaterialTheme.colorScheme.secondaryContainer,
+            modifier = modifier
+        )
         TopBarDefaultButtons(
             quitAccount = quitAccount,
             navigateToFavouritePosts = navigateToFavouritePosts,

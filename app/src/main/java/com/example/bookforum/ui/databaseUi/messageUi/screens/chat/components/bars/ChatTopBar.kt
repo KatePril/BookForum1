@@ -8,17 +8,14 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.bookforum.ui.screenParts.buttons.ButtonWithIcon
+import com.example.bookforum.ui.screenParts.topBars.ForumTopBar
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChatTopBar(
     navigateToChatsList: () -> Unit,
@@ -27,20 +24,15 @@ fun ChatTopBar(
     navigateToProfile: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    TopAppBar(
-        title = {
-            TitleBody(
-                navigateToChatsList = navigateToChatsList,
-                quitAccount = quitAccount,
-                navigateToFavouritePosts = navigateToFavouritePosts,
-                navigateToProfile = navigateToProfile,
-                modifier = modifier
-            )
-        },
-        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.secondary
+    ForumTopBar {
+        TitleBody(
+            navigateToChatsList = navigateToChatsList,
+            quitAccount = quitAccount,
+            navigateToFavouritePosts = navigateToFavouritePosts,
+            navigateToProfile = navigateToProfile,
+            modifier = modifier
         )
-    )
+    }
 }
 
 @Composable

@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents
+package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents.messageContent
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -13,7 +13,7 @@ import androidx.compose.ui.res.stringResource
 import com.example.bookforum.R
 
 @Composable
-internal fun EditedMessage(
+fun EditedMessage(
     edited: Int,
     modifier: Modifier = Modifier
 ) {

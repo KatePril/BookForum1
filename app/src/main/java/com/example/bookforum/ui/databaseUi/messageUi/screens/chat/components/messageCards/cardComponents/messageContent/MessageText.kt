@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents
+package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents.messageContent
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text

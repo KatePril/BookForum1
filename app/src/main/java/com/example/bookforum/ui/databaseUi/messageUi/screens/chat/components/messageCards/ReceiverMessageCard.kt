@@ -1,29 +1,23 @@
 package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.Message
 import com.example.bookforum.data.entities.User
-import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents.EditedMessage
-import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents.MessageText
-import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents.ReceiverMessageHeader
-import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents.ReplyBlock
+import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents.cardBlocks.MessageCard
+import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents.cardBlocks.MessageCardColumn
+import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents.messageContent.EditedMessage
+import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents.messageContent.MessageText
+import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents.messageContent.ReceiverMessageHeader
+import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents.messageContent.ReplyBlock
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun ReceiverMessageCard(
     onMessageClick: () -> Unit,
@@ -36,31 +30,17 @@ internal fun ReceiverMessageCard(
     Row(
         modifier = modifier.fillMaxWidth()
     ) {
-        Card(
-            onClick = onMessageClick,
-            modifier = modifier
-                .weight(2f)
-                .fillMaxWidth(),
-            elevation = CardDefaults.cardElevation(
-                defaultElevation = dimensionResource(R.dimen.default_elevation)
-            ),
+        MessageCard(
+            onMessageClick = onMessageClick,
+            containerColor = MaterialTheme.colorScheme.tertiaryContainer,
             shape = RoundedCornerShape(
                 topStart = dimensionResource(R.dimen.padding_large),
                 topEnd = dimensionResource(R.dimen.padding_large),
                 bottomEnd = dimensionResource(R.dimen.padding_large)
             ),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.tertiaryContainer
-            )
-        ) {
-            Column(
-                modifier = modifier.padding(
-                    top = dimensionResource(R.dimen.padding_medium),
-                    bottom = dimensionResource(R.dimen.padding_large),
-                    start = dimensionResource(R.dimen.padding_large),
-                    end = dimensionResource(R.dimen.padding_large)
-                )
-            ) {
+            modifier = modifier.weight(2f)
+        ){
+            MessageCardColumn {
                 ReceiverMessageHeader(
                     username = user.username,
                     date = message.date

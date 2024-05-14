@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents
+package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents.messageContent
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -13,7 +13,7 @@ import androidx.compose.ui.res.dimensionResource
 import com.example.bookforum.R
 
 @Composable
-fun MessageHeader(
+private fun MessageHeader(
     horizontalArrangement: Arrangement.Horizontal,
     modifier: Modifier = Modifier,
     content: @Composable (RowScope.() -> Unit),

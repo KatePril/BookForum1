@@ -63,7 +63,7 @@ internal fun ChatBody(
 }
 
 @Composable
-internal fun MessagesList(
+private fun MessagesList(
     getSenderById: (Int) -> User?,
     getMessageById: (Int) -> Message?,
     onMessageClick: (Int) -> Unit,

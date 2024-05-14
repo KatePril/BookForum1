@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.groupUi.screens.group.bars
+package com.example.bookforum.ui.databaseUi.groupUi.screens.group.components.bars
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable

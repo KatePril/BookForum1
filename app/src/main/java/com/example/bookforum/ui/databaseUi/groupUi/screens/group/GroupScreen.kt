@@ -6,8 +6,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.ui.ForumViewModelProvider
-import com.example.bookforum.ui.databaseUi.groupUi.screens.group.bars.GroupBottomBar
-import com.example.bookforum.ui.databaseUi.groupUi.screens.group.bars.GroupTopBar
+import com.example.bookforum.ui.databaseUi.groupUi.screens.group.components.GroupBody
+import com.example.bookforum.ui.databaseUi.groupUi.screens.group.components.bars.GroupBottomBar
+import com.example.bookforum.ui.databaseUi.groupUi.screens.group.components.bars.GroupTopBar
 import com.example.bookforum.ui.databaseUi.groupUi.viewModels.GroupViewModel
 import kotlinx.coroutines.launch
 
@@ -47,6 +48,24 @@ fun GroupScreen(
             )
         }
     ) { innerPadding ->
+        GroupBody(
+            currentUserId = viewModel.userId,
+            getMessageById = viewModel::getReplyById,
+            getUserById = viewModel::getUserById,
+            onMessageClick = {
+                viewModel.updateUiState(
+                    viewModel.groupMessageCreationUiState.groupMessageDetails.copy(reply = it)
+                )
+            },
+            onDeleteClick = {
+                coroutineScope.launch {
+                    viewModel.deleteMessage(it)
+                }
+            },
+            onEditClick = viewModel::updateUiState,
+            messagesList = viewModel.messagesList,
+            contentPadding = innerPadding
+        )
         /* TODO Reply Canceller */
     }
 }

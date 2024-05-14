@@ -19,7 +19,7 @@ class LikedPostsViewModel(
     private val likedPostsRepository: LikedPostsRepository
 ): ViewModel() {
     val userId: Int = checkNotNull(savedStateHandle[FeedDestination.userIdArg])
-    /*TODO fix flows*/
+
     private val _checkedPostFlow = MutableStateFlow<Int?>(null)
     val checkedPostFlow: StateFlow<Int?> get() = _checkedPostFlow.asStateFlow()
 

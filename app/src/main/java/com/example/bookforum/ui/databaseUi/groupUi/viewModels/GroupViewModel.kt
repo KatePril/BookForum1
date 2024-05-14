@@ -93,4 +93,5 @@ class GroupViewModel(
     }
 
     fun getReplyById(id: Int): GroupMessage? = messagesMap[id]
+    fun getUserById(id: Int): User? = usersMap[id]
 }

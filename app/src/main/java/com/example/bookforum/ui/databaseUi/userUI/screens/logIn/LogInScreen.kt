@@ -17,7 +17,7 @@ import com.example.bookforum.R
 import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.userUI.states.UserLogInDetails
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.LoginViewModel
-import com.example.bookforum.ui.screenParts.FormInput
+import com.example.bookforum.ui.screenParts.forms.FormInput
 
 @Composable
 fun LoginScreen(

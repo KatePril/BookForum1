@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.bookforum.R
 import com.example.bookforum.ui.databaseUi.commentUi.states.CommentCreationUiState
 import com.example.bookforum.ui.databaseUi.commentUi.states.CommentDetails
-import com.example.bookforum.ui.screenParts.FormInputWithMessage
+import com.example.bookforum.ui.screenParts.forms.FormInputWithMessage
 import com.example.bookforum.ui.screenParts.buttons.SendButton
 import com.example.bookforum.ui.theme.BookForumTheme
 

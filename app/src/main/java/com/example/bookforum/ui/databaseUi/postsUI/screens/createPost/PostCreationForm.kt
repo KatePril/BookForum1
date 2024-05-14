@@ -10,7 +10,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.input.ImeAction
 import com.example.bookforum.R
 import com.example.bookforum.ui.databaseUi.postsUI.states.PostDetails
-import com.example.bookforum.ui.screenParts.FormInput
+import com.example.bookforum.ui.screenParts.forms.FormInput
 
 @Composable
 internal fun PostCreationForm(

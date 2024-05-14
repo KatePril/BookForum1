@@ -11,7 +11,7 @@ import androidx.compose.ui.text.input.ImeAction
 import com.example.bookforum.R
 import com.example.bookforum.ui.databaseUi.userUI.states.UserDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.UserValidationDetails
-import com.example.bookforum.ui.screenParts.FormInputWithMessage
+import com.example.bookforum.ui.screenParts.forms.FormInputWithMessage
 
 @Composable
 internal fun RegistrationForm(

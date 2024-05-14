@@ -20,7 +20,7 @@ import com.example.bookforum.ui.databaseUi.groupUi.states.groupCreation.GroupDet
 import com.example.bookforum.ui.databaseUi.groupUi.viewModels.GroupCreationViewModel
 import com.example.bookforum.ui.databaseUi.messageUi.screens.chatsList.ChatsList
 import com.example.bookforum.ui.screenParts.buttons.BackButton
-import com.example.bookforum.ui.screenParts.FormInput
+import com.example.bookforum.ui.screenParts.forms.FormInput
 import kotlinx.coroutines.launch
 
 @Composable

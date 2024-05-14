@@ -7,10 +7,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.text.input.ImeAction
 import com.example.bookforum.R
 import com.example.bookforum.ui.databaseUi.postsUI.states.PostDetails
-import com.example.bookforum.ui.screenParts.FormInput
+import com.example.bookforum.ui.screenParts.forms.FormInput
 
 @Composable
 internal fun EditPostForm(

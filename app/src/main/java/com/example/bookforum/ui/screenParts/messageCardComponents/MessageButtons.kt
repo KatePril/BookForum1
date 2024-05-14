@@ -8,7 +8,7 @@ import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.bookforum.ui.screenParts.FilledButtonWithIcon
+import com.example.bookforum.ui.screenParts.buttons.FilledButtonWithIcon
 
 @Composable
 fun MessageButtons(

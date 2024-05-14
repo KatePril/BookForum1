@@ -24,7 +24,7 @@ import com.example.bookforum.ui.databaseUi.commentUi.screens.components.CommentC
 import com.example.bookforum.ui.databaseUi.commentUi.states.CommentCreationUiState
 import com.example.bookforum.ui.databaseUi.commentUi.states.CommentDetails
 import com.example.bookforum.ui.databaseUi.commentUi.viewModels.CommentViewModel
-import com.example.bookforum.ui.screenParts.ButtonWithIcon
+import com.example.bookforum.ui.screenParts.buttons.ButtonWithIcon
 import com.example.bookforum.ui.screenParts.EmptyListMsg
 import kotlinx.coroutines.launch
 

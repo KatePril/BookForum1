@@ -14,8 +14,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.bookforum.data.entities.Post
-import com.example.bookforum.ui.screenParts.ButtonWithIcon
-import com.example.bookforum.ui.screenParts.ExpandButton
+import com.example.bookforum.ui.screenParts.buttons.ButtonWithIcon
+import com.example.bookforum.ui.screenParts.buttons.ExpandButton
 
 @Composable
 internal fun PostButtons(

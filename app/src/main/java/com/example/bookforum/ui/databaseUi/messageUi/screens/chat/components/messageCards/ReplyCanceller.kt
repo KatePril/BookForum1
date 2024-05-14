@@ -21,7 +21,7 @@ import com.example.bookforum.R
 import com.example.bookforum.data.entities.Message
 import com.example.bookforum.data.entities.User
 import com.example.bookforum.ui.databaseUi.messageUi.states.MessageDetails
-import com.example.bookforum.ui.screenParts.ButtonWithIcon
+import com.example.bookforum.ui.screenParts.buttons.ButtonWithIcon
 
 @Composable
 internal fun ReplyCanceller(

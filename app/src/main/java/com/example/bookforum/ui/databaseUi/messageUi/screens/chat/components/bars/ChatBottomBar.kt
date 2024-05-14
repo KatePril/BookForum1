@@ -2,32 +2,24 @@ package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.ba
 
 import android.util.Log
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.unit.dp
 import com.example.bookforum.R
-import com.example.bookforum.data.entities.Message
-import com.example.bookforum.data.entities.User
 import com.example.bookforum.ui.databaseUi.messageUi.states.MessageCreationUiState
 import com.example.bookforum.ui.databaseUi.messageUi.states.MessageDetails
-import com.example.bookforum.ui.screenParts.ButtonWithIcon
 import com.example.bookforum.ui.screenParts.FormInput
+import com.example.bookforum.ui.screenParts.buttons.SendButton
 
 @Composable
 fun ChatBottomBar(
@@ -62,18 +54,11 @@ fun ChatBottomBar(
             Column (
                 modifier = modifier
             ) {
-                IconButton(
-                    onClick = onSendClick,
+                SendButton(
+                    onSendClick = onSendClick,
+                    enabled = messageCreationUiState.isTextValid,
                     modifier = modifier
-                        .background(MaterialTheme.colorScheme.primary, MaterialTheme.shapes.small),
-                    enabled = messageCreationUiState.isTextValid
-                ) {
-                    Icon(
-                        imageVector = Icons.Filled.Send,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.primaryContainer
-                    )
-                }
+                )
             }
         }
     }

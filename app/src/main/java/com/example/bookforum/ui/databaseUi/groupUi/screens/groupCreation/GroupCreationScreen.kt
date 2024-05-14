@@ -19,7 +19,7 @@ import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.groupUi.states.groupCreation.GroupDetails
 import com.example.bookforum.ui.databaseUi.groupUi.viewModels.GroupCreationViewModel
 import com.example.bookforum.ui.databaseUi.messageUi.screens.chatsList.ChatsList
-import com.example.bookforum.ui.screenParts.BackButton
+import com.example.bookforum.ui.screenParts.buttons.BackButton
 import com.example.bookforum.ui.screenParts.FormInput
 import kotlinx.coroutines.launch
 

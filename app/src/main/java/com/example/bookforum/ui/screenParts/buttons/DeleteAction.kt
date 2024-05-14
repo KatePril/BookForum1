@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.screenParts
+package com.example.bookforum.ui.screenParts.buttons
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth

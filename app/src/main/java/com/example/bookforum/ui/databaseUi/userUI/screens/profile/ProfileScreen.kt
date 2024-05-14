@@ -16,11 +16,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.ui.ForumViewModelProvider
-import com.example.bookforum.ui.screenParts.DeleteButton
+import com.example.bookforum.ui.screenParts.buttons.DeleteButton
 import com.example.bookforum.ui.databaseUi.userUI.states.UserDetails
 import com.example.bookforum.ui.databaseUi.userUI.states.UserRegistrationUIState
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.ProfileViewModel
-import com.example.bookforum.ui.screenParts.BackButton
+import com.example.bookforum.ui.screenParts.buttons.BackButton
 import kotlinx.coroutines.launch
 
 @Composable

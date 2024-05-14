@@ -12,7 +12,7 @@ import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.userUI.screens.passwordChange.components.ChangePasswordButton
 import com.example.bookforum.ui.databaseUi.userUI.screens.passwordChange.components.PasswordChangeForm
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.PasswordChangeViewModel
-import com.example.bookforum.ui.screenParts.BackButton
+import com.example.bookforum.ui.screenParts.buttons.BackButton
 
 @Composable
 fun PasswordChangeScreen(

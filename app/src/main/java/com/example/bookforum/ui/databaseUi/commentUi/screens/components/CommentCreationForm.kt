@@ -1,14 +1,9 @@
 package com.example.bookforum.ui.databaseUi.commentUi.screens.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Send
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,6 +14,7 @@ import com.example.bookforum.R
 import com.example.bookforum.ui.databaseUi.commentUi.states.CommentCreationUiState
 import com.example.bookforum.ui.databaseUi.commentUi.states.CommentDetails
 import com.example.bookforum.ui.screenParts.FormInputWithMessage
+import com.example.bookforum.ui.screenParts.buttons.SendButton
 import com.example.bookforum.ui.theme.BookForumTheme
 
 @Composable
@@ -49,18 +45,11 @@ internal fun CommentCreationForm(
         Column (
             modifier = modifier
         ) {
-            IconButton(
-                onClick = onSendClick,
+            SendButton(
+                onSendClick = onSendClick,
+                enabled = commentCreationUiState.isTextValid,
                 modifier = modifier
-                    .background(MaterialTheme.colorScheme.primary, MaterialTheme.shapes.small),
-                enabled = commentCreationUiState.isTextValid
-            ) {
-                Icon(
-                    imageVector = Icons.Filled.Send,
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.primaryContainer
-                )
-            }
+            )
         }
     }
 }

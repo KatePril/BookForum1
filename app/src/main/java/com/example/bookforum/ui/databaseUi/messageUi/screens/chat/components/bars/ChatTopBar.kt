@@ -16,7 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.bookforum.ui.screenParts.ButtonWithIcon
+import com.example.bookforum.ui.screenParts.buttons.ButtonWithIcon
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

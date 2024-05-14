@@ -18,8 +18,8 @@ import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.postsUI.states.PostCreationUiState
 import com.example.bookforum.ui.databaseUi.postsUI.states.PostDetails
 import com.example.bookforum.ui.databaseUi.postsUI.viewModels.EditPostViewModel
-import com.example.bookforum.ui.screenParts.BackButton
-import com.example.bookforum.ui.screenParts.DeleteButton
+import com.example.bookforum.ui.screenParts.buttons.BackButton
+import com.example.bookforum.ui.screenParts.buttons.DeleteButton
 import kotlinx.coroutines.launch
 
 @Composable

@@ -37,8 +37,6 @@ fun ChatScreen(
         bottomBar = {
             BottomAppBar {
                 ChatBottomBar(
-                    getMessageById = viewModel::getReplyById,
-                    getSenderById = viewModel::getReplySender,
                     messageCreationUiState = viewModel.messageCreationUiState,
                     onValueChange = viewModel::updateUiState,
                     onSendClick = {

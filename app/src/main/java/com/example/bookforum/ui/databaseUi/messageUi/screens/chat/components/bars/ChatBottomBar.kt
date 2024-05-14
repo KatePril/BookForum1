@@ -31,8 +31,6 @@ import com.example.bookforum.ui.screenParts.FormInput
 
 @Composable
 fun ChatBottomBar(
-    getMessageById: (Int) -> Message?,
-    getSenderById: (Int) -> User?,
     messageCreationUiState: MessageCreationUiState,
     onValueChange: (MessageDetails) -> Unit,
     onSendClick: () -> Unit,

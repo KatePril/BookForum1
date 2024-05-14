@@ -14,17 +14,20 @@ import com.example.bookforum.R
 
 @Composable
 internal fun EditedMessage(
+    edited: Int,
     modifier: Modifier = Modifier
 ) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(top = dimensionResource(R.dimen.padding_medium)),
-        horizontalArrangement = Arrangement.End
-    ) {
-        Text(
-            text = stringResource(R.string.edited),
-            style = MaterialTheme.typography.bodySmall
-        )
+    if (edited == 1) {
+        Row(
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(top = dimensionResource(R.dimen.padding_medium)),
+            horizontalArrangement = Arrangement.End
+        ) {
+            Text(
+                text = stringResource(R.string.edited),
+                style = MaterialTheme.typography.bodySmall
+            )
+        }
     }
 }

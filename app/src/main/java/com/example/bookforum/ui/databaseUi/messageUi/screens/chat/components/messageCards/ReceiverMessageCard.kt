@@ -19,6 +19,8 @@ import com.example.bookforum.R
 import com.example.bookforum.data.entities.Message
 import com.example.bookforum.data.entities.User
 import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents.EditedMessage
+import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents.MessageText
+import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents.ReceiverMessageHeader
 import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents.ReplyBlock
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -59,21 +61,10 @@ internal fun ReceiverMessageCard(
                     end = dimensionResource(R.dimen.padding_large)
                 )
             ) {
-                Row(
-                    modifier = modifier
-                        .fillMaxWidth()
-                        .padding(bottom = dimensionResource(R.dimen.padding_medium)),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Text(
-                        text = user.username,
-                        style = MaterialTheme.typography.bodyMedium
-                    )
-                    Text(
-                        text = message.date,
-                        style = MaterialTheme.typography.bodySmall
-                    )
-                }
+                ReceiverMessageHeader(
+                    username = user.username,
+                    date = message.date
+                )
                 if (replyMessage != null && replySender != null) {
                     ReplyBlock(
                         username = replySender.username,
@@ -82,13 +73,8 @@ internal fun ReceiverMessageCard(
                         textColor = MaterialTheme.colorScheme.tertiaryContainer
                     )
                 }
-                Text(
-                    text = message.text,
-                    style = MaterialTheme.typography.labelLarge
-                )
-                if (message.edited == 1) {
-                    EditedMessage(modifier =  modifier)
-                }
+                MessageText(text = message.text)
+                EditedMessage(edited = message.edited)
             }
         }
         Spacer(modifier = modifier.weight(1f))

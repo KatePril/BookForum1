@@ -85,17 +85,7 @@ internal fun CurrentUserMessageCard(
                 end = dimensionResource(R.dimen.padding_large)
             )
         ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = dimensionResource(R.dimen.padding_medium)),
-                horizontalArrangement = Arrangement.End
-            ) {
-                Text(
-                    text = message.date,
-                    style = MaterialTheme.typography.bodySmall
-                )
-            }
+            CurrentUserMessageHeader(date = message.date)
             if (replyMessage != null && replySender != null) {
                 ReplyBlock(
                     username = replySender.username,
@@ -104,11 +94,8 @@ internal fun CurrentUserMessageCard(
                     textColor = MaterialTheme.colorScheme.secondary
                 )
             }
-            Text(text = message.text)
-            Log.i("EDITED", message.edited.toString())
-            if (message.edited == 1) {
-                EditedMessage()
-            }
+            MessageText(text = message.text)
+            EditedMessage(edited = message.edited)
         }
     }
 }

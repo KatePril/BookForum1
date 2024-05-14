@@ -5,15 +5,13 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.ExitToApp
-import androidx.compose.material.icons.filled.Face
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.bookforum.ui.screenParts.buttons.ButtonWithIcon
+import com.example.bookforum.ui.screenParts.buttons.TopBarDefaultButtons
 import com.example.bookforum.ui.screenParts.topBars.ForumTopBar
 
 @Composable
@@ -54,22 +52,10 @@ private fun TitleBody(
             modifier = modifier
         )
         Spacer(modifier = modifier.weight(1f))
-        ButtonWithIcon(
-            imageVector = Icons.Filled.Favorite,
-            onClick = navigateToFavouritePosts,
-            tint = MaterialTheme.colorScheme.secondaryContainer,
-            modifier = modifier
-        )
-        ButtonWithIcon(
-            imageVector = Icons.Filled.Face,
-            onClick = navigateToProfile,
-            tint = MaterialTheme.colorScheme.secondaryContainer,
-            modifier = modifier
-        )
-        ButtonWithIcon(
-            imageVector = Icons.Filled.ExitToApp,
-            onClick = quitAccount,
-            tint = MaterialTheme.colorScheme.secondaryContainer,
+        TopBarDefaultButtons(
+            quitAccount = quitAccount,
+            navigateToFavouritePosts = navigateToFavouritePosts,
+            navigateToProfile = navigateToProfile,
             modifier = modifier
         )
     }

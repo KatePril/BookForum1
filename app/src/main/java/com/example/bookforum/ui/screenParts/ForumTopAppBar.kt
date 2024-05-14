@@ -5,9 +5,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Chat
-import androidx.compose.material.icons.filled.ExitToApp
-import androidx.compose.material.icons.filled.Face
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -20,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.bookforum.R
 import com.example.bookforum.ui.screenParts.buttons.ButtonWithIcon
+import com.example.bookforum.ui.screenParts.buttons.TopBarDefaultButtons
 import com.example.bookforum.ui.screenParts.topBars.ForumTopBar
 import com.example.bookforum.ui.theme.BookForumTheme
 
@@ -73,22 +71,10 @@ private fun TitleBody(
             tint = MaterialTheme.colorScheme.secondaryContainer,
             modifier = modifier
         )
-        ButtonWithIcon(
-            imageVector = Icons.Filled.Favorite,
-            onClick = navigateToFavouritePosts,
-            tint = MaterialTheme.colorScheme.secondaryContainer,
-            modifier = modifier
-        )
-        ButtonWithIcon(
-            imageVector = Icons.Filled.Face,
-            onClick = navigateToProfile,
-            tint = MaterialTheme.colorScheme.secondaryContainer,
-            modifier = modifier
-        )
-        ButtonWithIcon(
-            imageVector = Icons.Filled.ExitToApp,
-            onClick = quitAccount,
-            tint = MaterialTheme.colorScheme.secondaryContainer,
+        TopBarDefaultButtons(
+            quitAccount = quitAccount,
+            navigateToFavouritePosts = navigateToFavouritePosts,
+            navigateToProfile = navigateToProfile,
             modifier = modifier
         )
     }

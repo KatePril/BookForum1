@@ -5,37 +5,33 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.bookforum.data.entities.Message
 import com.example.bookforum.data.entities.User
+import com.example.bookforum.ui.screenParts.messageCardComponents.cardBlocks.CurrentUserMsgCard
 import com.example.bookforum.ui.screenParts.messageCardComponents.cardBlocks.MessageCardColumn
-import com.example.bookforum.ui.screenParts.messageCardComponents.cardBlocks.ReceiverMsgCard
+import com.example.bookforum.ui.screenParts.messageCardComponents.messageContent.CurrentUserMessageHeader
 import com.example.bookforum.ui.screenParts.messageCardComponents.messageContent.EditedMessage
 import com.example.bookforum.ui.screenParts.messageCardComponents.messageContent.MessageText
-import com.example.bookforum.ui.screenParts.messageCardComponents.messageContent.ReceiverMessageHeader
 import com.example.bookforum.ui.screenParts.messageCardComponents.messageContent.ReplyBlock
 
 @Composable
-internal fun ReceiverMessageCard(
+internal fun CurrentUserMessageCard(
     onMessageClick: () -> Unit,
-    user: User,
     message: Message,
     replyMessage: Message?,
     replySender: User?,
     modifier: Modifier = Modifier
 ) {
-    ReceiverMsgCard(
+    CurrentUserMsgCard(
         onMessageClick = onMessageClick,
         modifier = modifier
     ) {
         MessageCardColumn {
-            ReceiverMessageHeader(
-                username = user.username,
-                date = message.date
-            )
+            CurrentUserMessageHeader(date = message.date)
             if (replyMessage != null && replySender != null) {
                 ReplyBlock(
                     username = replySender.username,
                     text = replyMessage.text,
-                    surfaceColor = MaterialTheme.colorScheme.secondary,
-                    textColor = MaterialTheme.colorScheme.tertiaryContainer
+                    surfaceColor = MaterialTheme.colorScheme.tertiaryContainer,
+                    textColor = MaterialTheme.colorScheme.secondary
                 )
             }
             MessageText(text = message.text)
@@ -43,23 +39,3 @@ internal fun ReceiverMessageCard(
         }
     }
 }
-
-//@Preview(showBackground = true, showSystemUi = true)
-//@Composable
-//fun ReceiverMessageCardPreview() {
-//    BookForumTheme {
-//        Column(
-//            modifier = Modifier.padding(16.dp)
-//        ) {
-//            ReceiverMessageCard(
-//                onMessageClick = {},
-//                user = User(0, "anyablue", "", ""),
-//                message = Message(
-//                    0, "Hi :)", "12:00 06.05.2024", 0, 0, 0, 0
-//                ),
-//                replyMessage = null
-//            )
-//        }
-//
-//    }
-//}

@@ -8,8 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.bookforum.data.entities.Message
 import com.example.bookforum.data.entities.User
-import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents.CurrentUserMessageCard
-import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.cardComponents.MessageButtons
+import com.example.bookforum.ui.screenParts.messageCardComponents.MessageButtons
 
 @Composable
 internal fun CurrentUserRow(

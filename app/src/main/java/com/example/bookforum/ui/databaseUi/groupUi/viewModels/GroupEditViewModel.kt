@@ -25,7 +25,7 @@ class GroupEditViewModel(
     val groupId: Int = checkNotNull(savedStateHandle[GroupEditDestination.groupIdArg])
 
     var groupMembersList by mutableStateOf(emptyList<GroupMember>())
-    var usersMap by mutableStateOf(emptyMap<Int, User>())
+    private var usersMap by mutableStateOf(emptyMap<Int, User>())
 
     init {
         viewModelScope.launch {
@@ -71,4 +71,6 @@ class GroupEditViewModel(
                 ).value
         )
     }
+
+    fun getUser(id: Int): User? = usersMap[id]
 }

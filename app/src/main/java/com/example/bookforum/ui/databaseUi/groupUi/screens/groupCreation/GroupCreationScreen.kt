@@ -16,6 +16,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.User
 import com.example.bookforum.ui.ForumViewModelProvider
+import com.example.bookforum.ui.databaseUi.groupUi.screens.components.BottomBarButton
 import com.example.bookforum.ui.databaseUi.groupUi.states.groupCreation.GroupDetails
 import com.example.bookforum.ui.databaseUi.groupUi.viewModels.GroupCreationViewModel
 import com.example.bookforum.ui.databaseUi.messageUi.screens.chatsList.ChatsList
@@ -32,16 +33,13 @@ fun GroupCreationScreen(
     val coroutineScope = rememberCoroutineScope()
     Scaffold(
         bottomBar = {
-            Button(
-                onClick = {
+            BottomBarButton(
+                onCLick = {
                     coroutineScope.launch {
                         viewModel.saveGroup()
                     }
                     navigateToChat(viewModel.userId, viewModel.groupId)
-                },
-                modifier = Modifier
-                    .padding(dimensionResource(R.dimen.padding_large))
-                    .fillMaxWidth()
+                }
             ) {
                 Text(text = stringResource(R.string.save_group_action))
             }

@@ -10,6 +10,7 @@ import com.example.bookforum.ui.apiUi.BooksViewModel
 import com.example.bookforum.ui.databaseUi.commentUi.viewModels.CommentViewModel
 import com.example.bookforum.ui.databaseUi.groupUi.screens.groupCreation.GroupCreationScreen
 import com.example.bookforum.ui.databaseUi.groupUi.viewModels.GroupCreationViewModel
+import com.example.bookforum.ui.databaseUi.groupUi.viewModels.GroupEditViewModel
 import com.example.bookforum.ui.databaseUi.groupUi.viewModels.GroupViewModel
 import com.example.bookforum.ui.databaseUi.groupUi.viewModels.GroupsListViewModel
 import com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels.LikedPostsListViewModel
@@ -124,6 +125,12 @@ object ForumViewModelProvider {
             GroupViewModel(
                 savedStateHandle = this.createSavedStateHandle(),
                 groupMessageRepository = forumApplication().container.groupMessageRepository
+            )
+        }
+        initializer {
+            GroupEditViewModel(
+                savedStateHandle = this.createSavedStateHandle(),
+                groupMembersRepository = forumApplication().container.groupMembersRepository
             )
         }
     }

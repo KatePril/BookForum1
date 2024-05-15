@@ -22,4 +22,6 @@ interface GroupMessageDao {
 
     @Query("SELECT * FROM group_messages WHERE group_id = :id")
     fun getGroupMessagesByGroupId(id: Int): Flow<List<GroupMessage>>
+
+    /* TODO get users by GroupId*/
 }

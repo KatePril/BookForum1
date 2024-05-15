@@ -24,7 +24,7 @@ internal fun ChatReplyCanceller(
         ReplyCanceller(
             username = sender?.username ?: "",
             text = reply.text,
-            onClick = {
+            onCancelClick = {
                 updateUiState(messageDetails.copy(reply = 0))
             },
             modifier = modifier

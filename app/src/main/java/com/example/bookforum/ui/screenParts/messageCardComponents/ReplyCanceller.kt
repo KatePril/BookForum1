@@ -2,7 +2,6 @@ package com.example.bookforum.ui.screenParts.messageCardComponents
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.absolutePadding
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -24,7 +23,7 @@ import com.example.bookforum.ui.screenParts.buttons.ButtonWithIcon
 fun ReplyCanceller(
     username: String,
     text: String,
-    onClick: () -> Unit,
+    onCancelClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Surface(
@@ -41,7 +40,7 @@ fun ReplyCanceller(
             Text(text = "$username: $text")
             ButtonWithIcon(
                 imageVector = Icons.Filled.Cancel,
-                onClick = onClick,
+                onClick = onCancelClick,
                 tint = MaterialTheme.colorScheme.error,
                 modifier = modifier.size(16.dp)
             )

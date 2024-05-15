@@ -7,6 +7,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.groupUi.screens.group.components.GroupBody
+import com.example.bookforum.ui.databaseUi.groupUi.screens.group.components.GroupReplyCanceller
 import com.example.bookforum.ui.databaseUi.groupUi.screens.group.components.bars.GroupBottomBar
 import com.example.bookforum.ui.databaseUi.groupUi.screens.group.components.bars.GroupTopBar
 import com.example.bookforum.ui.databaseUi.groupUi.viewModels.GroupViewModel
@@ -66,6 +67,14 @@ fun GroupScreen(
             messagesList = viewModel.messagesList,
             contentPadding = innerPadding
         )
-        /* TODO Reply Canceller */
+
+        if (viewModel.groupMessageCreationUiState.groupMessageDetails.reply != 0) {
+            GroupReplyCanceller(
+                getReplyById = viewModel::getReplyById,
+                getReplySender = viewModel::getUserById,
+                updateUiState = viewModel::updateUiState,
+                groupMessageDetails = viewModel.groupMessageCreationUiState.groupMessageDetails
+            )
+        }
     }
 }

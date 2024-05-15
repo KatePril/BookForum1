@@ -1,6 +1,7 @@
 package com.example.bookforum.ui.databaseUi.groupUi.screens.group
 
 import android.annotation.SuppressLint
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -38,15 +39,17 @@ fun GroupScreen(
             )
         },
         bottomBar = {
-            GroupBottomBar(
-                groupMessageCreationUiState = viewModel.groupMessageCreationUiState,
-                onValueChange = viewModel::updateUiState,
-                onSendClick = {
-                    coroutineScope.launch {
-                        viewModel.saveMessage()
-                    }
-                },
-            )
+            BottomAppBar {
+                GroupBottomBar(
+                    groupMessageCreationUiState = viewModel.groupMessageCreationUiState,
+                    onValueChange = viewModel::updateUiState,
+                    onSendClick = {
+                        coroutineScope.launch {
+                            viewModel.saveMessage()
+                        }
+                    },
+                )
+            }
         }
     ) { innerPadding ->
         GroupBody(

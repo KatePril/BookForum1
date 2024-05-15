@@ -57,7 +57,7 @@ class GroupViewModel(
 
     fun updateUiState(groupMessageDetails: GroupMessageDetails) {
         groupMessageCreationUiState = GroupMessageCreationUiState(
-            groupMessageDetails = groupMessageDetails,
+            groupMessageDetails = groupMessageDetails.copy(senderId = userId, groupId = groupId),
             isTextValid = validateText(groupMessageDetails)
         )
     }
@@ -83,6 +83,8 @@ class GroupViewModel(
                         .toGroupMessage()
                 )
             }
+            updateUiState(groupMessageCreationUiState.groupMessageDetails.copy(text = "", reply = 0))
+
             fillMessages()
         }
     }

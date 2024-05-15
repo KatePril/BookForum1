@@ -11,6 +11,7 @@ import com.example.bookforum.ui.apiUi.screens.ApiResultScreen
 import com.example.bookforum.ui.apiUi.screens.ApiSearchDestination
 import com.example.bookforum.ui.navigation.destinations.commentDestination.CommentPageDestination
 import com.example.bookforum.ui.databaseUi.commentUi.screens.CommentsScreen
+import com.example.bookforum.ui.databaseUi.groupUi.screens.group.GroupScreen
 import com.example.bookforum.ui.databaseUi.groupUi.screens.groupCreation.GroupCreationScreen
 import com.example.bookforum.ui.databaseUi.groupUi.screens.groupsList.GroupsListScreen
 import com.example.bookforum.ui.navigation.destinations.likedPostDestinations.LikedPostsPageDestination
@@ -305,7 +306,21 @@ fun ForumNavHost(
                 type = NavType.IntType
             })
         ){
-            /*TODO Add GroupScreen*/
+            GroupScreen(
+                navigateToGroupsList = {
+                    navController.navigate("${GroupsListDestination.route}/$it")
+                },
+                navigateToGroupSettings = { userId: Int, groupId ->
+                     /*TODO*/
+                },
+                quitAccount = { navController.navigate(LogInDestination.route) },
+                navigateToFavouritePosts = {
+                    navController.navigate("${LikedPostsPageDestination.route}/$it")
+                },
+                navigateToProfile = {
+                    navController.navigate("${ProfileDestination.route}/$it")
+                }
+            )
         }
     }
 }

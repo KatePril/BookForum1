@@ -74,6 +74,7 @@ private fun MessagesList(
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier
 ) {
+    /* TODO replace deleteById with replace */
     LazyColumn(
         contentPadding = contentPadding,
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),

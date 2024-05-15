@@ -1,14 +1,9 @@
 package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards
 
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.bookforum.data.entities.Message
 import com.example.bookforum.data.entities.User
-import com.example.bookforum.ui.screenParts.messageCardComponents.MessageButtons
 import com.example.bookforum.ui.screenParts.messageCardComponents.cardBlocks.CurrentUserRow
 
 @Composable

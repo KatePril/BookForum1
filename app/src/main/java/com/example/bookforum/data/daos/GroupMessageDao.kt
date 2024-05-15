@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.bookforum.data.entities.GroupMessage
+import com.example.bookforum.data.entities.User
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -23,5 +24,6 @@ interface GroupMessageDao {
     @Query("SELECT * FROM group_messages WHERE group_id = :id")
     fun getGroupMessagesByGroupId(id: Int): Flow<List<GroupMessage>>
 
-    /* TODO get users by GroupId*/
+    @Query("SELECT users.id, users.username, users.password, users.email FROM users INNER JOIN group_messages ON (users.id = group_messages.sender_id) AND (group_messages.group_id = :id)")
+    fun getGroupUsersByGroupId(id: Int): Flow<List<User>>
 }

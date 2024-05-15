@@ -14,20 +14,20 @@ import com.example.bookforum.ui.databaseUi.groupUi.states.group.GroupMessageCrea
 import com.example.bookforum.ui.databaseUi.groupUi.states.group.GroupMessageDetails
 import com.example.bookforum.ui.databaseUi.groupUi.states.group.toGroupMessage
 import com.example.bookforum.ui.navigation.destinations.groupDestinations.GroupDestination
+import com.example.bookforum.utils.getCurrentTime
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class GroupViewModel(
     savedStateHandle: SavedStateHandle,
-    private val groupMessageRepository: GroupMessageRepository,
-    private val groupMembersRepository: GroupMembersRepository
+    private val groupMessageRepository: GroupMessageRepository
 ): ViewModel() {
 
     val userId: Int = checkNotNull(savedStateHandle[GroupDestination.userIdArg])
     val groupId: Int = checkNotNull(savedStateHandle[GroupDestination.groupIdArg])
 
-    var usersMap by mutableStateOf(emptyMap<Int, User>())
+    private var usersMap by mutableStateOf(emptyMap<Int, User>())
     var messagesList by mutableStateOf(emptyList<GroupMessage>())
     var messagesMap by mutableStateOf(emptyMap<Int, GroupMessage>())
 
@@ -35,8 +35,8 @@ class GroupViewModel(
 
     init {
         viewModelScope.launch {
-            usersMap = groupMembersRepository
-                .getUsersByGroupId(groupId)
+            usersMap = groupMessageRepository
+                .getGroupUsersByGroupId(groupId)
                 .filterNotNull()
                 .stateIn(
                     scope = viewModelScope
@@ -74,7 +74,9 @@ class GroupViewModel(
         if (validateText()) {
             if (groupMessageCreationUiState.groupMessageDetails.id == 0) {
                 groupMessageRepository.insertGroupMessage(
-                    groupMessageCreationUiState.groupMessageDetails.toGroupMessage()
+                    groupMessageCreationUiState.groupMessageDetails
+                        .copy(date = getCurrentTime())
+                        .toGroupMessage()
                 )
             } else {
                 groupMessageRepository.updateGroupMessage(

@@ -126,4 +126,13 @@ class GroupMessageDaoTest {
         assertEquals(groupMessages[1], message3)
     }
 
+    @Test
+    @Throws(Exception::class)
+    fun daoGetGroupUsersByGroupId_returnsGroupUsersByGroupIdFromDB() = runBlocking {
+        addThreeMessagesToDB()
+        val users = groupMessageDao.getGroupUsersByGroupId(1).first()
+        assertEquals(users[0], user1)
+        assertEquals(users[1], user2)
+    }
+
 }

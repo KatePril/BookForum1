@@ -123,7 +123,6 @@ object ForumViewModelProvider {
         initializer {
             GroupViewModel(
                 savedStateHandle = this.createSavedStateHandle(),
-                groupMembersRepository = forumApplication().container.groupMembersRepository,
                 groupMessageRepository = forumApplication().container.groupMessageRepository
             )
         }

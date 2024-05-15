@@ -17,7 +17,7 @@ import com.example.bookforum.R
 import com.example.bookforum.data.entities.Message
 import com.example.bookforum.data.entities.User
 import com.example.bookforum.data.entities.toDetails
-import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.CurrentUserRow
+import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.CurrentUserChatRow
 import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.ReceiverMessageCard
 import com.example.bookforum.ui.databaseUi.messageUi.states.MessageDetails
 import com.example.bookforum.ui.screenParts.EmptyListMsg
@@ -91,7 +91,7 @@ private fun MessagesList(
                     replySender = reply?.let { getSenderById(it.senderId) }
                 )
             } else {
-                CurrentUserRow(
+                CurrentUserChatRow(
                     onMessageClick = { onMessageClick(message.id) },
                     onDeleteClick = { onDeleteClick(message.id) },
                     onEditButtonClick = { onEditButtonClick(message.toDetails()) },

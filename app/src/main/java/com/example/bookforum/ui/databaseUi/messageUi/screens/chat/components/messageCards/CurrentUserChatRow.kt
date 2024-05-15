@@ -9,9 +9,10 @@ import androidx.compose.ui.Modifier
 import com.example.bookforum.data.entities.Message
 import com.example.bookforum.data.entities.User
 import com.example.bookforum.ui.screenParts.messageCardComponents.MessageButtons
+import com.example.bookforum.ui.screenParts.messageCardComponents.cardBlocks.CurrentUserRow
 
 @Composable
-internal fun CurrentUserRow(
+internal fun CurrentUserChatRow(
     replyMessage: Message?,
     replySender: User?,
     onMessageClick: () -> Unit,
@@ -20,16 +21,11 @@ internal fun CurrentUserRow(
     message: Message,
     modifier: Modifier = Modifier
 ) {
-    Row(
-        modifier = modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
+    CurrentUserRow(
+        onDeleteClick = onDeleteClick,
+        onEditButtonClick = onEditButtonClick,
+        modifier = modifier
     ) {
-        Spacer(modifier = modifier.weight(0.5f))
-        MessageButtons(
-            onDeleteClick = onDeleteClick,
-            onEditButtonClick = onEditButtonClick,
-            modifier = modifier
-        )
         CurrentUserMessageCard(
             replySender = replySender,
             replyMessage = replyMessage,

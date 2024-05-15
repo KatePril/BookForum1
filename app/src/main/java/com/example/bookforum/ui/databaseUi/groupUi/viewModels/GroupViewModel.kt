@@ -13,7 +13,7 @@ import com.example.bookforum.data.repositories.GroupMessageRepository
 import com.example.bookforum.ui.databaseUi.groupUi.states.group.GroupMessageCreationUiState
 import com.example.bookforum.ui.databaseUi.groupUi.states.group.GroupMessageDetails
 import com.example.bookforum.ui.databaseUi.groupUi.states.group.toGroupMessage
-import com.example.bookforum.ui.navigation.destinations.groupDestination.GroupDestination
+import com.example.bookforum.ui.navigation.destinations.groupDestinations.GroupDestination
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch

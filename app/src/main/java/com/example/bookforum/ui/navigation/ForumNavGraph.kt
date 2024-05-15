@@ -9,7 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.bookforum.ui.apiUi.screens.ApiResultScreen
 import com.example.bookforum.ui.apiUi.screens.ApiSearchDestination
-import com.example.bookforum.ui.navigation.destinations.commentDestination.CommentPageDestination
+import com.example.bookforum.ui.navigation.destinations.commentDestinations.CommentPageDestination
 import com.example.bookforum.ui.databaseUi.commentUi.screens.CommentsScreen
 import com.example.bookforum.ui.databaseUi.groupUi.screens.group.GroupScreen
 import com.example.bookforum.ui.databaseUi.groupUi.screens.groupCreation.GroupCreationScreen
@@ -31,9 +31,10 @@ import com.example.bookforum.ui.navigation.destinations.userDestinations.Passwor
 import com.example.bookforum.ui.databaseUi.userUI.screens.passwordChange.PasswordChangeScreen
 import com.example.bookforum.ui.navigation.destinations.userDestinations.RegistrationDestination
 import com.example.bookforum.ui.databaseUi.userUI.screens.registration.RegistrationScreen
-import com.example.bookforum.ui.navigation.destinations.groupDestination.GroupCreationDestination
-import com.example.bookforum.ui.navigation.destinations.groupDestination.GroupDestination
-import com.example.bookforum.ui.navigation.destinations.groupDestination.GroupsListDestination
+import com.example.bookforum.ui.navigation.destinations.groupDestinations.GroupCreationDestination
+import com.example.bookforum.ui.navigation.destinations.groupDestinations.GroupDestination
+import com.example.bookforum.ui.navigation.destinations.groupDestinations.GroupEditDestination
+import com.example.bookforum.ui.navigation.destinations.groupDestinations.GroupsListDestination
 import com.example.bookforum.ui.navigation.destinations.messageDestinations.ChatDestination
 import com.example.bookforum.ui.navigation.destinations.messageDestinations.ChatsListDestination
 import com.example.bookforum.ui.navigation.destinations.postDestinations.EditPostDestination
@@ -288,7 +289,7 @@ fun ForumNavHost(
             arguments = listOf(navArgument(GroupCreationDestination.userIdArg){
                 type = NavType.IntType
             })
-        ){
+        ) {
             GroupCreationScreen(
                 navigateBack = {
                     navController.navigate("${GroupsListDestination.route}/$it")
@@ -305,7 +306,7 @@ fun ForumNavHost(
             }, navArgument(GroupDestination.groupIdArg){
                 type = NavType.IntType
             })
-        ){
+        ) {
             GroupScreen(
                 navigateToGroupsList = {
                     navController.navigate("${GroupsListDestination.route}/$it")
@@ -321,6 +322,16 @@ fun ForumNavHost(
                     navController.navigate("${ProfileDestination.route}/$it")
                 }
             )
+        }
+        composable(
+            route = GroupEditDestination.routeWithArgs,
+            arguments = listOf(navArgument(GroupEditDestination.userIdArg){
+                type = NavType.IntType
+            }, navArgument(GroupEditDestination.groupIdArg) {
+                type = NavType.IntType
+            })
+        ) {
+            /* TODO EditGroupScreen */
         }
     }
 }

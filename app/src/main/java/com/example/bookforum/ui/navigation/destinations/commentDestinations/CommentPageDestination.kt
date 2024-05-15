@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.navigation.destinations.commentDestination
+package com.example.bookforum.ui.navigation.destinations.commentDestinations
 
 import com.example.bookforum.ui.navigation.NavigationDestination
 

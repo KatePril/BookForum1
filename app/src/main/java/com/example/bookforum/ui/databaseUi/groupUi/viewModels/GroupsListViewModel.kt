@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.bookforum.data.entities.Group
 import com.example.bookforum.data.repositories.GroupsRepository
-import com.example.bookforum.ui.navigation.destinations.groupDestination.GroupsListDestination
+import com.example.bookforum.ui.navigation.destinations.groupDestinations.GroupsListDestination
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch

@@ -13,7 +13,7 @@ import com.example.bookforum.data.repositories.UsersRepository
 import com.example.bookforum.ui.databaseUi.commentUi.states.CommentCreationUiState
 import com.example.bookforum.ui.databaseUi.commentUi.states.CommentDetails
 import com.example.bookforum.ui.databaseUi.commentUi.states.toComment
-import com.example.bookforum.ui.navigation.destinations.commentDestination.CommentPageDestination
+import com.example.bookforum.ui.navigation.destinations.commentDestinations.CommentPageDestination
 import com.example.bookforum.utils.getCurrentTime
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.stateIn

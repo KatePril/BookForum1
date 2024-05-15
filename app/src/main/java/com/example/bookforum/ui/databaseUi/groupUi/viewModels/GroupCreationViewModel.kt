@@ -4,6 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
+import com.example.bookforum.data.daos.MemberRight
 import com.example.bookforum.data.entities.GroupMember
 import com.example.bookforum.data.repositories.GroupMembersRepository
 import com.example.bookforum.data.repositories.GroupsRepository
@@ -47,7 +48,7 @@ class GroupCreationViewModel(
                     id = 0,
                     groupId = groupId,
                     userId = userId,
-                    isAdmin = 1
+                    isAdmin = MemberRight.OWNER.value
                 )
             )
             for (id in groupMembers) {
@@ -56,7 +57,7 @@ class GroupCreationViewModel(
                         id = 0,
                         groupId = groupId,
                         userId = id,
-                        isAdmin = 0
+                        isAdmin = MemberRight.NOT_ADMIN.value
                     )
                 )
             }

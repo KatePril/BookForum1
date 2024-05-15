@@ -33,6 +33,12 @@ class GroupEditViewModel(
                 .filterNotNull()
                 .stateIn(scope = viewModelScope)
                 .value
+            usersMap = groupMembersRepository
+                .getUsersByGroupId(groupId)
+                .filterNotNull()
+                .stateIn(
+                    scope = viewModelScope
+                ).value.associateBy { it.id }
         }
     }
 }

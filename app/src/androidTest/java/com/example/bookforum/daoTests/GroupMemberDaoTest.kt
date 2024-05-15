@@ -132,4 +132,12 @@ class GroupMemberDaoTest {
         assertEquals(groupMemberList[1], user2)
     }
 
+    @Test
+    @Throws(Exception::class)
+    fun daoGetGroupMemberByUserId_returnsGroupMemberByUserIdFromDB() = runBlocking {
+        addOneGroupMemberToDB()
+        val groupMember = groupMemberDao.getGroupMemberByUserId(1).first()
+        assertEquals(groupMember, groupMember1)
+    }
+
 }

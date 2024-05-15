@@ -10,7 +10,7 @@ import com.example.bookforum.ui.ForumViewModelProvider
 import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.ChatBody
 import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.bars.ChatBottomBar
 import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.bars.ChatTopBar
-import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.messageCards.ReplyCanceller
+import com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components.ChatReplyCanceller
 import com.example.bookforum.ui.databaseUi.messageUi.viewModels.ChatViewModel
 import kotlinx.coroutines.launch
 
@@ -68,7 +68,7 @@ fun ChatScreen(
         )
 
         if (viewModel.messageCreationUiState.messageDetails.reply != 0) {
-            ReplyCanceller(
+            ChatReplyCanceller(
                 getReplyById = viewModel::getReplyById,
                 getReplySender = viewModel::getReplySender,
                 updateUiState = viewModel::updateUiState,

@@ -12,4 +12,5 @@ class GroupMembersRepository(private val groupMemberDao: GroupMemberDao) {
     fun getGroupMembersByGroupId(id: Int): Flow<List<GroupMember>?> =
         groupMemberDao.getGroupMembersByGroupId(id)
     fun getUsersByGroupId(id: Int): Flow<List<User>?> = groupMemberDao.getUsersByGroupId(id)
+    fun getGroupMemberByUserId(id: Int): Flow<GroupMember?> = groupMemberDao.getGroupMemberByUserId(id)
 }

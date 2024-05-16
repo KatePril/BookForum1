@@ -10,12 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.Post
 import com.example.bookforum.ui.screenParts.EmptyListMsg
-import com.example.bookforum.ui.theme.BookForumTheme
 
 @Composable
 internal fun PostsDisplayBody(
@@ -71,13 +69,5 @@ private fun PostsList(
                 modifier = modifier
             )
         }
-    }
-}
-
-@Preview(showSystemUi = true, showBackground = true)
-@Composable
-fun EmptyPostsDisplayBodyPreview() {
-    BookForumTheme {
-//        PostsDisplayBody(postsList = listOf())
     }
 }

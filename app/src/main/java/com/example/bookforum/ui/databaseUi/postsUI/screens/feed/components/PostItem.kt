@@ -38,7 +38,7 @@ internal fun PostItem(
     val coroutineScope = rememberCoroutineScope()
     likedPostsViewModel.checkLikedPostExistence(userId, post.id)
     val liked by likedPostsViewModel.checkedPostFlow.collectAsState()
-    Log.i("LIKED", liked.toString())
+
     Card(
         modifier = modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(
@@ -88,27 +88,3 @@ internal fun PostItem(
         }
     }
 }
-
-//@Preview(showSystemUi = true, showBackground = true)
-//@Composable
-//fun PostItemPreview() {
-//    BookForumTheme {
-//        PostItem(
-//            post = Post(
-//                id = 1,
-////                title = "A Game of Thrones",
-//                title = "Harry Potter and the Sorcerer's Stone",
-//                author = "George R. R. Martin",
-//                published = "01.08.1996",
-//                review = "\"Game of Thrones\" is a captivating introduction to Martin's epic saga," +
-//                        "blending elements of fantasy, political intrigue, and human drama into " +
-//                        "a spellbinding tale that will leave readers eager for more." +
-//                        "Whether you're a fan of fantasy or simply enjoy a compelling story, " +
-//                        "this book is sure to captivate and enthrall.",
-//                userId = 0
-//            ),
-//            onCommentsButtonClick = {},
-//            userId = 0
-//        )
-//    }
-//}

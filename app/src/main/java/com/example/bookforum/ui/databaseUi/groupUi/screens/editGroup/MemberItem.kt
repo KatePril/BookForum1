@@ -17,9 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import com.example.bookforum.R
-import com.example.bookforum.data.daos.MemberRight
-import com.example.bookforum.data.entities.GroupMember
-import com.example.bookforum.ui.screenParts.buttons.ButtonWithIcon
+import com.example.bookforum.utils.MemberRight
 import com.example.bookforum.ui.screenParts.buttons.FilledButtonWithIcon
 
 @Composable

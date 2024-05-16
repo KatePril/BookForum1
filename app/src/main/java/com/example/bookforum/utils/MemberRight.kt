@@ -1,4 +1,4 @@
-package com.example.bookforum.data.daos
+package com.example.bookforum.utils
 
 enum class MemberRight(val value: Int) {
     NOT_ADMIN(0),

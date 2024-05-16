@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.bookforum.data.entities.GroupMessage
 import com.example.bookforum.data.entities.User
-import com.example.bookforum.data.repositories.GroupMembersRepository
 import com.example.bookforum.data.repositories.GroupMessageRepository
 import com.example.bookforum.ui.databaseUi.groupUi.states.group.GroupMessageCreationUiState
 import com.example.bookforum.ui.databaseUi.groupUi.states.group.GroupMessageDetails

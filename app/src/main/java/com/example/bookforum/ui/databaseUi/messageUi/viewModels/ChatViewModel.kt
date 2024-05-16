@@ -48,7 +48,6 @@ class ChatViewModel(
     }
 
     private suspend fun fillMaps() {
-        /* TODO consider replacing loop with INNER JOIN */
         messageMap = emptyMap()
         for (message in messagesList) {
             val reply = messagesRepository

@@ -54,8 +54,22 @@ fun EditGroupScreen(
                 )
             }
         }
-    ) {
-//        Icons.Filled.AddModerator for edit rights
-//        Icons.Filled.ExitToApp for delete user
+    ) { innerPadding ->
+        EditGroupBody(
+            membersList = viewModel.groupMembersList,
+            currentUserRights = viewModel.currentUserRights,
+            getUser = viewModel::getUser,
+            deleteMember = {
+                coroutineScope.launch {
+                    viewModel.deleteMember(it)
+                }
+            },
+            updateRights = {
+                coroutineScope.launch {
+                    viewModel.updateRights(it)
+                }
+            },
+            contentPadding = innerPadding
+        )
     }
 }

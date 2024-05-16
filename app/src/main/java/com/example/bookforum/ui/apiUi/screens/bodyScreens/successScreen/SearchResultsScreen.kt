@@ -31,7 +31,7 @@ fun SearchResultScreen(
 }
 
 @Composable
-fun NoResultsFoundMsg(
+private fun NoResultsFoundMsg(
     modifier: Modifier = Modifier
 ) {
     Text(

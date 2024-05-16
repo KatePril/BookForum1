@@ -27,6 +27,9 @@
       <SelectionState runConfigName="daoGetGroupMemberByUserId_returnsGroupMemberByUserIdFromDB()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="daoGetUsersByGroupId_returnsUsersByGroupIdFromDB()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>

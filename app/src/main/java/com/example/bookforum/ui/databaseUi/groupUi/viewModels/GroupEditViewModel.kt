@@ -26,6 +26,7 @@ class GroupEditViewModel(
 
     var groupMembersList by mutableStateOf(emptyList<GroupMember>())
     private var usersMap by mutableStateOf(emptyMap<Int, User>())
+    var currentUserRights by mutableStateOf(0)
 
     init {
         viewModelScope.launch {
@@ -40,6 +41,12 @@ class GroupEditViewModel(
                 .stateIn(
                     scope = viewModelScope
                 ).value.associateBy { it.id }
+            currentUserRights = groupMembersRepository
+                .getGroupMemberByUserId(userId)
+                .filterNotNull()
+                .stateIn(
+                    scope = viewModelScope
+                ).value.isAdmin
         }
     }
 

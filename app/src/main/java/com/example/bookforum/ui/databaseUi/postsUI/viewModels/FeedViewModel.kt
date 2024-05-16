@@ -27,6 +27,7 @@ class FeedViewModel(
             started = SharingStarted.WhileSubscribed(TIMEOUT_MILLS),
             initialValue = PostsDisplayUiState()
         )
+    /* TODO replace PostsDisplayUiState with list*/
 
 }
 

@@ -23,6 +23,7 @@ class PostCreationViewModel(
     private val userId: Int = checkNotNull(savedStateHandle[PostCreationDestination.userIdArg])
 
     val getUserUiState = getUserUiStateById(userId, usersRepository, viewModelScope)
+    /* TODO delete getUserUiState */
 
     var postCreationUiState by mutableStateOf(PostCreationUiState())
     fun updateUiState(postDetails: PostDetails) {

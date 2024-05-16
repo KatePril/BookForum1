@@ -15,3 +15,5 @@
 local.properties
 /app/src/main/java/com/example/bookforum/utils/SecretKeys.kt
 /app/src/main/java/com/example/bookforum/utils/HashConstants.kt
+/app/src/main/java/com/example/bookforum/utils/secretItems/HashConstants.kt
+/app/src/main/java/com/example/bookforum/utils/secretItems/SecretKeys.kt

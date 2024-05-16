@@ -27,7 +27,7 @@ internal fun ChatBody(
     getMessageById: (Int) -> Message?,
     getSenderById: (Int) -> User?,
     onMessageClick: (Int) -> Unit,
-    onDeleteClick: (Int) -> Unit,
+    onDeleteClick: (Message) -> Unit,
     onEditButtonClick: (MessageDetails) -> Unit,
     receiver: User,
     messagesList: List<Message>,
@@ -67,7 +67,7 @@ private fun MessagesList(
     getSenderById: (Int) -> User?,
     getMessageById: (Int) -> Message?,
     onMessageClick: (Int) -> Unit,
-    onDeleteClick: (Int) -> Unit,
+    onDeleteClick: (Message) -> Unit,
     onEditButtonClick: (MessageDetails) -> Unit,
     receiver: User,
     messagesList: List<Message>,
@@ -94,7 +94,7 @@ private fun MessagesList(
             } else {
                 CurrentUserChatRow(
                     onMessageClick = { onMessageClick(message.id) },
-                    onDeleteClick = { onDeleteClick(message.id) },
+                    onDeleteClick = { onDeleteClick(message) },
                     onEditButtonClick = { onEditButtonClick(message.toDetails()) },
                     message = message,
                     modifier =  modifier,

@@ -113,8 +113,8 @@ class ChatViewModel(
         }
     }
 
-    suspend fun deleteMessage(id: Int) {
-        messagesRepository.deleteMessageById(id)
+    suspend fun deleteMessage(message: Message) {
+        messagesRepository.deleteMessage(message)
         messagesList = getMessagesList()
         fillMaps()
     }

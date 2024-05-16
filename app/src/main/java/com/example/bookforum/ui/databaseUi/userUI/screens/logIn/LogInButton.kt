@@ -17,7 +17,7 @@ internal fun LogInButton(
     navigateToPostsDisplayPage: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val userUiState = viewModel.getUserUiStateByUsername(viewModel.userLogInUiState.userDetails.username).collectAsState()
+    val userUiState = viewModel.getUserUiStateByUsername().collectAsState()
 
     var isLogInSuccessful by remember { mutableStateOf(false) }
     var wasButtonClicked by remember { mutableStateOf(false) }
@@ -28,11 +28,9 @@ internal fun LogInButton(
         isMsgShown = (wasButtonClicked && !isLogInSuccessful),
         onClick = {
             wasButtonClicked = true
-            if (userUiState.value != null) {
-                isLogInSuccessful = viewModel.checkPassword(userUiState.value!!.userDetails.password)
-                if (isLogInSuccessful) {
-                    navigateToPostsDisplayPage(userUiState.value!!.userDetails.id)
-                }
+            isLogInSuccessful = viewModel.checkPassword(userUiState.value.password)
+            if (isLogInSuccessful) {
+                navigateToPostsDisplayPage(userUiState.value.id)
             }
         },
         enabled = viewModel.userLogInUiState.areInputsValid,

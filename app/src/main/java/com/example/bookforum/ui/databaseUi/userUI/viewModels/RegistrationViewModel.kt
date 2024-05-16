@@ -18,7 +18,7 @@ class RegistrationViewModel(
             usersRepository = usersRepository,
             coroutineScope = viewModelScope
         )
-    }
+    }/* TODO replace with insert(): Long*/
 
     suspend fun saveUser() {
         if (registrationUIState.userValidationDetails.areInputsValid) {

@@ -18,7 +18,6 @@ class ProfileViewModel(
     private val usersRepository: UsersRepository
 ) : ViewModelWithUsernameValidation(usersRepository) {
 
-
     private val userId: Int = checkNotNull(savedStateHandle[ProfileDestination.userIdArg])
 
     init {

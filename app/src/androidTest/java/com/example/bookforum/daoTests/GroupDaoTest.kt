@@ -94,7 +94,7 @@ class GroupDaoTest {
     fun daoInsert_insertsGroupToDB() = runBlocking {
         addOneGroupToDB()
         val groupList = groupDao.getGroupsByUser(1).first()
-        assertEquals(groupList[0], group1)
+        assertEquals(group1, groupList[0])
     }
 
     @Test
@@ -104,7 +104,7 @@ class GroupDaoTest {
         val updatedGroup = group1.copy(title = "Best")
         groupDao.update(updatedGroup)
         val groupList = groupDao.getGroupsByUser(1).first()
-        assertEquals(groupList[0], updatedGroup)
+        assertEquals(updatedGroup, groupList[0])
     }
 
     @Test
@@ -113,7 +113,7 @@ class GroupDaoTest {
         addTwoGroupsToDB()
         groupDao.delete(group1)
         val groupList = groupDao.getGroupsByUser(1).first()
-        assertEquals(groupList[0], group2)
+        assertEquals(group2, groupList[0])
     }
 
     @Test
@@ -121,8 +121,8 @@ class GroupDaoTest {
     fun daoGetGroupsByUser_returnsGroupsFromDBByUser() = runBlocking {
         addTwoGroupsToDB()
         val groupList = groupDao.getGroupsByUser(1).first()
-        assertEquals(groupList[0], group1)
-        assertEquals(groupList[1], group2)
-        assertEquals(groupList.size, 2)
+        assertEquals(group1, groupList[0])
+        assertEquals(group2, groupList[1])
+        assertEquals(2, groupList.size)
     }
 }

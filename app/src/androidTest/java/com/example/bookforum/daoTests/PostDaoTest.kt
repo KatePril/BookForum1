@@ -76,7 +76,7 @@ class PostDaoTest {
     fun daoInsert_insertsBookIntoDB() = runBlocking {
         addOneBookToDB()
         val allBooks = postDao.getAllPosts().first()
-        assertEquals(allBooks[0], book1)
+        assertEquals(book1, allBooks[0])
     }
 
     @Test
@@ -84,8 +84,8 @@ class PostDaoTest {
     fun daoGetAllBooks_returnsAllBooksFromDB() = runBlocking {
         addTwoBooksToDB()
         val allBooks = postDao.getAllPosts().first()
-        assertEquals(allBooks[0], book1)
-        assertEquals(allBooks[1], book2)
+        assertEquals(book1, allBooks[0])
+        assertEquals(book2, allBooks[1])
     }
 
     @Test
@@ -93,7 +93,7 @@ class PostDaoTest {
     fun doaGetBookById_returnsBookByIdFromDB() = runBlocking {
         addOneBookToDB()
         val book = postDao.getPostById(1).first()
-        assertEquals(book, book1)
+        assertEquals(book1, book)
     }
 
     @Test
@@ -103,7 +103,7 @@ class PostDaoTest {
         val updatedBook = book1.copy(published = "1996")
         postDao.update(updatedBook)
         val allBooks = postDao.getAllPosts().first()
-        assertEquals(allBooks[0], updatedBook)
+        assertEquals(updatedBook, allBooks[0])
     }
 
     @Test
@@ -112,6 +112,6 @@ class PostDaoTest {
         addTwoBooksToDB()
         postDao.delete(book1)
         val allBooks = postDao.getAllPosts().first()
-        assertEquals(allBooks[0], book2)
+        assertEquals(book2, allBooks[0])
     }
 }

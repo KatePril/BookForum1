@@ -55,7 +55,7 @@ class UserDaoTest {
     fun daoInsert_insertsUserIntoDB() = runBlocking {
         addOneUserToDb()
         val allUsers = userDao.getAllUsers().first()
-        assertEquals(allUsers[0], user1)
+        assertEquals(user1, allUsers[0])
     }
 
     @Test
@@ -63,8 +63,8 @@ class UserDaoTest {
     fun daoGetAllUsers_returnsAllUsersFromDB() = runBlocking {
         addTwoUsersToDb()
         val allUsers = userDao.getAllUsers().first()
-        assertEquals(allUsers[0], user1)
-        assertEquals(allUsers[1], user2)
+        assertEquals(user1, allUsers[0])
+        assertEquals(user2, allUsers[1])
     }
 
     @Test
@@ -72,7 +72,7 @@ class UserDaoTest {
     fun daoGetUserById_returnsUserByIdFromDB() = runBlocking {
         addOneUserToDb()
         val user = userDao.getUserById(1).first()
-        assertEquals(user, user1)
+        assertEquals(user1, user)
     }
 
     @Test
@@ -80,7 +80,7 @@ class UserDaoTest {
     fun daoGetUserByNotId_returnsUsersByNotIdFromDB() = runBlocking {
         addTwoUsersToDb()
         val users = userDao.getUserByNotId(1).first()
-        assertEquals(users[0], user2)
+        assertEquals(user2, users[0])
     }
 
     @Test
@@ -88,7 +88,7 @@ class UserDaoTest {
     fun daoGetUserByUsername_returnsUserByUsernameFromDB() = runBlocking {
         addOneUserToDb()
         val user = userDao.getUserByUsername("ron").first()
-        assertEquals(user, user1)
+        assertEquals(user1, user)
     }
 
     @Test
@@ -97,7 +97,7 @@ class UserDaoTest {
         addTwoUsersToDb()
         userDao.delete(user1)
         val allUsers = userDao.getAllUsers().first()
-        assertEquals(allUsers[0], user2)
+        assertEquals(user2, allUsers[0])
     }
 
     @Test
@@ -107,7 +107,7 @@ class UserDaoTest {
         val userUpdated = user1.copy(username = "harry")
         userDao.update(userUpdated)
         val allUsers = userDao.getAllUsers().first()
-        assertEquals(allUsers[0], userUpdated)
+        assertEquals(userUpdated, allUsers[0])
     }
 
 }

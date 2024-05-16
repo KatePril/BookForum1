@@ -90,7 +90,7 @@ class MessageDaoTest {
     fun daoInsert_insertsMessageIntoDB() = runBlocking {
         addOneMessageToDB()
         val messages = messageDao.getChatMessages(1, 2).first()
-        assertEquals(messages[0], message1)
+        assertEquals(message1, messages[0])
     }
 
     @Test
@@ -100,7 +100,7 @@ class MessageDaoTest {
         val updatedMessage = message1.copy(text = "Hi :)")
         messageDao.update(updatedMessage)
         val messages = messageDao.getChatMessages(1, 2).first()
-        assertEquals(messages[0], updatedMessage)
+        assertEquals(updatedMessage, messages[0])
     }
 
     @Test
@@ -109,7 +109,7 @@ class MessageDaoTest {
         addThreeMessagesToDB()
         messageDao.delete(message1)
         val messages = messageDao.getChatMessages(1, 2).first()
-        assertEquals(messages[0], message3)
+        assertEquals(message3, messages[0])
     }
 
     @Test
@@ -117,8 +117,8 @@ class MessageDaoTest {
     fun daoGetChatMessages_getsMessagesByChatFromDB() = runBlocking {
         addThreeMessagesToDB()
         val messages = messageDao.getChatMessages(2, 1).first()
-        assertEquals(messages[0], message1)
-        assertEquals(messages[1], message3)
+        assertEquals(message1, messages[0])
+        assertEquals(message3, messages[1])
     }
 
     @Test
@@ -127,7 +127,7 @@ class MessageDaoTest {
         addThreeMessagesToDB()
         messageDao.deleteMessageById(message1.id)
         val messages = messageDao.getChatMessages(2, 1).first()
-        assertEquals(messages[0], message3)
+        assertEquals(message3, messages[0])
     }
 
     @Test
@@ -135,6 +135,6 @@ class MessageDaoTest {
     fun daoGetMessageById_returnsMessageFromDBById() = runBlocking {
         addOneMessageToDB()
         val message = messageDao.getMessageById(1).first()
-        assertEquals(message, message1)
+        assertEquals(message1, message)
     }
 }

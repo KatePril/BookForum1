@@ -3,7 +3,9 @@ package com.example.bookforum.ui.databaseUi.groupUi.screens.editGroup
 import android.annotation.SuppressLint
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -17,12 +19,12 @@ import kotlinx.coroutines.launch
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun EditGroupScreen(
-    navigateToGroup: (Int) -> Unit,
+    navigateToGroup: (Int, Int) -> Unit,
     navigateToGroupSettings: (Int, Int) -> Unit,
     quitAccount: () -> Unit,
     navigateToFavouritePosts: (Int) -> Unit,
     navigateToProfile: (Int) -> Unit,
-    navigateToGroupsList: (Int) -> Unit,
+    navigateToChatsList: (Int) -> Unit,
     viewModel: GroupEditViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -30,7 +32,7 @@ fun EditGroupScreen(
     Scaffold (
         topBar = {
             GroupTopBar(
-                navigateToGroupsList = { navigateToGroup(viewModel.userId) },
+                navigateToGroupsList = { navigateToGroup(viewModel.userId, viewModel.groupId) },
                 navigateToGroupSettings = {
                     navigateToGroupSettings(viewModel.userId, viewModel.groupId)
                 },
@@ -45,8 +47,11 @@ fun EditGroupScreen(
                     coroutineScope.launch {
                         viewModel.leaveGroup()
                     }
-                    navigateToGroupsList(viewModel.userId)
-                }
+                    navigateToChatsList(viewModel.userId)
+                },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.error
+                )
             ) {
                 Icon(
                     imageVector = Icons.Filled.ExitToApp,

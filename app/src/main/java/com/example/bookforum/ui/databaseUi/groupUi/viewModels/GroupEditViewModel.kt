@@ -30,17 +30,7 @@ class GroupEditViewModel(
 
     init {
         viewModelScope.launch {
-            groupMembersList = groupMembersRepository
-                .getGroupMembersByGroupId(groupId)
-                .filterNotNull()
-                .stateIn(scope = viewModelScope)
-                .value
-            usersMap = groupMembersRepository
-                .getUsersByGroupId(groupId, userId)
-                .filterNotNull()
-                .stateIn(
-                    scope = viewModelScope
-                ).value.associateBy { it.id }
+            updateUsers()
             currentUserRights = groupMembersRepository
                 .getGroupMemberByUserId(userId)
                 .filterNotNull()
@@ -50,8 +40,22 @@ class GroupEditViewModel(
         }
     }
 
+    private suspend fun updateUsers() {
+        groupMembersList = groupMembersRepository
+            .getGroupMembersByGroupId(groupId, userId)
+            .filterNotNull()
+            .stateIn(scope = viewModelScope)
+            .value
+        usersMap = groupMembersRepository
+            .getUsersByGroupId(groupId)
+            .filterNotNull()
+            .stateIn(
+                scope = viewModelScope
+            ).value.associateBy { it.id }
+    }
     suspend fun deleteMember(groupMember: GroupMember) {
         groupMembersRepository.deleteGroupMember(groupMember)
+        updateUsers()
     }
 
     suspend fun updateRights(groupMember: GroupMember) {

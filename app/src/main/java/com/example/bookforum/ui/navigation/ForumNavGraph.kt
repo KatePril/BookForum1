@@ -11,6 +11,7 @@ import com.example.bookforum.ui.apiUi.screens.ApiResultScreen
 import com.example.bookforum.ui.apiUi.screens.ApiSearchDestination
 import com.example.bookforum.ui.navigation.destinations.commentDestinations.CommentPageDestination
 import com.example.bookforum.ui.databaseUi.commentUi.screens.CommentsScreen
+import com.example.bookforum.ui.databaseUi.groupUi.screens.editGroup.EditGroupScreen
 import com.example.bookforum.ui.databaseUi.groupUi.screens.group.GroupScreen
 import com.example.bookforum.ui.databaseUi.groupUi.screens.groupCreation.GroupCreationScreen
 import com.example.bookforum.ui.databaseUi.groupUi.screens.groupsList.GroupsListScreen
@@ -312,7 +313,7 @@ fun ForumNavHost(
                     navController.navigate("${GroupsListDestination.route}/$it")
                 },
                 navigateToGroupSettings = { userId: Int, groupId ->
-                     /*TODO*/
+                     navController.navigate("${GroupEditDestination.route}/$userId/$groupId")
                 },
                 quitAccount = { navController.navigate(LogInDestination.route) },
                 navigateToFavouritePosts = {
@@ -331,7 +332,24 @@ fun ForumNavHost(
                 type = NavType.IntType
             })
         ) {
-            /* TODO EditGroupScreen */
+            EditGroupScreen(
+                navigateToGroup = { userId: Int, groupId: Int ->
+                    navController.navigate("${GroupDestination.route}/$userId/$groupId")
+                },
+                navigateToGroupSettings = { userId: Int, groupId ->
+                    navController.navigate("${GroupEditDestination.route}/$userId/$groupId")
+                },
+                quitAccount = { navController.navigate(LogInDestination.route) },
+                navigateToFavouritePosts = {
+                    navController.navigate("${LikedPostsPageDestination.route}/$it")
+                },
+                navigateToProfile = {
+                    navController.navigate("${ProfileDestination.route}/$it")
+                },
+                navigateToChatsList = {
+                    navController.navigate("${ChatsListDestination.route}/$it")
+                }
+            )
         }
     }
 }

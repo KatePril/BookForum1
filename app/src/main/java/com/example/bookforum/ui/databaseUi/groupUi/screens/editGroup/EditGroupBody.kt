@@ -1,5 +1,6 @@
 package com.example.bookforum.ui.databaseUi.groupUi.screens.editGroup
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -21,7 +22,7 @@ import kotlinx.coroutines.launch
 fun EditGroupBody(
     membersList: List<GroupMember>,
     currentUserRights: Int,
-    getUser: (Int) -> Unit,
+    getUser: (Int) -> User?,
     deleteMember: (GroupMember) -> Unit,
     updateRights: (GroupMember) -> Unit,
     contentPadding: PaddingValues,
@@ -37,7 +38,13 @@ fun EditGroupBody(
             if (membersList.isEmpty()) {
                 EmptyListMsg(msgId = R.string.no_members_msg)
             } else {
-
+                GroupMembersList(
+                    membersList = membersList,
+                    currentUserRights = currentUserRights,
+                    getUser = getUser,
+                    deleteMember = deleteMember,
+                    updateRights = updateRights
+                )
             }
         }
     }
@@ -52,12 +59,14 @@ private fun GroupMembersList(
     updateRights: (GroupMember) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    Log.i("MEMBERS", membersList.toString())
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_large)),
         modifier = modifier
     ) {
         items(membersList) { groupMember ->
             val member = getUser(groupMember.userId)
+            Log.i("MEMBER", member.toString())
             if (member != null) {
                 MemberItem(
                     username = member.username,

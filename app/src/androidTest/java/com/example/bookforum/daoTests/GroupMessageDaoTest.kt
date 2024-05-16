@@ -95,7 +95,7 @@ class GroupMessageDaoTest {
     fun daoInsert_insertsGroupMessageIntoDB() = runBlocking {
         addOneMessageToDB()
         val groupMessage = groupMessageDao.getGroupMessagesByGroupId(1).first()
-        assertEquals(groupMessage[0], message1)
+        assertEquals(message1, groupMessage[0])
     }
 
     @Test
@@ -105,7 +105,7 @@ class GroupMessageDaoTest {
         val updatedGroupMessage = message1.copy(text = "Hi ;)")
         groupMessageDao.update(updatedGroupMessage)
         val groupMessage = groupMessageDao.getGroupMessagesByGroupId(1).first()
-        assertEquals(groupMessage[0], updatedGroupMessage)
+        assertEquals(updatedGroupMessage, groupMessage[0])
     }
 
     @Test
@@ -114,7 +114,7 @@ class GroupMessageDaoTest {
         addThreeMessagesToDB()
         groupMessageDao.delete(message1)
         val groupMessage = groupMessageDao.getGroupMessagesByGroupId(1).first()
-        assertEquals(groupMessage[0], message3)
+        assertEquals(message3, groupMessage[0])
     }
 
     @Test
@@ -122,8 +122,8 @@ class GroupMessageDaoTest {
     fun daoGetGroupMessagesByGroupId_returnsGroupMessagesByGroupIdFromDB() = runBlocking {
         addThreeMessagesToDB()
         val groupMessages = groupMessageDao.getGroupMessagesByGroupId(1).first()
-        assertEquals(groupMessages[0], message1)
-        assertEquals(groupMessages[1], message3)
+        assertEquals(message1, groupMessages[0])
+        assertEquals(message3, groupMessages[1])
     }
 
     @Test
@@ -131,8 +131,8 @@ class GroupMessageDaoTest {
     fun daoGetGroupUsersByGroupId_returnsGroupUsersByGroupIdFromDB() = runBlocking {
         addThreeMessagesToDB()
         val users = groupMessageDao.getGroupUsersByGroupId(1).first()
-        assertEquals(users[0], user1)
-        assertEquals(users[1], user2)
+        assertEquals(user1, users[0])
+        assertEquals(user2, users[1])
     }
 
 }

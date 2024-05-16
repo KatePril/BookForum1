@@ -64,8 +64,7 @@ private fun ApiResultScreenBody(
             is ApiUiState.Success -> {
                 if (uiState.books != null) {
                     SearchResultScreen(
-                        books = uiState.books,
-                        modifier = modifier
+                        books = uiState.books
                     )
                 } else {
                     NoResultsFoundMsg(modifier)

@@ -30,24 +30,3 @@ internal fun CurrentUserChatRow(
         )
     }
 }
-
-//@Preview(showBackground = true, showSystemUi = true)
-//@Composable
-//fun CurrentUserMessageCardPreview() {
-//    BookForumTheme {
-//        Column(
-//            modifier = Modifier.padding(16.dp)
-//        ) {
-//            CurrentUserRow(
-//                onMessageClick = {},
-//                onEditButtonClick = {},
-//                onDeleteClick = {},
-//                message = Message(
-//                    0, "Hi :)", "12:00 06.05.2024", 0, 0, 1, 0
-//                ),
-//                replyMessage = null
-//            )
-//        }
-//
-//    }
-//}

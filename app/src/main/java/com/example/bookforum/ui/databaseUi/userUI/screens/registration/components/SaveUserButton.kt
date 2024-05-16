@@ -5,7 +5,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -22,17 +21,11 @@ internal fun SaveUserButton(
     onSaveClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val userUiState = viewModel.getUserUiStateByUsername(viewModel.registrationUIState.userDetails.username).collectAsState()
-
     var isSaved by remember { mutableStateOf(false) }
 
     if (isSaved) {
         Button(
-            onClick = {
-                if (userUiState.value != null) {
-                    navigateToFeedPage(userUiState.value!!.userDetails.id)
-                }
-            },
+            onClick = { navigateToFeedPage(viewModel.userId) },
             shape = MaterialTheme.shapes.small,
             modifier = modifier.fillMaxWidth()
         ) {

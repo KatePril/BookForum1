@@ -8,7 +8,6 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.bookforum.ForumApplication
 import com.example.bookforum.ui.apiUi.BooksViewModel
 import com.example.bookforum.ui.databaseUi.commentUi.viewModels.CommentViewModel
-import com.example.bookforum.ui.databaseUi.groupUi.screens.groupCreation.GroupCreationScreen
 import com.example.bookforum.ui.databaseUi.groupUi.viewModels.GroupCreationViewModel
 import com.example.bookforum.ui.databaseUi.groupUi.viewModels.GroupEditViewModel
 import com.example.bookforum.ui.databaseUi.groupUi.viewModels.GroupViewModel
@@ -18,8 +17,8 @@ import com.example.bookforum.ui.databaseUi.likedPostsUI.viewModels.LikedPostsVie
 import com.example.bookforum.ui.databaseUi.messageUi.viewModels.ChatViewModel
 import com.example.bookforum.ui.databaseUi.messageUi.viewModels.ChatsListViewModel
 import com.example.bookforum.ui.databaseUi.postsUI.viewModels.EditPostViewModel
-import com.example.bookforum.ui.databaseUi.postsUI.viewModels.PostCreationViewModel
 import com.example.bookforum.ui.databaseUi.postsUI.viewModels.FeedViewModel
+import com.example.bookforum.ui.databaseUi.postsUI.viewModels.PostCreationViewModel
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.LoginViewModel
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.PasswordChangeViewModel
 import com.example.bookforum.ui.databaseUi.userUI.viewModels.ProfileViewModel
@@ -58,8 +57,7 @@ object ForumViewModelProvider {
         initializer {
             PostCreationViewModel(
                 savedStateHandle = this.createSavedStateHandle(),
-                postsRepository = forumApplication().container.postsRepository,
-                usersRepository = forumApplication().container.usersRepository
+                postsRepository = forumApplication().container.postsRepository
             )
         }
         initializer {
@@ -77,8 +75,7 @@ object ForumViewModelProvider {
         initializer {
             LikedPostsListViewModel(
                 savedStateHandle = this.createSavedStateHandle(),
-                likedPostsRepository = forumApplication().container.likedPostsRepository,
-                postsRepository = forumApplication().container.postsRepository
+                likedPostsRepository = forumApplication().container.likedPostsRepository
             )
         }
         initializer {

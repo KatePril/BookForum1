@@ -91,7 +91,7 @@ class GroupMemberDaoTest {
     fun daoInsert_insertsGroupMemberToDB() = runBlocking {
         addOneGroupMemberToDB()
         val groupMemberList = groupMemberDao.getGroupMembersByGroupId(1, 22).first()
-        assertEquals(groupMemberList[0], groupMember1)
+        assertEquals(groupMember1, groupMemberList[0])
 
     }
 
@@ -102,7 +102,7 @@ class GroupMemberDaoTest {
         val updatedGroupMember = groupMember1.copy(isAdmin = 1)
         groupMemberDao.update(updatedGroupMember)
         val groupMemberList = groupMemberDao.getGroupMembersByGroupId(1, 2).first()
-        assertEquals(groupMemberList[0], updatedGroupMember)
+        assertEquals(updatedGroupMember, groupMemberList[0])
     }
 
     @Test
@@ -111,7 +111,7 @@ class GroupMemberDaoTest {
         addThreeGroupMembersToDB()
         groupMemberDao.delete(groupMember2)
         val groupMemberList = groupMemberDao.getGroupMembersByGroupId(2, 4).first()
-        assertEquals(groupMemberList[0], groupMember3)
+        assertEquals(groupMember3, groupMemberList[0])
     }
 
     @Test
@@ -127,8 +127,8 @@ class GroupMemberDaoTest {
     fun daoGetUsersByGroupId_returnsUsersByGroupIdFromDB() = runBlocking {
         addThreeGroupMembersToDB()
         val groupMemberList = groupMemberDao.getUsersByGroupId(2).first()
-        assertEquals(groupMemberList[0], user1)
-        assertEquals(groupMemberList[1], user2)
+        assertEquals(user1, groupMemberList[0])
+        assertEquals(user2, groupMemberList[1])
     }
 
     @Test
@@ -136,7 +136,7 @@ class GroupMemberDaoTest {
     fun daoGetGroupMemberByUserId_returnsGroupMemberByUserIdFromDB() = runBlocking {
         addOneGroupMemberToDB()
         val groupMember = groupMemberDao.getGroupMemberByUserId(1).first()
-        assertEquals(groupMember, groupMember1)
+        assertEquals(groupMember1, groupMember)
     }
 
 }

@@ -8,8 +8,6 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookforum.ui.ForumViewModelProvider
@@ -30,8 +28,6 @@ fun FeedScreen(
     navigateToProfile: (Int) -> Unit,
     feedViewModel: FeedViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
-    val postsUiState by feedViewModel.postsUiState.collectAsState()
-
     Scaffold(
         topBar = {
             ForumTopAppBar(
@@ -58,7 +54,7 @@ fun FeedScreen(
             userId = feedViewModel.userId,
             onCommentsButtonClick = { onCommentsButtonClick(feedViewModel.userId, it) },
             onEditButtonClick = { onEditButtonClick(feedViewModel.userId, it) },
-            postsList = postsUiState.postsList,
+            postsList = feedViewModel.postsList,
             contentPadding = innerPadding,
             modifier = Modifier.fillMaxSize()
         )

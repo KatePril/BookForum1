@@ -24,6 +24,7 @@ class PasswordChangeViewModel(
     val userId: Int = checkNotNull(savedStateHandle[ProfileDestination.userIdArg])
 
     private var userUiState by mutableStateOf(User(0, "", "", ""))
+
     init {
         viewModelScope.launch {
             userUiState = usersRepository
@@ -48,7 +49,6 @@ class PasswordChangeViewModel(
     }
 
     fun checkPassword(): Boolean {
-//        Log.i("LOG_IN", correctPassword)
         return userUiState.password == hashPassword(passwordUiState.passwordDetails.oldPassword)
     }
 

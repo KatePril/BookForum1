@@ -9,7 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.bookforum.network.BooksApi
 import com.example.bookforum.ui.navigation.destinations.likedPostDestinations.LikedPostsPageDestination
 import com.example.bookforum.utils.API_HOST
-import com.example.bookforum.utils.XRapidAPIKey
+import com.example.bookforum.utils.secretItems.XRapidAPIKey
 import kotlinx.coroutines.launch
 import java.io.IOException
 

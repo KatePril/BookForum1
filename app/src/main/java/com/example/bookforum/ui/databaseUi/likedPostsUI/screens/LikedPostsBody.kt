@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.databaseUi.postsUI.screens.feed.components
+package com.example.bookforum.ui.databaseUi.likedPostsUI.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,10 +13,11 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import com.example.bookforum.R
 import com.example.bookforum.data.entities.Post
+import com.example.bookforum.ui.databaseUi.postsUI.screens.feed.components.PostItem
 import com.example.bookforum.ui.screenParts.EmptyListMsg
 
 @Composable
-internal fun PostsDisplayBody(
+internal fun LikedPostsBody(
     userId: Int,
     onCommentsButtonClick: (Int) -> Unit,
     onEditButtonClick: (Int) -> Unit,
@@ -31,11 +32,11 @@ internal fun PostsDisplayBody(
     ) {
         if (postsList.isEmpty()) {
             EmptyListMsg(
-                msgId = R.string.no_posts_msg,
+                msgId = R.string.no_liked_posts_msg,
                 modifier = modifier.padding(contentPadding)
             )
         } else {
-            PostsList(
+            LikedPostsList(
                 userId = userId,
                 onCommentsButtonClick = onCommentsButtonClick,
                 onEditButtonClick = onEditButtonClick,
@@ -47,7 +48,7 @@ internal fun PostsDisplayBody(
 }
 
 @Composable
-private fun PostsList(
+private fun LikedPostsList(
     userId: Int,
     onCommentsButtonClick: (Int) -> Unit,
     onEditButtonClick: (Int) -> Unit,

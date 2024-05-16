@@ -1,33 +1,26 @@
 package com.example.bookforum.ui.databaseUi.userUI.viewModels
 
-import androidx.lifecycle.viewModelScope
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.setValue
 import com.example.bookforum.data.repositories.UsersRepository
-import com.example.bookforum.ui.databaseUi.userUI.states.UserUiState
 import com.example.bookforum.ui.databaseUi.userUI.states.toUser
-import com.example.bookforum.ui.databaseUi.userUI.viewModels.utils.getUserUiStateByUsername
 import com.example.bookforum.utils.hashPassword
-import kotlinx.coroutines.flow.StateFlow
 
 class RegistrationViewModel(
     private val usersRepository: UsersRepository
 ) : ViewModelWithUsernameValidation(usersRepository) {
 
-    val getUserUiStateByUsername: (String) -> StateFlow<UserUiState?> = {
-        getUserUiStateByUsername(
-            username = it,
-            usersRepository = usersRepository,
-            coroutineScope = viewModelScope
-        )
-    }
+    var userId by mutableIntStateOf(0)
 
     suspend fun saveUser() {
         if (registrationUIState.userValidationDetails.areInputsValid) {
-            if (userDetailsValidator.isUsernameUnique(registrationUIState.userDetails, usersListState.usersList)) {
-                usersRepository.insertUser(
+            if (userDetailsValidator.isUsernameUnique(registrationUIState.userDetails, usersList)) {
+                userId = usersRepository.insertUser(
                     registrationUIState.userDetails.copy(
                         password = hashPassword(registrationUIState.userDetails.password)
                     ).toUser()
-                )
+                ).toInt()
             }
         }
     }

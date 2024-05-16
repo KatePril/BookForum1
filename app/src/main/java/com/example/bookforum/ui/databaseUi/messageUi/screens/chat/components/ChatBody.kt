@@ -1,6 +1,5 @@
 package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -27,14 +26,13 @@ internal fun ChatBody(
     getMessageById: (Int) -> Message?,
     getSenderById: (Int) -> User?,
     onMessageClick: (Int) -> Unit,
-    onDeleteClick: (Int) -> Unit,
+    onDeleteClick: (Message) -> Unit,
     onEditButtonClick: (MessageDetails) -> Unit,
     receiver: User,
     messagesList: List<Message>,
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier
 ) {
-    Log.i("MESSAGES", messagesList.toString())
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.padding(dimensionResource(R.dimen.padding_large)).fillMaxHeight(),
@@ -67,14 +65,13 @@ private fun MessagesList(
     getSenderById: (Int) -> User?,
     getMessageById: (Int) -> Message?,
     onMessageClick: (Int) -> Unit,
-    onDeleteClick: (Int) -> Unit,
+    onDeleteClick: (Message) -> Unit,
     onEditButtonClick: (MessageDetails) -> Unit,
     receiver: User,
     messagesList: List<Message>,
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier
 ) {
-    /* TODO replace deleteById with replace */
     LazyColumn(
         contentPadding = contentPadding,
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
@@ -94,7 +91,7 @@ private fun MessagesList(
             } else {
                 CurrentUserChatRow(
                     onMessageClick = { onMessageClick(message.id) },
-                    onDeleteClick = { onDeleteClick(message.id) },
+                    onDeleteClick = { onDeleteClick(message) },
                     onEditButtonClick = { onEditButtonClick(message.toDetails()) },
                     message = message,
                     modifier =  modifier,

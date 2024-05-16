@@ -43,23 +43,3 @@ internal fun ReceiverMessageCard(
         }
     }
 }
-
-//@Preview(showBackground = true, showSystemUi = true)
-//@Composable
-//fun ReceiverMessageCardPreview() {
-//    BookForumTheme {
-//        Column(
-//            modifier = Modifier.padding(16.dp)
-//        ) {
-//            ReceiverMessageCard(
-//                onMessageClick = {},
-//                user = User(0, "anyablue", "", ""),
-//                message = Message(
-//                    0, "Hi :)", "12:00 06.05.2024", 0, 0, 0, 0
-//                ),
-//                replyMessage = null
-//            )
-//        }
-//
-//    }
-//}

@@ -8,7 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.bookforum.ui.apiUi.screens.ApiResultScreen
-import com.example.bookforum.ui.apiUi.screens.ApiSearchDestination
+import com.example.bookforum.ui.navigation.destinations.apiDestinations.ApiSearchDestination
 import com.example.bookforum.ui.navigation.destinations.commentDestinations.CommentPageDestination
 import com.example.bookforum.ui.databaseUi.commentUi.screens.CommentsScreen
 import com.example.bookforum.ui.databaseUi.groupUi.screens.editGroup.EditGroupScreen

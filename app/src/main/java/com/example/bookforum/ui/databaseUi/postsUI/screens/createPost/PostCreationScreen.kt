@@ -29,7 +29,6 @@ fun PostCreationScreen(
     viewModel: PostCreationViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
     val coroutineScope = rememberCoroutineScope()
-    val userUiState = viewModel.getUserUiState.collectAsState()
 
     PostCreationBody(
         postCreationUiState = viewModel.postCreationUiState,
@@ -38,10 +37,10 @@ fun PostCreationScreen(
             coroutineScope.launch {
                 viewModel.savePost()
             }
-            navigateToFeed(userUiState.value.user.id)
+            navigateToFeed(viewModel.userId)
         },
         onCancelClick = {
-            navigateToFeed(userUiState.value.user.id)
+            navigateToFeed(viewModel.userId)
         },
         modifier = Modifier.fillMaxWidth()
     )

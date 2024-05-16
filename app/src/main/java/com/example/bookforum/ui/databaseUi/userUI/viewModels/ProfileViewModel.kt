@@ -18,7 +18,6 @@ class ProfileViewModel(
     private val usersRepository: UsersRepository
 ) : ViewModelWithUsernameValidation(usersRepository) {
 
-
     private val userId: Int = checkNotNull(savedStateHandle[ProfileDestination.userIdArg])
 
     init {
@@ -44,7 +43,7 @@ class ProfileViewModel(
 
     suspend fun updateUser() {
         if (registrationUIState.userValidationDetails.areInputsValid) {
-            if (userDetailsValidator.isUsernameUnique(registrationUIState.userDetails, usersListState.usersList)) {
+            if (userDetailsValidator.isUsernameUnique(registrationUIState.userDetails, usersList)) {
                 usersRepository.updateUser(registrationUIState.userDetails.toUser())
             }
         }

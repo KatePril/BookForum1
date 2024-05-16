@@ -18,6 +18,7 @@ internal fun PostCreationForm(
     onValueChange: (PostDetails) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    /*TODO generalize form for PostCreationForm and EditPostForm*/
     Column(
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_large)),
         modifier = modifier.padding(dimensionResource(R.dimen.padding_large))

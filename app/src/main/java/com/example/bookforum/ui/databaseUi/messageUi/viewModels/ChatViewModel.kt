@@ -48,6 +48,7 @@ class ChatViewModel(
     }
 
     private suspend fun fillMaps() {
+        /* TODO consider replacing loop with INNER JOIN */
         messageMap = emptyMap()
         for (message in messagesList) {
             val reply = messagesRepository
@@ -65,7 +66,6 @@ class ChatViewModel(
                 usersMap += Pair(reply.senderId, sender)
             }
         }
-        Log.i("MESSAGES_MAP", messageMap.toString())
     }
 
     private suspend fun getMessagesList(): List<Message> = messagesRepository

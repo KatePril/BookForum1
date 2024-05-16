@@ -35,7 +35,7 @@ class GroupEditViewModel(
                 .stateIn(scope = viewModelScope)
                 .value
             usersMap = groupMembersRepository
-                .getUsersByGroupId(groupId)
+                .getUsersByGroupId(groupId, userId)
                 .filterNotNull()
                 .stateIn(
                     scope = viewModelScope

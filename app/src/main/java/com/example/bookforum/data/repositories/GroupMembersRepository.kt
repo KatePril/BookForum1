@@ -11,6 +11,7 @@ class GroupMembersRepository(private val groupMemberDao: GroupMemberDao) {
     suspend fun deleteGroupMember(groupMember: GroupMember) = groupMemberDao.delete(groupMember)
     fun getGroupMembersByGroupId(id: Int): Flow<List<GroupMember>?> =
         groupMemberDao.getGroupMembersByGroupId(id)
-    fun getUsersByGroupId(id: Int): Flow<List<User>?> = groupMemberDao.getUsersByGroupId(id)
+    fun getUsersByGroupId(groupId: Int, userId: Int): Flow<List<User>?> =
+        groupMemberDao.getUsersByGroupId(groupId, userId)
     fun getGroupMemberByUserId(id: Int): Flow<GroupMember?> = groupMemberDao.getGroupMemberByUserId(id)
 }

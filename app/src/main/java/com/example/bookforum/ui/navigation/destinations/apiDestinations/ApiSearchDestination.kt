@@ -1,4 +1,4 @@
-package com.example.bookforum.ui.apiUi.screens
+package com.example.bookforum.ui.navigation.destinations.apiDestinations
 
 import com.example.bookforum.ui.navigation.NavigationDestination
 

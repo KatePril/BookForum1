@@ -24,7 +24,7 @@ fun SearchResultScreen(
     } else {
         LazyColumn {
             items(books) { book ->
-                BookCard(book = book, modifier = modifier)
+                BookCard(book = book)
             }
         }
     }

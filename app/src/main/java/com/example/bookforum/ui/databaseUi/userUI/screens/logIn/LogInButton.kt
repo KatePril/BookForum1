@@ -22,6 +22,7 @@ internal fun LogInButton(
     navigateToPostsDisplayPage: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    /*TODO generalize ChangePasswordButton and LogInButton*/
     val userUiState = viewModel.getUserUiStateByUsername(viewModel.userLogInUiState.userDetails.username).collectAsState()
 
     var isLogInSuccessful by remember { mutableStateOf(false) }

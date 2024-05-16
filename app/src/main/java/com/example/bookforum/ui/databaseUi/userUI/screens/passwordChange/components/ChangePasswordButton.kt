@@ -23,6 +23,7 @@ internal fun ChangePasswordButton(
     navigateBack: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    /*TODO generalize ChangePasswordButton and LogInButton*/
     val coroutineScope = rememberCoroutineScope()
 
     var isPasswordCorrect by remember { mutableStateOf(false) }

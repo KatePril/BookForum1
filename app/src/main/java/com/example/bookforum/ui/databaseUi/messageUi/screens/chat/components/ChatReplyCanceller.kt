@@ -17,10 +17,10 @@ internal fun ChatReplyCanceller(
     modifier: Modifier = Modifier
 ) {
     val reply = getReplyById(messageDetails.reply)
-    Log.i("REPLY_MSG", reply.toString())
+
     if (reply != null) {
         val sender = getReplySender(reply.senderId)
-        Log.i("REPLY_SENDER", sender.toString())
+
         ReplyCanceller(
             username = sender?.username ?: "",
             text = reply.text,

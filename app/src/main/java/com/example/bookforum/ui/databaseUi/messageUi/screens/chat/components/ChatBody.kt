@@ -1,6 +1,5 @@
 package com.example.bookforum.ui.databaseUi.messageUi.screens.chat.components
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -34,7 +33,6 @@ internal fun ChatBody(
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier
 ) {
-    Log.i("MESSAGES", messagesList.toString())
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.padding(dimensionResource(R.dimen.padding_large)).fillMaxHeight(),
@@ -74,7 +72,6 @@ private fun MessagesList(
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier
 ) {
-    /* TODO replace deleteById with replace */
     LazyColumn(
         contentPadding = contentPadding,
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),

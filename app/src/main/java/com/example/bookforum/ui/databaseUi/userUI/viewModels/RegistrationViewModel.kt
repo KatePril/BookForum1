@@ -15,7 +15,7 @@ class RegistrationViewModel(
 
     suspend fun saveUser() {
         if (registrationUIState.userValidationDetails.areInputsValid) {
-            if (userDetailsValidator.isUsernameUnique(registrationUIState.userDetails, usersListState.usersList)) {
+            if (userDetailsValidator.isUsernameUnique(registrationUIState.userDetails, usersList)) {
                 userId = usersRepository.insertUser(
                     registrationUIState.userDetails.copy(
                         password = hashPassword(registrationUIState.userDetails.password)

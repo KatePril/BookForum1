@@ -43,7 +43,7 @@ class ProfileViewModel(
 
     suspend fun updateUser() {
         if (registrationUIState.userValidationDetails.areInputsValid) {
-            if (userDetailsValidator.isUsernameUnique(registrationUIState.userDetails, usersListState.usersList)) {
+            if (userDetailsValidator.isUsernameUnique(registrationUIState.userDetails, usersList)) {
                 usersRepository.updateUser(registrationUIState.userDetails.toUser())
             }
         }

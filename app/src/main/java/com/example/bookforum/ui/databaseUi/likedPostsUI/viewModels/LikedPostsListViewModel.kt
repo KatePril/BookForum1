@@ -22,6 +22,7 @@ class LikedPostsListViewModel(
 
     init {
         viewModelScope.launch {
+            /* TODO delete idsList */
             val idsList = likedPostsRepository
                 .getLikedPosts(userId)
                 .stateIn(

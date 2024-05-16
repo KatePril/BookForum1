@@ -13,8 +13,7 @@ import kotlinx.coroutines.launch
 
 class LikedPostsListViewModel(
     savedStateHandle: SavedStateHandle,
-    private val likedPostsRepository: LikedPostsRepository,
-    private val postsRepository: PostsRepository
+    private val likedPostsRepository: LikedPostsRepository
 ): ViewModel() {
     val userId: Int = checkNotNull(savedStateHandle[LikedPostsPageDestination.userIdArg])
 
@@ -22,22 +21,11 @@ class LikedPostsListViewModel(
 
     init {
         viewModelScope.launch {
-            /* TODO delete idsList */
-            val idsList = likedPostsRepository
+            postsListUiState = likedPostsRepository
                 .getLikedPosts(userId)
                 .stateIn(
                     scope = viewModelScope
                 ).value
-            if (idsList != null) {
-                postsListUiState = idsList.map { getPostById(it).value!! }
-            }
         }
     }
-
-
-    private suspend fun getPostById(id: Int): StateFlow<Post?> = postsRepository
-        .getPost(id)
-        .stateIn(
-            scope = viewModelScope
-        )
 }

@@ -85,7 +85,7 @@ class LikedPostDaoTest {
     fun daoInsert_insertLikedBookIntoDB() = runBlocking {
         addOneLikedPostToDb()
         val likedPosts = likedPostDao.getLikedPosts(1).first()
-        assertEquals(likedPosts[0], likedPost1.postId)
+        assertEquals(post1, likedPosts[0])
     }
 
     @Test
@@ -93,8 +93,8 @@ class LikedPostDaoTest {
     fun daoGetLikedBooks_returnsBooksIdsByUserIdFromDB() = runBlocking {
         addThreeLikedPostsToDb()
         val likedPosts = likedPostDao.getLikedPosts(2).first()
-        assertEquals(likedPosts[0], likedPost2.postId)
-        assertEquals(likedPosts[1], likedPost3.postId)
+        assertEquals(post1, likedPosts[0])
+        assertEquals(post2, likedPosts[1])
     }
 
     @Test
@@ -104,7 +104,7 @@ class LikedPostDaoTest {
         val updatedLikedPost = likedPost1.copy(postId = 2)
         likedPostDao.update(updatedLikedPost)
         val likedPosts = likedPostDao.getLikedPosts(1).first()
-        assertEquals(likedPosts[0], updatedLikedPost.postId)
+        assertEquals(post2, likedPosts[0])
     }
 
     @Test
@@ -113,7 +113,7 @@ class LikedPostDaoTest {
         addThreeLikedPostsToDb()
         likedPostDao.delete(likedPost2)
         val likedBooks = likedPostDao.getLikedPosts(2).first()
-        assertEquals(likedBooks[0], likedPost3.postId)
+        assertEquals(post2, likedBooks[0])
     }
 
     @Test
@@ -121,7 +121,7 @@ class LikedPostDaoTest {
     fun daoGetLikedPostByIds_returnsLikedPostIdFromDB() = runBlocking {
         addOneLikedPostToDb()
         val likedPost = likedPostDao.getLikedPostByIds(1, 1).first()
-        assertEquals(likedPost, likedPost1.id)
+        assertEquals(1, likedPost)
     }
 
     @Test
@@ -129,7 +129,7 @@ class LikedPostDaoTest {
     fun daoGetLikedPostByIds_returnsNull() = runBlocking {
         addOneLikedPostToDb()
         val likedPost = likedPostDao.getLikedPostByIds(1, 2).first()
-        assertEquals(likedPost, null)
+        assertEquals(null, likedPost)
     }
 
 }

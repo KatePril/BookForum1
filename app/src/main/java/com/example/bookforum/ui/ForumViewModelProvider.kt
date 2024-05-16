@@ -75,8 +75,7 @@ object ForumViewModelProvider {
         initializer {
             LikedPostsListViewModel(
                 savedStateHandle = this.createSavedStateHandle(),
-                likedPostsRepository = forumApplication().container.likedPostsRepository,
-                postsRepository = forumApplication().container.postsRepository
+                likedPostsRepository = forumApplication().container.likedPostsRepository
             )
         }
         initializer {

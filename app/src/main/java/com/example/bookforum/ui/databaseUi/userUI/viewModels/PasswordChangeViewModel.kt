@@ -24,7 +24,7 @@ class PasswordChangeViewModel(
     val userId: Int = checkNotNull(savedStateHandle[ProfileDestination.userIdArg])
 
     private var userUiState by mutableStateOf(User(0, "", "", ""))
-    /* TODO replace user with userDetails */
+
     init {
         viewModelScope.launch {
             userUiState = usersRepository

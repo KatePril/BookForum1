@@ -57,8 +57,7 @@ object ForumViewModelProvider {
         initializer {
             PostCreationViewModel(
                 savedStateHandle = this.createSavedStateHandle(),
-                postsRepository = forumApplication().container.postsRepository,
-                usersRepository = forumApplication().container.usersRepository
+                postsRepository = forumApplication().container.postsRepository
             )
         }
         initializer {

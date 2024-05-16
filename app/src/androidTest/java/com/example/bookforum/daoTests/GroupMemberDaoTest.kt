@@ -90,7 +90,7 @@ class GroupMemberDaoTest {
     @Throws(Exception::class)
     fun daoInsert_insertsGroupMemberToDB() = runBlocking {
         addOneGroupMemberToDB()
-        val groupMemberList = groupMemberDao.getGroupMembersByGroupId(1).first()
+        val groupMemberList = groupMemberDao.getGroupMembersByGroupId(1, 22).first()
         assertEquals(groupMemberList[0], groupMember1)
 
     }
@@ -101,7 +101,7 @@ class GroupMemberDaoTest {
         addOneGroupMemberToDB()
         val updatedGroupMember = groupMember1.copy(isAdmin = 1)
         groupMemberDao.update(updatedGroupMember)
-        val groupMemberList = groupMemberDao.getGroupMembersByGroupId(1).first()
+        val groupMemberList = groupMemberDao.getGroupMembersByGroupId(1, 2).first()
         assertEquals(groupMemberList[0], updatedGroupMember)
     }
 
@@ -110,7 +110,7 @@ class GroupMemberDaoTest {
     fun daoDelete_deletesGroupMemberFromDB() = runBlocking {
         addThreeGroupMembersToDB()
         groupMemberDao.delete(groupMember2)
-        val groupMemberList = groupMemberDao.getGroupMembersByGroupId(2).first()
+        val groupMemberList = groupMemberDao.getGroupMembersByGroupId(2, 4).first()
         assertEquals(groupMemberList[0], groupMember3)
     }
 
@@ -118,17 +118,17 @@ class GroupMemberDaoTest {
     @Throws(Exception::class)
     fun daoGetGroupMembersByGroupId_returnsGroupMembersByGroupIdFromDB() = runBlocking {
         addThreeGroupMembersToDB()
-        val groupMemberList = groupMemberDao.getGroupMembersByGroupId(2).first()
-        assertEquals(groupMemberList[0], groupMember2)
-        assertEquals(groupMemberList[1], groupMember3)
+        val groupMemberList = groupMemberDao.getGroupMembersByGroupId(2, 1).first()
+        assertEquals(groupMemberList[0], groupMember3)
     }
 
     @Test
     @Throws(Exception::class)
     fun daoGetUsersByGroupId_returnsUsersByGroupIdFromDB() = runBlocking {
         addThreeGroupMembersToDB()
-        val groupMemberList = groupMemberDao.getUsersByGroupId(2, 1).first()
-        assertEquals(groupMemberList[0], user2)
+        val groupMemberList = groupMemberDao.getUsersByGroupId(2).first()
+        assertEquals(groupMemberList[0], user1)
+        assertEquals(groupMemberList[1], user2)
     }
 
     @Test

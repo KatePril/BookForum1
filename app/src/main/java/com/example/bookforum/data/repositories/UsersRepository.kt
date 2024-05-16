@@ -13,7 +13,7 @@ class UsersRepository(private val userDao: UserDao) {
 
     fun getUserByNotId(id: Int): Flow<List<User>> = userDao.getUserByNotId(id)
 
-    suspend fun insertUser(user: User) = userDao.insert(user)
+    suspend fun insertUser(user: User): Long = userDao.insert(user)
 
     suspend fun updateUser(user: User) = userDao.update(user)
 

@@ -1,6 +1,7 @@
 package com.example.bookforum.ui.databaseUi.groupUi.viewModels
 
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
@@ -24,9 +25,11 @@ class GroupEditViewModel(
 
     val groupId: Int = checkNotNull(savedStateHandle[GroupEditDestination.groupIdArg])
 
-    var groupMembersList by mutableStateOf(emptyList<GroupMember>())
     private var usersMap by mutableStateOf(emptyMap<Int, User>())
-    var currentUserRights by mutableStateOf(0)
+    var groupMembersList by mutableStateOf(emptyList<GroupMember>())
+        private set
+    var currentUserRights by mutableIntStateOf(0)
+        private set
 
     init {
         viewModelScope.launch {

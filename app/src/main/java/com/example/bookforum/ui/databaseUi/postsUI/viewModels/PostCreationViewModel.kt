@@ -19,6 +19,7 @@ class PostCreationViewModel(
     val userId: Int = checkNotNull(savedStateHandle[PostCreationDestination.userIdArg])
 
     var postCreationUiState by mutableStateOf(PostCreationUiState())
+        private set
     fun updateUiState(postDetails: PostDetails) {
         postCreationUiState = PostCreationUiState(
             postDetails = postDetails.copy(userId = userId),

@@ -1,6 +1,5 @@
 package com.example.bookforum.ui.databaseUi.messageUi.viewModels
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -29,11 +28,15 @@ class ChatViewModel(
     val userId: Int = checkNotNull(savedStateHandle[ChatDestination.userIdArg])
     private val receiverId: Int = checkNotNull(savedStateHandle[ChatDestination.receiverIdArg])
 
-    var receiver: User = User(0, "", "", "")
-    var messagesList by mutableStateOf(emptyList<Message>())
     private var messageMap by mutableStateOf(emptyMap<Int, Message>())
     private var usersMap by mutableStateOf(emptyMap<Int, User>())
+
+    var receiver: User = User(0, "", "", "")
+        private set
+    var messagesList by mutableStateOf(emptyList<Message>())
+        private set
     var messageCreationUiState by mutableStateOf(MessageCreationUiState())
+        private set
 
     init {
         viewModelScope.launch {

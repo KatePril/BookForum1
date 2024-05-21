@@ -18,6 +18,7 @@ class LikedPostsListViewModel(
     val userId: Int = checkNotNull(savedStateHandle[LikedPostsPageDestination.userIdArg])
 
     var postsListUiState: List<Post>? = emptyList()
+        private set
 
     init {
         viewModelScope.launch {

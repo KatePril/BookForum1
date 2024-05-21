@@ -26,6 +26,7 @@ class EditPostViewModel(
     val postId: Int = checkNotNull(savedStateHandle[EditPostDestination.postIdArg])
 
     var postUiState by mutableStateOf(PostCreationUiState())
+        private set
 
     init {
         viewModelScope.launch {

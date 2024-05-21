@@ -27,10 +27,12 @@ class GroupViewModel(
     val groupId: Int = checkNotNull(savedStateHandle[GroupDestination.groupIdArg])
 
     private var usersMap by mutableStateOf(emptyMap<Int, User>())
-    var messagesList by mutableStateOf(emptyList<GroupMessage>())
-    var messagesMap by mutableStateOf(emptyMap<Int, GroupMessage>())
+    private var messagesMap by mutableStateOf(emptyMap<Int, GroupMessage>())
 
+    var messagesList by mutableStateOf(emptyList<GroupMessage>())
+        private set
     var groupMessageCreationUiState by mutableStateOf(GroupMessageCreationUiState())
+        private set
 
     init {
         viewModelScope.launch {

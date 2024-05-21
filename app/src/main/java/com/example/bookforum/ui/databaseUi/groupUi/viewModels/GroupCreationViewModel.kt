@@ -25,7 +25,9 @@ class GroupCreationViewModel(
 ){
     private var groupMembers by mutableStateOf(emptySet<Int>())
     var groupCreationUiState by mutableStateOf(GroupCreationUiState())
+        private set
     var groupId = 0
+        private set
 
     fun addMember(memberId: Int) {
         groupMembers += memberId

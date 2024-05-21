@@ -12,6 +12,7 @@ class RegistrationViewModel(
 ) : ViewModelWithUsernameValidation(usersRepository) {
 
     var userId by mutableIntStateOf(0)
+        private set
 
     suspend fun saveUser() {
         if (registrationUIState.userValidationDetails.areInputsValid) {

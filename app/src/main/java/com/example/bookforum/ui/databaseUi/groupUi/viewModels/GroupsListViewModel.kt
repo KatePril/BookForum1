@@ -18,6 +18,7 @@ class GroupsListViewModel(
     val userId: Int = checkNotNull(savedStateHandle[GroupsListDestination.userIdArg])
 
     var groupsList = emptyList<Group>()
+        private set
 
     init {
         viewModelScope.launch {

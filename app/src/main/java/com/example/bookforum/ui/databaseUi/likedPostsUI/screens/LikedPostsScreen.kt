@@ -27,8 +27,6 @@ fun LikedPostsScreen(
     navigateToProfile: (Int) -> Unit,
     viewModel: LikedPostsListViewModel = viewModel(factory = ForumViewModelProvider.Factory)
 ) {
-    val postsListUiState = viewModel.postsListUiState
-
     Scaffold(
         topBar = {
             ForumTopAppBar(
@@ -55,7 +53,7 @@ fun LikedPostsScreen(
             userId = viewModel.userId,
             onCommentsButtonClick = { onCommentsButtonClick(viewModel.userId, it) },
             onEditButtonClick = { onEditButtonClick(viewModel.userId, it) },
-            postsList = postsListUiState ?: listOf(),
+            postsList = viewModel.postsListUiState ?: listOf(),
             contentPadding = innerPadding,
             modifier = Modifier.fillMaxSize()
         )

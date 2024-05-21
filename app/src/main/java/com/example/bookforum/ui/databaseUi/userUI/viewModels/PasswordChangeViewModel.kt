@@ -19,11 +19,11 @@ class PasswordChangeViewModel(
     savedStateHandle: SavedStateHandle,
     private val usersRepository: UsersRepository
 ) : ViewModel() {
-    var passwordUiState by mutableStateOf(PasswordUiState())
-
     val userId: Int = checkNotNull(savedStateHandle[ProfileDestination.userIdArg])
 
     private var userUiState by mutableStateOf(User(0, "", "", ""))
+    var passwordUiState by mutableStateOf(PasswordUiState())
+        private set
 
     init {
         viewModelScope.launch {

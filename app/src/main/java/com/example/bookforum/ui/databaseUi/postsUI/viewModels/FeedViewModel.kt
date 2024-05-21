@@ -20,6 +20,7 @@ class FeedViewModel(
     val userId: Int = checkNotNull(savedStateHandle[FeedDestination.userIdArg])
 
     var postsList by mutableStateOf(emptyList<Post>())
+        private set
 
     init {
         viewModelScope.launch {

@@ -15,16 +15,16 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 open class ViewModelWithUsernameValidation(private val usersRepository: UsersRepository) : ViewModel() {
-    var registrationUIState by mutableStateOf(UserRegistrationUIState())
-
     protected val userDetailsValidator = UserDetailsValidator()
 
     protected var usersList by mutableStateOf(emptyList<User>())
 
+    var registrationUIState by mutableStateOf(UserRegistrationUIState())
+        protected set
+
     init {
         viewModelScope.launch {
             usersList = usersRepository.getAllUsernames()
-//                .map { AllUsersUIState(it) }
                 .stateIn(
                     scope = viewModelScope
                 ).value

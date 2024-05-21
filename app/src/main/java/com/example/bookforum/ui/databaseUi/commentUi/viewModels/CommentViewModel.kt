@@ -28,10 +28,13 @@ class CommentViewModel(
     private val postId: Int = checkNotNull(savedStateHandle[CommentPageDestination.postIdArg])
 
     var commentCreationUiState by mutableStateOf(CommentCreationUiState())
+        private set
 
     var commentsUiState by mutableStateOf(emptyList<Comment>())
+        private set
 
-    var usersHashMap by mutableStateOf(emptyMap<Int, User>())
+    var usersMap by mutableStateOf(emptyMap<Int, User>())
+        private set
 
     init {
         viewModelScope.launch {
@@ -48,14 +51,14 @@ class CommentViewModel(
         ).value
 
     private suspend fun fillUsers() {
-        usersHashMap = emptyMap()
+        usersMap = emptyMap()
         for (comment in commentsUiState) {
             val user = usersRepository
                 .getUserById(comment.userId)
                 .filterNotNull()
                 .stateIn(scope = viewModelScope)
                 .value
-            usersHashMap += Pair(user.id, user)
+            usersMap += Pair(user.id, user)
         }
     }
 

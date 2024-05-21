@@ -21,6 +21,7 @@ class LoginViewModel(
     private  val usersRepository: UsersRepository
 ) : ViewModel() {
     var userLogInUiState by mutableStateOf(UserLogInUiState())
+        private set
 
     fun getUserUiStateByUsername(): StateFlow<UserDetails> = usersRepository
         .getUserByUsername(userLogInUiState.userDetails.username)

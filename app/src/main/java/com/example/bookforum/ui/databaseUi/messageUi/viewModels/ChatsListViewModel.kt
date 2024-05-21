@@ -17,6 +17,7 @@ open class ChatsListViewModel(
     val userId: Int = checkNotNull(savedStateHandle[ChatsListDestination.userIdArg])
 
     var contactsList = emptyList<User>()
+        private set
 
     init {
         viewModelScope.launch {

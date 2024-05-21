@@ -25,7 +25,7 @@ fun CommentsScreen(
             }
         },
         commentsList = viewModel.commentsUiState,
-        users = viewModel.usersHashMap
+        users = viewModel.usersMap
     )
 }
 

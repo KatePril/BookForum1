@@ -40,8 +40,8 @@ class LoginViewModel(
         )
     }
 
-    fun checkPassword(correctPassword: String): Boolean =
-        correctPassword == hashPassword(userLogInUiState.userDetails.password)
+    fun checkPassword(correctPassword: String, salt: String): Boolean =
+        correctPassword == hashPassword(password = userLogInUiState.userDetails.password, salt = salt)
 
     private fun validateInput(userLogInDetails: UserLogInDetails = userLogInUiState.userDetails): Boolean {
         return with(userLogInDetails) {

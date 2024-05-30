@@ -33,8 +33,8 @@ class GroupDaoTest {
         title = "Trio"
     )
 
-    private var user1 = User(1, "ron", "1111", "ronaldwisley@gmail.com")
-    private var user2 = User(2, "luna", "0000", "luuuuna@gmail.com")
+    private var user1 = User(1, "ron", "1111", "ronaldwisley@gmail.com", "")
+    private var user2 = User(2, "luna", "0000", "luuuuna@gmail.com", "")
 
     private var groupMember1 = GroupMember(
         id = 1,

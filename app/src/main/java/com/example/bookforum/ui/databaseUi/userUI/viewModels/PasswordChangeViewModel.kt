@@ -21,7 +21,7 @@ class PasswordChangeViewModel(
 ) : ViewModel() {
     val userId: Int = checkNotNull(savedStateHandle[ProfileDestination.userIdArg])
 
-    private var userUiState by mutableStateOf(User(0, "", "", ""))
+    private var userUiState by mutableStateOf(User(0, "", "", "", ""))
     var passwordUiState by mutableStateOf(PasswordUiState())
         private set
 
@@ -49,13 +49,19 @@ class PasswordChangeViewModel(
     }
 
     fun checkPassword(): Boolean {
-        return userUiState.password == hashPassword(passwordUiState.passwordDetails.oldPassword)
+        return userUiState.password == hashPassword(
+            password = passwordUiState.passwordDetails.oldPassword,
+            salt = userUiState.salt
+        )
     }
 
     suspend fun updateUser() {
         usersRepository.updateUser(
             userUiState.copy(
-                password = hashPassword(passwordUiState.passwordDetails.newPassword)
+                password = hashPassword(
+                    password = passwordUiState.passwordDetails.newPassword,
+                    salt = userUiState.salt
+                )
             )
         )
     }

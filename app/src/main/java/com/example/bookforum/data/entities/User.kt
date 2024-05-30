@@ -10,12 +10,14 @@ data class User(
     val id: Int,
     val username: String,
     val password: String,
-    val email: String
+    val email: String,
+    val salt: String
 )
 
 fun User.toDetails(): UserDetails = UserDetails(
     id = id,
     username = username,
     password = password,
-    email = email
+    email = email,
+    salt = salt
 )

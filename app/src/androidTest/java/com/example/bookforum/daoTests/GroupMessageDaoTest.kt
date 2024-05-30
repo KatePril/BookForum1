@@ -52,8 +52,8 @@ class GroupMessageDaoTest {
         reply = 0
     )
 
-    private var user1 = User(1, "ron", "1111", "ronaldwisley@gmail.com")
-    private var user2 = User(2, "luna", "0000", "luuuuna@gmail.com")
+    private var user1 = User(1, "ron", "1111", "ronaldwisley@gmail.com", "")
+    private var user2 = User(2, "luna", "0000", "luuuuna@gmail.com", "")
 
     private var group1 = Group(1, "BFFs")
     private var group2 = Group(2, "Project for EXPO")

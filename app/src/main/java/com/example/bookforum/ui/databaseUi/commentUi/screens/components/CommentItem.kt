@@ -88,7 +88,7 @@ fun CommentCardPreview() {
                 0,
                 0
             ),
-            user = User(0, "anyablue", "", "")
+            user = User(0, "anyablue", "", "", "")
         )
     }
 }

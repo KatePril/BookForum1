@@ -6,13 +6,15 @@ data class UserDetails(
     val id: Int = 0,
     val username: String = "",
     val password: String = "",
-    val email: String = ""
+    val email: String = "",
+    val salt: String = ""
 )
 
 fun UserDetails.toUser(): User = User(
     id = id,
     username = username,
     password = password,
-    email = email
+    email = email,
+    salt = salt
 )
 

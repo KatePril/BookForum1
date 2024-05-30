@@ -86,9 +86,9 @@ fun ChatsListPreview() {
         ChatsList(
             onItemClick = {},
             usersList = listOf(
-                User(1, "anyablue", "", ""),
-                User(2, "Kate", "", ""),
-                User(3, "Hermione", "", "")
+                User(1, "anyablue", "", "", ""),
+                User(2, "Kate", "", "", ""),
+                User(3, "Hermione", "", "", "")
             )
         )
     }

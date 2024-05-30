@@ -31,7 +31,7 @@ class ChatViewModel(
     private var messageMap by mutableStateOf(emptyMap<Int, Message>())
     private var usersMap by mutableStateOf(emptyMap<Int, User>())
 
-    var receiver: User = User(0, "", "", "")
+    var receiver: User = User(0, "", "", "", "")
         private set
     var messagesList by mutableStateOf(emptyList<Message>())
         private set

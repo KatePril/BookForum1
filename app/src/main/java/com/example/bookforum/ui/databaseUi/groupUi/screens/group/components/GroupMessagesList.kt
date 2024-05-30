@@ -46,7 +46,7 @@ internal fun GroupMessagesList(
             } else {
                 ReceiverGroupMessageCard(
                     onMessageClick = { onMessageClick(groupMessage.id) },
-                    user = getUserById(groupMessage.senderId) ?: User(0, "", "", ""),
+                    user = getUserById(groupMessage.senderId) ?: User(0, "", "", "", ""),
                     message = groupMessage,
                     replyMessage = reply,
                     replySender = reply?.let { getUserById(it.senderId) }

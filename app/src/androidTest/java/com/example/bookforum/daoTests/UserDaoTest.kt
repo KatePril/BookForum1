@@ -23,8 +23,8 @@ class UserDaoTest {
     private lateinit var userDao: UserDao
     private lateinit var forumDatabase: ForumDatabase
 
-    private var user1 = User(1, "ron", "1111", "ronaldwisley@gmail.com")
-    private var user2 = User(2, "luna", "0000", "luuuuna@gmail.com")
+    private var user1 = User(1, "ron", "1111", "ronaldwisley@gmail.com", "")
+    private var user2 = User(2, "luna", "0000", "luuuuna@gmail.com", "")
 
     private suspend fun addOneUserToDb() {
         userDao.insert(user1)

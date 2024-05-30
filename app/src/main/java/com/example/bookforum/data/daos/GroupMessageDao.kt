@@ -24,6 +24,6 @@ interface GroupMessageDao {
     @Query("SELECT * FROM group_messages WHERE group_id = :id")
     fun getGroupMessagesByGroupId(id: Int): Flow<List<GroupMessage>>
 
-    @Query("SELECT users.id, users.username, users.password, users.email FROM users INNER JOIN group_messages ON (users.id = group_messages.sender_id) AND (group_messages.group_id = :id)")
+    @Query("SELECT users.id, users.username, users.password, users.email, users.salt FROM users INNER JOIN group_messages ON (users.id = group_messages.sender_id) AND (group_messages.group_id = :id)")
     fun getGroupUsersByGroupId(id: Int): Flow<List<User>>
 }

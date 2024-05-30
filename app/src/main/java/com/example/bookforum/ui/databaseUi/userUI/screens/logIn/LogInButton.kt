@@ -28,7 +28,10 @@ internal fun LogInButton(
         isMsgShown = (wasButtonClicked && !isLogInSuccessful),
         onClick = {
             wasButtonClicked = true
-            isLogInSuccessful = viewModel.checkPassword(userUiState.value.password)
+            isLogInSuccessful = viewModel.checkPassword(
+                correctPassword = userUiState.value.password,
+                salt = userUiState.value.salt
+            )
             if (isLogInSuccessful) {
                 navigateToPostsDisplayPage(userUiState.value.id)
             }
